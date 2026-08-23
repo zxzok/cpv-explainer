@@ -1,0 +1,1373 @@
+PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_core.py
+
+--- test_threshold_zero_arcsine ---
+[PASS] threshold c=0 equals arcsin(r)/(2 pi)  max err 0.00e+00
+
+--- test_threshold_table_against_quadrature ---
+[PASS] Plackett table c=0.3 r=0.1  err 1.14e-16
+[PASS] Plackett table c=0.3 r=0.5  err 3.89e-16
+[PASS] Plackett table c=0.3 r=0.9  err 0.00e+00
+[PASS] Plackett table c=0.3 r=0.99  err 1.94e-16
+[PASS] Plackett table c=0.3 r=-0.7  err 2.08e-16
+[PASS] Plackett table c=0.8 r=0.1  err 6.94e-18
+[PASS] Plackett table c=0.8 r=0.5  err 1.32e-16
+[PASS] Plackett table c=0.8 r=0.9  err 1.67e-16
+[PASS] Plackett table c=0.8 r=0.99  err 0.00e+00
+[PASS] Plackett table c=0.8 r=-0.7  err 2.78e-17
+[PASS] Plackett table c=1.5 r=0.1  err 1.73e-17
+[PASS] Plackett table c=1.5 r=0.5  err 1.04e-17
+[PASS] Plackett table c=1.5 r=0.9  err 4.86e-17
+[PASS] Plackett table c=1.5 r=0.99  err 6.25e-17
+[PASS] Plackett table c=1.5 r=-0.7  err 6.07e-18
+[PASS] Plackett table c=-1.0 r=0.1  err 4.34e-18
+[PASS] Plackett table c=-1.0 r=0.5  err 6.25e-17
+[PASS] Plackett table c=-1.0 r=0.9  err 1.53e-16
+[PASS] Plackett table c=-1.0 r=0.99  err 8.33e-17
+[PASS] Plackett table c=-1.0 r=-0.7  err 3.12e-17
+
+--- test_threshold_matches_bivariate_normal ---
+[PASS] threshold vs bivariate normal c=0.0 r=0.2  err 3.47e-17
+[PASS] threshold vs bivariate normal c=0.0 r=0.6  err 1.39e-17
+[PASS] threshold vs bivariate normal c=0.0 r=0.85  err 2.78e-17
+[PASS] threshold vs bivariate normal c=0.5 r=0.2  err 1.14e-16
+[PASS] threshold vs bivariate normal c=0.5 r=0.6  err 1.80e-16
+[PASS] threshold vs bivariate normal c=0.5 r=0.85  err 1.94e-16
+[PASS] threshold vs bivariate normal c=1.2 r=0.2  err 1.73e-17
+[PASS] threshold vs bivariate normal c=1.2 r=0.6  err 5.55e-17
+[PASS] threshold vs bivariate normal c=1.2 r=0.85  err 3.47e-17
+
+--- test_square_and_hermite ---
+[PASS] square label C(r) = 2 r^2
+[PASS] Hermite spectrum of z^2  coeffs[:4]=[0.       1.414214 0.       0.      ]
+
+--- test_hermite_recurrence ---
+[PASS] normalised Hermite recurrence  max err 1.78e-15
+
+--- test_lipschitz_constant_identity ---
+[PASS] sup |C_g'| = E[g'(U)^2]  series 0.09161695 vs quadrature 0.09161695
+[PASS] smooth label is Lipschitz (beta=1)
+
+--- test_arcsine_holder_constant ---
+[PASS] arcsin Holder-1/2 constant pi/sqrt(2)  max ratio 0.967621
+[PASS] arcsin constant is attained  ratio 1.000000000000
+
+--- test_two_sided_label ---
+[PASS] two-sided vs bivariate normal r=0.2  err 1.08e-16
+[PASS] two-sided vs bivariate normal r=0.6  err 3.96e-16
+[PASS] two-sided vs bivariate normal r=0.9  err 4.16e-16
+[PASS] two-sided vs bivariate normal r=-0.5  err 2.78e-17
+[PASS] two-sided label has no odd Hermite orders  max odd 0.00e+00
+[PASS] two-sided label vs analytic Hermite series (|r|<=0.9)  max err 4.30e-16
+       K=   500  truncation tail 6.984303e-03  tail*sqrt(K) 0.1562
+       K=  2000  truncation tail 3.482131e-03  tail*sqrt(K) 0.1557
+       K=  8000  truncation tail 1.724012e-03  tail*sqrt(K) 0.1542
+       K= 32000  truncation tail 8.602392e-04  tail*sqrt(K) 0.1539
+[PASS] indicator spectrum converges upward to Var g(U)  tail at K=32000 is 8.60e-04
+[PASS] truncation tail decays at the K^{-1/2} rate  tail*sqrt(K) ranges over 0.1539-0.1562
+
+--- test_one_sided_indicator_spectrum ---
+[PASS] threshold c=0.0: Plackett table vs Hermite series  max err 1.11e-16
+[PASS] threshold c=0.6: Plackett table vs Hermite series  max err 6.94e-16
+[PASS] threshold c=1.4: Plackett table vs Hermite series  max err 5.20e-17
+
+--- test_rank_one_update_matches_direct_solve ---
+[PASS] rank-one greedy path equals direct solve  |diff| 1.93e-12
+[PASS] marginal gains telescope to the objective  |diff| 1.93e-12
+
+--- test_mean_label_closed_form ---
+[PASS] mean label F = h^T Q h
+[PASS] mean marginal gain = (h^T P l)^2 / (l^T P l + nu^2)
+
+--- test_monotonicity_of_objective ---
+[PASS] monotone F_g for mean  min increment 1.14e-03
+[PASS] monotone F_g for occupation  min increment 1.90e-03
+[PASS] monotone F_g for occupation  min increment 4.14e-04
+[PASS] monotone F_g for two_sided  min increment 4.07e-04
+[PASS] monotone F_g for square  min increment 2.83e-03
+
+--- test_psd_projection ---
+[PASS] PSD projection has no negative eigenvalues  lambda_min -7.86e-16
+
+--- test_conference_ou_closed_form ---
+[PASS] OU A_0 = tau log 2 / 2  0.346573590280 vs 0.346573590280
+
+--- test_conference_equal_budget_values ---
+[PASS] conference same-time value 0.0970  got 0.097002
+[PASS] conference dispersed value 0.8083  got 0.808359
+       exact: same-time 0.097002, dispersed 0.808359
+
+--- test_discrete_matches_continuous ---
+       p=  256  discrete 0.501205  continuous 0.502377  diff 1.17e-03
+       p=  512  discrete 0.502070  continuous 0.502377  diff 3.07e-04
+       p= 1024  discrete 0.502324  continuous 0.502377  diff 5.31e-05
+[PASS] discrete interface agrees with continuous quadrature  |diff| 5.31e-05
+
+--- test_segments_versus_time_discrete ---
+       N=  1  same-time 0.0483   dispersed 0.0483
+       N=  2  same-time 0.0647   dispersed 0.0960
+       N=  4  same-time 0.0780   dispersed 0.1846
+       N=  8  same-time 0.0870   dispersed 0.3325
+       N= 16  same-time 0.0923   dispersed 0.5184
+       N= 32  same-time 0.0953   dispersed 0.6860
+       N= 64  same-time 0.0968   dispersed 0.8068
+[PASS] discrete same-time saturates below 0.12  0.0968
+[PASS] discrete dispersed exceeds 0.78  0.8068
+[PASS] the two protocols coincide at N = 1
+[PASS] dispersed dominates same-time for every N >= 2
+
+--- test_segments_equal_noise_division ---
+[PASS] M segments == noise / M  |diff| 0.00e+00
+
+--- test_boundary_localisation ---
+[PASS] G_a is even in a (r=0.2)  max diff 0.0e+00
+[PASS] G_a strictly decreasing in |a| (r=0.2)
+[PASS] G_a is even in a (r=0.5)  max diff 0.0e+00
+[PASS] G_a strictly decreasing in |a| (r=0.5)
+[PASS] G_a is even in a (r=0.9)  max diff 0.0e+00
+[PASS] G_a strictly decreasing in |a| (r=0.9)
+[PASS] A_a decreases in |a| (OU, tau=1)  0.3466 -> 0.0161
+[PASS] A_0 = tau*log(2)/2, independently of the closed-form test  0.34657359
+
+--- test_monte_carlo_agreement ---
+       exact  Var 0.080114  risk 0.034726  I 0.566541
+       MC     Var 0.079877  risk 0.034625  I 0.566527
+[PASS] Monte Carlo label variance matches
+[PASS] Monte Carlo Bayes risk matches
+[PASS] Monte Carlo ceiling matches  |diff| 1.40e-05
+
+====================================================================
+all core tests passed
+PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_identifiability_design.py
+
+--- test_minimal_stationary_counterexample ---
+       eps = 0.528281
+       rho_+ = [ 1.        0.49995  -0.128805  0.181857]
+       rho_- = [ 1.        0.235809  0.399476 -0.082283]
+       I_B(K_+) = 0.681661   I_B(K_-) = 0.827359
+[PASS] both perturbed matrices are correlation matrices
+[PASS] both perturbed matrices are positive definite  lambda_min 0.0105
+[PASS] observed benchmark is exactly unchanged  discrepancy 1.11e-16
+[PASS] counterfactual ceilings differ  gap 0.145698
+
+--- test_full_joint_law_is_identical ---
+[PASS] joint covariance of (Y_A, Theta) is identical  max err 5.55e-17
+       Cov(Y_A,Theta) = 0.3882504482, Var(Theta) = 0.4280119948
+
+--- test_closed_form_gap_matches_theorem ---
+       nu_B^2=0.0: eps=0.132070  b=0.467774  Var(Theta)=0.428012
+       closed form  I+=0.681661299  I-=0.827358969  gap=0.145697670
+       numerical    I+=0.681661299  I-=0.827358969  gap=0.145697670
+[PASS] closed-form I(B;K_+) at nu_B^2=0.0  |diff| 0.00e+00
+[PASS] closed-form I(B;K_-) at nu_B^2=0.0  |diff| 1.11e-16
+[PASS] closed-form gap at nu_B^2=0.0  |diff| 1.11e-16
+[PASS] Cov(Z_1,Theta) invariant at nu_B^2=0.0  b=0.467773541, b+=0.467773541, b-=0.467773541
+       nu_B^2=0.25: eps=0.132070  b=0.467774  Var(Theta)=0.428012
+       closed form  I+=0.584278320  I-=0.688148794  gap=0.103870474
+       numerical    I+=0.584278320  I-=0.688148794  gap=0.103870474
+[PASS] closed-form I(B;K_+) at nu_B^2=0.25  |diff| 1.11e-16
+[PASS] closed-form I(B;K_-) at nu_B^2=0.25  |diff| 1.11e-16
+[PASS] closed-form gap at nu_B^2=0.25  |diff| 1.94e-16
+[PASS] Cov(Z_1,Theta) invariant at nu_B^2=0.25  b=0.467773541, b+=0.467773541, b-=0.467773541
+
+--- test_sharpness_p_equals_three ---
+       p=3: free=2 constraints=2 rank(J)=2 n_directions=0
+[PASS] p=3 is locally identified (full-rank Jacobian, no direction)
+       p=4: free=3 constraints=2 rank(J)=2 n_directions=1
+[PASS] p=4 admits a non-identified direction
+       p=5: free=4 constraints=2 rank(J)=2 n_directions=2
+[PASS] p=5 admits a non-identified direction
+       p=6: free=5 constraints=2 rank(J)=2 n_directions=3
+[PASS] p=6 admits a non-identified direction
+
+--- test_general_direction_search ---
+[PASS] non-identified directions exist generically in higher dimension  20/20 instances
+       p=12,d=3: free=66 constraints=7 deficiency=59
+
+--- test_partial_identification_interval ---
+       r_L=0.3350 -> alpha in [0.2611, 0.3350] (truth 0.3)
+[PASS] trait-share interval covers the truth
+       I_trait(4,4) in [0.5473, 0.6291]
+[PASS] ceiling interval is ordered and in [0,1]
+[PASS] interval degenerates when rho(L) is known to vanish
+
+--- test_mtp2_classification ---
+       ou             alpha=0.0: max off-diagonal of K^-1 = +6.193e-15  -> MTP2
+[PASS] ou (alpha=0.0) MTP2 classification
+       ou             alpha=0.3: max off-diagonal of K^-1 = +0.000e+00  -> MTP2
+[PASS] ou (alpha=0.3) MTP2 classification
+       two_scale_ou   alpha=0.0: max off-diagonal of K^-1 = +0.000e+00  -> MTP2
+[PASS] two_scale_ou (alpha=0.0) MTP2 classification
+       two_scale_ou   alpha=0.3: max off-diagonal of K^-1 = +0.000e+00  -> MTP2
+[PASS] two_scale_ou (alpha=0.3) MTP2 classification
+       matern32       alpha=0.0: max off-diagonal of K^-1 = +8.953e+00  -> not MTP2
+[PASS] matern32 (alpha=0.0) MTP2 classification
+       matern32       alpha=0.3: max off-diagonal of K^-1 = +1.279e+01  -> not MTP2
+[PASS] matern32 (alpha=0.3) MTP2 classification
+       matern52       alpha=0.0: max off-diagonal of K^-1 = +8.578e+01  -> not MTP2
+[PASS] matern52 (alpha=0.0) MTP2 classification
+       matern52       alpha=0.3: max off-diagonal of K^-1 = +1.225e+02  -> not MTP2
+[PASS] matern52 (alpha=0.3) MTP2 classification
+       se             alpha=0.0: max off-diagonal of K^-1 = +4.407e+14  -> not MTP2
+[PASS] se (alpha=0.0) MTP2 classification
+       se             alpha=0.3: max off-diagonal of K^-1 = +2.676e+14  -> not MTP2
+[PASS] se (alpha=0.3) MTP2 classification
+       periodic       alpha=0.0: max off-diagonal of K^-1 = +2.557e+00  -> not MTP2
+[PASS] periodic (alpha=0.0) MTP2 classification
+       periodic       alpha=0.3: max off-diagonal of K^-1 = +3.582e+00  -> not MTP2
+[PASS] periodic (alpha=0.3) MTP2 classification
+       cauchy         alpha=0.0: max off-diagonal of K^-1 = +8.899e+03  -> not MTP2
+[PASS] cauchy (alpha=0.0) MTP2 classification
+       cauchy         alpha=0.3: max off-diagonal of K^-1 = +1.271e+04  -> not MTP2
+[PASS] cauchy (alpha=0.3) MTP2 classification
+       ou            : min entry of P_S over 200 protocols = +7.166e-07
+[PASS] ou: posterior covariance sign matches MTP2 status  min +7.166e-07
+       matern32      : min entry of P_S over 200 protocols = -7.143e-02
+[PASS] matern32: posterior covariance sign matches MTP2 status  min -7.143e-02
+
+--- test_paper_nonsubmodularity_witness ---
+       leading minors: [1.0, 0.510007, 0.454127, 0.138245]
+[PASS] witness matrix is positive definite  lambda_min 0.113977
+[PASS] minor 1.0  1.000000
+[PASS] minor 0.510007  0.510007
+[PASS] minor 0.454127  0.454127
+[PASS] minor 0.138245  0.138245
+       mean             Delta(a|S)=0.057354  Delta(a|T)=0.090893
+[PASS] mean: Delta(a|S) matches the recorded witness  0.057354 vs 0.057354
+[PASS] mean: Delta(a|T) matches the recorded witness  0.090893 vs 0.090893
+[PASS] mean: diminishing returns fails
+       occupation c=0   Delta(a|S)=0.012008  Delta(a|T)=0.017524
+[PASS] occupation c=0: Delta(a|S) matches the recorded witness  0.012008 vs 0.012008
+[PASS] occupation c=0: Delta(a|T) matches the recorded witness  0.017524 vs 0.017524
+[PASS] occupation c=0: diminishing returns fails
+
+--- test_submodularity_ratio_is_capped ---
+       mean         gamma=1.0000  greedy factor=0.6321
+[PASS] mean: gamma <= 1
+[PASS] mean: greedy factor <= 1 - 1/e
+       occupation   gamma=1.0000  greedy factor=0.6321
+[PASS] occupation: gamma <= 1
+[PASS] occupation: greedy factor <= 1 - 1/e
+
+--- test_augmentation_test_collapses_invisible_space ---
+[PASS] stationary, A = {Z0}
+[PASS] stationary, A + {Z1}
+[PASS] free, A = {Z0}
+[PASS] free, A + {Z1}
+[PASS] free, A + {Z1,Z2}
+[PASS] monotone in the augmentation
+
+--- test_no_adaptivity_gain_linear ---
+[PASS] mean-label EVI equals the closed-form static gain  |diff| 0.00e+00
+       EVI across posterior-mean shifts: spread 0.00e+00
+[PASS] mean-label EVI is value-free
+       threshold-label EVI varies by a factor of 5.4
+[PASS] threshold-label EVI is value-dependent
+
+--- test_calibration_chain_constant ---
+       worst realised ratio to the bound: 0.0953
+[PASS] calibration-chain bound holds on 2000 instances  max ratio 0.0953
+[PASS] the bound is conservative but not absurd
+
+--- test_mtp2_hypothesis_of_transfer_theorem ---
+       MTP2 ou             alpha=0.0: min Q_S entry +4.31e-09
+[PASS] ou (alpha=0.0): Q_S entrywise non-negative
+       MTP2 ou             alpha=0.3: min Q_S entry +6.93e-02
+[PASS] ou (alpha=0.3): Q_S entrywise non-negative
+       MTP2 two_scale_ou   alpha=0.0: min Q_S entry +2.19e-04
+[PASS] two_scale_ou (alpha=0.0): Q_S entrywise non-negative
+       MTP2 two_scale_ou   alpha=0.3: min Q_S entry +7.53e-02
+[PASS] two_scale_ou (alpha=0.3): Q_S entrywise non-negative
+       non-MTP2 matern32       alpha=0.0: min Q_S entry -8.59e-05
+[PASS] matern32: Q_S acquires negative entries (hypothesis fails)
+
+--- test_explicit_constant_bounds_hold ---
+       worst L_Q ratio 0.0034, worst uniform-error ratio 5.850e-05, 119 on-event draws
+[PASS] some draws land on the event (the test is not vacuous)  n=119
+[PASS] Claim 2 constant L_Q is not violated  ratio 0.0034
+[PASS] thm:uniform-error bound is not violated  ratio 5.850e-05
+
+--- test_frechet_derivative_of_Q ---
+[PASS] eq:dQ matches central finite differences  max discrepancy 2.22e-10
+
+--- test_transfer_inequality_holds ---
+       tau=1.0: r_max=0.7320 c0/Lg=0.6813 gamma_lin=1.0000 gamma_g=1.0000
+[PASS] transfer inequality holds (tau=1.0)  1.0000 >= 0.6813
+[PASS] gamma <= 1 as the recorded definition forces (tau=1.0)  lin=1.0000, g=1.0000
+       tau=2.5: r_max=0.7697 c0/Lg=0.6384 gamma_lin=1.0000 gamma_g=1.0000
+[PASS] transfer inequality holds (tau=2.5)  1.0000 >= 0.6384
+[PASS] gamma <= 1 as the recorded definition forces (tau=2.5)  lin=1.0000, g=1.0000
+       controls: matern32 gamma=0.9889, ou+two-sided gamma=0.9555
+[PASS] non-MTP2 kernel drops below gamma=1 (scan is not blind)  gamma=0.9889
+[PASS] two-sided under MTP2 drops below 1, as c_0=0 predicts  gamma=0.9555
+
+--- test_theorem_minimal_b_zero_proviso ---
+       rho=(-1/2, 0, 1/4): spectrum [0.25 0.5  1.5  1.75], b=0
+[PASS] the witness is a genuine correlation matrix  lambda_min=0.250000
+[PASS] its spectrum is exactly {1/4, 1/2, 3/2, 7/4}
+[PASS] b vanishes exactly there, so the gap of eq:gap-value is zero
+
+--- test_ceiling_derivative_formula ---
+[PASS] invisible directions were actually constructed  n=120
+[PASS] eq:ceiling-derivative matches central differences  max discrepancy 2.81e-10
+
+--- test_greedy_versus_exhaustive ---
+       mean         greedy/optimal = 1.000000  (greedy 0.4770 vs optimal 0.4770)
+[PASS] greedy is near-optimal for mean  ratio 1.000000
+[PASS] greedy never beats exhaustive for mean
+       occupation   greedy/optimal = 1.000000  (greedy 0.4453 vs optimal 0.4453)
+[PASS] greedy is near-optimal for occupation  ratio 1.000000
+[PASS] greedy never beats exhaustive for occupation
+       occupation   greedy/optimal = 1.000000  (greedy 0.4004 vs optimal 0.4004)
+[PASS] greedy is near-optimal for occupation  ratio 1.000000
+[PASS] greedy never beats exhaustive for occupation
+       two_sided    greedy/optimal = 1.000000  (greedy 0.1681 vs optimal 0.1681)
+[PASS] greedy is near-optimal for two_sided  ratio 1.000000
+[PASS] greedy never beats exhaustive for two_sided
+
+--- test_greedy_needs_local_search ---
+       plain greedy   I = 0.472235
+       + swap search  I = 0.478588  (178 evals)
+       exhaustive     I = 0.478588  (1820 evals)
+[PASS] swap search does not hurt
+[PASS] swap search reaches (near) the exhaustive optimum  ratio 1.000000
+[PASS] swap search is far cheaper than exhaustive search
+
+--- test_label_dependent_optima ---
+       mean(c=-)              -> (3.93, 6.08, 8.23)   I = 0.5243
+       occupation(c=0.0)      -> (3.93, 6.08, 8.23)   I = 0.4810
+       occupation(c=1.5)      -> (5.0, 7.15, 8.23)   I = 0.3797
+       two_sided(c=1.2)       -> (6.08, 7.15, 8.23)   I = 0.2638
+[PASS] labels induce different optimal protocols  3 distinct designs among 4 labels
+[PASS] mean and two-sided optima differ
+
+--- test_kernel_quadrature_equivalence ---
+       ours 0.2934526313   kernel-quadrature 0.2934526313
+[PASS] noiseless mean label == kernel quadrature  |diff| 1.71e-11
+
+--- test_baselines_are_dominated ---
+       label-aware          I = 0.478588
+       uniform              I = 0.414691
+       mutual-information   I = 0.412144
+       imse                 I = 0.473745
+       kernel-quadrature    I = 0.473745
+[PASS] label-aware design is best among the baselines
+
+--- test_mutually_exclusive_action_variants ---
+[PASS] target-aware respects mutually exclusive variants  [(3.0, 0.0), (5.0, 0.0), (1.0, 0.0)]
+[PASS] mutual-information respects mutually exclusive variants  [(1.0, 0.0), (5.0, 0.0), (3.0, 0.0)]
+[PASS] integrated-posterior-variance respects mutually exclusive variants  [(3.0, 0.0), (5.0, 0.0), (1.0, 0.0)]
+[PASS] kernel-quadrature respects mutually exclusive variants  [(3.0, 0.0), (5.0, 0.0), (1.0, 0.0)]
+[PASS] exhaustive respects mutually exclusive variants  [(1.0, 0.0), (3.0, 0.0), (5.0, 0.0)]
+
+--- test_submodularity_violation_exists ---
+       mean: Delta(a|S)=1.556613e-08 < Delta(a|T)=2.885441e-04  (|S|=2, |T|=3, rel 18535.666)
+[PASS] mean: F_g is provably not submodular
+       occupation: Delta(a|S)=1.050078e-05 < Delta(a|T)=8.391565e-05  (|S|=2, |T|=4, rel 6.991)
+[PASS] occupation: F_g is provably not submodular
+
+--- test_submodularity_ratio_certificate ---
+       gamma >= 1.0000 (median 1.0000, 96 samples) -> greedy factor 0.6321
+[PASS] submodularity ratio certificate is positive
+[PASS] greedy factor is a valid approximation factor
+       analytic transfer bound gamma_g >= (c0/Lg) gamma_lin = 0.124570
+[PASS] transfer bound is a valid probability
+
+--- test_cost_aware_budget_respected ---
+       chose 5 actions at total cost 5.00 <= 5.0  (I = 0.6494)
+[PASS] cost-aware greedy respects the budget
+
+--- test_mutual_information_matches_logdet ---
+[PASS] latent-state MI uses the exact posterior-variance greedy gains  got=['a4', 'a1', 'a6', 'a3'], expected=['a4', 'a1', 'a6', 'a3']
+[PASS] selected latent-state MI log-determinant is finite and positive  MI=2.643791688921
+
+====================================================================
+all identifiability and design tests passed
+PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_real_protocols.py
+[PASS] centred contiguous comparator
+[PASS] dispersed comparator spans fixed full domain
+[PASS] dispersed comparator has 1 distinct anchors
+[PASS] dispersed comparator has 4 distinct anchors
+[PASS] dispersed comparator has 8 distinct anchors
+[PASS] dispersed comparator has 16 distinct anchors
+[PASS] dispersed comparator has 32 distinct anchors
+[PASS] dispersed comparator has 64 distinct anchors
+[PASS] dispersed comparator has 128 distinct anchors
+[PASS] 128-epoch record maps anchors one-to-one
+[PASS] 129-epoch record maps anchors one-to-one
+[PASS] 197-epoch record maps anchors one-to-one
+[PASS] 2720-epoch record maps anchors one-to-one
+[PASS] 10000-epoch record maps anchors one-to-one
+[PASS] Sleep base weights are exactly inverse recording counts  [0.5, 0.5, 1.0, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1.0]
+[PASS] subject-balanced rows give equal subject totals
+[PASS] stratified Sleep folds are subject-disjoint
+[PASS] weighted R2 matches its defining formula
+[PASS] pooled weighted R2 is invariant to common weight scaling
+[PASS] baseline-residualised anchors are weighted-orthogonal to baseline
+[PASS] baseline-residualised target is weighted-orthogonal to baseline
+[PASS] Sleep moments record baseline-conditioned selection
+[PASS] weighted ridge protects a zero-variance feature
+[PASS] ridge leaves declared baseline covariates unpenalised  max error 2.66e-15
+[PASS] official ST metadata maps one placebo and one temazepam night per subject
+[PASS] AF affine representation exactly reconstructs discretised burden
+[PASS] zero-variance AF bins receive zero target weight
+[PASS] AF raw-window value equals transformed-row standardised value  raw=0.910377358491, transformed=0.910377358491
+[PASS] AF Model.ceiling evaluates the raw protocol
+
+====================================================================
+all real-protocol tests passed
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/fetch_data.py
+[sleep-edf] start
+  sleep-cassette: 153 hypnogram files listed
+  sleep-telemetry: 44 hypnogram files listed
+  downloaded/cached 197 hypnograms (0.86 MB)
+  [npz]  data/sleep_edf/hypnograms.npz (197 recordings, 100 subjects)
+  [json] data/sleep_edf/meta.json
+[sleep-edf] done in 2.5s
+[ltafdb] start
+  84 LTAF records listed
+  downloaded/cached 84 .hea/.atr pairs (18.5 MB)
+  [npz]  data/ltaf/af_series.npz (84 records)
+  [json] data/ltaf/meta.json
+[ltafdb] done in 22.7s
+  [csv]  results/data_summary.csv (281 rows)
+  [json] results/data_summary.json
+  [fig] figures/data_overview.pdf
+
+SANITY CHECKS
+  sleep_edf_total_recording_hours: 3818.0083333333337
+  ltaf_total_recording_hours: 1934.25
+  median_sleep_period_hours_cassette: 8.391666666666667
+  median_trimmed_record_hours_cassette: 22.916666666666668
+  median_sleep_period_in_7_to_9h: True
+  median_trimmed_record_in_7_to_9h: False
+  frac_ltaf_records_burden_strictly_between_0_and_1: 0.8452380952380952
+  ltaf_mixed_is_clear_majority: True
+  sleep_edf_at_least_150_recordings: True
+
+total runtime 25.3s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s1_s2_regression_identifiability.py
+
+=== S1a: one-snapshot explainability (T/tau = 14, nu^2 = 0.2) ===
+[S1a] start
+  alpha=0.00  V: cont 0.023093 / disc 0.023124 / MC 0.023103+-0.000062
+             I: cont 0.118723 / disc 0.118584 / MC 0.117512+-0.001127 / conference 0.119
+  alpha=0.20  V: cont 0.051584 / disc 0.051611 / MC 0.051612+-0.000108
+             I: cont 0.255582 / disc 0.255460 / MC 0.254628+-0.001352 / conference 0.256
+  alpha=0.35  V: cont 0.073879 / disc 0.073903 / MC 0.073632+-0.000162
+             I: cont 0.355277 / disc 0.355169 / MC 0.354755+-0.001531 / conference 0.355
+  [csv]  results/s1_s2_snapshot.csv (12 rows)
+[S1a] done in 25.8s
+
+=== S1b: equal-budget D-vs-M curve (T/tau = 20, alpha = 0) ===
+[S1b] start
+[S1b Monte Carlo] start
+[S1b Monte Carlo] done in 63.0s
+  N=  1  same: cont 0.048415 disc 0.048322 MC 0.0485+-0.0007 |  disp: cont 0.048415 disc 0.048322 MC 0.0489+-0.0008
+  N=  2  same: cont 0.064817 disc 0.064692 MC 0.0649+-0.0010 |  disp: cont 0.096189 disc 0.096004 MC 0.0962+-0.0011
+  N=  4  same: cont 0.078126 disc 0.077978 MC 0.0782+-0.0010 |  disp: cont 0.184931 disc 0.184575 MC 0.1857+-0.0014
+  N=  8  same: cont 0.087132 disc 0.086968 MC 0.0869+-0.0011 |  disp: cont 0.333174 disc 0.332534 MC 0.3310+-0.0014
+  N= 16  same: cont 0.092496 disc 0.092324 MC 0.0923+-0.0011 |  disp: cont 0.519365 disc 0.518370 MC 0.5184+-0.0015
+  N= 32  same: cont 0.095449 disc 0.095272 MC 0.0952+-0.0011 |  disp: cont 0.687270 disc 0.685962 MC 0.6855+-0.0009
+  N= 64  same: cont 0.097002 disc 0.096824 MC 0.0968+-0.0011 |  disp: cont 0.808360 disc 0.806840 MC 0.8066+-0.0008
+  [csv]  results/s1_s2_equal_budget.csv (7 rows)
+[S1b] done in 68.7s
+
+=== S1c: OU closed form A_0 = tau log(2)/2 ===
+  A_0 numeric 0.346573590280  closed form tau log2/2 0.346573590280  |diff| 7.44e-15
+
+=== S2a: minimal stationary counterexample ===
+  eps = 0.5282814333
+  rho_+ = [ 1.          0.4999498  -0.12880543  0.18185743]
+  rho_- = [ 1.          0.23580908  0.399476   -0.08228329]
+  Var(Y_A) 1.000000000000 / 1.000000000000
+  Cov(Y_A,Theta) 0.388250448194 / 0.388250448194
+  Var(Theta) 0.428011994794 / 0.428011994794
+  max |discrepancy| over the identified functionals = 1.110e-16
+  I_B(K_+) = 0.681661   I_B(K_-) = 0.827359   gap 0.145698
+  occupation label:  I_B(K_+) = 0.643363  I_B(K_-) = 0.747493   gap 0.104130
+  occupation label:  benchmark A moves by 4.38e-04  (Var Theta_occ 0.09224538 / 0.09141973, Cov(Y_A,Theta_occ) 0.15488952 / 0.15488952)
+
+=== S2b: sharp p = 3 / p >= 4 threshold ===
+  p=3: rank(J)=2/2  free=2  constraints=2  invisible directions=0
+  p=4: rank(J)=2/2  free=3  constraints=2  invisible directions=1
+  p=5: rank(J)=2/2  free=4  constraints=2  invisible directions=2
+  p=6: rank(J)=2/2  free=5  constraints=2  invisible directions=3
+  p=7: rank(J)=2/2  free=6  constraints=2  invisible directions=4
+  p=8: rank(J)=2/2  free=7  constraints=2  invisible directions=5
+
+=== S2c: genericity over random higher-dimensional instances ===
+[S2c] start
+  p= 8 d=1: 200/200 admit invisible directions (mean dim 26.0, deficiency 26); gap median 0.1360 [0.0652, 0.2065] max 0.5122
+  p= 8 d=2: 200/200 admit invisible directions (mean dim 24.0, deficiency 24); gap median 0.1873 [0.1052, 0.2749] max 0.6116
+  p= 8 d=3: 200/200 admit invisible directions (mean dim 21.0, deficiency 21); gap median 0.1872 [0.1221, 0.2666] max 0.6267
+  p=12 d=1: 200/200 admit invisible directions (mean dim 64.0, deficiency 64); gap median 0.0414 [0.0235, 0.0741] max 0.2508
+  p=12 d=2: 200/200 admit invisible directions (mean dim 62.0, deficiency 62); gap median 0.0721 [0.0477, 0.1111] max 0.3090
+  p=12 d=3: 200/200 admit invisible directions (mean dim 59.0, deficiency 59); gap median 0.0892 [0.0593, 0.1236] max 0.4092
+  p=16 d=1: 200/200 admit invisible directions (mean dim 118.0, deficiency 118); gap median 0.0262 [0.0119, 0.0445] max 0.1792
+  p=16 d=2: 200/200 admit invisible directions (mean dim 116.0, deficiency 116); gap median 0.0392 [0.0248, 0.0586] max 0.1767
+  p=16 d=3: 200/200 admit invisible directions (mean dim 113.0, deficiency 113); gap median 0.0435 [0.0293, 0.0670] max 0.1839
+  [csv]  results/s1_s2_random_instances.csv (1800 rows)
+[S2c] done in 84.4s
+
+=== figures ===
+/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/experiments/synthetic/s1_s2_regression_identifiability.py:614: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+  [fig] figures/fig_identifiability.pdf
+  [fig] figures/fig_equal_budget.pdf
+  [csv]  results/s1_s2_regression_identifiability.csv (102 rows)
+  [json] results/s1_s2_regression_identifiability.json
+
+=== discrepancy audit ===
+  S1a_max_abs_continuous_vs_conference                       0.0004184389568128166
+  S1a_max_abs_discrete_vs_continuous                         0.00013871869122865366
+  S1a_max_abs_mc_vs_discrete                                 0.0010723363496756705
+  S1a_max_z_mc_vs_discrete                                   1.8641924210641345
+  S1a_mc_within_ci_all_alphas                                True
+  S1b_same_time_continuous_vs_conference_N64                 1.3888095179881432e-05
+  S1b_dispersed_continuous_vs_conference_N64                 1.6680913640931827e-05
+  S1b_max_abs_discrete_vs_continuous                         0.0015192064686934126
+  S1b_max_abs_mc_vs_discrete                                 0.0015410520559728802
+  S1b_max_mc_ci95                                            0.0015144262469107763
+  S1b_max_z_mc_vs_discrete                                   2.1108682504317273
+  S1c_A0_abs_diff                                            7.438494264988549e-15
+  S2a_max_abs_discrepancy_identified_functionals             1.1102230246251565e-16
+  S2c_max_observed_discrepancy                               6.938893903907228e-16
+
+total runtime 180.3s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s3_ceiling_estimation.py
+[s3_ceiling_estimation] p=128, T=20.0, |Pi_B|=495, m=(25, 50, 100, 250, 500, 1000), reps=200, bootstrap=200, seed=20260802
+  [check] shared-Q family evaluation vs estimate_protocol_ceiling: max |diff| = 1.39e-16
+  9600 replications over 8 configurations
+[simulate] start
+    1000/9600 reps  (152s elapsed, ETA 1311s)
+    2000/9600 reps  (209s elapsed, ETA 796s)
+    3000/9600 reps  (238s elapsed, ETA 523s)
+    4000/9600 reps  (266s elapsed, ETA 372s)
+    5000/9600 reps  (311s elapsed, ETA 287s)
+    6000/9600 reps  (415s elapsed, ETA 249s)
+    7000/9600 reps  (445s elapsed, ETA 165s)
+    8000/9600 reps  (473s elapsed, ETA 95s)
+    9000/9600 reps  (499s elapsed, ETA 33s)
+[simulate] done in 515.1s
+  [csv]  results/s3_ceiling_estimation.csv (216 rows)
+  [csv]  results/s3_ceiling_estimation_reps.csv (43200 rows)
+  [fig] figures/fig_ceiling_estimation.pdf
+  [json] results/s3_ceiling_estimation.json
+[s3_ceiling_estimation] total 519.8s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s3b_modulus_regimes.py
+[A: sharpness on the boundary family] start
+[A: sharpness on the boundary family] done in 0.0s
+[B: banded temporal-like correlations] start
+[B: banded temporal-like correlations] done in 1.1s
+[C: estimation pipeline vs grid resolution] start
+[C: estimation pipeline vs grid resolution] done in 12.0s
+  [csv]  results/s3b_sharpness_boundary.csv (15 rows)
+  [csv]  results/s3b_banded.csv (60 rows)
+  [csv]  results/s3b_pipeline_resolution.csv (24 rows)
+
+A. equicorrelated boundary family: exponent of |dV_g| in ||E||_op
+         mean: 1.0000  (se 0.0000)
+      sigmoid: 0.9987  (se 0.0005)
+       occ_c0: 0.5006  (se 0.0002)
+       occ_c1: 0.5000  (se 0.0000)
+   -> predicted 1.0 for smooth labels, 0.5 for threshold labels
+
+B. banded correlations: exponent of |dV_g| in ||E||_op
+      r_max        mean     sigmoid      occ_c0      occ_c1
+     0.3000       1.019       1.019       1.019       1.017
+     0.9000       0.998       0.999       1.002       1.003
+     0.9900       0.983       0.984       1.012       1.013
+     0.9990       1.043       1.042       1.116       1.116
+     0.9999       1.168       1.168       1.072       1.072
+
+C. pipeline: log-log slope of the uniform ceiling error in m
+       p    r_max   ||K-K||       mean    sigmoid     occ_c0     occ_c1
+      32   0.5353    -0.540     -0.618     -0.619     -0.619     -0.615
+      64   0.7316    -0.515     -0.528     -0.528     -0.528     -0.519
+     128   0.8553    -0.516     -0.512     -0.511     -0.511     -0.498
+     256   0.9248    -0.522     -0.529     -0.530     -0.532     -0.520
+  [fig] figures/fig_modulus_regimes.pdf
+  [json] results/s3b_modulus_regimes.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s4_selection_regret.py
+[S4] |V| = 14, B = 4, |Pi_B| = 1001, p = 128, T = 20.0, reps = 200, seed = 20260802
+[S4 sweep (96 tasks, 16 workers)] start
+[S4 sweep (96 tasks, 16 workers)] done in 309.8s
+  [csv]  results/s4_selection_regret.csv (7200 rows)
+  [csv]  results/s4_selection_regret_robust.csv (1200 rows)
+  [fig] figures/fig_regret.pdf
+  [json] results/s4_selection_regret.json
+
+--- guarantee checks ---
+  regret <= 2 eps_m       : 7200/7200 (0 violations)
+  eta-approximate bound   : 7200/7200 (0 violations)
+  min slack (2eps-regret) : 2.915e-02
+  median regret/(2 eps_m) : 0.0244
+  mean eta_hat            : 0.998942  (min 0.934647)
+
+--- robust vs plug-in (paired, small m) ---
+  cells where robust has lower mean regret: 3/12
+  per-replication wins/ties/losses: 394/381/425
+  mean paired difference (robust - plug-in): +0.00153
+
+[S4] total runtime 312.5s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s5_design.py
+[S5 i_stationary_ou] start
+  |V| = 12, budget = 4.0, subsets enumerated = 495, evaluated = 495, distinct optima = 2/5
+    S*_mean             t = [2.1364, 3.7727, 6.2273, 7.8636]
+    S*_occupation_c0    t = [2.1364, 3.7727, 6.2273, 7.8636]
+    S*_occupation_c1.5  t = [2.1364, 3.7727, 6.2273, 7.8636]
+    S*_two_sided_c1.2   t = [2.1364, 3.7727, 5.4091, 7.0455]
+    S*_sigmoid          t = [2.1364, 3.7727, 6.2273, 7.8636]
+[S5 i_stationary_ou] done in 1.7s
+[S5 i_stationary_matern32] start
+  |V| = 12, budget = 4.0, subsets enumerated = 495, evaluated = 495, distinct optima = 3/5
+    S*_mean             t = [1.3182, 3.7727, 6.2273, 8.6818]
+    S*_occupation_c0    t = [1.3182, 3.7727, 6.2273, 8.6818]
+    S*_occupation_c1.5  t = [2.1364, 3.7727, 5.4091, 7.8636]
+    S*_two_sided_c1.2   t = [2.1364, 3.7727, 5.4091, 7.0455]
+    S*_sigmoid          t = [1.3182, 3.7727, 6.2273, 8.6818]
+[S5 i_stationary_matern32] done in 1.6s
+[S5 ii_nonstationary] start
+  |V| = 12, budget = 4.0, subsets enumerated = 495, evaluated = 495, distinct optima = 4/5
+    S*_mean             t = [2.1364, 3.7727, 6.2273, 8.6818]
+    S*_occupation_c0    t = [2.1364, 4.5909, 6.2273, 8.6818]
+    S*_occupation_c1.5  t = [2.9545, 5.4091, 7.0455, 8.6818]
+    S*_two_sided_c1.2   t = [3.7727, 5.4091, 7.0455, 8.6818]
+    S*_sigmoid          t = [2.1364, 3.7727, 6.2273, 8.6818]
+[S5 ii_nonstationary] done in 1.9s
+[S5 iii_heterogeneous] start
+  |V| = 18, budget = 4.0, subsets enumerated = 4047, evaluated = 802, distinct optima = 3/5
+    S*_mean             t = [2.3, 4.1, 5.9, 7.7]  w = [0.0, 0.0, 0.0, 0.0]
+    S*_occupation_c0    t = [2.3, 4.1, 5.9, 7.7]  w = [0.0, 0.0, 0.0, 0.0]
+    S*_occupation_c1.5  t = [0.5, 2.3, 4.1, 5.9]  w = [0.0, 0.0, 0.0, 0.0]
+    S*_two_sided_c1.2   t = [0.5, 0.5, 2.3]  w = [1.5, 3.5, 1.5]
+    S*_sigmoid          t = [2.3, 4.1, 5.9, 7.7]  w = [0.0, 0.0, 0.0, 0.0]
+[S5 iii_heterogeneous] done in 1.8s
+[S5 iv_recency] start
+  |V| = 12, budget = 4.0, subsets enumerated = 495, evaluated = 495, distinct optima = 3/5
+    S*_mean             t = [5.4091, 7.0455, 8.6818, 9.5]
+    S*_occupation_c0    t = [5.4091, 7.0455, 8.6818, 9.5]
+    S*_occupation_c1.5  t = [6.2273, 7.8636, 8.6818, 9.5]
+    S*_two_sided_c1.2   t = [7.0455, 7.8636, 8.6818, 9.5]
+    S*_sigmoid          t = [5.4091, 7.0455, 8.6818, 9.5]
+[S5 iv_recency] done in 1.5s
+[S5 submodularity ii_nonstationary] start
+[S5 submodularity ii_nonstationary] done in 7.3s
+[S5 submodularity iii_heterogeneous] start
+[S5 submodularity iii_heterogeneous] done in 5.2s
+  [csv]  results/s5_design.csv (275 rows)
+  [csv]  results/s5_design_method_summary.csv (6 rows)
+  [csv]  results/s5_design_submodularity.csv (10 rows)
+  [json] results/s5_design.json
+  [fig] figures/fig_design.pdf
+'created' timestamp seems very low; regarding as unix timestamp
+'modified' timestamp seems very low; regarding as unix timestamp
+  [fig] figures/fig_design_crossmatrix.pdf
+
+[S5] total runtime 22.2s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s5b_submodularity.py
+[S5b exhaustive submodularity search] start
+  ou               mean           rel.viol    0.0000  |S|=0 |T|=0  min increment +7.87e-03  gamma 1.000
+  ou               occupation_c0  rel.viol    0.0000  |S|=0 |T|=0  min increment +1.34e-03  gamma 1.000
+  ou               occupation_c1  rel.viol    0.0000  |S|=0 |T|=0  min increment +6.27e-04  gamma 1.000
+  ou               two_sided_c1   rel.viol    0.0701  |S|=0 |T|=2  min increment +6.49e-04  gamma 0.976
+  matern32         mean           rel.viol    0.2750  |S|=2 |T|=4  min increment +7.23e-03  gamma 0.958
+  matern32         occupation_c0  rel.viol    0.2334  |S|=2 |T|=4  min increment +1.38e-03  gamma 0.961
+  matern32         occupation_c1  rel.viol    0.1784  |S|=2 |T|=4  min increment +7.32e-04  gamma 0.966
+  matern32         two_sided_c1   rel.viol    0.0489  |S|=1 |T|=4  min increment +1.04e-03  gamma 0.985
+  two_scale_ou     mean           rel.viol    0.0000  |S|=0 |T|=0  min increment +5.65e-03  gamma 1.000
+  two_scale_ou     occupation_c0  rel.viol    0.0000  |S|=0 |T|=0  min increment +9.21e-04  gamma 1.000
+  two_scale_ou     occupation_c1  rel.viol    0.0000  |S|=0 |T|=0  min increment +3.94e-04  gamma 1.000
+  two_scale_ou     two_sided_c1   rel.viol    0.3031  |S|=0 |T|=2  min increment +2.49e-04  gamma 0.881
+  damped_periodic  mean           rel.viol 303854.2688  |S|=2 |T|=5  min increment +2.00e-09  gamma 0.733
+  damped_periodic  occupation_c0  rel.viol   12.8784  |S|=2 |T|=5  min increment +7.74e-06  gamma 0.750
+  damped_periodic  occupation_c1  rel.viol    0.2308  |S|=2 |T|=4  min increment +2.68e-04  gamma 0.934
+  damped_periodic  two_sided_c1   rel.viol    0.3007  |S|=1 |T|=3  min increment +8.93e-04  gamma 0.908
+[S5b exhaustive submodularity search] done in 411.3s
+  [csv]  results/s5b_submodularity.csv (16 rows)
+
+Most dramatic violation:
+  kernel damped_periodic, label mean
+  a at t=8.300
+  S = [3.9, 6.1]
+  T = [3.9, 6.1, 0.6, 7.2, 9.4]
+  Delta(a|S) = 2.174156e-09
+  Delta(a|T) = 6.606286e-04   (303854.3x larger)
+
+Monotonicity: smallest increment over all kernels/labels/orders = +2.003e-09
+  [json] results/s5b_submodularity.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s6_misspecification.py
+[S6 truth tables] start
+  control                mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  control                occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  matern52               mean        I* = 0.5476  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  matern52               occupation  I* = 0.4722  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  two_scale              mean        I* = 0.3769  S* = ['t15.00', 't17.00', 't18.50', 't19.75']
+  two_scale              occupation  I* = 0.3561  S* = ['t15.00', 't17.00', 't18.50', 't19.75']
+  cauchy                 mean        I* = 0.7030  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  cauchy                 occupation  I* = 0.6306  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_lognormal       mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_lognormal       occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_lognormal_rank  mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_lognormal_rank  occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_t4              mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_t4              occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_t4_rank         mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  copula_t4_rank         occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  subject_kernels        mean        I* = 0.4541  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  subject_kernels        occupation  I* = 0.4059  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  mnar                   mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  mnar                   occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  label_noise            mean        I* = 0.4007  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  label_noise            occupation  I* = 0.3655  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  label_quantised        mean        I* = 0.4574  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+  label_quantised        occupation  I* = 0.3944  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
+[S6 truth tables] done in 1024.9s
+[S6 replications] start
+  [ 1/12] control                 20.1s
+  [ 2/12] matern52                20.2s
+  [ 3/12] two_scale               20.6s
+  [ 4/12] cauchy                  20.4s
+  [ 5/12] copula_lognormal        19.9s
+  [ 6/12] copula_lognormal_rank   20.6s
+  [ 7/12] copula_t4               18.3s
+  [ 8/12] copula_t4_rank          22.3s
+  [ 9/12] subject_kernels         20.8s
+  [10/12] mnar                    20.2s
+  [11/12] label_noise             20.2s
+  [12/12] label_quantised         20.1s
+[S6 replications] done in 243.7s
+  [csv]  results/s6_misspecification.csv (4800 rows)
+/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/experiments/synthetic/s6_misspecification.py:856: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+  [fig] figures/fig_misspecification.pdf
+  [json] results/s6_misspecification.json
+
+============================================================================================
+arm                                label        ceil err    regret   I_true  ridge R2  tau_hat
+control                            mean           0.0091    0.0000   0.5009    0.4985    2.007
+control                            occupation     0.0085    0.0000   0.4568    0.4485    2.007
+matern52                           mean           0.0411    0.0000   0.5476    0.5452    2.061
+matern52                           occupation     0.0114    0.0000   0.4722    0.4574    2.061
+two_scale                          mean           0.0166    0.0000   0.3769    0.3715    1.136
+two_scale                          occupation     0.0133    0.0000   0.3561    0.3508    1.136
+cauchy                             mean           0.0096    0.0000   0.7030    0.7019    7.825
+cauchy                             occupation     0.0061    0.0000   0.6306    0.5997    7.825
+copula_lognormal                   mean           0.0515    0.0028   0.4981    0.4947    1.544
+copula_lognormal                   occupation     0.0465    0.0038   0.4531    0.4409    1.544
+copula_lognormal_rank              mean           0.0090    0.0000   0.5009    0.4972    1.988
+copula_lognormal_rank              occupation     0.0083    0.0000   0.4568    0.4455    1.988
+copula_t4                          mean           0.0114    0.0000   0.5009    0.4992    1.915
+copula_t4                          occupation     0.0106    0.0000   0.4568    0.4484    1.915
+copula_t4_rank                     mean           0.0092    0.0000   0.5009    0.4980    1.993
+copula_t4_rank                     occupation     0.0085    0.0000   0.4568    0.4478    1.993
+subject_kernels                    mean           0.0172    0.0003   0.4537    0.4469    1.681
+subject_kernels                    occupation     0.0196    0.0006   0.4053    0.3986    1.681
+mnar                               mean           0.0613    0.0103   0.4906    0.4861    1.415
+mnar                               occupation     0.0561    0.0097   0.4472    0.4354    1.415
+label_noise                        mean           0.1001    0.0000   0.4007    0.3971    2.003
+label_noise                        occupation     0.0913    0.0000   0.3655    0.3570    2.003
+label_quantised                    mean           0.0431    0.0000   0.4574    0.4538    2.001
+label_quantised                    occupation     0.0621    0.0000   0.3944    0.3972    2.001
+============================================================================================
+total runtime 1270.0s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s7_protocol_vs_architecture.py
+[S7] exact protocol ceilings (no Monte Carlo)
+      alpha=0.0   mean        dispersed  V_g=0.09521  I(S)=0.3624  I_lin=0.3624  I_state=0.3624
+      alpha=0.0   mean        same_time  V_g=0.09521  I(S)=0.0937  I_lin=0.0937  I_state=0.0937
+      alpha=0.0   occupation  dispersed  V_g=0.01680  I(S)=0.3288  I_lin=0.3268  I_state=0.3288
+      alpha=0.0   occupation  same_time  V_g=0.01680  I(S)=0.0861  I_lin=0.0845  I_state=0.0861
+      alpha=0.35  mean        dispersed  V_g=0.41189  I(S)=0.7266  I_lin=0.7266  I_state=0.3624
+      alpha=0.35  mean        same_time  V_g=0.41189  I(S)=0.3719  I_lin=0.3719  I_state=0.0937
+      alpha=0.35  occupation  dispersed  V_g=0.06927  I(S)=0.6989  I_lin=0.6876  I_state=0.3288
+      alpha=0.35  occupation  same_time  V_g=0.06927  I(S)=0.3548  I_lin=0.3520  I_state=0.0861
+[S7] running 20 (alpha, seed) jobs on 12 processes
+[S7] 1680 learning-curve rows; within/between arm (alpha=0.35, 2 horizons per subject)
+  [csv]  results/s7_protocol_vs_architecture.csv (1680 rows)
+  [csv]  results/s7_gap_decomposition.csv (168 rows)
+  [csv]  results/s7_within_between.csv (120 rows)
+  [json] results/s7_protocol_vs_architecture.json
+  [fig] figures/fig_protocol_vs_architecture.pdf
+
+[S7] headline
+      same-time  n=5000: R2=0.0819 ceiling=0.0861 utilisation=0.952 gap=0.0041  (mlp)
+      dispersed  n=100: R2=0.2731 ceiling=0.3288 utilisation=0.830 gap=0.0558  (ridge)
+      protocol change buys +0.2457 R2 at n=5000; 50x more data under the same-time protocol buys +0.0198
+[S7] total runtime 284.6s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s8_resolution.py
+nested classes: L1 geometry (2), L2 phase (5), L3 coarse bins (75), L4 exact placement (568)
+[S8 resolution-adaptive selection] start
+[S8 resolution-adaptive selection] done in 655.4s
+  [csv]  results/s8_resolution.csv (360 rows)
+
+mean:
+      m  level    reg L1    reg L2    reg L3    reg L4  adaptive
+     25   1.83    0.0524    0.0716    0.0512    0.0477    0.0582
+     50   2.27    0.0464    0.0592    0.0310    0.0296    0.0384
+    100   2.70    0.0374    0.0520    0.0265    0.0262    0.0316
+    250   2.53    0.0374    0.0395    0.0212    0.0134    0.0244
+    500   3.13    0.0374    0.0395    0.0187    0.0103    0.0170
+   1000   3.60    0.0374    0.0395    0.0186    0.0061    0.0095
+
+occupation:
+      m  level    reg L1    reg L2    reg L3    reg L4  adaptive
+     25   1.60    0.0510    0.0604    0.0331    0.0375    0.0467
+     50   2.10    0.0426    0.0548    0.0316    0.0235    0.0358
+    100   2.37    0.0398    0.0473    0.0199    0.0236    0.0322
+    250   3.17    0.0371    0.0429    0.0200    0.0107    0.0160
+    500   3.27    0.0371    0.0396    0.0172    0.0087    0.0147
+   1000   3.70    0.0371    0.0371    0.0170    0.0059    0.0088
+
+cor:regret, oracle-eps arm (the setting the corollary covers): 0 violations in 360 selections
+Bootstrap-eps arm: 0 violations; the bootstrap eps was a valid uniform bound at every level in 67.5% of replications
+Adaptive minus best fixed level: mean -0.0082, wins in 0/12 cells
+  [fig] figures/fig_resolution_selector.pdf
+  [json] results/s8_resolution.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s9_proof_checks.py
+calibration chain: worst ratio to bound 0.1098 over 4000 on-event draws (of 4000)
+  MTP2 ou_alpha0                  min Q_S entry +4.310e-09
+  MTP2 ou_alpha0.3                min Q_S entry +6.925e-02
+  MTP2 two_scale_ou_alpha0        min Q_S entry +2.186e-04
+  MTP2 two_scale_ou_alpha0.3      min Q_S entry +7.478e-02
+  control matern32           min Q_S entry -8.748e-05
+L_Q bound: worst realised ratio 0.0034 over 298 on-event draws
+uniform-error bound: worst realised ratio 5.8505e-05
+wrote results/s9_proof_checks.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/sleep_edf/run_sleep.py
+[R1] 197 recordings / 100 subjects, 458161 epochs, median 2712 (21.19 per anchor)
+[R1] folds: [42, 41, 40, 37, 37] records
+[R1 REM] start
+    fold 0: r_eff(train)=13.7, r_eff(test)=7.3, 15 constant anchors, v=0.00126
+[R1 REM] done in 8.8s
+[R1 N3] start
+    fold 0: r_eff(train)=10.1, r_eff(test)=5.6, 11 constant anchors, v=0.00198
+[R1 N3] done in 7.5s
+[R1 wake] start
+    fold 0: r_eff(train)=4.9, r_eff(test)=5.5, 0 constant anchors, v=0.00308
+[R1 wake] done in 9.1s
+[R1 cross-target transfer] start
+[R1 cross-target transfer] done in 0.2s
+  [csv]  results/sleep_edf.csv (450 rows)
+  [csv]  results/sleep_edf_summary.csv (90 rows)
+  [csv]  results/sleep_edf_designs.csv (375 rows)
+  [json] results/sleep_edf.json
+
+[R1] total runtime 27.0s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/ltaf/run_ltaf.py
+[data] 84 records, 60s epochs, 1934.2 h total
+[cohorts] strict=71, all=84, mixed=33
+[cohorts] excluded by 0<burden<1: [np.str_('12'), np.str_('17'), np.str_('18'), np.str_('202'), np.str_('205'), np.str_('208'), np.str_('21'), np.str_('30'), np.str_('54'), np.str_('69'), np.str_('70'), np.str_('71'), np.str_('75')] (burden [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+[autocorrelation] start
+  alpha_fit=0.6761 (empirical between-record share 0.7636), tau_1=3.776 h, R2=0.9920
+  [csv]  results/ltaf_autocorr.csv (177 rows)
+[autocorrelation] done in 0.1s
+[covariance diagnostics] start
+  [csv]  results/ltaf_covariance.csv (9 rows)
+  indicator_linear: r_eff=1.287, lead=0.777
+[covariance diagnostics] done in 0.1s
+[protocol table] start
+  [csv]  results/ltaf.csv (486 rows)
+  486 rows
+[protocol table] done in 10.9s
+[equal-duration comparison] start
+  [csv]  results/ltaf_duration.csv (24 rows)
+[equal-duration comparison] done in 1.0s
+[headline protocols + bootstrap] start
+  [csv]  results/ltaf_headline.csv (24 rows)
+  contiguous hours matching 4x15 min: indicator_linear=16.50
+[headline protocols + bootstrap] done in 13.3s
+[empirical out-of-sample R2] start
+  [csv]  results/ltaf_empirical_r2.csv (18 rows)
+  indicator_linear: max|ceiling-R2|=0.1006, violations=0
+[empirical out-of-sample R2] done in 1.3s
+[cross-validation] start
+  [csv]  results/ltaf_cv.csv (1200 rows)
+  CV done: indicator_linear N=4 label-aware 0.9883
+  label-aware beats the learned baselines in {'indicator_linear': 0} of 6 budgets; beats the fixed heuristics in {'indicator_linear': 1}
+[cross-validation] done in 28.0s
+[discretisation + noise checks] start
+  [csv]  results/ltaf_resolution.csv (12 rows)
+  [csv]  results/ltaf_noise.csv (12 rows)
+[discretisation + noise checks] done in 0.0s
+[duration-curve bootstrap] start
+[duration-curve bootstrap] done in 6.3s
+[figure] start
+  [fig] figures/fig_ltaf.pdf
+[figure] done in 0.9s
+  [json] results/ltaf.json
+[total] 62.2s
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/ltaf/record64_sensitivity.py
+                    quantity    with 64   without 64     shift
+               1h_contiguous     0.6923       0.6871   -0.0052
+               6h_contiguous     0.8669       0.8642   -0.0027
+                     4x15min     0.9835       0.9832   -0.0004
+    1h_contiguous_as_4x15min     0.7096       0.7044   -0.0052
+                     8x15min     0.9954       0.9953   -0.0001
+      equal_duration_gain_1h     0.2913       0.2961   +0.0048
+                 mean_burden     0.4593       0.4516   -0.0077
+
+largest shift in any protocol value: 0.0052
+  [json] results/ltaf_record64_sensitivity.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/crossfit_real.py
+
+[REM]  (1 scored epoch per anchor)
+  consecutive|N=4            R2cf +0.648
+  consecutive|N=8            R2cf +0.650
+  consecutive|N=16           R2cf +0.659
+  consecutive|N=32           R2cf +0.736
+  consecutive|N=64           R2cf +0.863
+  imse|N=4                   R2cf +0.678
+  imse|N=8                   R2cf +0.686
+  imse|N=16                  R2cf +0.743
+  imse|N=32                  R2cf +0.857
+  imse|N=64                  R2cf +0.920
+  kernel_quadrature|N=4      R2cf +0.565
+  kernel_quadrature|N=8      R2cf +0.587
+  kernel_quadrature|N=16     R2cf +0.650
+  kernel_quadrature|N=32     R2cf +0.793
+  kernel_quadrature|N=64     R2cf +0.900
+  label_aware|N=4            R2cf +0.617
+  label_aware|N=8            R2cf +0.659
+  label_aware|N=16           R2cf +0.694
+  label_aware|N=32           R2cf +0.781
+  label_aware|N=64           R2cf +0.885
+  uniform|N=4                R2cf +0.682
+  uniform|N=8                R2cf +0.652
+  uniform|N=16               R2cf +0.738
+  uniform|N=32               R2cf +0.807
+  uniform|N=64               R2cf +0.881
+
+[N3]  (1 scored epoch per anchor)
+  consecutive|N=4            R2cf +0.566
+  consecutive|N=8            R2cf +0.594
+  consecutive|N=16           R2cf +0.605
+  consecutive|N=32           R2cf +0.684
+  consecutive|N=64           R2cf +0.862
+  imse|N=4                   R2cf +0.579
+  imse|N=8                   R2cf +0.664
+  imse|N=16                  R2cf +0.774
+  imse|N=32                  R2cf +0.861
+  imse|N=64                  R2cf +0.930
+  kernel_quadrature|N=4      R2cf +0.537
+  kernel_quadrature|N=8      R2cf +0.664
+  kernel_quadrature|N=16     R2cf +0.787
+  kernel_quadrature|N=32     R2cf +0.853
+  kernel_quadrature|N=64     R2cf +0.933
+  label_aware|N=4            R2cf +0.638
+  label_aware|N=8            R2cf +0.744
+  label_aware|N=16           R2cf +0.845
+  label_aware|N=32           R2cf +0.909
+  label_aware|N=64           R2cf +0.924
+  uniform|N=4                R2cf +0.508
+  uniform|N=8                R2cf +0.637
+  uniform|N=16               R2cf +0.756
+  uniform|N=32               R2cf +0.876
+  uniform|N=64               R2cf +0.937
+
+[wake]  (1 scored epoch per anchor)
+  consecutive|N=4            R2cf +0.949
+  consecutive|N=8            R2cf +0.949
+  consecutive|N=16           R2cf +0.950
+  consecutive|N=32           R2cf +0.950
+  consecutive|N=64           R2cf +0.979
+  imse|N=4                   R2cf +0.958
+  imse|N=8                   R2cf +0.965
+  imse|N=16                  R2cf +0.977
+  imse|N=32                  R2cf +0.983
+  imse|N=64                  R2cf +0.992
+  kernel_quadrature|N=4      R2cf +0.950
+  kernel_quadrature|N=8      R2cf +0.955
+  kernel_quadrature|N=16     R2cf +0.972
+  kernel_quadrature|N=32     R2cf +0.984
+  kernel_quadrature|N=64     R2cf +0.991
+  label_aware|N=4            R2cf +0.948
+  label_aware|N=8            R2cf +0.958
+  label_aware|N=16           R2cf +0.973
+  label_aware|N=32           R2cf +0.981
+  label_aware|N=64           R2cf +0.990
+  uniform|N=4                R2cf +0.960
+  uniform|N=8                R2cf +0.961
+  uniform|N=16               R2cf +0.969
+  uniform|N=32               R2cf +0.987
+  uniform|N=64               R2cf +0.994
+
+[AF burden]
+  contiguous|n=1     0.0104 of record   R2cf +0.709
+  dispersed|n=1      0.0104 of record   R2cf +0.648
+  contiguous|n=2     0.0208 of record   R2cf +0.714
+  dispersed|n=2      0.0208 of record   R2cf +0.891
+  contiguous|n=4     0.0417 of record   R2cf +0.696
+  dispersed|n=4      0.0417 of record   R2cf +0.971
+  contiguous|n=8     0.0833 of record   R2cf +0.778
+  dispersed|n=8      0.0833 of record   R2cf +0.992
+  contiguous|n=16    0.1667 of record   R2cf +0.851
+  dispersed|n=16     0.1667 of record   R2cf +0.998
+  contiguous|n=32    0.3333 of record   R2cf +0.945
+  dispersed|n=32     0.3333 of record   R2cf +1.000
+  [json] results/crossfit_real.json
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/calibration_sweep.py
+  [sweep] q=0.25 m~ 20  aware +0.733  kq +0.739  delta -0.006
+  [sweep] q=0.5 m~ 40  aware +0.731  kq +0.724  delta +0.007
+  [sweep] q=0.75 m~ 60  aware +0.704  kq +0.698  delta +0.007
+  [sweep] q=1 m~ 80  aware +0.694  kq +0.650  delta +0.044
+  [subsample] 50/1000  delta_kq median -0.004
+  [subsample] 100/1000  delta_kq median -0.010
+  [subsample] 150/1000  delta_kq median -0.007
+  [subsample] 200/1000  delta_kq median -0.011
+  [subsample] 250/1000  delta_kq median -0.011
+  [subsample] 300/1000  delta_kq median -0.011
+  [subsample] 350/1000  delta_kq median -0.011
+  [subsample] 400/1000  delta_kq median -0.013
+  [subsample] 450/1000  delta_kq median -0.013
+  [subsample] 500/1000  delta_kq median -0.013
+  [subsample] 550/1000  delta_kq median -0.013
+  [subsample] 600/1000  delta_kq median -0.012
+  [subsample] 650/1000  delta_kq median -0.012
+  [subsample] 700/1000  delta_kq median -0.013
+  [subsample] 750/1000  delta_kq median -0.014
+  [subsample] 800/1000  delta_kq median -0.013
+  [subsample] 850/1000  delta_kq median -0.014
+  [subsample] 900/1000  delta_kq median -0.014
+  [subsample] 950/1000  delta_kq median -0.014
+  [subsample] 1000/1000  delta_kq median -0.014
+  [json] results/calibration_sweep.json
+  (978.2s)
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/sensitivity_checks.py
+  [json] results/sensitivity_checks.json
+[sensitivity] wrote results/sensitivity_checks.json
+  REM   fold0: m=155 p=128 rank=100 lam_min=-9.76e-17 floored=36
+  N3    fold0: m=155 p=128 rank=96 lam_min=-3.70e-17 floored=40
+  wake  fold0: m=155 p=128 rank=128 lam_min=3.95e-05 floored=16
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_calibration.py
+  [fig] figures/fig_calibration.pdf
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_real.py
+  [fig] figures/fig_real.pdf
+  sleep methods: ['consecutive', 'kernel_quadrature', 'label_aware', 'uniform']
+  af methods:    ['contiguous', 'dispersed']
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_sweep.py
+  [fig] figures/fig_sweep.pdf
+  [fig] figures/fig_sweep.pdf
+    m= 20  delta_kq -0.006  delta_uniform -0.004
+    m= 40  delta_kq +0.007  delta_uniform -0.006
+    m= 60  delta_kq +0.007  delta_uniform -0.033
+    m= 80  delta_kq +0.044  delta_uniform -0.044
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_numbers.py
+wrote paper/numbers.tex with 587 macros
+cp figures/fig_identifiability.pdf paper/figures/fig_identifiability.pdf
+cp figures/fig_calibration.pdf paper/figures/fig_calibration.pdf
+cp figures/fig_real.pdf paper/figures/fig_real.pdf
+cp figures/fig_sweep.pdf paper/figures/fig_sweep.pdf
+cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  figures/fig_calibration.pdf
+  figures/fig_identifiability.pdf
+  figures/fig_real.pdf
+  figures/fig_sweep.pdf
+  numbers.tex
+Category 'changed_user':
+  figures/fig_calibration.pdf
+  figures/fig_identifiability.pdf
+  figures/fig_real.pdf
+  figures/fig_sweep.pdf
+  numbers.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  "main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/article.
+cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/size11.c
+lo))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/algorithms/al
+gorithm.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/float/float.s
+ty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/ifthen.s
+ty))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/algorithmicx/
+algpseudocode.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/algorithmicx/
+algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (./jmlr2e.sty
+Document Style `jmlr'.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/epsf
+ig.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/grap
+hicx.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/keyv
+al.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/grap
+hics.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/trig
+.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-cfg/
+graphics.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-def/
+pdftex.def))))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/amss
+ymb.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/amsf
+onts.sty))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/natbib/natbib
+.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/hype
+rref.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/iftex/iftex
+.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/kvsetkeys/kvs
+etkeys.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/kvdefinekey
+s/kvdefinekeys.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pdfescape/p
+dfescape.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/ltxcmds/ltx
+cmds.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/pdftexcmds/
+pdftexcmds.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/infwarerr/i
+nfwarerr.sty)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hycolor/hycol
+or.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/name
+ref.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/refcount/refc
+ount.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/gettitlestr
+ing/gettitlestring.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/kvoptions/kvo
+ptions.sty)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/etoolbox/etoo
+lbox.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/stringenc/s
+tringenc.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/pd1e
+nc.def)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/intcalc/int
+calc.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/puen
+c.def)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/url/url.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/bitset/bits
+et.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/bigintcalc/
+bigintcalc.sty)))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/hyperref/hpdf
+tex.def
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilechec
+k/rerunfilecheck.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecount
+er/uniquecounter.sty))))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/psnfss/times.
+sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/base/fontenc.
+sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/psnfss/t1ptm.
+fd))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsma
+th.sty
+For additional information on amsmath, use the `?' option.
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amste
+xt.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsge
+n.sty))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsbs
+y.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsmath/amsop
+n.sty))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amscls/amsthm
+.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/mathtools/mat
+htools.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/calc.st
+y)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/mathtools/mhs
+etup.sty))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/array.s
+ty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/booktabs/book
+tabs.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/multirow/mult
+irow.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor
+.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics-cfg/
+color.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/graphics/math
+color.ltx))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/enumitem/enum
+item.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype-pdftex.def)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
+rotype.cfg))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/placeins/plac
+eins.sty)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/cleveref/clev
+eref.sty)
+==> First Aid for cleveref.sty applied!
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/oberdiek/alia
+scnt.sty) (./numbers.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
+ackend-pdftex.def) (./main.aux)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/context/base/mkii/s
+upp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/epstopdf-pkg/
+epstopdf-base.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/latexconfig/e
+pstopdf-sys.cfg)) (./main.out) (./main.out)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+ptm.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+cmr.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msa.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
+.fd)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msb.cfg) (./sections/introduction.tex
+Underfull \vbox (badness 3635) has occurred while \output is active [1{/opt/hom
+ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.m
+ap}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/enc/dvips/base
+/8r.enc}]
+Underfull \vbox (badness 1460) has occurred while \output is active [2])
+(./sections/formulation.tex [3] [4]) (./sections/identifiability.tex [5]
+[6] [7] [8 <./figures/fig_identifiability.pdf>] [9] [10])
+(./sections/estimation.tex [11] [12]) (./sections/design.tex [13] [14])
+(./sections/synthetic.tex [15]
+Underfull \vbox (badness 10000) has occurred while \output is active [16]
+Underfull \vbox (badness 1442) has occurred while \output is active [17 <./figu
+res/fig_calibration.pdf>] [18]
+Underfull \vbox (badness 4805) has occurred while \output is active [19]
+[20 <./figures/fig_real.pdf>]) (./sections/related.tex [21 <./figures/fig_sweep
+.pdf>] [22]) (./sections/discussion.tex [23])
+(./sections/appendix_identification.tex [24])
+(./sections/appendix_calibration.tex [25] [26] [27])
+(./sections/appendix_design.tex [28] [29]) (./sections/appendix_simulations.tex
+ [30]) (./sections/appendix_real.tex
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/psnfss/t1pcr.
+fd) [31] [32]) (./main.bbl [33]
+Underfull \vbox (badness 3312) has occurred while \output is active [34])
+[35] (./main.aux) )
+(see the transcript file for additional information)</opt/homebrew/Cellar/texli
+ve/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/ho
+mebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/2
+0260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebre
+w/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9
+.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/homebrew/Cellar/texlive/20260301/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/
+texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt
+/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20260301/share/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/homebrew/Cellar/texlive/
+20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebr
+ew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texm
+f-dist/fonts/type1/urw/courier/ucrr8a.pfb></opt/homebrew/Cellar/texlive/2026030
+1/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></opt/homebrew/Cellar/texli
+ve/20260301/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></opt/homebrew/Ce
+llar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (35 pages, 600079 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./references.bib
+Latexmk: All targets (main.pdf) are up-to-date
+
+cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: Nothing to do for 'main.tex'.
+Latexmk: All targets (main.pdf) are up-to-date
+
+"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" scripts/verify_artifacts.py
+Reference comparison
+  [OK] reference result inventory — 53 JSON/CSV files
+  [FAIL] numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/meta.json'
+       data_summary.json: data_summary.json/outputs/ltaf_npz: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/af_series.npz' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/af_series.npz'
+       data_summary.json: data_summary.json/outputs/sleep_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/sleep_edf/meta.json'
+       data_summary.json: data_summary.json/outputs/sleep_npz: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/hypnograms.npz' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/sleep_edf/hypnograms.npz'
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/headline/max_abs_shift_protocol_value: 0.005218331632176887 != 0.005153742613099199
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/1h_contiguous: -0.005203001931508577 != -0.005153742613099199
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/1h_contiguous_as_4x15min: -0.005218331632176887 != -0.005131286948112601
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/4x15min: -0.0003731491210092752 != -0.0004112948000201122
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/6h_contiguous: -0.0026932638653753838 != -0.0026722626867440313
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/8x15min: -0.00010576447670651579 != -0.00013055027648734008
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/equal_duration_gain_1h: 0.004829852810499302 != 0.004742447813079087
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/1h_contiguous: 0.6922723360377337 != 0.6850101084742798
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/1h_contiguous_as_4x15min: 0.7095883245309057 != 0.6937559971084042
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/4x15min: 0.9835464369034149 != 0.9789819469084635
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/6h_contiguous: 0.8669148146018537 != 0.8567869061825079
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/8x15min: 0.9954193802289748 != 0.9929367036100226
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/with_record_64/equal_duration_gain_1h: 0.2912741008656812 != 0.29397183843418373
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/without_record_64/1h_contiguous: 0.6870693341062252 != 0.6798563658611806
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/without_record_64/1h_contiguous_as_4x15min: 0.7043699928987288 != 0.6886247101602916
+       ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/without_record_64/4x15min: 0.9831732877824056 != 0.9785706521084434
+  [OK] numbers.tex exists
+  [OK] generated macro count — 587 macros
+  [OK] all manuscript numeric macros defined — none missing
+  [OK] no unresolved number placeholders
+  [FAIL] sealed numeric claims — sha256=54a5e9b9f63cec92761ed6a204f5c02d8f2d6b1e70e13c875d6c515a8069f825
+  [OK] all citation keys defined — none missing
+  [OK] required data and paper files
+  [OK] Sleep annotation cache — 197 files
+  [OK] AF annotation cache — 84 annotations, 84 headers
+  [OK] fig_identifiability PDFs
+  [OK] fig_identifiability synchronised
+  [OK] fig_calibration PDFs
+  [OK] fig_calibration synchronised
+  [OK] fig_real PDFs
+  [OK] fig_real synchronised
+  [OK] fig_sweep PDFs
+  [OK] fig_sweep synchronised
+  [OK] compiled paper page count — 35
+  [OK] LaTeX fatal/undefined diagnostics — clean
+
+Completed 21 checks: 2 failed, 1 warnings.
+  [WARN] 25 bibliography entries are not cited
+Failures:
+  - numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/meta.json'
+  - sealed numeric claims — sha256=54a5e9b9f63cec92761ed6a204f5c02d8f2d6b1e70e13c875d6c515a8069f825
+make: *** [compare-reference] Error 1
