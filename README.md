@@ -104,7 +104,8 @@ code/
 ├── figures/               paper figures as produced by the scripts
 ├── paper/                 LaTeX sources of the final manuscript; numbers.tex holds the 587 numeric macros
 ├── scripts/               helpers (numbers.tex generation, figure sync)
-└── SHA256SUMS             checksums of every file in the package
+├── validation/            logs of the final `make verify-quick` and full reproduction runs
+└── SHA256SUMS             checksums of every file in the package (`cd code && shasum -a 256 -c SHA256SUMS`)
 ```
 
 Every number on the website is read from `code/paper/numbers.tex` and `code/results/`; the interactive scenes
