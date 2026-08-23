@@ -1,10 +1,10 @@
 /* Links and identifiers used across the site.  Fill in when they exist; nothing else needs to change. */
 window.CPV_LINKS = {
-  site: "",                                   // public URL of this site (used for canonical / Open Graph / JSON-LD when set)
+  site: "https://cpv.xizhe.net",                                   // public URL of this site (used for canonical / Open Graph / JSON-LD when set)
   paper: "paper/main.pdf",                    // manuscript PDF
   journal: "",                                // journal or preprint page, when available
   doi: "",                                    // DOI, when available
-  code: "",                                   // public code repository; empty = show the package description instead
+  code: "https://github.com/zxzok/cpv-explainer",                                   // public code repository; empty = show the package description instead
   contact: "zhangxizhe@gmail.com",
   analytics: "",                              // optional endpoint for sendBeacon(event) — empty = no tracking
 };
