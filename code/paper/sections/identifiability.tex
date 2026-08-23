@@ -1,0 +1,369 @@
+\section{Value-Specific Identification}
+\label{sec:identifiability}
+
+Section~\ref{sec:formulation} showed how to calculate protocol value when the
+latent covariance $K$ is known. We now ask what can be learned when the only
+available population information is the joint law of the measurements and
+target under the realised protocol $A$. Throughout this section, $A$ and $B$
+denote the measurement operators induced by the realised and alternative
+protocols.
+Sections~\ref{sec:estimation}--\ref{sec:design} return to the action-set notation
+$S$, with measurement matrix $A_S$.
+
+We begin with the linear target $\Theta=h^\top Z$. Then $(Y_A,\Theta)$ is jointly
+Gaussian, so its full law is determined by second moments. We abbreviate
+$\cI(B;K)=\cI_g(B;K)$ for
+$g(z)=z$; in this linear-Gaussian case it also equals $\cI_{\mathrm L}(B)$.
+We index grid points by $0,\dots,p-1$. Nonlinear aggregates require more than
+moment matching; we treat them separately through an exact permutation argument
+in \cref{prop:permutation}.
+
+The law of $(Y_A,\Theta)$ may fail to identify $K$ even when it determines the
+scalar value of the specified alternative $B$.
+
+\subsection{Identification Criterion}
+\label{sec:value-specific-identification}
+
+For a benchmark law $\Prob_A$, define its observational equivalence class by
+\begin{equation}
+\mathcal K_A(\Prob_A)=\{K:\Prob_K(Y_A,\Theta)=\Prob_A\}.
+\label{eq:equivalence-class}
+\end{equation}
+Every $K\in\mathcal K_A(\Prob_A)$ generates exactly the same distribution of
+the benchmark data. No amount of additional sampling under the same protocol
+$A$ can distinguish them. Consequently, for any target and model class under
+consideration,
+\begin{equation}
+\boxed{\begin{gathered}
+\cI_g(B;\cdot)\ \text{is identified from }\Prob_A\\[-1pt]
+\Longleftrightarrow\quad
+\cI_g(B;K_1)=\cI_g(B;K_2)
+\quad\text{for all }K_1,K_2\in\mathcal K_A(\Prob_A).
+\end{gathered}}
+\label{eq:value-specific-criterion}
+\end{equation}
+This criterion is value-specific: it requires uniqueness only of the specified
+alternative's value, not of every component of $K$. The class
+$\mathcal K_A(\Prob_A)$ may contain many covariance structures while assigning
+a unique value to $B$. Conversely, two members of this class with different
+values establish non-identification. This is functional identification over an
+observational-equivalence class in the sense of
+\citet{koopmans1950identification}.
+
+For the linear target $\Theta=h^\top Z$, the realised benchmark law reveals
+three covariance blocks. Take $h=\omega$, and let
+$Y_A=AZ+\varepsilon_A$ with $\varepsilon_A\sim\cN(0,R_A)$ and $R_A$ known.
+Then $(Y_A,\Theta)$ is jointly Gaussian with covariance
+\begin{equation}
+\begin{pmatrix}
+AKA^\top+R_A & AKh\\
+h^\top KA^\top & h^\top Kh
+\end{pmatrix}.
+\label{eq:observables}
+\end{equation}
+The Gaussian benchmark law therefore depends on $K$ through the three blocks
+\begin{equation}
+AKA^\top,\qquad AKh,\qquad h^\top Kh,
+\label{eq:three-blocks}
+\end{equation}
+which constitute its complete covariance information about $K$. The first
+block is the covariance of the realised measurements after subtracting the
+known measurement noise. The second is their cross-covariance with the target,
+and the third is the target variance. Any change in $K$ that leaves all three
+blocks unchanged is invisible to the benchmark.
+
+
+
+\subsection{Minimal Stationary Counterexample}
+
+We first ask when invisible dependence can arise in the simplest stationary
+setting. A one-point benchmark reveals no lag information through
+$\Var(Y_A)$, because the process is standardised. It reveals only two weighted
+sums of the lag correlations: one through
+$\Cov(Y_A,\Theta)$ and one through $\Var(\Theta)$. These two equations determine
+all unknown lags on grids of at most three points. On a four-point grid they
+leave one degree of freedom for the first time, and moving along that direction
+can change the value of a protocol that observes $(Z_1,Z_2)$.
+
+\begin{theorem}[Sharp minimal stationary counterexample]
+\label{thm:minimal}
+Let $p\ge2$ and let $Z$ be stationary and standardised on the grid
+$\{0,1,\dots,p-1\}$ with
+correlations $\rho(1),\dots,\rho(p-1)$, let $\Theta=p^{-1}\sum_j Z_j$, and let
+$A$ observe $Z_0$ with known noise variance $\nu^2$. Then
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2pt]
+\item for $p\le3$ the map from $(\rho(1),\dots,\rho(p-1))$ to the observable
+functionals is injective, so the stationary lag-correlation vector, and hence
+$K$ within this model class, is identified;
+\item for $p\ge4$ the space of stationary invisible directions has dimension
+$p-3\ge1$.
+\end{enumerate}
+For $p=4$, the kernel is spanned by the lag perturbation
+\begin{equation}
+\delta=(\delta(0),\delta(1),\delta(2),\delta(3))=(0,1,-2,1).
+\label{eq:delta4}
+\end{equation}
+For any positive-definite base correlation matrix $K$ with lag vector $\rho$,
+let $K_\pm$ have lag vectors $\rho\pm\varepsilon\delta$, with lag $0$ fixed at
+one. For all sufficiently small $\varepsilon>0$, these matrices are admissible
+and observationally equivalent under $A$. If $B$ observes $(Z_1,Z_2)$ with
+independent measurement noise $R_B=\nu_B^2 I_2$, where $\nu_B^2\ge0$, then
+\begin{equation}
+\cI(B;K_\pm)=\frac{2b^2}{\{1+\nu_B^2+\rho(1)\pm\varepsilon\}\,\Var(\Theta)},
+\qquad
+b=\frac{1+2\rho(1)+\rho(2)}{4},
+\label{eq:gap-closed-form}
+\end{equation}
+so the two values differ whenever $1+2\rho(1)+\rho(2)\neq0$.
+\end{theorem}
+
+\begin{proof}[Proof idea]
+The realised point and the target reveal two independent weighted sums of the
+$p-1$ unknown lag correlations. Their Jacobian has rank
+$\min\{2,p-1\}$, leaving $p-3$ free directions exactly when $p\ge4$; at
+$p=4$, solving the two equations gives $(1,-2,1)$. Along this direction the
+target variance and its covariance with $Z_1$ and $Z_2$ remain fixed, whereas
+the covariance of $(Z_1,Z_2)$ changes, which yields
+\eqref{eq:gap-closed-form}. The calculation is given in
+Appendix~\ref{sec:app-identification}.
+\end{proof}
+
+This four-point threshold is specific to the stationary, standardised,
+one-observation model with a uniform mean target. \Cref{fig:identifiability}
+uses $p=4$, $h=\tfrac{1}{4}\mathbf{1}_4$, the baseline profile
+$\rho_0(u)=\exp(-u)$ (that is, $\tau=1$), and the raw lag perturbation
+$\varepsilon=\numIdEps$ in \eqref{eq:delta4}. Both protocols are noiseless,
+with $A=e_0^\top$ and $B=(e_1,e_2)^\top$. The two Toeplitz correlation
+matrices $K_\pm$ preserve $\Var(Y_A)=1$,
+$\Cov(Y_A,\Theta)=\numIdCovYTheta$ and
+$\Var(\Theta)=\numIdVarTheta$ to a maximum discrepancy of
+\numIdDiscrepancy. Substitution into \eqref{eq:gap-closed-form} gives
+$\cI(B;K_+)=\numIdCeilPlus$ and $\cI(B;K_-)=\numIdCeilMinus$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig_identifiability.pdf}
+\caption{Four-point instance of \cref{thm:minimal}. The profiles
+$\rho_\pm=\rho_0\pm\varepsilon\delta$ are observationally equivalent under
+$A=\{Z_0\}$ but assign values \numIdCeilPlus{} and \numIdCeilMinus{} to
+$B=\{Z_1,Z_2\}$.}
+\label{fig:identifiability}
+\end{figure}
+
+\FloatBarrier
+
+\subsection{Invisible Directions}
+
+The vector $(0,1,-2,1)$ is one instance of a more general object: a covariance
+perturbation that changes latent dependence while preserving every covariance
+block visible under $A$.
+
+\begin{definition}[Invisible direction]
+\label{def:invisible}
+A symmetric $\Delta\in\R^{p\times p}$ with $\diag(\Delta)=0$ is
+\emph{invisible} to $(A,h)$ if
+\begin{equation}
+A\Delta A^\top=0,\qquad A\Delta h=0,\qquad h^\top\Delta h=0 .
+\label{eq:invisible}
+\end{equation}
+The three equalities preserve, respectively, the realised-measurement
+covariance, the realised-measurement--target cross-covariance and the target
+variance. The zero-diagonal requirement preserves the unit diagonal. For
+positive-definite $K$, sufficiently small perturbations $K\pm\varepsilon\Delta$ remain
+correlation matrices. We write $\cD(A,h)$ for the
+linear space of directions invisible to $(A,h)$.
+\end{definition}
+
+\begin{theorem}[Value-changing invisible directions imply non-identification]
+\label{thm:impossibility}
+Let $0\neq\Delta\in\cD(A,h)$ and let $K_0\succ0$ be a correlation matrix. For
+all sufficiently small $|\varepsilon|$, $K_\varepsilon=K_0+\varepsilon\Delta$
+is a correlation matrix and has the same benchmark law as $K_0$; in
+particular,
+\begin{equation}
+\Prob_{K_\varepsilon}(Y_A,\Theta)=\Prob_{K_0}(Y_A,\Theta).
+\label{eq:obs-equivalent}
+\end{equation}
+Let $B$ be an alternative protocol with noise $R_B\succeq0$ such that
+$\Sigma_B(K_0)=BK_0B^\top+R_B\succ0$, and set
+$W=\Sigma_B(K_0)^{-1}$. Its directional derivative is
+\begin{equation}
+\begin{aligned}
+D_B(\Delta;K_0)
+&:=\left.\frac{\dd}{\dd\varepsilon}
+\cI(B;K_0+\varepsilon\Delta)\right|_{\varepsilon=0}\\
+&=\frac{2h^\top\Delta B^\top WBK_0h
+-h^\top K_0B^\top W(B\Delta B^\top)WBK_0h}{h^\top K_0h}.
+\end{aligned}
+\label{eq:ceiling-derivative}
+\end{equation}
+If $D_B(\Delta;K_0)\neq0$, then the value functional $\cI(B;\cdot)$ is not
+locally identified at $K_0$ within the model class: for every sufficiently
+small $\varepsilon>0$, the observationally equivalent matrices
+$K_0\pm\varepsilon\Delta$ assign different values to $B$.
+\end{theorem}
+
+\begin{proof}[Proof idea]
+The three invisibility equations preserve every covariance block of the
+Gaussian benchmark law. Differentiating the alternative-protocol value with
+the inverse rule gives \eqref{eq:ceiling-derivative}; a non-zero derivative
+then separates the two compatible paths $K_0\pm\varepsilon\Delta$ to first
+order. The full matrix calculation appears in
+Appendix~\ref{sec:app-identification}.
+\end{proof}
+
+Thus no estimator based only on $(Y_A,\Theta)$ can be consistent at both local
+alternatives, and collecting more units under the same protocol does not
+resolve the ambiguity.
+
+If $A$ has $d$ rows, rank--nullity gives a lower bound on the dimension of the
+invisible space. A standardised $K$ has $p(p-1)/2$ free entries whereas
+\eqref{eq:three-blocks} supplies at most $d(d+1)/2+d+1$ linear constraints.
+Rank--nullity therefore gives
+\begin{equation}
+\dim\cD(A,h)\ge
+\frac{p(p-1)}2-\frac{d(d+1)}2-d-1,
+\qquad
+\text{when the right-hand side is positive.}
+\label{eq:counting}
+\end{equation}
+Near a positive-definite $K_0$, the equivalence class contains the corresponding
+open piece of the affine space $K_0+\cD(A,h)$
+\citep{rothenberg1971identification}. This count only measures ambiguity in
+$K$: value non-identification still requires sensitivity in
+\eqref{eq:ceiling-derivative}. With fixed $d$, the contrast is nevertheless
+stark---the benchmark contributes $O(d^2)$ constraints to $O(p^2)$ covariance
+parameters.
+
+\subsection{Nonlinear Targets}
+
+The invisible-direction theorem uses joint Gaussianity of
+$(Y_A,\Theta)$ and therefore applies directly to a linear target. With a
+nonlinear aggregate, equality of the first two moments does not imply equality
+of the full benchmark law. The following symmetry argument instead constructs
+two exactly equivalent benchmark laws. The condition $A\Xi=A$ says that the
+permutation leaves every realised measurement unchanged, while
+$\Xi^\top\omega=\omega$ says that it preserves the aggregate weights.
+
+\begin{proposition}[Permutation equivalence for arbitrary targets]
+\label{prop:permutation}
+Let $\Xi$ be a permutation matrix with $A\Xi=A$ and $\Xi^\top\omega=\omega$, and put
+$K'=\Xi K\Xi^\top$. For every $g\in L^2(\phi)$ with $V_g(K)>0$, the joint laws of
+$(Y_A,\Theta_g)$ under $K$ and under $K'$ coincide, and
+\begin{equation}
+\cI_g(B;K')=\cI_g(B\Xi;K)
+\qquad\text{for every alternative protocol }B .
+\label{eq:perm-transport}
+\end{equation}
+Consequently, whenever $\cI_g(B\Xi;K)\neq\cI_g(B;K)$, the value of $B$ is not
+identified from the benchmark law.
+\end{proposition}
+
+Here $B\Xi$ is the algebraically permuted measurement operator used to compare
+values, with the same observation-noise covariance $R_B$ as $B$; it need not
+belong to the original candidate family.
+
+\begin{proof}
+Let $Z\sim\cN(0,K)$ and $Z'=\Xi Z\sim\cN(0,K')$. Then $AZ'=A\Xi Z=AZ$, and since
+$g$ acts entrywise $g(\Xi Z)=\Xi g(Z)$, so
+$\Theta_g(Z')=\omega^\top\Xi g(Z)=(\Xi^\top\omega)^\top g(Z)=\Theta_g(Z)$; in
+particular $V_g(K')=V_g(K)>0$. The measurement noise is independent with the
+same law under both, so the joint laws agree. Applying the same substitution to
+$B$ gives \eqref{eq:perm-transport}.
+\end{proof}
+
+Non-identification follows whenever the permutation changes the value of $B$.
+For example, no change occurs when $\Xi K\Xi^\top=K$. The next construction
+shows that three grid points suffice for every nonconstant target under uniform
+aggregation.
+
+\begin{example}[Three points suffice under uniform aggregation]
+\label{ex:three-point}
+Take $p=3$, $A=e_0^\top$, uniform $\omega$, let $\Xi$ transpose coordinates $1$
+and $2$, and let $B=e_1^\top$ observe $Z_1$ with noise $\nu_B^2$, writing
+$s=1+\nu_B^2$. For $0<a<1$ put
+\begin{equation}
+K_a=\begin{pmatrix}1&a&0\\a&1&0\\0&0&1\end{pmatrix},
+\qquad K_a'=\Xi K_a\Xi^\top .
+\label{eq:three-point}
+\end{equation}
+Both are correlation matrices, $A\Xi=A$ and $\Xi^\top\omega=\omega$, so the
+benchmark laws coincide. Nevertheless,
+$\cI_g(B;K_a)>\cI_g(B;K_a')$ for every nonconstant
+$g\in L^2(\phi)$, every $a\in(0,1)$ and every noise level. The explicit
+calculation, which reduces the gap to positive values of $C_g$, is given in
+Appendix~\ref{sec:app-identification}.
+\end{example}
+
+Without stationarity, three points suffice for arbitrary nonconstant
+square-integrable transformations under uniform aggregation; within the
+stationary standardised model with a one-point benchmark and a mean target, the
+sharp minimum is four.
+
+\subsection{Identification by Augmentation}
+\label{sec:augmentation}
+
+Suppose $A$ has already been run and a further acquisition $A'$ is contemplated
+on the same units. Let $A_{\rm aug}$ stack the rows of $A$ and $A'$. Their joint
+measurement reveals the covariance within $A'$, its cross-covariance with $A$,
+and the corresponding target cross-covariances. Collect the revealed linear
+directions in
+\begin{equation}
+\bar A=\begin{bmatrix}A_{\rm aug}\\ h^\top\end{bmatrix} .
+\label{eq:abar}
+\end{equation}
+Let
+\begin{equation}
+\cD(A_{\rm aug},h)=\big\{\Delta=\Delta^\top:\diag(\Delta)=0,\;
+A_{\rm aug}\Delta A_{\rm aug}^\top=0,\;
+A_{\rm aug}\Delta h=0,\;h^\top\Delta h=0\big\}
+\label{eq:joint-invisible}
+\end{equation}
+be the invisible space of the augmented benchmark.
+
+\begin{proposition}[Exact sufficiency and a first-order failure certificate]
+\label{prop:augmentation}
+Fix $K_0\succ0$ with $\diag(K_0)=\Ind$ and an alternative protocol $B$ with
+known $R_B\succeq0$ such that $BK_0B^\top+R_B\succ0$.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2pt]
+\item \emph{Exact sufficiency.} If $\rowspace(B)\subseteq\rowspace(\bar A)$,
+then the joint Gaussian law of $(Y_B,\Theta)$, and hence $\cI(B;K)$, is
+identified exactly from the augmented benchmark, for every admissible $K$.
+\item \emph{First-order failure certificate.} If $D_B(\Delta;K_0)\neq0$ for
+some $\Delta\in\cD(A_{\rm aug},h)$, then $\cI(B;\cdot)$ is not identified near
+$K_0$: for every sufficiently small $\varepsilon>0$ the correlation matrices
+$K_0\pm\varepsilon\Delta$ induce the same law of $(Y_{A_{\rm aug}},\Theta)$ and
+different values of $B$.
+\end{enumerate}
+\end{proposition}
+
+The proof, including the row-space factorisation used in part (i), is given in
+Appendix~\ref{sec:app-identification}.
+
+By contraposition, local identification requires $D_B(\cdot;K_0)$ to vanish on
+$\cD(A_{\rm aug},h)$. This condition need not be sufficient, just as the
+row-space condition is sufficient but need not be necessary. Both checks are
+linear algebra: compute a row-space inclusion and the kernel in
+\eqref{eq:joint-invisible}, then restrict the linear functional $D_B$ to that
+kernel.
+
+The number of additional measurements required depends on the covariance
+restrictions. In the four-point
+stationary model of \cref{thm:minimal}, augmenting $\{Z_0\}$ with $Z_1$ reduces
+the stationary invisible space from dimension $\numAugStatBefore$ to
+$\numAugStatAfter$ even though the span condition for $B=\{Z_1,Z_2\}$ fails:
+identification there comes from stationarity, not from
+\cref{prop:augmentation}(i). Without that restriction the invisible dimensions
+for $\{Z_0\}$, $\{Z_0,Z_1\}$ and $\{Z_0,Z_1,Z_2\}$ are $\numAugFreeBefore$,
+$\numAugFreeOne$ and $\numAugFreeTwo$: observing $Z_1$ leaves a two-dimensional
+invisible space, whereas observing both $Z_1$ and $Z_2$ removes all invisible
+directions. Under stationarity, observing $Z_1$ already suffices. For an affine
+structured covariance class with direction space $\cT$, the same local test
+applies on $\cD(A_{\rm aug},h)\cap\cT$; stationarity is the Toeplitz instance.
+
+A calibration protocol of full column rank satisfies the span condition and
+removes every invisible direction in the unrestricted model. Full column rank
+is stronger than is needed to identify one specified alternative, but it gives
+a simple route to evaluating an entire candidate family. The next question is
+how accurately that route works when dense calibration is available for only
+$m$ units.

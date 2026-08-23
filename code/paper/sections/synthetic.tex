@@ -1,0 +1,314 @@
+\section{Empirical Evaluation}
+\label{sec:synthetic}
+
+\subsection{Experimental Overview}
+\label{sec:empirical-overview}
+
+The empirical evaluation addresses three questions that follow from the calibration and design results in Sections 4--5. First, with only finitely many dense calibration trajectories, how accurately can protocol values be estimated across a candidate family, and at what resolution can competing protocols be reliably distinguished and selected? Second, once those values are estimable, does designing measurements for the predictive value of the specified target improve on target-free or target-mismatched objectives, and how closely can practical search approach the exact target-specific optimum? Third, in fully annotated temporal data, are broad matched-budget differences in observation layout reproducible, and is there sufficient information to support the finer, data-dependent choice of exact observation locations?
+
+
+The first two questions are studied under known data-generating laws. The
+calibration experiments compare plug-in values with the exact population values
+$\cI_g(S;K)$ and evaluate family-uniform error, selection regret and nested
+candidate classes. The design experiments enumerate every feasible protocol in
+moderate catalogues, so the target-specific optimum and the optimisation error
+of forward selection with one-swap refinement are known exactly. The third
+question is studied retrospectively in Sleep-EDF and Long-Term AF by
+reconstructing partial observation protocols from complete annotations. Because
+population protocol values are not observed in these data, performance is
+measured by pooled held-out cross-fitted $R^2$; support selection and predictor
+tuning are confined to the corresponding outer training folds. Simulation
+specifications are given in Appendix~\ref{sec:appendix-simulations}, and the
+real-data processing, cross-fitting and resampling procedures are given in
+Appendix~\ref{sec:appendix-real}.
+
+
+
+\subsection{Finite Calibration and Protocol Comparison}
+\label{sec:simulation-evidence}
+\label{sec:calibration-regret}
+
+\Cref{fig:calibration} examines three consequences of finite calibration.
+Panel (a) asks how accurately protocol values can be estimated over an entire
+candidate family. Panel (b) asks whether the remaining estimation error is
+large enough to affect selection of a near-optimal protocol. Panels (c,d)
+then examine how calibration accuracy limits the useful granularity of the
+candidate family. In all experiments, protocol values estimated from the
+calibrated covariance $\widehat K$ are compared with their exact population
+values under the known generating covariance. Full simulation specifications
+are given in Appendix~D.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/fig_calibration.pdf}
+\caption{Finite-calibration error, selection regret and candidate-family
+resolution.
+(a) Family-uniform protocol-value error $\varepsilon_m$ for the temporal-mean
+and occupation-at-zero targets over all \numEstFamily{} four-action protocols
+under a stationary OU Gaussian model on a $p=128$ grid.
+(b) True regret of the protocol selected from estimated values, together with
+the $2\varepsilon_m$ envelope from \cref{sec:estimation}, for four-action
+selection from a 14-action catalogue, averaged over two covariance models and
+three targets: the temporal mean and occupation above thresholds zero and one.
+(c,d) Selection regret and family-uniform error for four nested candidate
+families of increasing granularity, with sizes
+\numResClassSizeOne, \numResClassSizeTwo, \numResClassSizeThree{} and
+\numResClassSizeFour, under a nonstationary $p=64$ covariance.
+Calibration sizes are
+$m\in\{25,50,100,250,500,1000\}$.
+Panels (a,b) use \numEstReplications{} replications and panels (c,d) use 30;
+curves show replication means and bands show standard errors.}
+\label{fig:calibration}
+\end{figure}
+
+Panel (a) evaluates the family-uniform error
+$\varepsilon_m=\max_{S\in\Pi_{\mathcal B}}
+|\widehat{\cI}_g(S)-\cI_g(S;K)|$,
+the largest protocol-value error within the candidate family.
+This error decreases steadily as the number of calibration trajectories
+increases. The full-range log--log slopes are \numSlopeMean{} and
+\numSlopeOccZero; over the three largest calibration sizes they are
+\numTailSlopeMean{} and \numTailSlopeOccZero, approaching the fixed-model
+exponent $-1/2$ derived in \cref{sec:estimation}.
+
+In this experiment, panel (b) shows that selecting a near-optimal protocol can
+require substantially less accuracy than estimating every protocol value
+uniformly. Across the six covariance--target cells, the mean cellwise log--log
+slopes are \numRegretSlope{} for realised selection regret and
+\numEpsSlope{} for the uniform-error envelope. The median and maximum
+ratios of regret to this envelope are \numRegretRatioMedian{} and
+\numRegretRatioMax. The difference reflects the two criteria being controlled:
+$\varepsilon_m$ is determined by the largest estimation error anywhere in the
+family, whereas near-optimal selection depends primarily on correctly ordering
+the leading candidates.
+
+Panels (c,d) show how this distinction affects the useful resolution of the
+candidate family. At $m=25$, the finest class has selection regret
+\numResRegretFineSmall, compared with \numResRegretCoarseSmall{} for the
+coarsest class, despite a family-uniform error of \numResEpsFourSmall.
+Thus, a richer candidate class can yield a better selected protocol even
+before all of its values are estimated accurately. By $m=1000$, the uniform
+error of the finest class falls to \numResEpsFourLarge, whereas the coarsest
+class still incurs restriction regret \numResRegretCoarseLarge{} because
+better protocols lie outside that class.
+
+Together, the four panels distinguish uniform estimation resolution from
+selection resolution. Reliable selection does not require every candidate
+value to be estimated to the same precision; it requires sufficient
+calibration to resolve the value differences among the candidates that compete
+near the optimum. Candidate-family refinement can therefore be useful before
+uniform estimation over the refined family becomes accurate.
+
+
+
+\subsection{Target-Aware Design and Search}
+\label{sec:target-design-experiment}
+
+\Cref{tab:s5} examines two questions about observation design. First, how much
+is lost when protocols are chosen using target-free or target-mismatched
+objectives rather than the predictive value of the specified target? Second,
+when the target-aware objective is used, how closely does the proposed search
+procedure approach the exact optimum?
+
+We evaluate \numDesignComparableInstances{} instances formed by five aggregate
+targets and five covariance--action settings: stationary OU, stationary
+Mat\'ern, horizon-varying covariance, recency-weighted prediction and
+heterogeneous actions. The first four settings select four of 12 point actions;
+the heterogeneous setting chooses among 18 actions under a cost budget of four.
+Every feasible protocol is enumerated, providing the exact target-specific
+optimum against which both alternative design objectives and approximate search
+can be evaluated. Full simulation settings are given in Appendix~D.
+
+For a method returning protocol $S$, we report relative efficiency
+$\cI_g(S)/\cI_g(S^*)$, where $S^*$ is the exhaustive optimum for the target
+being evaluated. An efficiency of one therefore indicates that the selected
+protocol attains the target-specific optimum. Latent-state mutual information
+and integrated posterior variance provide target-free comparators. The
+linear-target comparator retains the actual temporal weights and measurement
+noise but replaces the target transformation by $g(z)=z$, whereas kernel
+quadrature uses the corresponding conventional noiseless integration
+criterion.
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Method & minimum & mean & median \\
+\midrule
+Latent-state mutual information & $\numDesignMethodMinMI$ & $\numDesignMethodMeanMI$ & $\numDesignMethodMedianMI$ \\
+Integrated posterior variance & $\numDesignMethodMinIMSE$ & $\numDesignMethodMeanIMSE$ & $\numDesignMethodMedianIMSE$ \\
+Actual-noise linear target & $\numDesignMethodMinLinear$ & $\numDesignMethodMeanLinear$ & $\numDesignMethodMedianLinear$ \\
+Noiseless kernel quadrature & $\numDesignMethodMinKQ$ & $\numDesignMethodMeanKQ$ & $\numDesignMethodMedianKQ$ \\
+Target-aware greedy & $\numDesignMethodMinGreedy$ & $\numDesignMethodMeanGreedy$ & $\numDesignMethodMedianGreedy$ \\
+Target-aware greedy plus one-swap & $\numDesignMethodMinSwap$ & $\numDesignMethodMeanSwap$ & $\numDesignMethodMedianSwap$ \\
+\bottomrule
+\end{tabular}
+\caption{Relative efficiency of alternative design objectives and search
+procedures against the exhaustive target-specific optimum over
+\numDesignComparableInstances{} kernel--action--target instances.}
+\label{tab:s5}
+\end{table}
+\FloatBarrier
+
+The choice of design objective matters most when temporal symmetry is broken.
+In the stationary, uniformly weighted settings, supports optimised for
+different targets transfer with little loss. Under nonstationarity,
+non-uniform temporal weighting or heterogeneous actions, the target-specific
+optimal supports become more distinct; the lowest cross-target efficiency in
+the heterogeneous setting is \numDesignCrossHetero. The target-free
+comparators show the same general distinction: good coverage of the latent
+trajectory does not necessarily yield a protocol that is optimal for the
+specified aggregate target.
+
+The proposed search procedure is nevertheless close to the exhaustive
+target-aware optimum. One-swap refinement raises the minimum efficiency in the
+heterogeneous setting from \numDesignGreedyMinHetero{} to
+\numDesignAwareMinHetero{} and reaches the exhaustive optimum there and in the
+stationary OU and horizon-varying settings. In the remaining settings its
+minimum efficiencies are \numDesignAwareMinMatern{} and
+\numDesignAwareMinRecency, while evaluating only
+\numDesignEvalFracHetero--\numDesignEvalFracStat{} of the exhaustive sets.
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Retrospective Protocol Comparison}
+\label{sec:real}
+
+The retrospective analyses use two fully annotated temporal data sets to
+reconstruct partial observation protocols while computing the prediction target
+from the complete analysable record. 
+
+Sleep-EDF Expanded
+\citep{kemp2000analysis,mourtazaev1995age,goldberger2000physiobank,
+pollard2026physionet} contains 30-second sleep-stage annotations from the
+Sleep Cassette (SC) and Sleep Telemetry (ST) studies. The analysed sample
+contains \numSleepRecordings{} recordings from \numSleepSubjects{} subjects and
+\numSleepHours{} hours of valid annotations. Stages 3 and 4 are combined as N3
+\citep{rechtschaffen1968manual,iber2007aasm}. Each recording is mapped to
+$p=\numSleepGrid$ relative-time anchors. The targets are the exact full-interval
+REM, N3 and Wake proportions. The Long-Term AF Database
+\citep{petrutiu2007abrupt,goldberger2000physiobank} contains
+\numLtafRecords{} records and \numLtafHours{} hours of reviewed rhythm
+annotations, with median analysable record length \numLtafMedianHours{} hours.
+Analysis begins at the first rhythm marker, excluding any unannotated prefix.
+Each record is mapped to $p=\numAfGrid$ equal relative-time bins, and the target
+is the exact fraction of analysable annotated time spent in atrial fibrillation.
+
+Sleep protocols expose stage-specific binary indicators at selected
+relative-time anchors, with budgets $N\in\{4,8,16,32,64\}$ counting distinct
+scored 30-second epochs. AF protocols expose bin-level AF fractions, with
+budgets $N\in\{1,2,4,8,16,32\}$ observing the fraction $N/p$ of each analysable
+record. Both analyses use five outer folds and report $R^2$ from pooled held-out
+predictions. Sleep folds are subject-disjoint and stratified by source study,
+with subject-balanced evaluation weights. Study, valid-duration and treatment
+covariates enter the Sleep predictors unpenalised. AF uses record-level folds
+and equal record weights because repeated-subject identifiers are unavailable.
+
+At each budget, we compare a centred contiguous block with observations
+dispersed as uniformly as possible over relative time. Sleep additionally
+learns target-aware and kernel-quadrature supports within each outer training
+fold. The target-aware criterion maximises a regularised best-linear estimate
+of the fraction of residual target variance explained by the selected anchors.
+The kernel-quadrature comparator uses the same repaired temporal covariance
+without target outcomes. Support selection, ridge tuning and predictor fitting
+are completed within the outer training fold. For fixed-template contrasts, conditional 2.5th--97.5th percentile ranges are
+obtained by resampling held-out subjects for Sleep and records for AF while
+keeping the fitted predictors fixed. Further details of the common-grid
+mapping, weighting, support selection and resampling are given in
+Appendix~\ref{sec:appendix-real}.
+
+For REM, \cref{fig:real}(a) shows cross-fitted $R^2$ values of
+\numCfContigFour, \numCfContigSixteen{} and \numCfContigSixtyFour{} for the
+centred-contiguous template at $N=4,16,64$, compared with
+\numCfUniformFour, \numCfUniformSixteen{} and \numCfUniformSixtyFour{} for
+uniform dispersion. Across the 15 Sleep target--budget cells, the
+dispersed-minus-contiguous percentile range has a positive lower endpoint in
+\numSleepAdjustedPositiveRanges{} cells. The pooled Sleep results favour dispersion at several budgets, but the
+source-specific contrasts are heterogeneous. In separate SC and ST analyses,
+\numSleepCohortPositiveRanges{} of \numSleepCohortCells{}
+source--target--budget ranges lie above zero,
+\numSleepCohortNegativeRanges{} lie below zero and
+\numSleepCohortUnresolvedRanges{} include zero. Additional analyses are
+reported in Appendix~\ref{sec:appendix-real-sensitivity}.
+
+For AF, at $N=4$ each template observes \numAfObservedPctFour{} of the
+analysable record, equivalent to \numAfEquivalentHoursFour{} hour on a 24-hour
+record. The contiguous and dispersed templates attain cross-fitted $R^2$
+values \numCfAfContigOneHour{} and \numCfAfDispOneHour, respectively, with
+difference \numAfBootDiffFour{} and conditional paired percentile range
+\numAfBootRangeFour. At $N=16$, the corresponding values are
+\numCfAfContigFourHour{} and \numCfAfDispFourHour, with difference
+\numAfBootDiffSixteen{} and range \numAfBootRangeSixteen. The paired percentile range has a positive lower endpoint at every AF budget
+containing at least two windows. At $N=1$, the difference is
+\numAfBootDiffOne{} with range \numAfBootRangeOne. Because only one window is
+observed, this comparison reflects window location rather than dispersion.
+Outcome-defined cohort and grid-discretisation analyses are reported in
+Appendix~\ref{sec:appendix-real-sensitivity}.
+
+\FloatBarrier
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/fig_real.pdf}
+\caption{Held-out prediction from reconstructed Sleep and AF observation
+protocols. (a) Pooled baseline-adjusted cross-fitted $R^2$ for the Sleep
+targets under target-aware, learned kernel-quadrature, uniformly dispersed and
+contiguous supports. (b) Pooled cross-fitted $R^2$ for AF burden under
+dispersed and contiguous window layouts.}
+\label{fig:real}
+\end{figure}
+\FloatBarrier
+
+We next examine the stability of the learned Sleep supports. At $N=16$, the
+target-aware REM support attains baseline-adjusted cross-fitted
+$R^2=\numCfAwareSixteen$, compared with \numCfKqSixteen{} for learned kernel
+quadrature and \numCfUniformSixteen{} for fixed dispersion. The fold-averaged
+pairwise Jaccard overlap among the REM-, N3- and Wake-specific supports is
+\numSleepJaccardMin--\numSleepJaccardMax. The fitted supports therefore differ
+substantially across targets, although this difference may also reflect
+finite-sample variation in support selection.
+
+\Cref{fig:sweep}(a) varies the number of subjects used for support selection
+from \numSweepMSmall{} to the complete outer-training-fold sample while keeping
+predictor fitting on the full training fold. The target-aware difference changes
+from \numSweepDeltaKqSmall{} to \numSweepDeltaKqFull{} relative to learned
+kernel quadrature and from \numSweepDeltaUniSmall{} to
+\numSweepDeltaUniFull{} relative to fixed dispersion. Panel (b) repeats the complete selection and evaluation pipeline on
+\numSelectionSubsampleReps{} study-stratified subsamples containing
+\numSelectionSubsamplePct{} of subjects. The target-aware difference relative
+to kernel quadrature has median \numSelectionDeltaKqMed{} and 2.5th--97.5th
+percentile range
+$[\numSelectionDeltaKqPlo,\numSelectionDeltaKqPhi]$. Relative to fixed
+dispersion, the corresponding values are \numSelectionDeltaUniMed{} and
+$[\numSelectionDeltaUniPlo,\numSelectionDeltaUniPhi]$. Both ranges include
+zero.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\linewidth]{figures/fig_sweep.pdf}
+\caption{Stability of the learned REM support at $N=16$.
+(a) Target-aware held-out advantage as the support-selection sample increases.
+(b) Target-aware advantage over learned kernel quadrature and fixed dispersion
+across \numSelectionSubsampleReps{} study-stratified
+\numSelectionSubsamplePct{} subject subsamples.}
+\label{fig:sweep}
+\end{figure}
+\FloatBarrier
+
+The real-data results distinguish broad temporal-layout contrasts more clearly
+than exact learned support locations. Dispersion performs better than contiguous
+observation in several pooled Sleep comparisons and across the multi-window AF
+budgets, although the Sleep contrasts vary between source studies. The learned
+Sleep supports are less stable across targets and subject subsamples, and their
+paired held-out $R^2$ differences include zero. This agrees with the resolution
+pattern in \cref{fig:calibration}: coarse protocol differences can be easier to
+distinguish than fine support locations with finite data.
+

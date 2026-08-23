@@ -1,0 +1,143 @@
+\section{Target-Aware Observation Design}
+\label{sec:design}
+
+Once candidate values have been identified and estimated accurately enough to
+distinguish them, the remaining task is to choose a feasible protocol. Because
+the target variance $V_g(K)$ does not depend on the protocol, maximising the
+normalised value $\cI_g(S;K)=F_g(S;K)/V_g(K)$ is equivalent to maximising
+$F_g(S;K)$.
+Exact rank-one marginal gains support forward selection with one-swap
+refinement, and exhaustive search measures optimisation error when the
+catalogue is small enough. Appendix~\ref{sec:app-design} gives the derivations,
+algorithmic details and comparator formulas.
+
+\subsection{Feasible Protocols and Design Objective}
+
+For design, an acquisition action is represented by
+\begin{equation}
+a=(\ell_a,\;r_a,\;c_a),
+\label{eq:action}
+\end{equation}
+where $\ell_a\in\R^p$ specifies the linear measurement, $r_a\ge0$ is its
+effective noise variance, and $c_a>0$ is its cost. The observation is
+\begin{equation}
+Y_{i,a}=\ell_a^\top Z_i+\varepsilon_{i,a},
+\qquad \varepsilon_{i,a}\sim\cN(0,r_a),
+\label{eq:observation}
+\end{equation}
+with noises independent across actions and independent of $Z_i$. Timing and
+support are encoded in $\ell_a$: a point measurement uses a coordinate vector,
+whereas a window average uses normalised weights over its support. Repetition
+is encoded through $r_a$; for example, averaging $M_a$ independent measurements
+with per-measurement variance $\nu_a^2$ gives $r_a=\nu_a^2/M_a$. The cost may
+include all repetitions and other acquisition burdens.
+
+For a finite catalogue $\cV$ and cost budget $\mathcal B$, the feasible family
+is
+\begin{equation}
+\Pi_{\mathcal B}=\Big\{S\subseteq\cV:\
+\textstyle\sum_{a\in S}c_a\le\mathcal B\Big\}.
+\label{eq:feasible-family}
+\end{equation}
+Application-specific restrictions, such as choosing at most one precision
+variant on a given support, can be imposed on the catalogue or by taking a
+subfamily of $\Pi_{\mathcal B}$. The results below apply to any such subfamily.
+We restrict attention to feasible protocols for which every non-empty
+$\Sigma_S(K)$ is nonsingular; this is automatic when every selected action has
+$r_a>0$.
+
+At the population level, observation design is therefore the optimisation problem
+\begin{equation}
+\max_{S\in\Pi_{\mathcal B}}\;F_g(S;K),
+\label{eq:design-problem}
+\end{equation}
+where the candidate set $\cV$ ranges over acquisition times, window lengths,
+repetition counts and noise levels. Given calibration data, the empirical
+version replaces $K$ by $\widehat K$ and maximises $F_g(S;\widehat K)$;
+\cref{cor:regret} bounds what that substitution costs.
+
+\subsection{Exact Marginal Gains}
+
+Suppressing the argument $K$ in $Q_S(K)$, write
+\begin{equation}
+P_S:=K-Q_S(K)=\Cov(Z\mid Y_S).
+\label{eq:residual-covariance}
+\end{equation}
+Thus $v_{a\mid S}=P_S\ell_a$ is the covariance between a new measurement and
+the residual trajectory, and $s_{a\mid S}$ is its conditional variance,
+including measurement noise.
+
+\begin{proposition}[Rank-one marginal gains]
+\label{prop:marginal}
+Let $S=\varnothing$, or assume that $\Sigma_S(K)$ is nonsingular. Let
+$a\notin S$ satisfy
+$S\cup\{a\}\in\Pi_{\mathcal B}$ and $s_{a\mid S}>0$, and put
+\begin{equation}
+v_{a\mid S}=P_S\ell_a,
+\qquad
+s_{a\mid S}=\ell_a^\top P_S\ell_a+r_a.
+\label{eq:vs}
+\end{equation}
+Then $Q_{S\cup\{a\}}=Q_S+v_{a\mid S}v_{a\mid S}^\top/s_{a\mid S}$ and
+$P_{S\cup\{a\}}=P_S-v_{a\mid S}v_{a\mid S}^\top/s_{a\mid S}$, so that the exact
+marginal gain is
+\begin{equation}
+\Delta_g(a\mid S)
+=\sum_{j,k}\omega_j\omega_k
+\left[C_g\!\left\{Q_{S,jk}+\frac{v_{a\mid S,j}v_{a\mid S,k}}{s_{a\mid S}}\right\}
+-C_g(Q_{S,jk})\right].
+\label{eq:marginal-nonlinear}
+\end{equation}
+For the mean target this collapses to the closed form
+\begin{equation}
+\Delta_{\mathrm{mean}}(a\mid S)
+=\frac{(\omega^\top P_S\ell_a)^2}{\ell_a^\top P_S\ell_a+r_a}.
+\label{eq:marginal-mean}
+\end{equation}
+\end{proposition}
+
+\Cref{eq:marginal-nonlinear} is the exact objective increment rather than a
+surrogate. The rank-one form lets search update the residual covariance without
+re-forming the full observation-covariance inverse.
+
+The marginal-gain objective is monotone under nested protocols, although it
+need not exhibit diminishing returns.
+\begin{lemma}[Monotonicity under nested protocols]
+\label{prop:monotone}
+For every $g\in L^2(\phi)$, every correlation matrix $K$ with nonsingular
+measurement covariance for each non-empty protocol concerned, and every
+$S\subseteq S'$,
+$F_g(S;K)\le F_g(S';K)$.
+\end{lemma}
+
+Adding measurements cannot decrease $F_g$. Monotonicity, however, does not
+imply diminishing returns: even the mean target reduces to $R^2$ subset
+selection, which is not submodular in general \citep{das2018submodular}.
+
+For noiseless point measurements and a linear integral target, the objective
+reduces to kernel quadrature
+\citep{bach2017equivalence,briol2019probabilistic}. Measurement noise and
+nonlinear targets place the general problem outside that noiseless formulation.
+
+\subsection{Search and Comparators}
+\label{sec:algorithms}
+
+Starting from $S=\varnothing$ and $P_S=K$, forward selection repeatedly adds
+the feasible action with largest exact gain in
+\eqref{eq:marginal-nonlinear}, using gain per unit cost when costs differ, and
+then applies the rank-one update. A one-swap refinement makes feasible
+selected--unselected exchanges whenever the exchange improves the objective.
+Because monotonicity does not imply submodularity, exhaustive search is used as an
+optimisation benchmark when the catalogue is small enough. Pseudocode and
+operation counts are given in Appendix~\ref{sec:app-design-search}.
+
+To isolate which information drives a schedule, we compare the target-aware
+objective with several alternatives. Latent-state
+mutual information maximises $I(Z;Y_S)$ and is target-free. Integrated
+posterior variance minimises $\sum_j\omega_j(P_S)_{jj}$, so it uses temporal
+weights but not the target transformation. Linear-target design retains the
+actual weights and noise but sets $g(z)=z$, thereby maximising
+$\omega^\top Q_S(K)\omega$. Noiseless kernel quadrature uses the same linear
+criterion with $R_S=0$. These comparisons separate target nonlinearity from
+the noise model and from target-free coverage criteria; their exact objectives
+and marginal gains are recorded in Appendix~\ref{sec:app-design-comparators}.

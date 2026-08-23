@@ -1,0 +1,9 @@
+# Direct dependencies used by the validated macOS/arm64 environment.
+numpy==2.5.1
+scipy==1.18.0
+matplotlib==3.11.1
+wfdb==4.3.1
+mne==1.12.1
+xlrd==2.0.2
+requests==2.34.2
+

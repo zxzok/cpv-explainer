@@ -4,7 +4,7 @@ window.CPV_LINKS = {
   paper: "paper/main.pdf",                    // manuscript PDF
   journal: "",                                // journal or preprint page, when available
   doi: "",                                    // DOI, when available
-  code: "https://github.com/zxzok/cpv-explainer",                                   // public code repository; empty = show the package description instead
+  code: "https://github.com/zxzok/cpv-explainer/tree/main/code",                                   // public code repository; empty = show the package description instead
   contact: "zhangxizhe@gmail.com",
   analytics: "",                              // optional endpoint for sendBeacon(event) — empty = no tracking
 };

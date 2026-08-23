@@ -1,0 +1,206 @@
+\section{Finite Calibration and Protocol Comparison}
+\label{sec:estimation}
+
+Calibration measurements constrain covariance directions that are invisible
+under the realised protocol. We consider $m$ independent units observed densely
+according to
+\begin{equation}
+W^{(i)}=Z^{(i)}+\eta^{(i)},\qquad
+Z^{(i)}\sim\cN(0,K),\qquad \eta^{(i)}\sim\cN(0,R_0),
+\qquad i=1,\dots,m.
+\label{eq:calibration}
+\end{equation}
+The pairs $(Z^{(i)},\eta^{(i)})$ are independent across $i$, and
+$\eta^{(i)}$ is independent of $Z^{(i)}$ for every $i$. Consequently,
+$\Cov(W^{(i)})=K+R_0$.
+The finite-sample question is how error in the covariance recovered from these
+data propagates to comparisons among protocols. Appendix~\ref{sec:app-calibration}
+gives the proofs, including covariance-repair and resolvent constants.
+
+\subsection{Covariance Calibration}
+
+Let $\widehat\Sigma=m^{-1}\sum_iW^{(i)}W^{(i)\top}$, and set
+$\widehat R_0=R_0$ when the calibration-noise covariance is known;
+otherwise estimate $R_0$ from an independent or replicated calibration
+component. For a symmetric matrix $M$, define
+\begin{equation}
+\begin{aligned}
+\widetilde M_\tau
+&=\proj_{\{H=H^\top:\,H\succeq\tau I_p\}}(M),\\
+D_\tau(M)&=\Diag\{\diag(\widetilde M_\tau)\},&
+\cR_\tau(M)&=D_\tau(M)^{-1/2}\widetilde M_\tau D_\tau(M)^{-1/2}.
+\end{aligned}
+\label{eq:repair-operator}
+\end{equation}
+Thus $\cR_\tau$ floors the eigenvalues and then rescales the result to a
+correlation matrix. The plug-in estimator is
+\begin{equation}
+\widehat K=\cR_{\tau_m}(\widehat\Sigma-\widehat R_0),
+\qquad
+\widehat\cI_g(S)=\frac{F_g(S;\widehat K)}{V_g(\widehat K)},
+\label{eq:plugin}
+\end{equation}
+where $\tau_m\downarrow0$. The projection in
+\eqref{eq:repair-operator} is the Frobenius-norm eigenvalue-clipping map
+\citep{higham1988computing}. The asymptotic results require only
+$\tau_m\downarrow0$.
+
+The target enters the error rate through the modulus of continuity of its
+Gaussian covariance transform $C_g$.
+
+\begin{proposition}[Regularity of the target covariance transform]
+\label{prop:regularity}
+For each of the following cases there is a finite constant $L$ such that, on
+the stated range,
+\begin{equation}
+|C_g(r_2)-C_g(r_1)|\le L|r_2-r_1|^\beta.
+\label{eq:target-modulus}
+\end{equation}
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=2pt]
+\item\label{lem:lipschitz} If $g$ belongs to the first-order Gaussian Sobolev
+space $W^{1,2}(\phi)$, then
+\eqref{eq:target-modulus} holds on $[-1,1]$ with $\beta=1$.
+\item\label{lem:holder} If $g_c(z)=\Ind\{z>c\}$, then it holds on $[-1,1]$
+with $\beta=1/2$. This exponent cannot be improved uniformly, because
+\begin{equation}
+C_{g_c}(1)-C_{g_c}(1-\delta)
+\sim \frac{e^{-c^2/2}}{2\pi}\sqrt{2\delta},
+\qquad \delta\downarrow0.
+\label{eq:boundary-asymptotic}
+\end{equation}
+\item\label{lem:local-lipschitz} For the same threshold target and every
+$0\le r_{\max}<1$, \eqref{eq:target-modulus} holds on
+$[-r_{\max},r_{\max}]$ with $\beta=1$.
+\end{enumerate}
+\end{proposition}
+
+Smooth targets therefore transmit covariance error linearly. Threshold targets
+do so linearly at a fixed model whose relevant correlations are separated from
+$\pm1$, but only through a square-root envelope when boundary correlations are
+allowed.
+
+\subsection{Uniform Value Error}
+
+We now propagate covariance-calibration error through the protocol-value
+calculation,
+$\widehat K-K\mapsto Q_S(\widehat K)-Q_S(K)\mapsto
+\widehat\cI_g(S)-\cI_g(S)$. Two quantities can destabilise this chain and
+therefore appear explicitly in the assumptions below: a vanishing target
+variance and nearly singular protocol covariances.
+
+\begin{theorem}[Uniform stability of protocol values]
+\label{thm:uniform-error}
+Let $V_g(K)\ge v_0>0$, and suppose that for a feasible family $\Pi_{\mathcal B}$,
+\begin{equation}
+\sup_{\substack{S\in\Pi_{\mathcal B}\\S\ne\varnothing}}
+\opnorm{A_S}^2\le a<\infty,
+\qquad
+\inf_{\substack{S\in\Pi_{\mathcal B}\\S\ne\varnothing}}
+\lambda_{\min}(A_SKA_S^\top+R_S)\ge\lambda>0.
+\label{eq:family-conditioning}
+\end{equation}
+If the modulus \eqref{eq:target-modulus} with exponent $\beta$ is valid for all
+arguments of $C_g$ arising from entries of $K$, $\widehat K$, $Q_S(K)$ and
+$Q_S(\widehat K)$, then, for all sufficiently small
+$e=\opnorm{\widehat K-K}$,
+\begin{equation}
+\sup_{S\in\Pi_{\mathcal B}}
+\big|\widehat\cI_g(S)-\cI_g(S)\big|\le C e^\beta.
+\label{eq:uniform-error}
+\end{equation}
+Here $C$ depends only on the target modulus, $v_0$, bounds on $K$ and
+$\widehat K$, and the family bounds $(a,\lambda)$, not on $S$.
+Consequently $\beta=1$ for smooth targets, $\beta=1/2$ globally for threshold
+targets, and $\beta=1$ for threshold targets at an interior model.
+\end{theorem}
+
+For a threshold target, the interior condition invoked in the theorem can be
+checked at the fixed model through
+\begin{equation}
+r_0=\max\left\{\max_{j\ne k}|K_{jk}|,\ 
+\sup_{S\in\Pi_{\mathcal B}}\max_{j,k}|Q_S(K)_{jk}|\right\}<1.
+\label{eq:r0}
+\end{equation}
+Uniform continuity of the resolvent then places the corresponding arguments
+for every sufficiently close $\widehat K$ in a common compact subset of
+$(-1,1)$.
+
+\subsection{Calibration Rates}
+
+\begin{theorem}[Fixed-model calibration rates]
+\label{thm:fixed-model}
+Fix $p$ and a finite feasible family $\Pi_{\mathcal B}$, and suppose that
+$K\succ0$, $V_g(K)>0$ and the conditioning bound in
+\eqref{eq:family-conditioning} holds. If
+$\opnorm{\widehat R_0-R_0}=O_p(m^{-1/2})$ and $\tau_m\downarrow0$, then the
+estimator in \eqref{eq:plugin} satisfies
+$\opnorm{\widehat K-K}=O_p(m^{-1/2})$. Hence
+\begin{equation}
+\sup_{S\in\Pi_{\mathcal B}}|\widehat\cI_g(S)-\cI_g(S)|=
+\begin{cases}
+O_p(m^{-1/2}), & g\in W^{1,2}(\phi),\\
+O_p(m^{-1/2}), & g=g_c\text{ and the interior condition \eqref{eq:r0} holds},\\
+O_p(m^{-1/4}), & g=g_c\text{ under the global threshold envelope}.
+\end{cases}
+\label{eq:root-m}
+\end{equation}
+\end{theorem}
+
+The global $m^{-1/4}$ rate is a worst-case guarantee over correlation matrices;
+the ordinary root-$m$ rate applies to every fixed threshold model satisfying
+\eqref{eq:r0}.
+
+\subsection{Selection Regret and Distinguishable Value Gaps}
+
+Uniform value error translates directly into a decision guarantee.
+
+\begin{corollary}[Selection regret and distinguishable value gaps]
+\label{cor:regret}
+Let
+$\varepsilon_m=\sup_{S\in\Pi_{\mathcal B}}|\widehat\cI_g(S)-\cI_g(S)|$, let $S^*$
+maximise $\cI_g$ over $\Pi_{\mathcal B}$, and let $\widetilde S$ be a feasible
+protocol with empirical optimisation gap
+\begin{equation}
+\eta_m=\max_{S\in\Pi_{\mathcal B}}\widehat\cI_g(S)
+-\widehat\cI_g(\widetilde S).
+\label{eq:opt-gap}
+\end{equation}
+Then
+\begin{equation}
+\cI_g(S^*)-\cI_g(\widetilde S)\le2\varepsilon_m+\eta_m.
+\label{eq:regret-opt}
+\end{equation}
+Exact empirical maximisation is the special case $\eta_m=0$.
+
+For nested classes
+$\Pi^{(1)}\subseteq\cdots\subseteq\Pi^{(L)}=\Pi_{\mathcal B}$, let
+$\widehat S_\ell$ maximise $\widehat\cI_g$ over $\Pi^{(\ell)}$. On the event
+$\sup_{S\in\Pi^{(\ell)}}|\widehat\cI_g(S)-\cI_g(S)|\le\varepsilon_\ell$,
+\begin{equation}
+\cI_g(S^*)-\cI_g(\widehat S_\ell)\le
+\underbrace{\cI_g(S^*)-
+\max_{S\in\Pi^{(\ell)}}\cI_g(S)}_{\text{class restriction}}
++\underbrace{2\varepsilon_\ell}_{\text{calibration error}}.
+\label{eq:resolution-bound}
+\end{equation}
+\end{corollary}
+
+An estimated gap larger than $2\varepsilon_m$ certifies the same ordering at
+the population level, whereas a population gap larger than $2\varepsilon_m$
+cannot be reversed by the plug-in estimates. Hence protocol-value differences
+below this scale cannot be distinguished uniformly from calibration error.
+Equation~\eqref{eq:resolution-bound} separates this uncertainty from the
+approximation loss incurred by restricting the search to $\Pi^{(\ell)}$.
+
+\theoremstyle{remark}
+\newtheorem*{bestlinearremark}{Remark}
+\begin{bestlinearremark}[Best-linear calibration]
+The same perturbation and regret arguments apply to $\cI_{\mathrm L}$. If the
+protocol covariances are uniformly nonsingular and their covariance and
+target-cross-covariance blocks, together with the target variance, are
+estimated uniformly at the root-$m$ rate, then
+$\sup_{S\in\Pi_{\mathcal B}}|\widehat\cI_{\mathrm L}(S)-\cI_{\mathrm L}(S)|
+=O_p(m^{-1/2})$. Appendix~\ref{sec:app-best-linear} states sufficient
+conditions and proves this claim; \cref{cor:regret} then applies with
+$\cI_g$ replaced by $\cI_{\mathrm L}$.
+\end{bestlinearremark}

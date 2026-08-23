@@ -1,0 +1,70 @@
+\section{Discussion}
+The observation protocol is part of a predictive system, not merely a fixed
+preprocessing choice. When the target summarises a longer trajectory than the
+measurements supplied to the learner, performance reflects both the learner
+and the information admitted by the protocol. More training units and more
+flexible predictors can reduce error under the realised protocol, but they do
+not reveal the value of measurements that were never collected. Even the
+population measurement--target law can leave dependence unresolved that is
+decisive for an alternative protocol.
+
+The practical meaning of ``more data'' therefore depends on how those data are
+collected. If the ambiguity is invisible to the realised protocol, enlarging
+the sample under that protocol reproduces the same constraints. A smaller
+sample observed more extensively may be more useful. Targeted augmentation
+removes ambiguity affecting one specified alternative, whereas dense
+calibration supports a broader family. This motivates a large routine cohort
+accompanied by a smaller, intensively observed calibration subset chosen with
+future protocol decisions in mind.
+
+Finite calibration determines how finely protocols can be compared. The
+precision of an optimiser's output should not be confused with the precision
+supported by the data. \Cref{fig:calibration} shows that richer candidate
+classes can reduce selection regret before all candidate values are estimated
+accurately, because selection depends mainly on ordering protocols near the
+optimum. Useful granularity is set by the value gaps among competitive
+protocols and the information available to resolve them.
+
+The retrospective analyses illustrate this distinction. In Sleep, broad
+dispersed-versus-contiguous contrasts are more reproducible than exact learned
+supports, whose locations and held-out advantages vary across targets, source
+studies and subsamples (\cref{fig:real,fig:sweep}). In AF, distributing a
+matched budget across the record is substantially more predictive of
+full-record burden than concentrating it in one block at the multi-window
+budgets considered. This is not a general rule in favour of dispersion; equal
+observation time need not carry equal information for a target defined over a
+longer horizon. Protocol quality is also target-dependent: \cref{tab:s5}
+shows that observing the process well and observing it well for a specified
+aggregate can lead to different designs.
+
+The same problem arises beyond temporal sampling. Short ECG recordings may not
+reveal the cross-day dependence needed to evaluate dispersed monitoring; an
+overlapping multimodal subset may be needed before imaging, proteomic or
+wearable panels can be valued; and current environmental sensors may not reveal
+the spatial dependence governing the value of new locations. These are not
+ordinary feature-selection problems, because the proposed measurements may
+never have been observed jointly with the target. Calibration precedes the
+usual optimisation problem in longitudinal and sensor design
+\citep{chaloner1995bayesian,ji2017optimal,krause2008near,joshi2009sensor}.
+
+When point identification fails, the range of compatible values can still
+support partial comparisons and robust design based on worst-case value or
+minimax regret \citep{manski2003partial,tamer2010partial}. The Gaussian analysis
+exposes this ambiguity through covariance directions, but the principle is
+broader: an alternative is evaluable whenever its value is constant over the
+latent laws compatible with the realised data. In more general models, the
+corresponding task is to characterise that compatible set and collect
+measurements that shrink the decision-relevant value range.
+
+\section{Conclusion}
+
+Counterfactual protocol evaluation determines whether data from one observation
+system fix the predictive value of another that was never deployed. Existing
+data need not determine the value of measurements that were never made;
+target-relevant dependence may remain observationally unconstrained even with
+an infinite benchmark. Value-specific identification isolates the ambiguity
+that matters, targeted augmentation can remove it without recovering the full
+latent system, finite calibration determines which value gaps are resolvable,
+and exact marginal gains support cost-constrained design at that resolution.
+Identification should therefore precede optimisation, both for temporal
+protocols and for observation systems more generally.

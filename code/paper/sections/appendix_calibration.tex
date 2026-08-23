@@ -1,0 +1,204 @@
+\section{Proofs for Finite Calibration}
+\label{sec:app-calibration}
+
+\subsection{Regularity of the Target Covariance Transform}
+
+For \cref{prop:regularity}, if
+$g-\E g=\sum_{k\ge1}(a_k/k!)H_k$, then
+$C_g(r)=\sum_{k\ge1}(a_k^2/k!)r^k$. For
+$g\in W^{1,2}(\phi)$, termwise differentiation and the Gaussian Sobolev
+identity give
+\begin{equation}
+L_g:=\sup_{|r|\le1}|C_g'(r)|
+\le \sum_{k\ge1}\frac{k a_k^2}{k!}
+=\E\{g'(U)^2\}<\infty.
+\label{eq:app-smooth-L}
+\end{equation}
+The non-negative coefficients show that equality in the supremum is attained
+at $r=1$, proving the Lipschitz claim in part (i).
+
+For $g_c(z)=\Ind\{z>c\}$, Plackett's identity gives, for $-1<r<1$,
+\begin{equation*}
+C_{g_c}'(r)=
+\frac{\exp\{-c^2/(1+r)\}}{2\pi\sqrt{1-r^2}}.
+\end{equation*}
+Together with the sharp arcsine inequality
+$|\arcsin b-\arcsin a|\le(\pi/\sqrt2)|b-a|^{1/2}$, this yields the global
+bound
+\begin{equation}
+|C_{g_c}(r_2)-C_{g_c}(r_1)|
+\le \frac{1}{2\sqrt2}|r_2-r_1|^{1/2}.
+\label{eq:app-threshold-holder}
+\end{equation}
+At $c=0$ and $(r_1,r_2)=(-1,1)$ the constant is attained. Expanding the same
+derivative as $r\uparrow1$ and integrating over $[1-\delta,1]$ gives
+\eqref{eq:boundary-asymptotic}, so no larger global H\"older exponent is
+possible. Finally, on $[-r_{\max},r_{\max}]$ the derivative is bounded by
+\begin{equation}
+L_{g_c}(r_{\max})=
+\frac{\exp\{-c^2/(1+r_{\max})\}}
+{2\pi\sqrt{1-r_{\max}^2}},
+\label{eq:app-threshold-local-L}
+\end{equation}
+which proves part (iii).
+
+\subsection{Covariance Repair and Resolvent Bounds}
+
+For covariance repair, put $\bar K=\widehat\Sigma-\widehat R_0$ and
+$e_0=\opnorm{\widehat\Sigma-(K+R_0)}+\opnorm{\widehat R_0-R_0}$.
+If $0<\tau\le\lambda_{\min}(K)/2$ and
+$e_0\le\min\{1/2,\lambda_{\min}(K)/2\}$, Weyl's inequality gives
+$\bar K\succeq\tau I_p$, so flooring is inactive. For
+$H=\Diag\{\diag(\bar K)\}^{-1/2}$, the unit diagonal of $K$ gives
+$\opnorm{H-I_p}\le2e_0$ and $\opnorm H\le2$. Expanding
+$H\bar K H-K=(H-I_p)\bar K H+(\bar K-K)H+K(H-I_p)$ yields
+\begin{equation}
+\opnorm{\cR_\tau(\bar K)-K}
+\le(6\opnorm K+4)e_0
+\le6(1+\opnorm K)e_0.
+\label{eq:app-repair-bound}
+\end{equation}
+Thus diagonal rescaling preserves the raw rate at an interior $K$.
+
+For the uniform resolvent bound, let $E=\widehat K-K$, $e=\opnorm E$, and
+$\kappa=\max\{\opnorm K,\opnorm{\widehat K}\}$. Under
+\eqref{eq:family-conditioning}, if $ae\le\lambda/2$, then for every non-empty
+$S\in\Pi_{\mathcal B}$ the inverse and resolvent bounds are
+\begin{equation*}
+\begin{aligned}
+\opnorm{(A_S\widehat K A_S^\top+R_S)^{-1}}&\le2/\lambda,\\
+\opnorm{(A_S\widehat K A_S^\top+R_S)^{-1}
+-(A_SKA_S^\top+R_S)^{-1}}&\le2ae/\lambda^2.
+\end{aligned}
+\end{equation*}
+Expanding the two outer factors and the inverse in $Q_S$ then yields
+\begin{equation}
+\opnorm{Q_S(\widehat K)-Q_S(K)}\le L_Qe,
+\qquad
+L_Q=\frac{4\kappa a}{\lambda}
+    +\frac{2\kappa^2a^2}{\lambda^2},
+\label{eq:app-resolvent-bound}
+\end{equation}
+uniformly over the feasible family. Thus the constant worsens only through the
+latent covariance scale, measurement amplification $a$, and protocol
+conditioning $\lambda$.
+
+\subsection{Value Error, Calibration Rates and Regret}
+
+For \cref{thm:uniform-error}, the empty protocol has value zero under both
+matrices. For non-empty $S$, non-negative weights summing to one, the
+target modulus and \eqref{eq:app-resolvent-bound} imply
+\begin{equation*}
+|F_g(S;\widehat K)-F_g(S;K)|\le L(L_Qe)^\beta,
+\qquad
+|V_g(\widehat K)-V_g(K)|\le Le^\beta.
+\end{equation*}
+For the local threshold case, the second bound uses that $K$ and
+$\widehat K$ have the same unit diagonal, so only off-diagonal arguments vary.
+Since $0\le F_g(S;K)\le V_g(K)$, the ratio identity gives the more explicit
+uniform bound
+\begin{equation}
+\sup_{S\in\Pi_{\mathcal B}}
+|\widehat\cI_g(S)-\cI_g(S)|
+\le
+\frac{L(L_Q^\beta+1)e^\beta}{V_g(K)-Le^\beta}.
+\label{eq:app-explicit-uniform}
+\end{equation}
+For sufficiently small $e$, the denominator is at least $v_0/2$ and
+$\kappa$ is bounded by a fixed neighbourhood of $K$. Hence
+\eqref{eq:app-explicit-uniform} is at most
+$2L(L_Q^\beta+1)e^\beta/v_0$, which is \eqref{eq:uniform-error} with exactly
+the dependencies stated there. For a threshold target satisfying
+\eqref{eq:r0}, continuity of all finitely or uniformly conditioned resolvents
+keeps the varying correlations in a common compact subinterval of $(-1,1)$;
+the local Lipschitz constant \eqref{eq:app-threshold-local-L} then applies.
+
+For \cref{thm:fixed-model}, fixed-dimensional Gaussian covariance
+concentration gives
+\begin{equation*}
+\opnorm{\widehat\Sigma-(K+R_0)}=O_p(m^{-1/2}).
+\end{equation*}
+The assumed rate for $\widehat R_0$ therefore makes
+$e_0=O_p(m^{-1/2})$. Because $K\succ0$ and
+$\tau_m\downarrow0$, the conditions of \eqref{eq:app-repair-bound} hold with
+probability tending to one, giving
+$\opnorm{\widehat K-K}=O_p(m^{-1/2})$.
+
+Substitution into \eqref{eq:app-explicit-uniform} gives root-$m$ value error
+when $\beta=1$ and $m^{-1/4}$ under the global threshold envelope
+$\beta=1/2$. At a fixed threshold model satisfying \eqref{eq:r0}, the local
+Lipschitz modulus has $\beta=1$, restoring the root-$m$ rate. The family is
+finite, so the conditioning and correlation neighbourhoods can be chosen
+uniformly over all $S\in\Pi_{\mathcal B}$, which gives the stated rate.
+
+For \cref{cor:regret}, insert the empirical value on both sides of the
+comparison between $S^*$ and $\widetilde S$:
+\begin{align*}
+\cI_g(S^*)-\cI_g(\widetilde S)
+&\le
+\{\cI_g(S^*)-\widehat\cI_g(S^*)\}
++\{\widehat\cI_g(S^*)-\widehat\cI_g(\widetilde S)\}
++\{\widehat\cI_g(\widetilde S)-\cI_g(\widetilde S)\}\\
+&\le2\varepsilon_m+\eta_m,
+\end{align*}
+which proves \eqref{eq:regret-opt}. Applying the same argument within
+$\Pi^{(\ell)}$ gives
+$\cI_g(\widehat S_\ell)\ge
+\max_{S\in\Pi^{(\ell)}}\cI_g(S)-2\varepsilon_\ell$; subtracting this lower
+bound from the global optimum gives \eqref{eq:resolution-bound}.
+
+\subsection{Best-Linear Calibration}
+\label{sec:app-best-linear}
+
+\theoremstyle{plain}
+\newtheorem*{bestlinearproposition}{Proposition}
+\begin{bestlinearproposition}[Uniform root-$m$ error]
+For non-empty $S$, write $\Sigma_S=\Var(Y_S)$ and
+$c_S=\Cov(Y_S,\Theta)$, and let $v=\Var(\Theta)$. Suppose, uniformly over
+$S\in\Pi_{\mathcal B}$, that $v\ge v_0>0$,
+$\lambda_{\min}(\Sigma_S)\ge\lambda>0$, $\|c_S\|_2\le C_c<\infty$, and
+\begin{equation*}
+\delta_m:=\sup_{S\ne\varnothing}
+\{\opnorm{\widehat\Sigma_S-\Sigma_S}+\|\widehat c_S-c_S\|_2\}
++|\widehat v-v|=O_p(m^{-1/2}).
+\end{equation*}
+Set both values of the empty protocol to zero; otherwise use
+$\cI_{\mathrm L}(S)=c_S^\top\Sigma_S^{-1}c_S/v$ and its plug-in version.
+Then
+$\sup_{S\in\Pi_{\mathcal B}}|\widehat\cI_{\mathrm L}(S)-\cI_{\mathrm L}(S)|
+=O_p(m^{-1/2})$.
+
+In the measurement model, where $\Sigma_S=A_SKA_S^\top+R_S$ and
+$c_S=A_Sc$ for $c=\Cov(Z,\Theta)$, it suffices that
+$\sup_S\opnorm{A_S}<\infty$ and
+\begin{equation*}
+\opnorm{\widehat K-K}+\|\widehat c-c\|_2+|\widehat v-v|
++\sup_S\opnorm{\widehat R_S-R_S}=O_p(m^{-1/2}),
+\end{equation*}
+using $\widehat\Sigma_S=A_S\widehat K A_S^\top+\widehat R_S$ and
+$\widehat c_S=A_S\widehat c$.
+\end{bestlinearproposition}
+
+\begin{proof}
+On the event $\delta_m\le\min(\lambda/2,v_0/2)$, the resolvent identity
+and $q_S=c_S^\top\Sigma_S^{-1}c_S$ give, uniformly over non-empty $S$,
+\begin{equation*}
+\begin{aligned}
+\opnorm{\widehat\Sigma_S^{-1}}&\le\frac{2}{\lambda},
+&\qquad
+\opnorm{\widehat\Sigma_S^{-1}-\Sigma_S^{-1}}
+&\le\frac{2\delta_m}{\lambda^2},\\
+\sup_S|\widehat q_S-q_S|&\le
+\frac{2\delta_m}{\lambda}(2C_c+\delta_m)
++\frac{2C_c^2\delta_m}{\lambda^2}
+=O_p(m^{-1/2}).
+\end{aligned}
+\end{equation*}
+Because $q_S\le C_c^2/\lambda$ and $\widehat v\ge v_0/2$, division by
+$\widehat v$ and $v$ proves the claim. The primitive rate implies the assumed
+one through
+$\opnorm{\widehat\Sigma_S-\Sigma_S}
+\le\opnorm{A_S}^2\opnorm{\widehat K-K}
++\opnorm{\widehat R_S-R_S}$ and
+$\|\widehat c_S-c_S\|_2\le\opnorm{A_S}\|\widehat c-c\|_2$.
+\end{proof}

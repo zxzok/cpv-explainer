@@ -1,0 +1,227 @@
+\documentclass[twoside,11pt]{article}
+
+% jmlr2e pulls in hyperref, which loads url; the option must be passed first.
+\PassOptionsToPackage{hyphens}{url}
+
+% algorithm is float-based; loaded after the hyperref that jmlr2e pulls in,
+% it makes every float emit its PDF destination twice.  It must come first.
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% The official JMLR style is used in its venue-neutral preprint mode.  It loads epsfig,
+% amssymb, natbib, graphicx and hyperref, issues \bibliographystyle{plainnat},
+% and predefines proof plus the theorem-like environments, so it must be
+% loaded before everything else.
+\usepackage[preprint,abbrvbib]{jmlr2e}
+
+% jmlr2e's theorem environments use one flat counter and give cleveref no way
+% to tell them apart; retract them so the aliascnt-backed versions below can be
+% installed.  Its `proof' is retracted for amsthm's, which supports \qedhere.
+\makeatletter
+\@for\jmlr@env:={theorem,lemma,proposition,remark,corollary,definition,%
+                 example,conjecture,axiom}\do{%
+  \expandafter\let\csname\jmlr@env\endcsname\relax
+  \expandafter\let\csname end\jmlr@env\endcsname\relax
+  \expandafter\let\csname c@\jmlr@env\endcsname\relax
+  \expandafter\let\csname the\jmlr@env\endcsname\relax
+  \expandafter\let\csname p@\jmlr@env\endcsname\relax}
+\let\proof\relax \let\endproof\relax
+\makeatother
+
+% jmlr2e's \@makecaption sets the caption label three times (a measuring box, a
+% \settowidth, and the list label), so hyperref emits each float destination
+% more than once.  Build the label once and reuse it.
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip 10pt
+  \sbox\@tempboxa{#1: #2}%
+  \ifdim\wd\@tempboxa>\hsize
+    \begingroup
+      \sbox\@tempboxa{#1:}%
+      \list{\usebox\@tempboxa}{%
+        \setlength{\labelwidth}{\wd\@tempboxa}%
+        \setlength{\leftmargin}{\labelwidth}%
+        \addtolength{\leftmargin}{\labelsep}}%
+      \item\relax #2\endlist\par
+    \endgroup
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi}
+\makeatother
+
+% JMLR sets its published articles in Times; jmlr2e itself leaves the
+% article default (Computer Modern), which runs about a page longer.
+\usepackage{times}
+% OT1 has no `<' or `>': the Steyer DOI, which contains both, printed as the
+% mathematical angle brackets and did not resolve.  T1 supplies the real glyphs.
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{microtype}
+\hypersetup{
+  pdftitle={Counterfactual Evaluation of Temporal Observation Protocols},
+  pdfauthor={Xizhe Zhang},
+  pdfsubject={Identifiability, calibration and design of the predictive value
+              of undeployed temporal observation protocols},
+  pdfkeywords={identifiability, observational equivalence, observation design,
+               temporal aggregates, calibration}}
+\usepackage[section]{placeins}
+\usepackage{cleveref}
+
+% ------------------------------------------------------------------ theorem --
+% Shared numbering with *distinct* cleveref types: with plain
+% \newtheorem{proposition}[theorem]{Proposition} cleveref keys off the counter
+% and calls every one of them "Theorem".  aliascnt keeps one running number
+% while giving each environment its own counter name.
+\usepackage{aliascnt}
+\theoremstyle{plain}
+% JMLR requires Theorem 1, Theorem 2, ... rather than Theorem 2.1.
+\newtheorem{theorem}{Theorem}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{assumption}{theorem}
+\newtheorem{assumption}[assumption]{Assumption}
+\aliascntresetthe{assumption}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\Crefname{theorem}{Theorem}{Theorems}
+\Crefname{proposition}{Proposition}{Propositions}
+\Crefname{lemma}{Lemma}{Lemmas}
+\Crefname{corollary}{Corollary}{Corollaries}
+\Crefname{assumption}{Assumption}{Assumptions}
+\Crefname{definition}{Definition}{Definitions}
+\Crefname{remark}{Remark}{Remarks}
+\Crefname{example}{Example}{Examples}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+
+% cleveref's lowercase forms were never set, so mid-sentence \cref rendered
+% "theorem 3.4" and "section 4".  Journals capitalise these; mirror the
+% \Crefname list so \cref and \Cref agree.
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{assumption}{Assumption}{Assumptions}
+\crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{section}{Section}{Sections}
+\Crefname{subsection}{Section}{Sections}
+\Crefname{figure}{Figure}{Figures}
+\Crefname{table}{Table}{Tables}
+
+% ------------------------------------------------------------------- macros --
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Corr}{\operatorname{Corr}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Sym}{\mathbb{S}}
+\newcommand{\Ind}{\mathbf{1}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\PhiBar}{\overline{\Phi}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\opnorm}[1]{\left\lVert #1 \right\rVert_{\mathrm{op}}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+% (\Pi is the standard LaTeX symbol; no redefinition needed)
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rowspace}{row}
+
+% Keep the reference list compact while retaining the journal's body type size.
+\setlength{\bibsep}{0pt plus 0.25pt}
+
+\input{numbers}
+
+\title{Counterfactual Evaluation of Temporal Observation Protocols}
+
+\author{\name Xizhe Zhang \email zhangxizhe@gmail.com \\
+        \addr School of Biomedical Engineering and Informatics\\
+        Nanjing Medical University\\
+        101 Longmian Avenue, Jiangning District\\
+        Nanjing 211166, P.R. China}
+
+% JMLR requires a condensed running title of no more than 50 characters.
+\ShortHeadings{Counterfactual Evaluation of Temporal Protocols}{Zhang}
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+
+\begin{abstract}%
+We study counterfactual protocol evaluation: whether data collected under a realised observation protocol determine the predictive value of alternatives that were never deployed. Protocol value is the population $R^2$ of the Bayes-optimal predictor of a fixed trajectory-level target from the measurements an alternative would collect. We show that even infinite benchmark data need not determine this value: distinct latent covariance structures can induce the same benchmark measurement--target law while assigning different values to the same alternative. We develop a value-specific identification theory in which only latent ambiguity that changes the alternative's value matters. For linear targets, invisible covariance directions certify non-identification, while targeted measurements can restore identification without recovering the full latent covariance; an exact permutation construction extends the result to nonlinear aggregate targets. With finite dense calibration data, uniform error bounds control protocol-selection regret and distinguishable value gaps. Exact marginal gains then support cost-constrained, target-aware observation design. Simulations and retrospective analyses of Sleep-EDF and Long-Term AF show that broad temporal-layout differences can be more reliably distinguished than fine placements selected from finite data. Together, these results connect identification, calibration resolution and observation design for undeployed protocols.
+\end{abstract}
+
+\begin{keywords}
+identifiability, observational equivalence, observation design,
+temporal aggregates, calibration
+\end{keywords}
+
+\input{sections/introduction}
+\input{sections/formulation}
+\input{sections/identifiability}
+\input{sections/estimation}
+\input{sections/design}
+\input{sections/synthetic}
+
+\input{sections/related}
+\input{sections/discussion}
+\acks{This work was supported by the Hong Kong Research Grants Council (STG1/M-501/23-N). The author declares no competing interests.}
+\appendix
+\input{sections/appendix_identification}
+\input{sections/appendix_calibration}
+\input{sections/appendix_design}
+\input{sections/appendix_simulations}
+\input{sections/appendix_real}
+
+% jmlr2e selects the bibliography style; repeating \bibliographystyle here
+% would make BibTeX abort with "Illegal, another \bibstyle command".
+\begingroup
+\small
+\setlength{\baselineskip}{10.8pt}
+\bibliography{references}
+\endgroup
+
+\end{document}

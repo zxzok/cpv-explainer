@@ -1,0 +1,193 @@
+\section{Problem Formulation and Protocol Value}
+\label{sec:formulation}
+Consider a benchmark collected under one observation protocol and a future study
+that may use another. The benchmark contains the measurements produced by the
+realised protocol together with a trajectory-level target used for prediction.
+The full latent trajectory need not be observed. An alternative protocol may
+include measurements that were not collected in the benchmark. We first define
+the target and protocol measurements in continuous time and then introduce the
+discrete Gaussian model used in the theoretical analysis.
+
+An \textit{observation protocol} is a finite collection of acquisition actions. An \textit{observation design} is the decision problem of choosing a protocol from a feasible family. The \textit{realised protocol} is the one that generated the benchmark data; an \textit{alternative protocol} is a feasible protocol whose predictive value is to be evaluated even though the benchmark does not contain the complete measurement vector that it would produce.
+
+\subsection{Temporal Aggregate Targets and Observation Protocols}
+\label{sec:temporal-protocol}
+
+For unit $i$, let $Z_i=\{Z_i(t):t\in[0,T]\}$ be a latent scalar trajectory. The
+supervised target is one number obtained from the whole trajectory. Specifically,
+we first transform the state at each time by a function $g$ and then average the
+transformed values over the observation horizon:
+\begin{equation}
+\Theta_{i,g}=\int_0^T\omega_T(t)\,g\{Z_i(t)\}\dd t,
+\qquad \omega_T(t)\ge0,
+\qquad \int_0^T\omega_T(t)\dd t=1 .
+\label{eq:label-continuous}
+\end{equation}
+The weight function $\omega_T$ specifies which parts of the horizon contribute
+to the target. Uniform weights, $\omega_T(t)=1/T$, give an ordinary time
+average; non-uniform weights can emphasise particular periods.
+
+Two choices of $g$ recur throughout the paper. If $g(z)=z$, then
+$\Theta_{i,g}$ is the average level of the latent process, such as average
+electricity demand over a day. If
+$g_c(z)=\Ind\{z>c\}$, then $\Theta_{i,g_c}$ is the weighted fraction of time for
+which the process exceeds $c$, and therefore represents exceedance-time burden.
+Sleep-stage proportions, atrial-fibrillation burden and time spent in a
+symptomatic state are examples of occupation-type targets.
+The target is fixed when protocols are compared: changing the protocol changes
+what is measured, not the quantity to be predicted.
+
+One acquisition action $a$ returns a noisy linear measurement of the
+trajectory,
+$Y_{i,a}=L_aZ_i+\varepsilon_{i,a}$, where $L_a$ may represent a point
+measurement or an average over a time window. We assume
+$\varepsilon_{i,a}\sim\cN(0,r_a)$, independently across actions and units and
+independently of $Z_i$. Each action has cost $c_a$. For a cost budget
+$\mathcal B>0$, a protocol is a finite set $S=\{a_1,\ldots,a_D\}$ satisfying
+$\sum_{a\in S}c_a\le\mathcal B$, and $\Pi_{\mathcal B}$ denotes the collection
+of all such feasible protocols. Identification and estimation use this action
+representation; \cref{sec:design} specifies how actions encode timing, support,
+repetition, noise and cost.
+
+\subsection{Discrete Gaussian Model}
+\label{sec:discrete}
+
+The theoretical analysis uses a grid $t_1<\cdots<t_p$ on $[0,T]$. We collect
+the latent states on this grid in
+$Z_i=(Z_i(t_1),\ldots,Z_i(t_p))^\top$ and assume
+\begin{equation}
+Z_i\sim\cN(0,K),\qquad \diag(K)=\Ind_p.
+\label{eq:discrete-model}
+\end{equation}
+Thus $K$ records the dependence between times, while every marginal state has
+mean zero and variance one. This standardisation fixes the scale on which $g$
+is defined. Here $\diag(M)$ is the vector of diagonal entries of $M$, whereas
+$\Diag(v)$ is the diagonal matrix with diagonal $v$.
+
+Let $\omega=(\omega_1,\ldots,\omega_p)^\top$ be non-negative quadrature weights
+with $\Ind_p^\top\omega=1$. The continuous target and the protocol measurements
+then become
+\begin{equation}
+\Theta_{i,g}=\sum_{j=1}^p\omega_j\,g(Z_{ij}),
+\qquad
+Y_{i,S}=A_SZ_i+\varepsilon_{i,S},
+\qquad
+\varepsilon_{i,S}\sim\cN(0,R_S).
+\label{eq:discrete-protocol}
+\end{equation}
+Each row $\ell_a^\top$ of $A_S\in\R^{D\times p}$ describes one action. A point
+measurement at $t_j$ has $\ell_a=e_j$. A window measurement has non-negative
+entries on the grid points covered by that window and is normalised so that
+$\Ind_p^\top\ell_a=1$. With independent action noise,
+$R_S=\Diag(r_a)_{a\in S}$. In short, $K$ describes the latent trajectory,
+$\omega$ describes the target, and $(A_S,R_S)$ describes what protocol $S$
+observes.
+
+The empty protocol has no observations and explains no target variation. We
+set
+\begin{equation}
+Q_\varnothing(K)=0_{p\times p},\qquad \cI_g(\varnothing;K)=0.
+\label{eq:empty-protocol}
+\end{equation}
+
+\subsection{Protocol Value under the Gaussian Model}
+\label{sec:protocol-values}
+
+We value a protocol by the fraction of target variance explained by the best
+population predictor based on its measurements.
+
+\begin{definition}[Bayes value of an observation protocol]
+\label{def:values}
+Let $\Theta\in L^2$ be a scalar target with $\Var(\Theta)>0$. The Bayes protocol
+value under squared loss is
+\begin{equation}
+\cI_{\mathrm{Bayes}}(S)=\frac{\Var\{\E(\Theta\mid Y_S)\}}{\Var(\Theta)}.
+\label{eq:bayes-value}
+\end{equation}
+It is the population $R^2$ of the optimal predictor based on $Y_S$ and lies in
+$[0,1]$.
+\end{definition}
+
+The best-linear analogue restricts the predictor to be affine. With
+$\Sigma_S=\Var(Y_S)$ and $c_S=\Cov(Y_S,\Theta)$, it is
+\begin{equation}
+\cI_{\mathrm L}(S)=\frac{c_S^\top\Sigma_S^{+}c_S}{\Var(\Theta)},
+\label{eq:linear-value}
+\end{equation}
+where $\Sigma_S^{+}$ is the Moore--Penrose inverse
+\citep{penrose1955generalized}.
+It depends only on second moments and satisfies
+$\cI_{\mathrm L}(S)\le\cI_{\mathrm{Bayes}}(S)$, with equality when
+$\E(\Theta\mid Y_S)$ is affine in $Y_S$.
+
+Equations~\eqref{eq:bayes-value} and \eqref{eq:linear-value} define population
+quantities. The empirical analyses evaluate fitted predictors by pooled
+held-out cross-fitted $R^2$.
+
+Under the discrete Gaussian model, the Bayes value can be calculated from $K$,
+$g$ and the protocol matrices. The target transformation $g$ converts a latent
+Gaussian correlation into a covariance as follows. For standard bivariate
+normal variables
+$(U,V_r)$ with correlation $r$, define
+\begin{equation}
+C_g(r)=\Cov\{g(U),g(V_r)\}
+=\sum_{k\ge1}\frac{a_k^2}{k!}\,r^k,
+\qquad g\in L^2(\phi),
+\label{eq:Cg}
+\end{equation}
+where $\phi$ is the standard normal distribution and
+$g-\E g=\sum_{k\ge1}(a_k/k!)H_k$ is the Hermite expansion of $g$ in
+$L^2(\phi)$. In particular,
+$\Cov\{g(Z_j),g(Z_k)\}=C_g(K_{jk})$. All dependence on the possibly nonlinear
+target function enters the value calculation through $C_g$.
+
+The protocol enters through the part of the latent trajectory recoverable from
+its measurements. Let $\Sigma_S(K)=A_SKA_S^\top+R_S$. For a non-empty protocol
+with nonsingular $\Sigma_S(K)$, Gaussian conditioning gives
+\begin{equation}
+Q_S(K)=KA_S^\top\Sigma_S(K)^{-1}A_SK
+      =\Cov\{\E(Z\mid Y_S)\}.
+\label{eq:QP}
+\end{equation}
+Thus $Q_S(K)$ is the covariance of the part of the trajectory recovered from
+$Y_S$. The residual covariance used in the marginal-gain calculation is
+introduced in \cref{sec:design}.
+
+Combining this covariance transform with Gaussian conditioning yields the
+protocol-value identity below \citep{zhang2026label}.
+
+\begin{proposition}[Gaussian protocol-value identity; Zhang, 2026]
+\label{prop:risk-identity}
+Under \eqref{eq:discrete-model}--\eqref{eq:discrete-protocol}, let
+$g\in L^2(\phi)$ and assume $V_g(K)>0$. Define
+\begin{equation}
+V_g(K)=\sum_{j,k=1}^p\omega_j\omega_k\,C_g(K_{jk}),
+\qquad
+F_g(S;K)=\sum_{j,k=1}^p\omega_j\omega_k\,C_g\{Q_S(K)_{jk}\}.
+\label{eq:VF}
+\end{equation}
+Then $V_g(K)=\Var(\Theta_g)$ and
+$F_g(S;K)=\Var\{\E(\Theta_g\mid Y_S)\}$, and
+\begin{equation}
+\cI_g(S;K)=\cI_{\mathrm{Bayes}}(S)=\frac{F_g(S;K)}{V_g(K)}.
+\label{eq:ceiling}
+\end{equation}
+\end{proposition}
+
+Thus $V_g(K)$ is total target variance, $F_g(S;K)$ is the part explained by
+protocol $S$, and $\cI_g(S;K)$ is the corresponding Bayes-optimal population
+$R^2$ based on $Y_S$. A proof is given in
+Appendix~\ref{sec:app-identification}.
+
+For two target functions, the covariance transform has a simple form. For the
+mean target $g(z)=z$, $C_g(r)=r$, so
+$V_g(K)=\omega^\top K\omega$ and
+$F_g(S;K)=\omega^\top Q_S(K)\omega$; equivalently,
+$\Theta=\omega^\top Z$. For the occupation target
+$g_c(z)=\Ind\{z>c\}$, Plackett's identity \citep{plackett1954reduction} gives
+\begin{equation}
+C_{g_c}(r)=G_c(r)
+=\int_0^r\frac{\exp\{-c^2/(1+s)\}}{2\pi\sqrt{1-s^2}}\dd s,
+\label{eq:plackett}
+\end{equation}
+with $G_0(r)=\arcsin(r)/(2\pi)$.

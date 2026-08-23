@@ -1,0 +1,105 @@
+{
+  "note": "exact configuration of the misspecification study (data-generating specification table)",
+  "horizon": 20.0,
+  "p_grid": 128,
+  "budget": 4.0,
+  "target_weight_decay_constant": 8.0,
+  "per_segment_noise_variance": 1.0,
+  "true_kernel": "OU, tau = 2",
+  "m_calibration": 250,
+  "n_replications": 200,
+  "candidate_times": [
+    0.5,
+    4.0,
+    8.0,
+    12.0,
+    15.0,
+    17.0,
+    18.5,
+    19.75
+  ],
+  "replicated_variants_M": [
+    2,
+    4
+  ],
+  "lognormal_sigma": 1.0,
+  "student_t_df": 4,
+  "mnar_cut": 0.8,
+  "tau_sdlog": 0.8,
+  "n_tau_nodes": 25,
+  "mixture_sobol_points_per_component": 2048,
+  "mixture_high_resolution_sobol_points_per_component": 8192,
+  "mixture_high_resolution_min_protocols": 50,
+  "mixture_near_optimality_margin": 0.005,
+  "true_optimum_tie_tolerance": 1e-10,
+  "quantised_occupation_mc_outer": 30000,
+  "quantised_occupation_mc_inner_half": 128,
+  "quantised_occupation_mc_total_variance": 400000,
+  "quantised_occupation_independent_repetitions": 2,
+  "quantised_mean_gauss_hermite_nodes": 640,
+  "calibration_link_scope": "transform dense calibration rows only; deployed protocol and target remain functions of latent Z",
+  "label_noise_fraction": 0.25,
+  "quantisation_levels": 5,
+  "conditions": [
+    {
+      "key": "control",
+      "display": "OU $\\to$ OU (control)",
+      "group": "correct"
+    },
+    {
+      "key": "matern52",
+      "display": "Matérn-5/2 $\\to$ OU",
+      "group": "kernel"
+    },
+    {
+      "key": "two_scale",
+      "display": "two-scale OU $\\to$ single OU",
+      "group": "kernel"
+    },
+    {
+      "key": "cauchy",
+      "display": "Cauchy $\\beta=0.7$ ($\\tau_1=\\infty$) $\\to$ OU",
+      "group": "kernel"
+    },
+    {
+      "key": "copula_lognormal",
+      "display": "lognormal calibration link $\\to$ Gaussian (Pearson)",
+      "group": "calibration-link"
+    },
+    {
+      "key": "copula_lognormal_rank",
+      "display": "lognormal calibration link $\\to$ Gaussian (rank-normalised)",
+      "group": "calibration-link"
+    },
+    {
+      "key": "copula_t4",
+      "display": "Student-$t_4$ calibration link $\\to$ Gaussian (Pearson)",
+      "group": "calibration-link"
+    },
+    {
+      "key": "copula_t4_rank",
+      "display": "Student-$t_4$ calibration link $\\to$ Gaussian (rank-normalised)",
+      "group": "calibration-link"
+    },
+    {
+      "key": "subject_kernels",
+      "display": "subject-specific $\\tau_i$ $\\to$ shared kernel",
+      "group": "heterogeneity"
+    },
+    {
+      "key": "mnar",
+      "display": "informative missingness $\\to$ MAR",
+      "group": "missingness"
+    },
+    {
+      "key": "label_noise",
+      "display": "$\\Theta + \\xi$ $\\to$ noise-free label",
+      "group": "label"
+    },
+    {
+      "key": "label_quantised",
+      "display": "$Q(\\Theta)$, 5 levels $\\to$ exact label",
+      "group": "label"
+    }
+  ]
+}

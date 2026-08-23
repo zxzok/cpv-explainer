@@ -1,0 +1,26 @@
+{
+  "alpha": 0.3,
+  "tau": 1.0,
+  "T": 20.0,
+  "p": 256,
+  "noise": 0.5,
+  "n_segments": 8,
+  "label": "occupation c=0",
+  "seed": 20260802,
+  "ceilings": {
+    "same-time": 0.3370098984974045,
+    "dispersed": 0.7682273493384192
+  },
+  "achieved_r2": {
+    "same-time_n100": 0.31698582117589724,
+    "same-time_n5000": 0.3335360943087825,
+    "dispersed_n100": 0.7500953429335115,
+    "dispersed_n5000": 0.7569486942852327
+  },
+  "utilisation": {
+    "same-time_n100": 0.9405831181493873,
+    "same-time_n5000": 0.9896922784638958,
+    "dispersed_n100": 0.9763976036253819,
+    "dispersed_n5000": 0.9853185973359326
+  }
+}

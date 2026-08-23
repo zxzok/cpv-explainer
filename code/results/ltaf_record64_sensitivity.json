@@ -1,0 +1,46 @@
+{
+  "environment": {
+    "python": "3.14.6",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_count": 24,
+    "timestamp_utc": "2026-08-09T09:04:34Z"
+  },
+  "estimand_note": "prefix seconds are dropped, not coded as non-AF, so record 64 contributes only its analysable window",
+  "record_64_burden_on_analysable_window": 0.9999025340317286,
+  "n_strict": 71,
+  "n_protocols_checked": 6,
+  "with_record_64": {
+    "1h_contiguous": 0.6850101084742798,
+    "6h_contiguous": 0.8567869061825079,
+    "4x15min": 0.9789819469084635,
+    "1h_contiguous_as_4x15min": 0.6937559971084042,
+    "8x15min": 0.9929367036100226,
+    "equal_duration_gain_1h": 0.29397183843418373,
+    "mean_burden": 0.45927600411553166
+  },
+  "without_record_64": {
+    "1h_contiguous": 0.6798563658611806,
+    "6h_contiguous": 0.8541146434957638,
+    "4x15min": 0.9785706521084434,
+    "1h_contiguous_as_4x15min": 0.6886247101602916,
+    "8x15min": 0.9928061533335353,
+    "equal_duration_gain_1h": 0.2987142862472628,
+    "mean_burden": 0.4515526156832962
+  },
+  "shifts": {
+    "1h_contiguous": -0.005153742613099199,
+    "6h_contiguous": -0.0026722626867440313,
+    "4x15min": -0.0004112948000201122,
+    "1h_contiguous_as_4x15min": -0.005131286948112601,
+    "8x15min": -0.00013055027648734008,
+    "equal_duration_gain_1h": 0.004742447813079087,
+    "mean_burden": -0.007723388432235467
+  },
+  "headline": {
+    "max_abs_shift_protocol_value": 0.005153742613099199,
+    "record_64_unlabelled_prefix_hours": 18.87361111111111
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "source": "https://physionet.org/files/sleep-edfx/1.0.0",
+  "subdirectories": [
+    "sleep-cassette",
+    "sleep-telemetry"
+  ],
+  "downloaded_files": "*-Hypnogram.edf and ST-subjects.xls metadata only (no PSG signal files)",
+  "treatment_metadata": {
+    "source": "https://physionet.org/files/sleep-edfx/1.0.0/ST-subjects.xls",
+    "columns": "Placebo night and Temazepam night",
+    "n_record_assignments": 44
+  },
+  "epoch_seconds": 30,
+  "stage_map": {
+    "W": 0,
+    "N1": 1,
+    "N2": 2,
+    "N3": 3,
+    "REM": 4,
+    "MOVEMENT": 5,
+    "UNKNOWN": 6
+  },
+  "stage_names": {
+    "0": "W",
+    "1": "N1",
+    "2": "N2",
+    "3": "N3",
+    "4": "REM",
+    "5": "MOVEMENT",
+    "6": "UNKNOWN"
+  },
+  "description_map": {
+    "sleep stage w": "W",
+    "sleep stage 1": "N1",
+    "sleep stage 2": "N2",
+    "sleep stage 3": "N3",
+    "sleep stage 4": "N3",
+    "sleep stage r": "REM",
+    "movement time": "MOVEMENT",
+    "sleep stage ?": "UNKNOWN"
+  },
+  "merge_note": "R&K 'Sleep stage 4' merged into N3; 'Movement time' -> MOVEMENT; 'Sleep stage ?' -> UNKNOWN",
+  "primary_interval_rule": "complete EDF annotation interval; movement and unknown epochs removed from the valid-stage sequence",
+  "oracle_sensitivity_rule": "kept from 30 min (60 epochs) before the first non-Wake epoch to 30 min after the last non-Wake epoch",
+  "record_id_format": "SC4ssNEO / ST7ssNJ0; subject = cohort + ss, night = N",
+  "n_recordings": 197,
+  "n_subjects": 100,
+  "parser_used": {
+    "mne": 197
+  },
+  "parser_cross_check": {
+    "epochs_compared": 484111,
+    "epochs_agreeing": 484111,
+    "agreement": 1.0,
+    "records_disagreeing": 0,
+    "examples": [],
+    "note": "every hypnogram MNE parsed was also parsed by the self-contained EDF+ TAL reader in this file and the two rasterised stage vectors compared epoch by epoch"
+  },
+  "unmapped_descriptions": [],
+  "failures": [],
+  "npz_note": "load with np.load(path, allow_pickle=True); 'stages' is an object array of int8 arrays",
+  "seed": 20260802
+}

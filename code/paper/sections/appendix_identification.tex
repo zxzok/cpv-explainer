@@ -1,0 +1,96 @@
+\section{Proofs for Value-Specific Identification}
+\label{sec:app-identification}
+
+\subsection{Gaussian Protocol-Value Identity}
+
+\Cref{prop:risk-identity} is due to \citet{zhang2026label}. Draw posterior
+replicates $Z^{(1)},Z^{(2)}$ independently given $Y_S$; their
+cross-covariance is $Q_S(K)$. The Gaussian covariance identity and conditional
+independence give
+$\Cov\{\E[g(Z_j)\mid Y_S],\E[g(Z_k)\mid Y_S]\}=C_g\{Q_S(K)_{jk}\}$.
+Weighted summation yields $F_g(S;K)$, while total variance gives $V_g(K)$ and
+minimum Bayes error $V_g(K)-F_g(S;K)$, proving \eqref{eq:ceiling}.
+
+\subsection{Minimal Stationary Counterexample}
+
+Under the assumptions of \cref{thm:minimal}, stationarity and $\rho(0)=1$ give
+the observable functionals
+\begin{equation}
+\begin{aligned}
+\Var(Y_A)&=1+\nu^2,\\
+\Cov(Y_A,\Theta)&=\frac1p\left(1+\sum_{l=1}^{p-1}\rho(l)\right),\\
+\Var(\Theta)&=\frac1{p^2}\left(p+2\sum_{l=1}^{p-1}(p-l)\rho(l)\right).
+\end{aligned}
+\label{eq:stationary-observables}
+\end{equation}
+The last two functionals have Jacobian rows proportional to
+$(1,\ldots,1)$ and $(p-1,\ldots,1)$. Hence
+$\rank J=\min\{2,p-1\}$ and
+$\dim\ker J=\max\{0,p-3\}$, proving parts (i)--(ii); at $p=4$ the kernel is
+$\operatorname{span}\{(1,-2,1)\}$. Positive definiteness is an open condition,
+so $K_\pm$ remain positive definite for all sufficiently small
+$\varepsilon>0$.
+
+The perturbation leaves
+$b=\Cov(Z_1,\Theta)=\Cov(Z_2,\Theta)$ and $\Var(\Theta)$ unchanged. With
+$R_B=\nu_B^2 I_2$, under $K_\pm$, $c=(b,b)^\top$ is an eigenvector of
+$\Sigma_B^\pm$ with eigenvalue
+$1+\nu_B^2+\rho(1)\pm\varepsilon$, giving
+\eqref{eq:gap-closed-form}. Subtraction yields
+\begin{equation}
+\cI(B;K_-)-\cI(B;K_+)
+=\frac{4b^2\varepsilon}
+{\Var(\Theta)\left[\{1+\nu_B^2+\rho(1)\}^2-\varepsilon^2\right]}.
+\label{eq:gap-value}
+\end{equation}
+Admissibility makes the denominator positive, so the gap is strict exactly
+when $b\ne0$.
+
+\subsection{General, Nonlinear and Augmented Protocols}
+
+For \cref{thm:impossibility}, positive definiteness of $K_\varepsilon$ and
+of $\Sigma_B(K_\varepsilon)$ persists for sufficiently small
+$|\varepsilon|$, while $\diag(\Delta)=0$ preserves the unit diagonal.
+Invisibility preserves the three Gaussian covariance blocks in
+\eqref{eq:observables}, proving \eqref{eq:obs-equivalent}. Moreover,
+$h^\top\Delta h=0$ makes the denominator of
+$\cI(B;K_\varepsilon)$ constant. At zero, the inverse rule is
+$\dd\Sigma_B(K_\varepsilon)^{-1}/\dd\varepsilon
+=-W(B\Delta B^\top)W$. Applying the product rule to
+$h^\top K_\varepsilon B^\top\Sigma_B(K_\varepsilon)^{-1}
+BK_\varepsilon h$ gives \eqref{eq:ceiling-derivative}. Since the difference
+between the values at $K_0\pm\varepsilon\Delta$ is
+$2\varepsilon D_B(\Delta;K_0)+o(\varepsilon)$, a non-zero derivative gives
+local separation.
+
+For \cref{ex:three-point}, let $s=1+\nu_B^2$. Under $K_a$ and $K_a'$,
+respectively, the posterior-replica covariance matrices for the one-point
+alternative $B=e_1^\top$ are
+\begin{equation*}
+Q_B(K_a)=\frac1s(a,1,0)^\top(a,1,0),
+\qquad
+Q_B(K_a')=\frac1s(0,1,0)^\top(0,1,0).
+\end{equation*}
+Because $C_g(0)=0$, \eqref{eq:VF} gives
+\begin{equation}
+\cI_g(B;K_a)-\cI_g(B;K_a')
+=\frac{C_g(a^2/s)+2C_g(a/s)}{3C_g(1)+2C_g(a)}.
+\label{eq:three-point-gap}
+\end{equation}
+For nonconstant $g$, at least one nonconstant Hermite coefficient is non-zero,
+so \eqref{eq:Cg} gives $C_g(r)>0$ for every $r>0$. The numerator and denominator
+in \eqref{eq:three-point-gap} are consequently
+positive for every $a\in(0,1)$ and every finite noise variance, proving the
+universal strict inequality asserted in the example.
+
+To prove \cref{prop:augmentation}, observe that the augmented law identifies
+$\bar AK\bar A^\top$. If
+$\rowspace(B)\subseteq\rowspace(\bar A)$, there is a matrix $C$ such that
+$B=C\bar A$. It then determines
+$BKB^\top=C(\bar AK\bar A^\top)C^\top$ and $BKh=C\bar AKh$,
+and $h^\top Kh$ is already a block of the benchmark covariance. Together with
+known $R_B$, these quantities determine the joint Gaussian law of
+$(Y_B,\Theta)$ and hence its value, proving part (i). For part (ii), any
+$\Delta\in\cD(A_{\rm aug},h)$ preserves the augmented benchmark law, and
+\cref{thm:impossibility} applied with realised operator $A_{\rm aug}$ gives
+the stated first-order failure certificate.

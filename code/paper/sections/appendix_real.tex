@@ -1,0 +1,178 @@
+\section{Sleep-EDF and Long-Term AF Analysis Details}
+\label{sec:appendix-real}
+\suppressfloats[t]
+
+\subsection{Annotation Mapping and Estimands}
+
+Proportional binning maps unequal-length records to relative time. A Sleep
+action reads the distinct midpoint epoch of its bin, so adjacent anchors need
+not be consecutive raw epochs; an AF action averages one bin. With common-grid
+trajectory $X_i\in[0,1]^p$, protocol $S$ observes $Y_{i,S}=A_SX_i$, while
+$\Theta_i$ is the exact state proportion over the complete analysable interval,
+not the anchor-grid mean.
+
+Sleep retains pre- and post-sleep Wake and excludes movement and unknown epochs,
+leaving \numSleepHours{} annotated hours (median \numSleepMedian{} per record);
+night assignments follow \texttt{ST-subjects.xls}. The zero-cost baseline $C_i$
+contains SC/ST, valid-stage duration and placebo/temazepam, with treatment zero
+outside ST; neither it nor the validity mask is charged to the temporal budget.
+All stages use $w_i^{(0)}=1/n_{s(i)}$ when subject $s(i)$ contributes $n_{s(i)}$
+records. For AF, analysis starts at the first rhythm marker and excludes any
+unannotated prefix from the target and candidate windows. Templates average $N$
+bins, observing fraction $N/\numAfGrid$ despite record-specific elapsed time;
+records are treated as the analysis units and receive equal weights.
+
+The four quantities serve different roles. $\cI_g(S)$ is the population
+protocol-value estimand, and $J_{\tau\mid C}(S)$ is the foldwise criterion used
+to select Sleep supports. The pooled $\widehat R^2_{\rm cf}(S)$ reports
+held-out predictive performance, while the full-sample
+$\widehat{\cI}_{\rm L,p}(S)$ is used only for the AF grid-sensitivity analysis.
+
+\subsection{Foldwise Selection and Held-Out Prediction}
+\label{sec:appendix-real-prediction}
+
+Within each Sleep outer-training fold, weighted least squares on an intercept
+and $C$ gives residual anchors $X^\perp$, target $\Theta^\perp$ and moments
+\begin{equation}
+\widehat\Sigma_{0\mid C}=\Cov_w(X^\perp),\qquad
+\widehat c_{\mid C}=\Cov_w(X^\perp,\Theta^\perp),\qquad
+\widehat v_{\mid C}=\Var_w(\Theta^\perp).
+\label{eq:real-moments}
+\end{equation}
+Writing $\widehat\Sigma_{0\mid C}=U\Diag(\widehat\lambda_j)U^\top$, the
+fold-specific repair is
+\begin{equation}
+\widetilde\Sigma_\tau
+=U\Diag\{\max(\widehat\lambda_j,\tau)\}U^\top,
+\qquad \tau=q^{-1}\tr(\widehat\Sigma_{0\mid C})/p,
+\label{eq:real-floor}
+\end{equation}
+where $q$ is the fold-specific number of independent training subjects (79--81;
+median \numTabTrainSubjects); repeated nights do not increase it. Forward
+selection followed by at most \numSwapRounds{} accepted one-swap updates
+searches for a high-scoring support under
+\begin{equation}
+J_{\tau\mid C}(S)=
+\frac{\widehat c_{\mid C}^\top A_S^\top
+(A_S\widetilde\Sigma_\tau A_S^\top)^{-1}A_S\widehat c_{\mid C}}
+{\widehat v_{\mid C}}.
+\label{eq:real-objective}
+\end{equation}
+The target-agnostic learned comparator converts the same repaired residual
+covariance to correlations and applies greedy search to the noiseless
+kernel-quadrature criterion
+for the uniform mean of standardised, nonconstant anchors, without
+$\widehat c_{\mid C}$ or target outcomes. AF and fixed Sleep templates are
+pre-specified.
+
+Given a support, outer-training ridge with an intercept selects among 25
+log-spaced penalties on $[10^{-6},10^2]$ by three-fold inner cross-validation,
+grouped by subject for Sleep and record for AF. Centring and scaling use each
+inner-training split and are recomputed on the full outer-training fold; Sleep
+baselines are unpenalised, temporal features penalised, and predictions
+unclipped.
+
+Predictions from five outer test folds are pooled. With weighted target mean
+$\bar\Theta_w$,
+\begin{equation}
+\widehat R^2_{\rm cf}(S)=1-
+\frac{\sum_iw_i\{\Theta_i-\widehat\Theta_i^{(-f(i))}\}^2}
+{\sum_iw_i(\Theta_i-\bar\Theta_w)^2}.
+\label{eq:weighted-cf-r2}
+\end{equation}
+The statistic is computed once from all pooled held-out predictions rather than
+by averaging foldwise values; as an out-of-sample $R^2$, it can be negative.
+
+\subsection{Resampling and Sensitivity Analyses}
+\label{sec:appendix-real-sensitivity}
+
+Conditional 2.5--97.5 percentile ranges resample fixed-template held-out pairs
+\numSleepFixedRangeResamples{} times by Sleep subject and
+\numAfFixedRangeResamples{} times by AF record. SC/ST-stratified Sleep draws give
+equal total weight per sampled subject. Because the fitted predictors remain
+fixed, these ranges describe variation in the realised held-out pairs
+conditional on those predictors. Pipeline stability is
+assessed by \numSelectionSubsampleReps{} study-stratified samples of
+\numSelectionSubsamplePct{} of subjects without replacement. Every subsample
+reruns standardisation, moment estimation, support selection, inner tuning,
+predictor fitting and held-out evaluation, while keeping each subject within
+one outer and inner fold.
+
+Alternative weighting and covariance-floor choices preserved the fixed-template ordering but changed the selected supports, consistent with the instability of fine support selection reported in the main analysis. Subject- versus recording-weighted moments preserve the fixed-template
+score sign in all 15 cells but yield support overlap as low as
+\numBalanceFineJaccardMin. Floor multipliers $\{0.5,1,2\}$ give maximum
+outer-fold mean contrast range \numFloorCoarseSpread{} and overlap
+\numFloorFineJaccardMin; the fixed-template ordering is stable while the
+selected support varies.
+
+SC-only and ST-only sensitivities rerun the full subject-grouped pipeline.
+At $N=16$, \cref{tab:sleep-sensitivity} gives all target contrasts. For AF,
+two outcome-defined cohorts assess sensitivity to excluding records with AF
+burden at or near zero or one;
+\cref{tab:afcohort} reports all fixed-template results at $N=4$ and $N=16$.
+The main text summarises all 30 Sleep source cells by positive, negative and
+unresolved ranges.
+
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Target at $N=16$ & pooled adjusted & SC adjusted & ST adjusted \\
+\midrule
+REM & $\numSleepFullRemSixteenAdjusted$ & $\numSleepFullRemSixteenSC$ & $\numSleepFullRemSixteenST$ \\
+N3 & $\numSleepFullNThreeSixteenAdjusted$ & $\numSleepFullNThreeSixteenSC$ & $\numSleepFullNThreeSixteenST$ \\
+Wake & $\numSleepFullWakeSixteenAdjusted$ & $\numSleepFullWakeSixteenSC$ & $\numSleepFullWakeSixteenST$ \\
+\bottomrule
+\end{tabular}
+\caption{Dispersed-minus-contiguous cross-fitted $R^2$ differences and
+conditional 2.5--97.5 percentile ranges at the middle Sleep budget.}
+\label{tab:sleep-sensitivity}
+\end{table}
+
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+& & \multicolumn{2}{c}{$N=4$ (\numAfObservedPctFour)}
+& \multicolumn{2}{c}{$N=16$ (\numAfObservedPctSixteen)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Cohort & records & contiguous & dispersed & contiguous & dispersed \\
+\midrule
+All records & $\numAfCohortNAll$ &
+$\numAfCohortAllContigFour$ & $\numAfCohortAllDispFour$ &
+$\numAfCohortAllContigSixteen$ & $\numAfCohortAllDispSixteen$ \\
+$0<\Theta_{\rm AF}<1$ & $\numAfCohortNStrict$ &
+$\numAfCohortStrictContigFour$ & $\numAfCohortStrictDispFour$ &
+$\numAfCohortStrictContigSixteen$ & $\numAfCohortStrictDispSixteen$ \\
+$0.05\le\Theta_{\rm AF}\le0.95$ & $\numAfCohortNMixed$ &
+$\numAfCohortMixedContigFour$ & $\numAfCohortMixedDispFour$ &
+$\numAfCohortMixedContigSixteen$ & $\numAfCohortMixedDispSixteen$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-fitted $R^2$ in the primary AF cohort and two
+outcome-defined sensitivity cohorts.}
+\label{tab:afcohort}
+\end{table}
+
+The AF grid diagnostic complements held-out prediction by measuring
+discretisation sensitivity. For
+$p\in\{64,128,256\}$, let $F_i^{(p)}$ be record $i$'s binwise raw AF fractions
+and $\Theta_i^{(p)}=p^{-1}\mathbf 1^\top F_i^{(p)}$. On all
+\numLtafCohortAll{} records, set $\Sigma_F=\Cov(F^{(p)})$,
+$c_F=\Cov(F^{(p)},\Theta^{(p)})$, $v_F=\Var(\Theta^{(p)})$ and compute
+\begin{equation*}
+\widehat{\cI}_{\rm L,p}(S)=
+\frac{c_F^\top A_S^\top(A_S\Sigma_FA_S^\top)^+A_Sc_F}{v_F}.
+\end{equation*}
+Without flooring, singular values at most \numLtafResolutionRcond{} times the
+largest are discarded and windows use exact fractional overlap between their
+continuous time intervals and the grid bins. The four diagnostics are a centred
+one-hour contiguous window, a centred six-hour contiguous window, four uniformly
+dispersed 15-minute windows and eight uniformly dispersed 15-minute windows.
+Across these templates, the largest within-protocol range is
+\numLtafResolutionSpread. This diagnostic quantifies numerical grid
+sensitivity; \cref{fig:real}(b) and \cref{tab:afcohort} provide the held-out and
+matched-budget comparisons.
+\FloatBarrier

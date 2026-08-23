@@ -1,0 +1,2055 @@
+{
+  "note": "cross-fitted ridge R2; fixed-template conditional ranges resample realised paired held-out predictions without refitting",
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "ridge": {
+    "intercept": true,
+    "feature_scaling": "inner-training fold",
+    "loss": "squared error",
+    "alphas": [
+      1e-06,
+      2.1544346900318822e-06,
+      4.641588833612782e-06,
+      1e-05,
+      2.1544346900318823e-05,
+      4.641588833612772e-05,
+      0.0001,
+      0.00021544346900318823,
+      0.00046415888336127773,
+      0.001,
+      0.002154434690031882,
+      0.004641588833612777,
+      0.01,
+      0.021544346900318822,
+      0.046415888336127725,
+      0.1,
+      0.21544346900318823,
+      0.46415888336127725,
+      1.0,
+      2.154434690031882,
+      4.641588833612772,
+      10.0,
+      21.54434690031882,
+      46.41588833612773,
+      100.0
+    ],
+    "prediction_clipping": false,
+    "tie_rule": "smallest alpha",
+    "zero_variance_feature": "retained with scale 1 after centering",
+    "baseline_penalty_factor": 0.0,
+    "protocol_feature_penalty_factor": 1.0
+  },
+  "sleep_weighting": "subject-balanced for training standardisation, ridge fitting, inner-CV loss, pooled R2 and conditional pair resampling statistics",
+  "sleep_evaluation_base_weights": "w_i^(0)=1/n_subject over the full corpus",
+  "sleep_selection_conditioning": {
+    "baseline_covariates": [
+      "ST study indicator",
+      "analysed valid-stage duration (hours)",
+      "ST temazepam-night indicator"
+    ],
+    "operation": "weighted training-fold residualisation of anchors and target"
+  },
+  "sleep_outer_folds": "subject-disjoint and stratified by SC/ST study",
+  "sleep_alignment_primary": "full_record",
+  "sleep": {
+    "REM": {
+      "consecutive|N=4": {
+        "cross_fitted_r2": 0.6477269364832985,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=8": {
+        "cross_fitted_r2": 0.6502421339621482,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=16": {
+        "cross_fitted_r2": 0.6592125203308623,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=32": {
+        "cross_fitted_r2": 0.7360484980982167,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=64": {
+        "cross_fitted_r2": 0.8629970597922276,
+        "baseline_adjusted": true
+      },
+      "imse|N=4": {
+        "cross_fitted_r2": 0.6782838454057452,
+        "baseline_adjusted": true
+      },
+      "imse|N=8": {
+        "cross_fitted_r2": 0.6857208011389313,
+        "baseline_adjusted": true
+      },
+      "imse|N=16": {
+        "cross_fitted_r2": 0.7426757450890908,
+        "baseline_adjusted": true
+      },
+      "imse|N=32": {
+        "cross_fitted_r2": 0.8571260362662482,
+        "baseline_adjusted": true
+      },
+      "imse|N=64": {
+        "cross_fitted_r2": 0.919774776263524,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=4": {
+        "cross_fitted_r2": 0.56532547745364,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=8": {
+        "cross_fitted_r2": 0.5868616150347362,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=16": {
+        "cross_fitted_r2": 0.6495466430068917,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=32": {
+        "cross_fitted_r2": 0.7927555105101627,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=64": {
+        "cross_fitted_r2": 0.9001555430066394,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=4": {
+        "cross_fitted_r2": 0.6174936075306907,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=8": {
+        "cross_fitted_r2": 0.6586369727314494,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=16": {
+        "cross_fitted_r2": 0.6937457653889965,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=32": {
+        "cross_fitted_r2": 0.7814476689097081,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=64": {
+        "cross_fitted_r2": 0.8847033933714216,
+        "baseline_adjusted": true
+      },
+      "uniform|N=4": {
+        "cross_fitted_r2": 0.6821369785295475,
+        "baseline_adjusted": true
+      },
+      "uniform|N=8": {
+        "cross_fitted_r2": 0.6520160132676535,
+        "baseline_adjusted": true
+      },
+      "uniform|N=16": {
+        "cross_fitted_r2": 0.737722902740374,
+        "baseline_adjusted": true
+      },
+      "uniform|N=32": {
+        "cross_fitted_r2": 0.8067862330439164,
+        "baseline_adjusted": true
+      },
+      "uniform|N=64": {
+        "cross_fitted_r2": 0.8814989290838922,
+        "baseline_adjusted": true
+      }
+    },
+    "N3": {
+      "consecutive|N=4": {
+        "cross_fitted_r2": 0.565967136046061,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=8": {
+        "cross_fitted_r2": 0.5942527388148957,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=16": {
+        "cross_fitted_r2": 0.6046821390527317,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=32": {
+        "cross_fitted_r2": 0.6837092805055067,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=64": {
+        "cross_fitted_r2": 0.861567581567564,
+        "baseline_adjusted": true
+      },
+      "imse|N=4": {
+        "cross_fitted_r2": 0.5788978676555323,
+        "baseline_adjusted": true
+      },
+      "imse|N=8": {
+        "cross_fitted_r2": 0.6640435594704324,
+        "baseline_adjusted": true
+      },
+      "imse|N=16": {
+        "cross_fitted_r2": 0.7742786238452463,
+        "baseline_adjusted": true
+      },
+      "imse|N=32": {
+        "cross_fitted_r2": 0.8609620246069691,
+        "baseline_adjusted": true
+      },
+      "imse|N=64": {
+        "cross_fitted_r2": 0.930371817161989,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=4": {
+        "cross_fitted_r2": 0.537204084619868,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=8": {
+        "cross_fitted_r2": 0.6641983353520733,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=16": {
+        "cross_fitted_r2": 0.7866210594615519,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=32": {
+        "cross_fitted_r2": 0.8531847947460619,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=64": {
+        "cross_fitted_r2": 0.9326459138243481,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=4": {
+        "cross_fitted_r2": 0.6376940441469627,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=8": {
+        "cross_fitted_r2": 0.7438023081789131,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=16": {
+        "cross_fitted_r2": 0.8445467366106374,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=32": {
+        "cross_fitted_r2": 0.9094689549212536,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=64": {
+        "cross_fitted_r2": 0.9242729206287699,
+        "baseline_adjusted": true
+      },
+      "uniform|N=4": {
+        "cross_fitted_r2": 0.5084336891005348,
+        "baseline_adjusted": true
+      },
+      "uniform|N=8": {
+        "cross_fitted_r2": 0.6369317118899406,
+        "baseline_adjusted": true
+      },
+      "uniform|N=16": {
+        "cross_fitted_r2": 0.755784529133991,
+        "baseline_adjusted": true
+      },
+      "uniform|N=32": {
+        "cross_fitted_r2": 0.8758706277883843,
+        "baseline_adjusted": true
+      },
+      "uniform|N=64": {
+        "cross_fitted_r2": 0.9367519594872464,
+        "baseline_adjusted": true
+      }
+    },
+    "wake": {
+      "consecutive|N=4": {
+        "cross_fitted_r2": 0.9488986819099204,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=8": {
+        "cross_fitted_r2": 0.9489364195832206,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=16": {
+        "cross_fitted_r2": 0.949938053310056,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=32": {
+        "cross_fitted_r2": 0.9504199365176298,
+        "baseline_adjusted": true
+      },
+      "consecutive|N=64": {
+        "cross_fitted_r2": 0.9790840025777762,
+        "baseline_adjusted": true
+      },
+      "imse|N=4": {
+        "cross_fitted_r2": 0.9583548294442842,
+        "baseline_adjusted": true
+      },
+      "imse|N=8": {
+        "cross_fitted_r2": 0.9646433123340796,
+        "baseline_adjusted": true
+      },
+      "imse|N=16": {
+        "cross_fitted_r2": 0.9769818349391063,
+        "baseline_adjusted": true
+      },
+      "imse|N=32": {
+        "cross_fitted_r2": 0.9826076505288985,
+        "baseline_adjusted": true
+      },
+      "imse|N=64": {
+        "cross_fitted_r2": 0.9918101995681078,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=4": {
+        "cross_fitted_r2": 0.950249806512902,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=8": {
+        "cross_fitted_r2": 0.9554841798732289,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=16": {
+        "cross_fitted_r2": 0.9718490916667384,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=32": {
+        "cross_fitted_r2": 0.9838396729606105,
+        "baseline_adjusted": true
+      },
+      "kernel_quadrature|N=64": {
+        "cross_fitted_r2": 0.990896360710837,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=4": {
+        "cross_fitted_r2": 0.9478449695970059,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=8": {
+        "cross_fitted_r2": 0.9578022729427209,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=16": {
+        "cross_fitted_r2": 0.9725406397733461,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=32": {
+        "cross_fitted_r2": 0.9808028282621131,
+        "baseline_adjusted": true
+      },
+      "label_aware|N=64": {
+        "cross_fitted_r2": 0.9904060590318486,
+        "baseline_adjusted": true
+      },
+      "uniform|N=4": {
+        "cross_fitted_r2": 0.9597877293664205,
+        "baseline_adjusted": true
+      },
+      "uniform|N=8": {
+        "cross_fitted_r2": 0.9612082553969915,
+        "baseline_adjusted": true
+      },
+      "uniform|N=16": {
+        "cross_fitted_r2": 0.9687203589090478,
+        "baseline_adjusted": true
+      },
+      "uniform|N=32": {
+        "cross_fitted_r2": 0.9874128582330087,
+        "baseline_adjusted": true
+      },
+      "uniform|N=64": {
+        "cross_fitted_r2": 0.9944839894815986,
+        "baseline_adjusted": true
+      }
+    }
+  },
+  "sleep_fixed_template_conditional_ranges": {
+    "REM": {
+      "N=4": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.03441004204624898,
+        "r2_difference_range": [
+          0.002103674249885551,
+          0.0709767864342151
+        ],
+        "mse_difference_b_minus_a": -0.00014853982962821362,
+        "mse_difference_range": [
+          -0.0003006700214176547,
+          -9.243085837476414e-06
+        ]
+      },
+      "N=8": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.0017738793055052104,
+        "r2_difference_range": [
+          -0.05786112196636629,
+          0.06439485450459015
+        ],
+        "mse_difference_b_minus_a": -7.657407958601035e-06,
+        "mse_difference_range": [
+          -0.00024914336045243413,
+          0.00025571420586717784
+        ]
+      },
+      "N=16": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.07851038240951169,
+        "r2_difference_range": [
+          -0.00867308520118884,
+          0.16322740196434105
+        ],
+        "mse_difference_b_minus_a": -0.0003389103335439264,
+        "mse_difference_range": [
+          -0.0006941610585032691,
+          3.544700509409625e-05
+        ]
+      },
+      "N=32": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.07073773494569968,
+        "r2_difference_range": [
+          -0.003922241260410983,
+          0.1616105743469903
+        ],
+        "mse_difference_b_minus_a": -0.0003053576942160522,
+        "mse_difference_range": [
+          -0.000629584144585336,
+          1.6769983323122548e-05
+        ]
+      },
+      "N=64": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.01850186929166453,
+        "r2_difference_range": [
+          -0.021743960418565262,
+          0.05674516873591387
+        ],
+        "mse_difference_b_minus_a": -7.986809515354582e-05,
+        "mse_difference_range": [
+          -0.0002443394728992236,
+          8.474935023768033e-05
+        ]
+      }
+    },
+    "N3": {
+      "N=4": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": -0.0575334469455262,
+        "r2_difference_range": [
+          -0.11906820986447351,
+          0.005813361838200339
+        ],
+        "mse_difference_b_minus_a": 0.0002646548517198058,
+        "mse_difference_range": [
+          -2.501812360543898e-05,
+          0.0005931029032198895
+        ]
+      },
+      "N=8": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.04267897307504487,
+        "r2_difference_range": [
+          -0.08182335241825699,
+          0.180635138604058
+        ],
+        "mse_difference_b_minus_a": -0.00019632401481913843,
+        "mse_difference_range": [
+          -0.0008408639032279801,
+          0.0003696265777023112
+        ]
+      },
+      "N=16": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.15110239008125925,
+        "r2_difference_range": [
+          0.05367794275038212,
+          0.2864228285393404
+        ],
+        "mse_difference_b_minus_a": -0.0006950736096053352,
+        "mse_difference_range": [
+          -0.001215150542106987,
+          -0.00023511044158191
+        ]
+      },
+      "N=32": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.1921613472828776,
+        "r2_difference_range": [
+          0.10226464070981524,
+          0.32666049529709373
+        ],
+        "mse_difference_b_minus_a": -0.0008839455233679988,
+        "mse_difference_range": [
+          -0.0013801801360345434,
+          -0.00045778649107208736
+        ]
+      },
+      "N=64": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.07518437791968247,
+        "r2_difference_range": [
+          0.03476903805791241,
+          0.13844761330367364
+        ],
+        "mse_difference_b_minus_a": -0.0003458494396975584,
+        "mse_difference_range": [
+          -0.0005532521928464436,
+          -0.0001688284066876484
+        ]
+      }
+    },
+    "wake": {
+      "N=4": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.0108890474565001,
+        "r2_difference_range": [
+          0.003123631874586455,
+          0.02040506526892395
+        ],
+        "mse_difference_b_minus_a": -0.0006703089768955168,
+        "mse_difference_range": [
+          -0.0011983868119687718,
+          -0.00020230884923043305
+        ]
+      },
+      "N=8": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.012271835813770893,
+        "r2_difference_range": [
+          0.0026286959133902444,
+          0.02669471324420842
+        ],
+        "mse_difference_b_minus_a": -0.0007554307887645611,
+        "mse_difference_range": [
+          -0.0015388659750434181,
+          -0.00016361844915930958
+        ]
+      },
+      "N=16": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.018782305598991855,
+        "r2_difference_range": [
+          0.005204255980440875,
+          0.03934238211380758
+        ],
+        "mse_difference_b_minus_a": -0.0011562028818493074,
+        "mse_difference_range": [
+          -0.002302548464361542,
+          -0.0003320639853882798
+        ]
+      },
+      "N=32": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.036992921715378935,
+        "r2_difference_range": [
+          0.021271020611015604,
+          0.06122083734247473
+        ],
+        "mse_difference_b_minus_a": -0.0022772136503647704,
+        "mse_difference_range": [
+          -0.0035557090985748703,
+          -0.001344850731493583
+        ]
+      },
+      "N=64": {
+        "n_resamples": 2000,
+        "n_clusters": 100,
+        "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+        "stratified_by": "study cohort",
+        "refitting": false,
+        "multiplicity_adjustment": null,
+        "r2_difference_b_minus_a": 0.015399986903822382,
+        "r2_difference_range": [
+          0.008076779853269319,
+          0.02668223699715983
+        ],
+        "mse_difference_b_minus_a": -0.0009479937989932763,
+        "mse_difference_range": [
+          -0.0015461567862254857,
+          -0.0005180291880843604
+        ]
+      }
+    }
+  },
+  "sleep_oracle_alignment_sensitivity": {
+    "REM": {
+      "N=4": {
+        "contiguous": 0.17949807710411447,
+        "dispersed": 0.21734524259325028,
+        "dispersed_minus_contiguous": 0.0378471654891358
+      },
+      "N=8": {
+        "contiguous": 0.2016922514037388,
+        "dispersed": 0.32177961785076004,
+        "dispersed_minus_contiguous": 0.12008736644702123
+      },
+      "N=16": {
+        "contiguous": 0.2760850473853659,
+        "dispersed": 0.4969215503320956,
+        "dispersed_minus_contiguous": 0.22083650294672974
+      },
+      "N=32": {
+        "contiguous": 0.5386445943379972,
+        "dispersed": 0.7049977196598742,
+        "dispersed_minus_contiguous": 0.16635312532187707
+      },
+      "N=64": {
+        "contiguous": 0.7205389224686656,
+        "dispersed": 0.8921875975242526,
+        "dispersed_minus_contiguous": 0.171648675055587
+      }
+    },
+    "N3": {
+      "N=4": {
+        "contiguous": 0.2727097799374305,
+        "dispersed": 0.3198128215951739,
+        "dispersed_minus_contiguous": 0.04710304165774337
+      },
+      "N=8": {
+        "contiguous": 0.2821760215461694,
+        "dispersed": 0.5140884378095386,
+        "dispersed_minus_contiguous": 0.23191241626336923
+      },
+      "N=16": {
+        "contiguous": 0.28359485618939817,
+        "dispersed": 0.737492634399322,
+        "dispersed_minus_contiguous": 0.45389777820992383
+      },
+      "N=32": {
+        "contiguous": 0.418861644323441,
+        "dispersed": 0.8558508357580683,
+        "dispersed_minus_contiguous": 0.43698919143462733
+      },
+      "N=64": {
+        "contiguous": 0.799039221450892,
+        "dispersed": 0.9514208396855006,
+        "dispersed_minus_contiguous": 0.1523816182346086
+      }
+    },
+    "wake": {
+      "N=4": {
+        "contiguous": 0.7536891203527539,
+        "dispersed": 0.7617453173632037,
+        "dispersed_minus_contiguous": 0.008056197010449795
+      },
+      "N=8": {
+        "contiguous": 0.7656898338566992,
+        "dispersed": 0.8063657794900305,
+        "dispersed_minus_contiguous": 0.04067594563333132
+      },
+      "N=16": {
+        "contiguous": 0.7823888022979414,
+        "dispersed": 0.8917892457610058,
+        "dispersed_minus_contiguous": 0.10940044346306443
+      },
+      "N=32": {
+        "contiguous": 0.8123746004052637,
+        "dispersed": 0.9416904602320222,
+        "dispersed_minus_contiguous": 0.12931585982675853
+      },
+      "N=64": {
+        "contiguous": 0.8761359937426277,
+        "dispersed": 0.9716695994072029,
+        "dispersed_minus_contiguous": 0.09553360566457514
+      }
+    }
+  },
+  "sleep_cohort_fixed_templates": {
+    "SC": {
+      "n_records": 153,
+      "n_subjects": 78,
+      "baseline_covariates": [
+        "analysed valid-stage duration (hours)"
+      ],
+      "baseline_covariates_unpenalized": true,
+      "median_hours": 22.916666666666668,
+      "labels": {
+        "REM": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.14199566755611803,
+            "r2_difference_range": [
+              0.03441617908182362,
+              0.22696185681148887
+            ],
+            "mse_difference_b_minus_a": -7.979129884543446e-05,
+            "mse_difference_range": [
+              -0.00014936236974230478,
+              -1.5984197292126397e-05
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.003107524162144326,
+            "r2_difference_range": [
+              -0.0967652037985883,
+              0.09843475313542668
+            ],
+            "mse_difference_b_minus_a": -1.746203904376734e-06,
+            "mse_difference_range": [
+              -5.2409381758639694e-05,
+              5.141868123427387e-05
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.22118123780040622,
+            "r2_difference_range": [
+              -0.00990939555880697,
+              0.42831569412252757
+            ],
+            "mse_difference_b_minus_a": -0.00012428786418684578,
+            "mse_difference_range": [
+              -0.00029308664946149047,
+              4.531468446461725e-06
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.03997577052555423,
+            "r2_difference_range": [
+              -0.28151264424847855,
+              0.15627232758806303
+            ],
+            "mse_difference_b_minus_a": 2.2463492777484906e-05,
+            "mse_difference_range": [
+              -9.931800660443327e-05,
+              0.00013276968563151592
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.214391031837867,
+            "r2_difference_range": [
+              -0.40130921628393257,
+              -0.057411567170962206
+            ],
+            "mse_difference_b_minus_a": 0.00012047225936943201,
+            "mse_difference_range": [
+              3.3921425956203336e-05,
+              0.00021855199412799354
+            ]
+          }
+        },
+        "N3": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.14617624301256982,
+            "r2_difference_range": [
+              -0.2908960519285344,
+              0.008100400357872245
+            ],
+            "mse_difference_b_minus_a": 0.00012613116403880492,
+            "mse_difference_range": [
+              -7.0171737090793294e-06,
+              0.00027581144188623983
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.3090058525681736,
+            "r2_difference_range": [
+              -0.5068813677308963,
+              -0.0839973267066342
+            ],
+            "mse_difference_b_minus_a": 0.0002666320263538006,
+            "mse_difference_range": [
+              6.30859093513142e-05,
+              0.0005178964200603239
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.29345905886935164,
+            "r2_difference_range": [
+              -0.43009924579447284,
+              -0.15495722546455115
+            ],
+            "mse_difference_b_minus_a": 0.0002532171571117791,
+            "mse_difference_range": [
+              0.00012297903124352524,
+              0.00042136490963034265
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.2658515173210263,
+            "r2_difference_range": [
+              -0.4073583707849583,
+              -0.1395004451375685
+            ],
+            "mse_difference_b_minus_a": 0.00022939542466076447,
+            "mse_difference_range": [
+              0.00010679624819529689,
+              0.0003703922174810584
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.06611673941648355,
+            "r2_difference_range": [
+              -0.11896857169513035,
+              -0.028322483991299222
+            ],
+            "mse_difference_b_minus_a": 5.705018225385844e-05,
+            "mse_difference_range": [
+              2.4563573830847658e-05,
+              9.365442730711013e-05
+            ]
+          }
+        },
+        "wake": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.1896043908488919,
+            "r2_difference_range": [
+              0.05320893911093866,
+              0.33593635673083677
+            ],
+            "mse_difference_b_minus_a": -0.0003995599085450481,
+            "mse_difference_range": [
+              -0.0007247945814567445,
+              -9.732308222885e-05
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.018628855768000996,
+            "r2_difference_range": [
+              -0.1323137031609416,
+              0.1521914513375287
+            ],
+            "mse_difference_b_minus_a": -3.925723383111637e-05,
+            "mse_difference_range": [
+              -0.000328964450407071,
+              0.00025760351145265585
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.32078596055108966,
+            "r2_difference_range": [
+              0.08848081287363876,
+              0.529277803722377
+            ],
+            "mse_difference_b_minus_a": -0.0006760033799136985,
+            "mse_difference_range": [
+              -0.0012169887344781153,
+              -0.00015430333898775155
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.7509872634065808,
+            "r2_difference_range": [
+              0.5914274830316919,
+              0.9105059178751302
+            ],
+            "mse_difference_b_minus_a": -0.0015825815053216276,
+            "mse_difference_range": [
+              -0.0023547312970007,
+              -0.0009506337021228542
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 78,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.1870935745860518,
+            "r2_difference_range": [
+              0.059249892746807475,
+              0.31291771122587136
+            ],
+            "mse_difference_b_minus_a": -0.00039426877835622607,
+            "mse_difference_range": [
+              -0.0007560378166057661,
+              -0.0001062152329422749
+            ]
+          }
+        }
+      }
+    },
+    "ST": {
+      "n_records": 44,
+      "n_subjects": 22,
+      "baseline_covariates": [
+        "analysed valid-stage duration (hours)",
+        "temazepam-night indicator"
+      ],
+      "baseline_covariates_unpenalized": true,
+      "median_hours": 8.05,
+      "labels": {
+        "REM": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.14189373553307294,
+            "r2_difference_range": [
+              -0.47932229343773913,
+              0.0590797226198682
+            ],
+            "mse_difference_b_minus_a": 0.0005288031523950788,
+            "mse_difference_range": [
+              -0.00021027497037576446,
+              0.0014433129832010076
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.005597603745292279,
+            "r2_difference_range": [
+              -0.3078400278433888,
+              0.29726862249707225
+            ],
+            "mse_difference_b_minus_a": 2.0860896326737807e-05,
+            "mse_difference_range": [
+              -0.0009667599858579515,
+              0.001036515057823933
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.16125634967457692,
+            "r2_difference_range": [
+              -0.4445928218017063,
+              0.650197915531241
+            ],
+            "mse_difference_b_minus_a": -0.0006009628665513836,
+            "mse_difference_range": [
+              -0.0024801168957185897,
+              0.0014367854896992084
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.06832608581527522,
+            "r2_difference_range": [
+              -0.6510916309468241,
+              0.29678743183980877
+            ],
+            "mse_difference_b_minus_a": 0.0002546345646211607,
+            "mse_difference_range": [
+              -0.0011954017245830928,
+              0.0018680899018646705
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.17830704180903312,
+            "r2_difference_range": [
+              0.04116336417753061,
+              0.3726004810086203
+            ],
+            "mse_difference_b_minus_a": -0.0006645066143944076,
+            "mse_difference_range": [
+              -0.0011367441743117713,
+              -0.00015701527659820112
+            ]
+          }
+        },
+        "N3": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.06264665775421396,
+            "r2_difference_range": [
+              -0.28444891600228944,
+              0.24997961607072808
+            ],
+            "mse_difference_b_minus_a": 0.00042651416150119546,
+            "mse_difference_range": [
+              -0.0013036172010645354,
+              0.0019977402769321413
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.24102893163092431,
+            "r2_difference_range": [
+              -0.12662458482123762,
+              0.6932198132435036
+            ],
+            "mse_difference_b_minus_a": -0.0016409854309454817,
+            "mse_difference_range": [
+              -0.004522047856993059,
+              0.0007516020749762421
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.5540550531848248,
+            "r2_difference_range": [
+              0.28605309398471623,
+              0.9003794792404023
+            ],
+            "mse_difference_b_minus_a": -0.0037721457920671087,
+            "mse_difference_range": [
+              -0.006403466869631992,
+              -0.0016203940688194372
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.7761188447600212,
+            "r2_difference_range": [
+              0.5285671510696032,
+              1.1754146744696032
+            ],
+            "mse_difference_b_minus_a": -0.005284011791927261,
+            "mse_difference_range": [
+              -0.00828861548365103,
+              -0.0028524474309343383
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.11540490309250784,
+            "r2_difference_range": [
+              -0.05186722958737811,
+              0.2766297252759193
+            ],
+            "mse_difference_b_minus_a": -0.0007857055306724149,
+            "mse_difference_range": [
+              -0.001738832023074133,
+              0.0002881709485412645
+            ]
+          }
+        },
+        "wake": {
+          "N=4": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.8725663351273523,
+            "r2_difference_range": [
+              -0.2696323095267259,
+              3.1915807129141585
+            ],
+            "mse_difference_b_minus_a": -0.004980072588426056,
+            "mse_difference_range": [
+              -0.013859883408031173,
+              0.0007450851491878262
+            ]
+          },
+          "N=8": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.5210844040171365,
+            "r2_difference_range": [
+              -0.3545058142800104,
+              1.9866499995259024
+            ],
+            "mse_difference_b_minus_a": -0.0029740296550901414,
+            "mse_difference_range": [
+              -0.008142787175106683,
+              0.0010776890098924334
+            ]
+          },
+          "N=16": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": -0.12324807140926053,
+            "r2_difference_range": [
+              -0.624065465588804,
+              0.889511501765718
+            ],
+            "mse_difference_b_minus_a": 0.0007034242753727743,
+            "mse_difference_range": [
+              -0.0029271302956653685,
+              0.005920506544952718
+            ]
+          },
+          "N=32": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.6956696332151239,
+            "r2_difference_range": [
+              0.38243528105998637,
+              1.109069445547843
+            ],
+            "mse_difference_b_minus_a": -0.003970454888646832,
+            "mse_difference_range": [
+              -0.00807666440996197,
+              -0.0010236116499179244
+            ]
+          },
+          "N=64": {
+            "n_resamples": 2000,
+            "n_clusters": 22,
+            "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+            "stratified_by": null,
+            "refitting": false,
+            "multiplicity_adjustment": null,
+            "r2_difference_b_minus_a": 0.6344370672141657,
+            "r2_difference_range": [
+              0.3842904553002369,
+              1.1085951401913527
+            ],
+            "mse_difference_b_minus_a": -0.003620977019533472,
+            "mse_difference_range": [
+              -0.006763060420709952,
+              -0.0011154966079023718
+            ]
+          }
+        }
+      }
+    }
+  },
+  "sleep_baseline_adjusted_increment": {
+    "baseline_covariates": [
+      "ST study indicator",
+      "analysed valid-stage duration (hours)",
+      "ST temazepam-night indicator"
+    ],
+    "baseline_covariates_unpenalized": true,
+    "labels": {
+      "REM": {
+        "baseline_r2": 0.6589547139907989,
+        "budgets": {
+          "N=4": {
+            "contiguous": {
+              "r2": 0.6477269364832985,
+              "increment_over_baseline": -0.01122777750750037
+            },
+            "dispersed": {
+              "r2": 0.6821369785295475,
+              "increment_over_baseline": 0.02318226453874861
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.03441004204624898,
+              "r2_difference_range": [
+                0.0005718155564555463,
+                0.07064961612905066
+              ],
+              "mse_difference_b_minus_a": -0.00014853982962821362,
+              "mse_difference_range": [
+                -0.00028554939264809076,
+                -2.7684283418258735e-06
+              ]
+            }
+          },
+          "N=8": {
+            "contiguous": {
+              "r2": 0.6502421339621482,
+              "increment_over_baseline": -0.008712580028650607
+            },
+            "dispersed": {
+              "r2": 0.6520160132676535,
+              "increment_over_baseline": -0.006938700723145397
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.0017738793055052104,
+              "r2_difference_range": [
+                -0.059582046640873056,
+                0.06675501001283225
+              ],
+              "mse_difference_b_minus_a": -7.657407958601035e-06,
+              "mse_difference_range": [
+                -0.0002500689243326448,
+                0.00025984208592757754
+              ]
+            }
+          },
+          "N=16": {
+            "contiguous": {
+              "r2": 0.6592125203308623,
+              "increment_over_baseline": 0.00025780634006344894
+            },
+            "dispersed": {
+              "r2": 0.737722902740374,
+              "increment_over_baseline": 0.07876818874957514
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.07851038240951169,
+              "r2_difference_range": [
+                -0.010357700196497186,
+                0.16784163103382896
+              ],
+              "mse_difference_b_minus_a": -0.0003389103335439264,
+              "mse_difference_range": [
+                -0.000714501164137732,
+                3.8200810464204625e-05
+              ]
+            }
+          },
+          "N=32": {
+            "contiguous": {
+              "r2": 0.7360484980982167,
+              "increment_over_baseline": 0.07709378410741785
+            },
+            "dispersed": {
+              "r2": 0.8067862330439164,
+              "increment_over_baseline": 0.14783151905311753
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.07073773494569968,
+              "r2_difference_range": [
+                -0.009110921498365829,
+                0.1579383160608799
+              ],
+              "mse_difference_b_minus_a": -0.0003053576942160522,
+              "mse_difference_range": [
+                -0.0006402021727145067,
+                3.797996047280514e-05
+              ]
+            }
+          },
+          "N=64": {
+            "contiguous": {
+              "r2": 0.8629970597922276,
+              "increment_over_baseline": 0.20404234580142877
+            },
+            "dispersed": {
+              "r2": 0.8814989290838922,
+              "increment_over_baseline": 0.2225442150930933
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.01850186929166453,
+              "r2_difference_range": [
+                -0.017431096685009955,
+                0.0550921266432745
+              ],
+              "mse_difference_b_minus_a": -7.986809515354582e-05,
+              "mse_difference_range": [
+                -0.00023213309272936461,
+                7.625526729577157e-05
+              ]
+            }
+          }
+        }
+      },
+      "N3": {
+        "baseline_r2": 0.4836141386398445,
+        "budgets": {
+          "N=4": {
+            "contiguous": {
+              "r2": 0.565967136046061,
+              "increment_over_baseline": 0.08235299740621649
+            },
+            "dispersed": {
+              "r2": 0.5084336891005348,
+              "increment_over_baseline": 0.024819550460690287
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": -0.0575334469455262,
+              "r2_difference_range": [
+                -0.120085566717848,
+                0.003928613250992868
+              ],
+              "mse_difference_b_minus_a": 0.0002646548517198058,
+              "mse_difference_range": [
+                -1.539189438070196e-05,
+                0.0005779109601261266
+              ]
+            }
+          },
+          "N=8": {
+            "contiguous": {
+              "r2": 0.5942527388148957,
+              "increment_over_baseline": 0.11063860017505123
+            },
+            "dispersed": {
+              "r2": 0.6369317118899406,
+              "increment_over_baseline": 0.1533175732500961
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.04267897307504487,
+              "r2_difference_range": [
+                -0.08237855038243837,
+                0.1722568144939993
+              ],
+              "mse_difference_b_minus_a": -0.00019632401481913843,
+              "mse_difference_range": [
+                -0.0008059385577036202,
+                0.0003965394059099057
+              ]
+            }
+          },
+          "N=16": {
+            "contiguous": {
+              "r2": 0.6046821390527317,
+              "increment_over_baseline": 0.12106800041288723
+            },
+            "dispersed": {
+              "r2": 0.755784529133991,
+              "increment_over_baseline": 0.2721703904941465
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.15110239008125925,
+              "r2_difference_range": [
+                0.05822069263143909,
+                0.29019468330440473
+              ],
+              "mse_difference_b_minus_a": -0.0006950736096053352,
+              "mse_difference_range": [
+                -0.0012210149200357649,
+                -0.000256962446449249
+              ]
+            }
+          },
+          "N=32": {
+            "contiguous": {
+              "r2": 0.6837092805055067,
+              "increment_over_baseline": 0.20009514186566224
+            },
+            "dispersed": {
+              "r2": 0.8758706277883843,
+              "increment_over_baseline": 0.39225648914853983
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.1921613472828776,
+              "r2_difference_range": [
+                0.09800075558130551,
+                0.32171782033320534
+              ],
+              "mse_difference_b_minus_a": -0.0008839455233679988,
+              "mse_difference_range": [
+                -0.0013935374040807494,
+                -0.00044405003654139565
+              ]
+            }
+          },
+          "N=64": {
+            "contiguous": {
+              "r2": 0.861567581567564,
+              "increment_over_baseline": 0.3779534429277195
+            },
+            "dispersed": {
+              "r2": 0.9367519594872464,
+              "increment_over_baseline": 0.45313782084740195
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.07518437791968247,
+              "r2_difference_range": [
+                0.03586348792231563,
+                0.1358161296952867
+              ],
+              "mse_difference_b_minus_a": -0.0003458494396975584,
+              "mse_difference_range": [
+                -0.0005523447203307493,
+                -0.00017115640717212558
+              ]
+            }
+          }
+        }
+      },
+      "wake": {
+        "baseline_r2": 0.9486699275756924,
+        "budgets": {
+          "N=4": {
+            "contiguous": {
+              "r2": 0.9488986819099204,
+              "increment_over_baseline": 0.00022875433422808733
+            },
+            "dispersed": {
+              "r2": 0.9597877293664205,
+              "increment_over_baseline": 0.011117801790728188
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.0108890474565001,
+              "r2_difference_range": [
+                0.0032577959940938623,
+                0.02097596329195128
+              ],
+              "mse_difference_b_minus_a": -0.0006703089768955168,
+              "mse_difference_range": [
+                -0.0012291471044800272,
+                -0.00020229352135389943
+              ]
+            }
+          },
+          "N=8": {
+            "contiguous": {
+              "r2": 0.9489364195832206,
+              "increment_over_baseline": 0.00026649200752826285
+            },
+            "dispersed": {
+              "r2": 0.9612082553969915,
+              "increment_over_baseline": 0.012538327821299156
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.012271835813770893,
+              "r2_difference_range": [
+                0.0028470630431540076,
+                0.025050898684117983
+              ],
+              "mse_difference_b_minus_a": -0.0007554307887645611,
+              "mse_difference_range": [
+                -0.0014609291782144275,
+                -0.00017664228557774585
+              ]
+            }
+          },
+          "N=16": {
+            "contiguous": {
+              "r2": 0.949938053310056,
+              "increment_over_baseline": 0.0012681257343636343
+            },
+            "dispersed": {
+              "r2": 0.9687203589090478,
+              "increment_over_baseline": 0.02005043133335549
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.018782305598991855,
+              "r2_difference_range": [
+                0.004801664481166937,
+                0.04007396578378738
+              ],
+              "mse_difference_b_minus_a": -0.0011562028818493074,
+              "mse_difference_range": [
+                -0.002305780610850137,
+                -0.00031122432855812615
+              ]
+            }
+          },
+          "N=32": {
+            "contiguous": {
+              "r2": 0.9504199365176298,
+              "increment_over_baseline": 0.001750008941937442
+            },
+            "dispersed": {
+              "r2": 0.9874128582330087,
+              "increment_over_baseline": 0.03874293065731638
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.036992921715378935,
+              "r2_difference_range": [
+                0.020493312601232196,
+                0.06078466825011071
+              ],
+              "mse_difference_b_minus_a": -0.0022772136503647704,
+              "mse_difference_range": [
+                -0.003504064747349289,
+                -0.0013032579237922505
+              ]
+            }
+          },
+          "N=64": {
+            "contiguous": {
+              "r2": 0.9790840025777762,
+              "increment_over_baseline": 0.030414075002083818
+            },
+            "dispersed": {
+              "r2": 0.9944839894815986,
+              "increment_over_baseline": 0.0458140619059062
+            },
+            "dispersed_minus_contiguous": {
+              "n_resamples": 2000,
+              "n_clusters": 100,
+              "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+              "stratified_by": "study cohort",
+              "refitting": false,
+              "multiplicity_adjustment": null,
+              "r2_difference_b_minus_a": 0.015399986903822382,
+              "r2_difference_range": [
+                0.007696497807879246,
+                0.026588046240668333
+              ],
+              "mse_difference_b_minus_a": -0.0009479937989932763,
+              "mse_difference_range": [
+                -0.001524083102760778,
+                -0.0005038580508772042
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "af": {
+    "contiguous|n=1": {
+      "total_hours": 0.25,
+      "observed_fraction": 0.010416666666666666,
+      "equivalent_hours_at_24h": 0.25,
+      "n_bins": 1,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.7092143827313501
+    },
+    "dispersed|n=1": {
+      "total_hours": 0.25,
+      "observed_fraction": 0.010416666666666666,
+      "equivalent_hours_at_24h": 0.25,
+      "n_bins": 1,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.6483534747944
+    },
+    "contiguous|n=2": {
+      "total_hours": 0.5,
+      "observed_fraction": 0.020833333333333332,
+      "equivalent_hours_at_24h": 0.5,
+      "n_bins": 2,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.7136506799352174
+    },
+    "dispersed|n=2": {
+      "total_hours": 0.5,
+      "observed_fraction": 0.020833333333333332,
+      "equivalent_hours_at_24h": 0.5,
+      "n_bins": 2,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.8913703498810344
+    },
+    "contiguous|n=4": {
+      "total_hours": 1.0,
+      "observed_fraction": 0.041666666666666664,
+      "equivalent_hours_at_24h": 1.0,
+      "n_bins": 4,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.6963528917664057
+    },
+    "dispersed|n=4": {
+      "total_hours": 1.0,
+      "observed_fraction": 0.041666666666666664,
+      "equivalent_hours_at_24h": 1.0,
+      "n_bins": 4,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.9707147512377738
+    },
+    "contiguous|n=8": {
+      "total_hours": 2.0,
+      "observed_fraction": 0.08333333333333333,
+      "equivalent_hours_at_24h": 2.0,
+      "n_bins": 8,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.778078315566121
+    },
+    "dispersed|n=8": {
+      "total_hours": 2.0,
+      "observed_fraction": 0.08333333333333333,
+      "equivalent_hours_at_24h": 2.0,
+      "n_bins": 8,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.9916608294977597
+    },
+    "contiguous|n=16": {
+      "total_hours": 4.0,
+      "observed_fraction": 0.16666666666666666,
+      "equivalent_hours_at_24h": 4.0,
+      "n_bins": 16,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.8506453278037017
+    },
+    "dispersed|n=16": {
+      "total_hours": 4.0,
+      "observed_fraction": 0.16666666666666666,
+      "equivalent_hours_at_24h": 4.0,
+      "n_bins": 16,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.9981999615572498
+    },
+    "contiguous|n=32": {
+      "total_hours": 8.0,
+      "observed_fraction": 0.3333333333333333,
+      "equivalent_hours_at_24h": 8.0,
+      "n_bins": 32,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.9454980691732802
+    },
+    "dispersed|n=32": {
+      "total_hours": 8.0,
+      "observed_fraction": 0.3333333333333333,
+      "equivalent_hours_at_24h": 8.0,
+      "n_bins": 32,
+      "window_minutes": 15.0,
+      "cross_fitted_r2": 0.9997123635888687
+    }
+  },
+  "af_fixed_template_conditional_ranges": {
+    "N=1": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": -0.06086090793695009,
+      "r2_difference_range": [
+        -0.2989826050133932,
+        0.16413554562284488
+      ],
+      "mse_difference_b_minus_a": 0.011361078281382206,
+      "mse_difference_range": [
+        -0.030621913278785336,
+        0.05556806971571338
+      ]
+    },
+    "N=2": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": 0.177719669945817,
+      "r2_difference_range": [
+        0.04155384557882433,
+        0.3517928967030268
+      ],
+      "mse_difference_b_minus_a": -0.033175434787919095,
+      "mse_difference_range": [
+        -0.06406900489374433,
+        -0.007761254355641763
+      ]
+    },
+    "N=4": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": 0.27436185947136815,
+      "r2_difference_range": [
+        0.1434588668586882,
+        0.45782512323090324
+      ],
+      "mse_difference_b_minus_a": -0.05121590637637143,
+      "mse_difference_range": [
+        -0.08073739764068133,
+        -0.026852776187716587
+      ]
+    },
+    "N=8": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": 0.21358251393163874,
+      "r2_difference_range": [
+        0.09289123611380766,
+        0.3640450483131561
+      ],
+      "mse_difference_b_minus_a": -0.03987005357898301,
+      "mse_difference_range": [
+        -0.06471715886430827,
+        -0.017778993031123264
+      ]
+    },
+    "N=16": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": 0.14755463375354805,
+      "r2_difference_range": [
+        0.0760958453344582,
+        0.24945829754344567
+      ],
+      "mse_difference_b_minus_a": -0.027544441936216513,
+      "mse_difference_range": [
+        -0.04497242058087276,
+        -0.014248320491682492
+      ]
+    },
+    "N=32": {
+      "n_resamples": 2000,
+      "n_clusters": 84,
+      "range": "conditional 2.5--97.5 percentile range of realised cross-fitted prediction pairs",
+      "stratified_by": null,
+      "refitting": false,
+      "multiplicity_adjustment": null,
+      "r2_difference_b_minus_a": 0.05421429441558856,
+      "r2_difference_range": [
+        0.033033268391185776,
+        0.08262839197942401
+      ],
+      "mse_difference_b_minus_a": -0.010120336086071696,
+      "mse_difference_range": [
+        -0.014400797676981615,
+        -0.006350157231866704
+      ]
+    }
+  },
+  "af_primary_cohort": "all",
+  "af_cohorts": {
+    "all": {
+      "n_records": 84,
+      "budgets": [
+        {
+          "n_windows": 4,
+          "contiguous": 0.6963528917664057,
+          "dispersed": 0.9707147512377738,
+          "dispersed_minus_contiguous": 0.27436185947136815,
+          "per_fold_gap": [
+            0.1949300885505133,
+            0.39523962234445964,
+            0.31637640923244303,
+            0.34620283676918795,
+            0.274685801533604
+          ],
+          "min_fold_gap": 0.1949300885505133
+        },
+        {
+          "n_windows": 16,
+          "contiguous": 0.8506453278037017,
+          "dispersed": 0.9981999615572498,
+          "dispersed_minus_contiguous": 0.14755463375354805,
+          "per_fold_gap": [
+            0.06223164579488849,
+            0.18990147409218727,
+            0.19026673168014452,
+            0.20171622763146968,
+            0.11469168148391806
+          ],
+          "min_fold_gap": 0.06223164579488849
+        }
+      ]
+    },
+    "strict": {
+      "n_records": 71,
+      "budgets": [
+        {
+          "n_windows": 4,
+          "contiguous": 0.5962614228374166,
+          "dispersed": 0.9577304682203768,
+          "dispersed_minus_contiguous": 0.3614690453829602,
+          "per_fold_gap": [
+            0.18233944341334463,
+            0.18693451933782745,
+            0.8817461837921995,
+            0.6464338989227544,
+            0.17507176660284984
+          ],
+          "min_fold_gap": 0.17507176660284984
+        },
+        {
+          "n_windows": 16,
+          "contiguous": 0.7482492106237695,
+          "dispersed": 0.9975165301797609,
+          "dispersed_minus_contiguous": 0.24926731955599146,
+          "per_fold_gap": [
+            0.43571922640824845,
+            0.04546468407921289,
+            0.6017124349739903,
+            0.23254664530333835,
+            0.07312504207949655
+          ],
+          "min_fold_gap": 0.04546468407921289
+        }
+      ]
+    },
+    "mixed": {
+      "n_records": 33,
+      "budgets": [
+        {
+          "n_windows": 4,
+          "contiguous": 0.18038638158213005,
+          "dispersed": 0.8294178513937214,
+          "dispersed_minus_contiguous": 0.6490314698115913,
+          "per_fold_gap": [
+            0.4068034154601705,
+            0.7411246980356904,
+            0.6666216027101152,
+            6.232211502073084,
+            0.3033769429785488
+          ],
+          "min_fold_gap": 0.3033769429785488
+        },
+        {
+          "n_windows": 16,
+          "contiguous": 0.43001840391150403,
+          "dispersed": 0.9900249604218797,
+          "dispersed_minus_contiguous": 0.5600065565103757,
+          "per_fold_gap": [
+            0.5104984867353914,
+            0.7032524313474879,
+            0.3527960076707306,
+            9.740261479030579,
+            0.12571992057656323
+          ],
+          "min_fold_gap": 0.12571992057656323
+        }
+      ]
+    }
+  }
+}

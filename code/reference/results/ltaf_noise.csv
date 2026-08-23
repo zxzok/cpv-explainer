@@ -1,0 +1,13 @@
+noise_variance,label_model,protocol,ceiling
+0.0,indicator_linear,contiguous_1h,0.7406614709106181
+0.0,indicator_linear,contiguous_6h,0.8910059674195178
+0.0,indicator_linear,intermittent_4x15min,0.9867646912267127
+0.0,indicator_linear,intermittent_8x15min,0.9963370932061213
+0.01,indicator_linear,contiguous_1h,0.7406614709106181
+0.01,indicator_linear,contiguous_6h,0.8910059674195178
+0.01,indicator_linear,intermittent_4x15min,0.9867646912267127
+0.01,indicator_linear,intermittent_8x15min,0.9963370932061213
+0.1,indicator_linear,contiguous_1h,0.7406614709106181
+0.1,indicator_linear,contiguous_6h,0.8910059674195178
+0.1,indicator_linear,intermittent_4x15min,0.9867646912267127
+0.1,indicator_linear,intermittent_8x15min,0.9963370932061213

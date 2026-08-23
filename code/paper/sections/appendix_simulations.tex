@@ -1,0 +1,103 @@
+\section{Simulation Settings}
+\label{sec:appendix-simulations}
+
+\subsection{Models, Targets and Protocol Families}
+
+Unless stated otherwise, $Z$ is a standardised Gaussian trajectory on a
+uniform grid. For lag $u$, the stationary correlations are OU,
+$\rho(u)=e^{-u/\tau}$; Mat\'ern-3/2,
+$\rho(u)=(1+2u/\tau)e^{-2u/\tau}$, scaled so that
+$\int_0^\infty \rho(u)\dd u=\tau$; a weighted two-scale OU mixture; and the
+damped-periodic kernel $e^{-u/6}\cos(2\pi u/3)$. A between-unit trait share
+$\alpha$ gives
+$K_{jk}=\alpha+(1-\alpha)\rho(|t_j-t_k|)$. The five targets in the design
+comparison are the temporal mean, occupation above thresholds $0$ and $1.5$,
+two-sided occupation outside $[-1.2,1.2]$, and the logistic aggregate
+$g(z)=\{1+e^{-2z}\}^{-1}$. The calibration experiments use the target subsets
+specified below.
+
+\begingroup
+\setlength{\intextsep}{5pt}
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{0.94}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth}
+>{\raggedright\arraybackslash}p{0.36\textwidth}
+>{\raggedright\arraybackslash}p{0.44\textwidth}@{}}
+\toprule
+Experiment & Latent and calibration model & Actions, family and repetitions \\
+\midrule
+Uniform error,
+\cref{fig:calibration}(a)
+& $T=20$, $p=128$, OU $\tau=1$, $\alpha=0$; known calibration-noise variance
+$0.25$, action-noise variance $0.5$; mean and occupation-at-zero targets
+& 12 equally spaced point actions, exactly four selected
+($\numEstFamily$ protocols); $m\in\{25,50,100,250,500,1000\}$ and
+$\numEstReplications$ replications. \\[2pt]
+
+Selection regret,
+\cref{fig:calibration}(b)
+& $T=20$, $p=128$; trait--OU $(\alpha,\tau)=(0.2,2)$ and two-scale OU
+$(\tau_1,\tau_2,w)=(0.5,6,0.5)$; noiseless calibration and action-noise
+variance $0.5$; mean and occupation targets at thresholds zero and one
+& Points at $\{1,3,\ldots,19\}$, width-three windows centred at 5 and 15,
+and pre-specified three-replicate point packages at 2 and 18; exactly four of
+14 actions; the same $m$ grid and replication count as panel (a). \\[2pt]
+
+Nested protocol classes,
+\cref{fig:calibration}(c,d)
+& $T=20$, $p=64$; noiseless calibration; occupation-at-zero target;
+action-noise variance $0.4$;
+$K_{jk}=0.15+0.85\exp\{-|t_j-t_k|/[\tau(t_j)\tau(t_k)]^{1/2}\}$, with
+$\tau(t)$ linear from $0.3$ to $3$
+& Exactly four actions are selected. L1 compares contiguous with dispersed
+layouts; L2 adds early, middle, late and full-horizon phases; L3 uses supports
+on eight coarse bins; L4 adds 495 fine-grid four-point subsets. The cumulative,
+deduplicated class sizes are \numResClassSizeOne, \numResClassSizeTwo,
+\numResClassSizeThree{} and \numResClassSizeFour; the same $m$ grid and 30
+replications. \\
+\bottomrule
+\end{tabular}
+\caption{Calibration and nested protocol-class configurations.}
+\label{tab:synthetic-calibration-config}
+\end{table}
+\endgroup
+
+For the target-aware design comparison in \cref{tab:s5}, all settings use
+$T=10$, $p=128$ and $\alpha=0$. The stationary OU and Mat\'ern-3/2 settings
+use $\tau=1$ and action-noise variance $0.4$. The horizon-varying setting uses
+\[
+K_{jk}
+=
+\exp\{-|t_j-t_k|/[\tau(t_j)\tau(t_k)]^{1/2}\},
+\qquad
+\tau(t)=0.5+3.5t/10,
+\]
+with action-noise variance $0.15$. The recency-weighted OU setting uses
+$\tau=1$, target weights proportional to $e^{-(T-t)/6}$ and action-noise
+variance $0.4$. The heterogeneous-action setting uses OU scale $\tau=0.7$
+and time-dependent action-noise variance $1+2t/10$.
+
+The first four settings use 12 point actions at
+$\{0.5,0.5+9/11,\ldots,9.5\}$ and select exactly four actions. The
+heterogeneous family uses six centres $0.5+1.8k$, $k=0,\ldots,5$, widths
+$\{0,1.5,3.5\}$, cost $1+0.15w$ and a cost budget of four. All feasible
+protocols are enumerated to obtain the target-specific optimum. The linear
+comparator uses the actual action noise, kernel quadrature its standard
+noiseless criterion, and mutual information and integrated posterior variance
+the same covariance and action catalogue. Greedy search starts from the empty
+protocol; one-swap refinement takes the best feasible exchange until no
+improvement remains or \numSwapRounds{} exchanges have been accepted.
+
+\subsection{Numerical Evaluation of Nonlinear Targets}
+\label{sec:appendix-numerical}
+
+For one-sided threshold targets, $C_g$ is evaluated from the Plackett integral.
+If $G_c(r)$ denotes the corresponding one-sided covariance transform, then the
+two-sided occupation target uses
+\begin{equation*}
+C_{{\rm two},c}(r)=2\{G_c(r)+G_c(-r)\}.
+\end{equation*}
+The logistic transform is evaluated through a truncated Hermite expansion,
+with coefficients computed by Gauss--Hermite quadrature. 

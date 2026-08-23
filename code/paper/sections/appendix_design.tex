@@ -1,0 +1,106 @@
+\section{Design Derivations and Algorithms}
+\label{sec:app-design}
+
+\subsection{Rank-One Update}
+
+For a non-empty $S$, write
+$M=A_SKA_S^\top+R_S$, $b=A_SK\ell_a$ and
+$d=\ell_a^\top K\ell_a+r_a$. The Schur complement of
+$M_+=\left(\begin{smallmatrix}M&b\\b^\top&d\end{smallmatrix}\right)$ is
+$d-b^\top M^{-1}b=s_{a\mid S}$, so the block-inverse formula
+\citep[\S0.8]{horn2013matrix} gives
+\begin{equation}
+M_+^{-1}=
+\begin{pmatrix}
+M^{-1}+M^{-1}bs_{a\mid S}^{-1}b^\top M^{-1}
+&-M^{-1}bs_{a\mid S}^{-1}\\
+-s_{a\mid S}^{-1}b^\top M^{-1}&s_{a\mid S}^{-1}
+\end{pmatrix}.
+\label{eq:app-block-inverse}
+\end{equation}
+Substituting \eqref{eq:app-block-inverse} into the definition of $Q$ and
+collecting the correction as an outer product yields
+\begin{equation*}
+Q_{S\cup\{a\}}-Q_S
+=\frac{(K\ell_a-KA_S^\top M^{-1}b)
+       (K\ell_a-KA_S^\top M^{-1}b)^\top}{s_{a\mid S}}
+=\frac{P_S\ell_a\ell_a^\top P_S}{s_{a\mid S}}.
+\end{equation*}
+This is the stated $Q$ update; subtracting it from $K$ gives the $P$ update.
+For $S=\varnothing$, the same formulas follow directly from
+$Q_\varnothing=0$ and $P_\varnothing=K$. Substitution into \eqref{eq:VF}
+gives \eqref{eq:marginal-nonlinear}, and setting $C_g(r)=r$ gives
+\eqref{eq:marginal-mean}.
+
+A forward pass uses rank-one $O(p^2)$ scores and costs
+$O(d_{\mathcal B}|\cV|p^2)$, where
+$d_{\mathcal B}=\max_{S\in\Pi_{\mathcal B}}|S|$. The implemented
+swap sweep directly recomputes at most $|S||\cV|$ trial objectives, each in
+$O(p^2|S|+|S|^3)$, and therefore costs
+$O\{|S||\cV|(p^2|S|+|S|^3)\}$.
+
+For \cref{prop:monotone}, $S\subseteq S'$ nests the two observation
+$\sigma$-fields. Conditional expectation is an $L^2$ projection, so projection
+contraction gives $F_g(S;K)\le F_g(S';K)$.
+
+\subsection{Forward Selection and One-Swap Refinement}
+\label{sec:app-design-search}
+
+In exact-$d$ mode, assume that $\Pi_{\mathcal B}$ contains a protocol of
+cardinality $d$. An addition $a\notin S$ is \emph{completion-preserving} if
+there exists $S'\in\Pi_{\mathcal B}$ such that
+$S\cup\{a\}\subseteq S'$ and $|S'|=d$. We call an addition \emph{admissible}
+if it is completion-preserving in exact-$d$ mode, and if
+$S\cup\{a\}\in\Pi_{\mathcal B}$ in at-most-$\mathcal B$ mode.
+
+\begin{algorithm}[H]
+\caption{Exact-gain forward selection with one-swap refinement}
+\label{alg:forward-swap}
+\begin{algorithmic}[1]
+\Require $K$, $g$, $\omega$, catalogue $\cV$, family $\Pi_{\mathcal B}$; mode
+exact-$d$ or at-most-$\mathcal B$
+\State Initialise $S\gets\varnothing$, $Q_S\gets0$, $P_S\gets K$
+\While{exact mode has $|S|<d$, or at-most mode has a positive-gain addition}
+  \State choose the best admissible addition (gain per cost
+  if costs differ), add it and update $Q_S,P_S$
+\EndWhile
+\While{a feasible improving swap exists and the swap cap is not reached}
+  \State apply the first improving selected--unselected swap and update $Q_S,P_S$
+\EndWhile
+\State \Return $S$
+\end{algorithmic}
+\end{algorithm}
+
+Exact mode continues to $|S|=d$; at-most mode stops when no feasible addition
+has positive gain. Because $F_g$ need not be submodular, a zero-gain action can
+enable a positive joint gain, so the latter rule is heuristic. Exhaustive optima are
+reported for small families.
+
+\subsection{Comparator Objectives}
+\label{sec:app-design-comparators}
+
+For the latent-state mutual-information comparator, when $R_S\succ0$ the
+target-free objective and marginal gain are
+\begin{align}
+F_{\rm MI}(S)=I(Z;Y_S)
+&=\frac12\log\det\!\left(I+R_S^{-1/2}A_SKA_S^\top R_S^{-1/2}\right),
+\label{eq:mi-baseline}
+\\[-2pt]
+\Delta_{\rm MI}(a\mid S)
+&=\frac12\log\frac{\ell_a^\top P_S\ell_a+r_a}{r_a},
+\label{eq:mi-gain}
+\end{align}
+where the second line assumes $r_a>0$.
+
+The integrated-posterior-variance comparator minimises
+$\sum_j\omega_j(P_S)_{jj}$ and has marginal reduction
+\begin{equation}
+\Delta_{\rm IPV}(a\mid S)
+=\sum_j\omega_j\frac{(P_S\ell_a)_j^2}{s_{a\mid S}}.
+\label{eq:ipv-gain}
+\end{equation}
+
+The linear-target comparator replaces $g$ by the identity and maximises
+$\omega^\top Q_S(K)\omega$. The kernel-quadrature comparator uses the same
+linear criterion with $R_S=0$. Together, these objectives separate target
+nonlinearity, measurement noise and target-free latent coverage.

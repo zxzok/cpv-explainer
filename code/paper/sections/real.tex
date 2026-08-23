@@ -1,0 +1,86 @@
+\subsection{Retrospective Protocol Comparison}
+\label{sec:real}
+
+Using complete expert annotations, we reconstruct the measurements that each
+partial protocol would have produced and evaluate fitted predictors on
+held-out units. Sleep protocols sample binary stage indicators from scored
+hypnograms, whereas AF protocols average binary rhythm annotations within
+selected time bins. Each reconstructed protocol is therefore defined by the
+subset or aggregation of annotation times made available to the predictor.
+
+Sleep contains \numSleepRecordings{} recordings from \numSleepSubjects{}
+subjects and uses $p=\numSleepGrid$ relative-time anchors. Its targets are the
+exact full-interval REM, N3 and Wake proportions, and its budgets
+$N\in\{4,8,16,32,64\}$ count distinct scored 30-second epochs. Long-Term AF
+contains \numLtafRecords{} records, uses $p=\numAfGrid$ equal relative-time
+bins and targets the exact fraction of analysable annotated time spent in AF.
+Its budgets $N\in\{1,2,4,8,16,32\}$ observe the fraction $N/p$ of each record.
+Both analyses use five outer folds and report pooled held-out cross-fitted
+$R^2$. Sleep folds are subject-disjoint and stratified by source study; AF
+folds are split by record because repeated-subject identifiers are unavailable.
+
+Two fixed templates are compared at every budget: a centred-contiguous block
+and anchors dispersed as uniformly as possible over relative time. Sleep also
+learns target-aware and kernel-quadrature supports entirely within each outer
+training fold; AF uses only the pre-specified templates. The learned Sleep
+procedure uses a regularised best-linear score for foldwise protocol selection
+and is evaluated by held-out cross-fitted $R^2$; \cref{sec:estimation}
+analyses the corresponding fixed-dimensional Gaussian plug-in setting.
+Residual covariance, target cross-covariance and target variance are estimated
+foldwise from the annotations, with an eigenvalue floor adapted to the
+high-dimensional grid.
+The common-grid mapping, baselines, weighting, selection score, nested ridge
+fitting and resampling procedures are specified in
+Appendix~\ref{sec:appendix-real}.
+
+Sleep-EDF Expanded \citep{kemp2000analysis,mourtazaev1995age,
+goldberger2000physiobank,pollard2026physionet} combines Sleep Cassette (SC) and
+Sleep Telemetry (ST) 30-second hypnograms. SC contributes
+\numSleepScRecords{} recordings from \numSleepScSubjects{} participants and ST
+contributes \numSleepStRecords{} recordings from \numSleepStSubjects{}
+participants. Stages 3 and 4 are combined as N3
+\citep{rechtschaffen1968manual,iber2007aasm}. The retained records contain
+\numSleepHours{} valid annotated hours.
+
+\input{sections/sleep_body}
+
+The Long-Term AF Database
+\citep{petrutiu2007abrupt,goldberger2000physiobank} contains
+\numLtafHours{} hours of reviewed rhythm annotations and has median analysable
+record length \numLtafMedianHours{} hours. The analysable interval begins at
+the first rhythm marker, so any unannotated prefix is excluded from the target
+and the candidate windows. All \numAfCohortNAll{} records form the primary
+cohort.
+
+\input{sections/ltaf_body}
+
+Every point in \cref{fig:real} is obtained by pooling the predictions from all
+five outer test folds and then applying the weighted $R^2$ in
+Equation~\eqref{eq:weighted-cf-r2} in
+Appendix~\ref{sec:appendix-real-prediction}; foldwise $R^2$ values are not
+averaged. Sleep pooling uses subject-balanced weights, whereas AF pooling gives
+equal weight to each record. Within each test fold, all supports are fixed
+before prediction evaluation. In panel (a), study, valid-duration and treatment
+covariates enter every Sleep predictor unpenalised. In panel (b), the horizontal
+coordinate is the protocol's observed fraction $N/p$ of each analysable AF
+record.
+
+\FloatBarrier
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/fig_real.pdf}
+\caption{Held-out prediction from reconstructed Sleep and AF annotation
+protocols.}
+\label{fig:real}
+\end{figure}
+\FloatBarrier
+
+The Sleep data also allow us to examine whether the exact support locations
+selected from the training data are stable.
+Target-aware selection maximises the training-fold score defined in
+Equation~\eqref{eq:real-objective} in
+Appendix~\ref{sec:appendix-real-prediction}; its target-agnostic comparator learns a
+kernel-quadrature support from the same regularised covariance without using
+the target outcomes.
+
+\input{sections/sweep_body}

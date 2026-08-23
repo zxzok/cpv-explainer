@@ -1,0 +1,13 @@
+p,bin_minutes,label_model,protocol,ceiling,pseudoinverse_rcond,window_mapping,nominal_total_minutes,effective_rank
+64,22.5,indicator_linear,contiguous_1h,0.7444687139345527,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2758574604250015
+64,22.5,indicator_linear,contiguous_6h,0.8908978570132154,1e-10,exact fractional overlap of continuous support with grid bins,360.0,1.2758574604250015
+64,22.5,indicator_linear,intermittent_4x15min,0.98888101840416,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2758574604250015
+64,22.5,indicator_linear,intermittent_8x15min,0.9971870699147278,1e-10,exact fractional overlap of continuous support with grid bins,120.0,1.2758574604250015
+128,11.25,indicator_linear,contiguous_1h,0.7390138276629038,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2872865912298963
+128,11.25,indicator_linear,contiguous_6h,0.8910059674195178,1e-10,exact fractional overlap of continuous support with grid bins,360.0,1.2872865912298963
+128,11.25,indicator_linear,intermittent_4x15min,0.9867646912267127,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2872865912298963
+128,11.25,indicator_linear,intermittent_8x15min,0.9963370932061213,1e-10,exact fractional overlap of continuous support with grid bins,120.0,1.2872865912298963
+256,5.625,indicator_linear,contiguous_1h,0.7372218587639404,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2957459317372544
+256,5.625,indicator_linear,contiguous_6h,0.8910481144317958,1e-10,exact fractional overlap of continuous support with grid bins,360.0,1.2957459317372544
+256,5.625,indicator_linear,intermittent_4x15min,0.9866113977289707,1e-10,exact fractional overlap of continuous support with grid bins,60.0,1.2957459317372544
+256,5.625,indicator_linear,intermittent_8x15min,0.9962458414386006,1e-10,exact fractional overlap of continuous support with grid bins,120.0,1.2957459317372544

@@ -1,0 +1,95 @@
+{
+  "seed": 20260802,
+  "environment": {
+    "python": "3.14.6",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_count": 24,
+    "timestamp_utc": "2026-08-21T05:53:45Z"
+  },
+  "sleep_edf": {
+    "source": "https://physionet.org/files/sleep-edfx/1.0.0",
+    "n_recordings": 197,
+    "n_subjects": 100,
+    "n_cassette_recordings": 153,
+    "n_telemetry_recordings": 44,
+    "n_cassette_subjects": 78,
+    "n_telemetry_subjects": 22,
+    "epoch_seconds": 30,
+    "n_epochs_total": 458161,
+    "total_hours": 3818.0083333333337,
+    "total_hours_before_trim": 4034.258333333333,
+    "median_record_hours": 22.6,
+    "iqr_record_hours": [
+      20.016666666666666,
+      23.166666666666668
+    ],
+    "median_sleep_period_hours": 8.125,
+    "median_sleep_period_hours_cassette": 8.391666666666667,
+    "median_sleep_period_hours_telemetry": 7.800000000000001,
+    "median_record_hours_cassette": 22.916666666666668,
+    "median_record_hours_telemetry": 8.05,
+    "marginal_label_distribution": {
+      "W": 0.6337619308496358,
+      "N1": 0.05494793315013718,
+      "N2": 0.1942177531479109,
+      "N3": 0.042461056266247015,
+      "REM": 0.07461132658606909,
+      "MOVEMENT": 0.0,
+      "UNKNOWN": 0.0
+    },
+    "n_records_over_12h": 153,
+    "n_failed": 0,
+    "parser_used": {
+      "mne": 197
+    }
+  },
+  "ltaf": {
+    "source": "https://physionet.org/files/ltafdb/1.0.0",
+    "n_records": 84,
+    "epoch_seconds": 60,
+    "n_epochs_total": 116055,
+    "total_hours": 1934.25,
+    "median_record_hours": 23.966666666666665,
+    "iqr_record_hours": [
+      23.291666666666668,
+      24.483333333333334
+    ],
+    "marginal_label_distribution": {
+      "AF": 0.5328123159995979,
+      "non_AF": 0.4671876840004021
+    },
+    "mean_af_burden_per_record": 0.5310600644507518,
+    "median_af_burden_per_record": 0.41746013029318063,
+    "n_records_burden_zero": 1,
+    "n_records_burden_one": 12,
+    "n_records_burden_strictly_between": 71,
+    "frac_records_burden_strictly_between": 0.8452380952380952,
+    "unlabelled_prefix_seconds_median_excluding_longest": 105.0,
+    "unlabelled_prefix_seconds_max_excluding_longest": 1457.0,
+    "n_records_excluding_longest_prefix": 83,
+    "n_records_burden_in_0p05_0p95": 33,
+    "frac_records_burden_in_0p05_0p95": 0.39285714285714285,
+    "n_failed": 0
+  },
+  "sanity_checks": {
+    "sleep_edf_total_recording_hours": 3818.0083333333337,
+    "ltaf_total_recording_hours": 1934.25,
+    "median_sleep_period_hours_cassette": 8.391666666666667,
+    "median_trimmed_record_hours_cassette": 22.916666666666668,
+    "median_sleep_period_in_7_to_9h": true,
+    "median_trimmed_record_in_7_to_9h": false,
+    "frac_ltaf_records_burden_strictly_between_0_and_1": 0.8452380952380952,
+    "ltaf_mixed_is_clear_majority": true,
+    "sleep_edf_at_least_150_recordings": true
+  },
+  "outputs": {
+    "sleep_npz": "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR\u65f6\u95f4\u5b66\u4e60/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/hypnograms.npz",
+    "sleep_meta": "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR\u65f6\u95f4\u5b66\u4e60/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/meta.json",
+    "ltaf_npz": "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR\u65f6\u95f4\u5b66\u4e60/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/af_series.npz",
+    "ltaf_meta": "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR\u65f6\u95f4\u5b66\u4e60/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/meta.json"
+  },
+  "runtime_seconds": 25.32615820800129
+}

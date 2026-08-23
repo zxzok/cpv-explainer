@@ -1,0 +1,26 @@
+{
+  "source": "https://physionet.org/files/ltafdb/1.0.0",
+  "epoch_seconds": 60,
+  "construction": "rhythm annotations forward-filled from each change point to the next at 1 s resolution, then averaged into 60 s epochs",
+  "af_rhythms": [
+    "AFIB",
+    "AFL"
+  ],
+  "value_semantics": "fraction of the 60 s epoch spent in AF/AFL, in [0, 1]",
+  "prefix_rule": "seconds before the first rhythm marker carry no rhythm evidence and are dropped; the analysable window starts at the first marker",
+  "rhythm_marker_counts": {
+    "N": 22834,
+    "SBR": 11326,
+    "AFIB": 7358,
+    "AB": 4472,
+    "SVTA": 3268,
+    "B": 2696,
+    "VT": 828,
+    "T": 785,
+    "IVR": 137
+  },
+  "n_records": 84,
+  "failures": [],
+  "npz_note": "load with np.load(path, allow_pickle=True); 'af' is an object array of float32 arrays",
+  "seed": 20260802
+}

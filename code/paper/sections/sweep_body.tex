@@ -1,0 +1,46 @@
+At $N=16$, the target-aware REM support reaches baseline-adjusted cross-fitted
+$R^2=\numCfAwareSixteen$, compared with \numCfKqSixteen{} for learned kernel
+quadrature and \numCfUniformSixteen{} for fixed dispersion. The fold-averaged
+pairwise Jaccard overlap among REM-, N3- and Wake-specific supports is
+\numSleepJaccardMin--\numSleepJaccardMax, indicating that the selected
+locations depend strongly on the target. We therefore examine their stability
+across support-selection sample sizes and subject subsamples.
+
+Panel (a) of \cref{fig:sweep} varies the subjects used for support selection
+from \numSweepMSmall{} to the full outer-training-fold count while leaving
+ridge fitting on the complete training fold. The target-aware difference
+changes from \numSweepDeltaKqSmall{} to \numSweepDeltaKqFull{} against learned
+kernel quadrature and from \numSweepDeltaUniSmall{} to
+\numSweepDeltaUniFull{} against fixed dispersion. Panel (b) repeats support
+selection, tuning and fitting on \numSelectionSubsampleReps{} study-stratified
+subsamples of \numSelectionSubsamplePct{} of subjects, drawn without
+replacement. The target-aware differences have medians and 2.5--97.5 percentile
+ranges \numSelectionDeltaKqMed{}
+$[\numSelectionDeltaKqPlo,\numSelectionDeltaKqPhi]$ against kernel quadrature
+and \numSelectionDeltaUniMed{}
+$[\numSelectionDeltaUniPlo,\numSelectionDeltaUniPhi]$ against fixed
+dispersion. Both ranges span zero.
+Each ordinate in panel (a) is the paired difference between the target-aware
+and comparator pooled cross-fitted $R^2$ for the same support-selection sample;
+the plotted point averages the repeated selections and its band is one standard
+error. Each panel-(b) subsample recomputes standardisation, foldwise moments,
+support selection, inner ridge tuning, predictor fitting and outer-fold
+evaluation before the paired differences are formed.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\linewidth]{figures/fig_sweep.pdf}
+\caption{Learned REM support at $N=16$. Each panel-(b) subsample reruns the
+complete selection, tuning, fitting and held-out-evaluation pipeline.}
+\label{fig:sweep}
+\end{figure}
+\FloatBarrier
+
+Taken together, the pooled Sleep and AF analyses provide clearer evidence for
+differences between pre-specified dispersed and contiguous layouts than for
+differences among learned supports, although the Sleep
+fixed-template effects remain heterogeneous across source studies. The
+learned supports vary across targets and resamples, and their paired held-out
+$R^2$ differences span zero. The subsampling scheme and additional weighting
+and regularisation diagnostics are given in
+Appendix~\ref{sec:appendix-real-sensitivity}.

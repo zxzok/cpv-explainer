@@ -1,0 +1,145 @@
+{
+  "note": "calibration-size sweep and study-stratified selection-aware repeated subject subsampling without replacement; protocol re-selected in every replicate",
+  "seed": 0,
+  "n_outer": 5,
+  "fractions": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "n_subsample": 40,
+  "n_repeated_subsamples": 1000,
+  "selection_subsample_fraction": 0.8,
+  "budget": 16,
+  "label": "REM",
+  "n_subjects": 100,
+  "weighting": "subject-balanced throughout selection, ridge and R2",
+  "selection_conditioning": {
+    "baseline_covariates": [
+      "ST study indicator",
+      "analysed valid-stage duration (hours)",
+      "ST temazepam-night indicator"
+    ],
+    "operation": "weighted training-fold residualisation of anchors and target"
+  },
+  "outer_folds": "subject-disjoint and stratified by SC/ST study",
+  "selection_resampling": {
+    "replacement": false,
+    "stratified_by": "SC/ST study",
+    "independent_cluster": "unique original subject",
+    "duplicate_subject_copies": false,
+    "moments_weights_floor_recomputed": true
+  },
+  "sweep": {
+    "q0.25": {
+      "m_train_subjects": 20,
+      "n_reps": 40,
+      "target_aware": {
+        "mean": 0.7333952080039218,
+        "sd": 0.019177178796825282
+      },
+      "kernel_quadrature": {
+        "mean": 0.7391009661852157,
+        "sd": 0.022502579873455927
+      },
+      "uniform": {
+        "mean": 0.737722902740374,
+        "sd": 0.0
+      },
+      "delta_vs_kq": -0.005705758181293816,
+      "delta_vs_uniform": -0.00432769473645217,
+      "delta_vs_kq_se": 0.004525778847037089,
+      "delta_vs_uniform_se": 0.003070806235925694
+    },
+    "q0.5": {
+      "m_train_subjects": 40,
+      "n_reps": 40,
+      "target_aware": {
+        "mean": 0.7312766363657385,
+        "sd": 0.029962048838361018
+      },
+      "kernel_quadrature": {
+        "mean": 0.7241521210511273,
+        "sd": 0.02734158536575484
+      },
+      "uniform": {
+        "mean": 0.737722902740374,
+        "sd": 0.0
+      },
+      "delta_vs_kq": 0.007124515314611177,
+      "delta_vs_uniform": -0.00644626637463547,
+      "delta_vs_kq_se": 0.005154006400023382,
+      "delta_vs_uniform_se": 0.004797767564704604
+    },
+    "q0.75": {
+      "m_train_subjects": 60,
+      "n_reps": 40,
+      "target_aware": {
+        "mean": 0.7044967447667053,
+        "sd": 0.025551990364978575
+      },
+      "kernel_quadrature": {
+        "mean": 0.6976956555583215,
+        "sd": 0.03183980476992216
+      },
+      "uniform": {
+        "mean": 0.737722902740374,
+        "sd": 0.0
+      },
+      "delta_vs_kq": 0.0068010892083838845,
+      "delta_vs_uniform": -0.033226157973668694,
+      "delta_vs_kq_se": 0.005536059979983812,
+      "delta_vs_uniform_se": 0.004091593043189393
+    },
+    "q1": {
+      "m_train_subjects": 80,
+      "n_reps": 1,
+      "target_aware": {
+        "mean": 0.6937457653889965,
+        "sd": 0.0
+      },
+      "kernel_quadrature": {
+        "mean": 0.6495466430068917,
+        "sd": 0.0
+      },
+      "uniform": {
+        "mean": 0.737722902740374,
+        "sd": 0.0
+      },
+      "delta_vs_kq": 0.04419912238210477,
+      "delta_vs_uniform": -0.04397713735137754,
+      "delta_vs_kq_se": 0.0,
+      "delta_vs_uniform_se": 0.0
+    }
+  },
+  "original_sample": {
+    "delta_vs_kq": 0.04419912238210477,
+    "delta_vs_uniform": -0.04397713735137754,
+    "target_aware_r2": 0.6937457653889965
+  },
+  "repeated_subsampling": {
+    "target_aware_r2": {
+      "median": 0.7128443602247099,
+      "p025": 0.5994233425506993,
+      "p975": 0.7933928948585232,
+      "frac_positive": 1.0,
+      "n": 1000
+    },
+    "delta_vs_kq": {
+      "median": -0.01359407571703325,
+      "p025": -0.10201676253025546,
+      "p975": 0.07773076923877914,
+      "frac_positive": 0.39,
+      "n": 1000
+    },
+    "delta_vs_uniform": {
+      "median": -0.011957626658500087,
+      "p025": -0.12627351404524406,
+      "p975": 0.09684272954302713,
+      "frac_positive": 0.42,
+      "n": 1000
+    }
+  },
+  "runtime_s": 785.4
+}

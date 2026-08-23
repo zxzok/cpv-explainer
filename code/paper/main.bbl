@@ -1,0 +1,390 @@
+\begin{thebibliography}{59}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alexanderian(2021)]{alexanderian2021optimal}
+A.~Alexanderian.
+\newblock Optimal experimental design for infinite-dimensional {B}ayesian
+  inverse problems governed by {PDE}s: A review.
+\newblock \emph{Inverse Problems}, 37\penalty0 (4):\penalty0 043001, 2021.
+
+\bibitem[Attia et~al.(2018)Attia, Alexanderian, and Saibaba]{attia2018goal}
+A.~Attia, A.~Alexanderian, and A.~K. Saibaba.
+\newblock Goal-oriented optimal design of experiments for large-scale
+  {B}ayesian linear inverse problems.
+\newblock \emph{Inverse Problems}, 34\penalty0 (9):\penalty0 095009, 2018.
+
+\bibitem[Bach(2017)]{bach2017equivalence}
+F.~Bach.
+\newblock On the equivalence between kernel quadrature rules and random feature
+  expansions.
+\newblock \emph{Journal of Machine Learning Research}, 18\penalty0
+  (21):\penalty0 1--38, 2017.
+
+\bibitem[Bareinboim and Pearl(2016)]{bareinboim2016fusion}
+E.~Bareinboim and J.~Pearl.
+\newblock Causal inference and the data-fusion problem.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 113\penalty0
+  (27):\penalty0 7345--7352, 2016.
+\newblock \doi{10.1073/pnas.1510507113}.
+
+\bibitem[Blackwell(1953)]{blackwell1953equivalent}
+D.~Blackwell.
+\newblock Equivalent comparisons of experiments.
+\newblock \emph{The Annals of Mathematical Statistics}, 24\penalty0
+  (2):\penalty0 265--272, 1953.
+
+\bibitem[Briol et~al.(2019)Briol, Oates, Girolami, Osborne, and
+  Sejdinovic]{briol2019probabilistic}
+F.-X. Briol, C.~J. Oates, M.~Girolami, M.~A. Osborne, and D.~Sejdinovic.
+\newblock Probabilistic integration: A role in statistical computation?
+\newblock \emph{Statistical Science}, 34\penalty0 (1):\penalty0 1--22, 2019.
+
+\bibitem[Chaloner and Verdinelli(1995)]{chaloner1995bayesian}
+K.~Chaloner and I.~Verdinelli.
+\newblock Bayesian experimental design: A review.
+\newblock \emph{Statistical Science}, 10\penalty0 (3):\penalty0 273--304, 1995.
+
+\bibitem[Che et~al.(2018)Che, Purushotham, Cho, Sontag, and Liu]{che2018grud}
+Z.~Che, S.~Purushotham, K.~Cho, D.~Sontag, and Y.~Liu.
+\newblock Recurrent neural networks for multivariate time series with missing
+  values.
+\newblock \emph{Scientific Reports}, 8:\penalty0 6085, 2018.
+\newblock \doi{10.1038/s41598-018-24271-9}.
+
+\bibitem[Das and Kempe(2018)]{das2018submodular}
+A.~Das and D.~Kempe.
+\newblock Approximate submodularity and its applications: Subset selection,
+  sparse approximation and dictionary selection.
+\newblock \emph{Journal of Machine Learning Research}, 19\penalty0
+  (3):\penalty0 1--34, 2018.
+
+\bibitem[Dietterich et~al.(1997)Dietterich, Lathrop, and
+  Lozano-P{\'e}rez]{dietterich1997multiple}
+T.~G. Dietterich, R.~H. Lathrop, and T.~Lozano-P{\'e}rez.
+\newblock Solving the multiple instance problem with axis-parallel rectangles.
+\newblock \emph{Artificial Intelligence}, 89\penalty0 (1--2):\penalty0 31--71,
+  1997.
+
+\bibitem[Elfving(1952)]{elfving1952optimum}
+G.~Elfving.
+\newblock Optimum allocation in linear regression theory.
+\newblock \emph{The Annals of Mathematical Statistics}, 23\penalty0
+  (2):\penalty0 255--262, 1952.
+
+\bibitem[Fukunaga and Hummels(1987)]{fukunaga1987bayes}
+K.~Fukunaga and D.~M. Hummels.
+\newblock Bayes error estimation using {P}arzen and $k$-{NN} procedures.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, PAMI-9\penalty0 (5):\penalty0 634--643, 1987.
+
+\bibitem[Goldberger et~al.(2000)Goldberger, Amaral, Glass, Hausdorff, Ivanov,
+  Mark, Mietus, Moody, Peng, and Stanley]{goldberger2000physiobank}
+A.~L. Goldberger, L.~A.~N. Amaral, L.~Glass, J.~M. Hausdorff, P.~C. Ivanov,
+  R.~G. Mark, J.~E. Mietus, G.~B. Moody, C.-K. Peng, and H.~E. Stanley.
+\newblock {PhysioBank}, {PhysioToolkit}, and {PhysioNet}: Components of a new
+  research resource for complex physiologic signals.
+\newblock \emph{Circulation}, 101\penalty0 (23):\penalty0 e215--e220, 2000.
+
+\bibitem[Hall et~al.(2006)Hall, M{\"u}ller, and Wang]{hall2006properties}
+P.~Hall, H.-G. M{\"u}ller, and J.-L. Wang.
+\newblock Properties of principal component methods for functional and
+  longitudinal data analysis.
+\newblock \emph{The Annals of Statistics}, 34\penalty0 (3):\penalty0
+  1493--1517, 2006.
+\newblock \doi{10.1214/009053606000000272}.
+
+\bibitem[Higham(1988)]{higham1988computing}
+N.~J. Higham.
+\newblock Computing a nearest symmetric positive semidefinite matrix.
+\newblock \emph{Linear Algebra and its Applications}, 103:\penalty0 103--118,
+  1988.
+
+\bibitem[Horn and Johnson(2013)]{horn2013matrix}
+R.~A. Horn and C.~R. Johnson.
+\newblock \emph{Matrix Analysis}.
+\newblock Cambridge University Press, Cambridge, 2 edition, 2013.
+
+\bibitem[Iber et~al.(2007)Iber, Ancoli-Israel, Chesson, and Quan]{iber2007aasm}
+C.~Iber, S.~Ancoli-Israel, A.~L. Chesson, and S.~F. Quan.
+\newblock \emph{The {AASM} Manual for the Scoring of Sleep and Associated
+  Events: Rules, Terminology and Technical Specifications}.
+\newblock American Academy of Sleep Medicine, Westchester, IL, 2007.
+
+\bibitem[Ishida et~al.(2023)Ishida, Yamane, Charoenphakdee, Niu, and
+  Sugiyama]{ishida2023performance}
+T.~Ishida, I.~Yamane, N.~Charoenphakdee, G.~Niu, and M.~Sugiyama.
+\newblock Is the performance of my deep network too good to be true? a direct
+  approach to estimating the {B}ayes error in binary classification.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Ji and M{\"u}ller(2017)]{ji2017optimal}
+H.~Ji and H.-G. M{\"u}ller.
+\newblock Optimal designs for longitudinal and functional data.
+\newblock \emph{Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 79\penalty0 (3):\penalty0 859--876, 2017.
+
+\bibitem[Joshi and Boyd(2009)]{joshi2009sensor}
+S.~Joshi and S.~Boyd.
+\newblock Sensor selection via convex optimization.
+\newblock \emph{IEEE Transactions on Signal Processing}, 57\penalty0
+  (2):\penalty0 451--462, 2009.
+
+\bibitem[Kallus and Uehara(2020)]{kallus2020double}
+N.~Kallus and M.~Uehara.
+\newblock Double reinforcement learning for efficient off-policy evaluation in
+  {M}arkov decision processes.
+\newblock \emph{Journal of Machine Learning Research}, 21\penalty0
+  (167):\penalty0 1--63, 2020.
+
+\bibitem[Kemp et~al.(2000)Kemp, Zwinderman, Tuk, Kamphuisen, and
+  Obery{\'e}]{kemp2000analysis}
+B.~Kemp, A.~H. Zwinderman, B.~Tuk, H.~A.~C. Kamphuisen, and J.~J.~L.
+  Obery{\'e}.
+\newblock Analysis of a sleep-dependent neuronal feedback loop: The slow-wave
+  microcontinuity of the {EEG}.
+\newblock \emph{IEEE Transactions on Biomedical Engineering}, 47\penalty0
+  (9):\penalty0 1185--1194, 2000.
+
+\bibitem[Kidger et~al.(2020)Kidger, Morrill, Foster, and
+  Lyons]{kidger2020neural}
+P.~Kidger, J.~Morrill, J.~Foster, and T.~Lyons.
+\newblock Neural controlled differential equations for irregular time series.
+\newblock In \emph{Advances in Neural Information Processing Systems 33}, pages
+  6696--6707. Curran Associates, Inc., 2020.
+
+\bibitem[Koopmans and Reiers{\o}l(1950)]{koopmans1950identification}
+T.~C. Koopmans and O.~Reiers{\o}l.
+\newblock The identification of structural characteristics.
+\newblock \emph{The Annals of Mathematical Statistics}, 21\penalty0
+  (2):\penalty0 165--181, 1950.
+
+\bibitem[Krause et~al.(2008)Krause, Singh, and Guestrin]{krause2008near}
+A.~Krause, A.~Singh, and C.~Guestrin.
+\newblock Near-optimal sensor placements in {G}aussian processes: Theory,
+  efficient algorithms and empirical studies.
+\newblock \emph{Journal of Machine Learning Research}, 9:\penalty0 235--284,
+  2008.
+
+\bibitem[Le~Cam and Yang(1990)]{lecam1990asymptotics}
+L.~Le~Cam and G.~L. Yang.
+\newblock \emph{Asymptotics in Statistics: Some Basic Concepts}.
+\newblock Springer, New York, 1990.
+
+\bibitem[Li and Hsing(2010)]{li2010uniform}
+Y.~Li and T.~Hsing.
+\newblock Uniform convergence rates for nonparametric regression and principal
+  component analysis in functional/longitudinal data.
+\newblock \emph{The Annals of Statistics}, 38\penalty0 (6):\penalty0
+  3321--3351, 2010.
+\newblock \doi{10.1214/10-AOS813}.
+
+\bibitem[Lindley(1956)]{lindley1956information}
+D.~V. Lindley.
+\newblock On a measure of the information provided by an experiment.
+\newblock \emph{The Annals of Mathematical Statistics}, 27\penalty0
+  (4):\penalty0 986--1005, 1956.
+\newblock \doi{10.1214/aoms/1177728069}.
+
+\bibitem[MacKay(1992)]{mackay1992information}
+D.~J.~C. MacKay.
+\newblock Information-based objective functions for active data selection.
+\newblock \emph{Neural Computation}, 4\penalty0 (4):\penalty0 590--604, 1992.
+
+\bibitem[Manski(2003)]{manski2003partial}
+C.~F. Manski.
+\newblock \emph{Partial Identification of Probability Distributions}.
+\newblock Springer, New York, 2003.
+
+\bibitem[Mohan and Pearl(2021)]{mohan2021graphical}
+K.~Mohan and J.~Pearl.
+\newblock Graphical models for processing missing data.
+\newblock \emph{Journal of the American Statistical Association}, 116\penalty0
+  (534):\penalty0 1023--1037, 2021.
+\newblock \doi{10.1080/01621459.2021.1874961}.
+
+\bibitem[Mourtazaev et~al.(1995)Mourtazaev, Kemp, Zwinderman, and
+  Kamphuisen]{mourtazaev1995age}
+M.~S. Mourtazaev, B.~Kemp, A.~H. Zwinderman, and H.~A.~C. Kamphuisen.
+\newblock Age and gender affect different characteristics of slow waves in the
+  sleep {EEG}.
+\newblock \emph{Sleep}, 18\penalty0 (7):\penalty0 557--564, 1995.
+
+\bibitem[Nabi et~al.(2020)Nabi, Bhattacharya, and Shpitser]{nabi2020full}
+R.~Nabi, R.~Bhattacharya, and I.~Shpitser.
+\newblock Full law identification in graphical models of missing data:
+  Completeness results.
+\newblock In \emph{Proceedings of the 37th International Conference on Machine
+  Learning}, volume 119 of \emph{Proceedings of Machine Learning Research},
+  pages 7153--7163. PMLR, 2020.
+
+\bibitem[Pearl and Bareinboim(2014)]{pearl2014external}
+J.~Pearl and E.~Bareinboim.
+\newblock External validity: From do-calculus to transportability across
+  populations.
+\newblock \emph{Statistical Science}, 29\penalty0 (4):\penalty0 579--595, 2014.
+\newblock \doi{10.1214/14-STS486}.
+
+\bibitem[Penrose(1955)]{penrose1955generalized}
+R.~Penrose.
+\newblock A generalized inverse for matrices.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 51\penalty0 (3):\penalty0 406--413, 1955.
+
+\bibitem[Petrutiu et~al.(2007)Petrutiu, Sahakian, and
+  Swiryn]{petrutiu2007abrupt}
+S.~Petrutiu, A.~V. Sahakian, and S.~Swiryn.
+\newblock Abrupt changes in fibrillatory wave characteristics at the
+  termination of paroxysmal atrial fibrillation in humans.
+\newblock \emph{Europace}, 9\penalty0 (7):\penalty0 466--470, 2007.
+
+\bibitem[Plackett(1954)]{plackett1954reduction}
+R.~L. Plackett.
+\newblock A reduction formula for normal multivariate integrals.
+\newblock \emph{Biometrika}, 41\penalty0 (3/4):\penalty0 351--360, 1954.
+
+\bibitem[Pollard et~al.(2026)Pollard, Moody, Lehman, Gow, Fernandes, Xie,
+  Johnson, Mark, and Heldt]{pollard2026physionet}
+T.~Pollard, B.~E. Moody, L.-w. Lehman, B.~Gow, C.~Fernandes, C.~Xie,
+  A.~Johnson, R.~G. Mark, and T.~Heldt.
+\newblock {PhysioNet} as a global platform for biomedical research.
+\newblock \emph{Nature Health}, 2026.
+\newblock \doi{10.1038/s44360-026-00096-z}.
+
+\bibitem[Precup et~al.(2000)Precup, Sutton, and Singh]{precup2000eligibility}
+D.~Precup, R.~S. Sutton, and S.~P. Singh.
+\newblock Eligibility traces for off-policy policy evaluation.
+\newblock In \emph{Proceedings of the Seventeenth International Conference on
+  Machine Learning}, pages 759--766. Morgan Kaufmann, 2000.
+
+\bibitem[Pukelsheim(2006)]{pukelsheim2006optimal}
+F.~Pukelsheim.
+\newblock \emph{Optimal Design of Experiments}.
+\newblock Number~50 in Classics in Applied Mathematics. SIAM, Philadelphia, PA,
+  2006.
+
+\bibitem[Pullenayegum and Lim(2016)]{pullenayegum2016irregular}
+E.~M. Pullenayegum and L.~S.~H. Lim.
+\newblock Longitudinal data subject to irregular observation: A review of
+  methods with a focus on visit processes, assumptions, and study design.
+\newblock \emph{Statistical Methods in Medical Research}, 25\penalty0
+  (6):\penalty0 2992--3014, 2016.
+\newblock \doi{10.1177/0962280214536537}.
+
+\bibitem[Quadrianto et~al.(2009)Quadrianto, Smola, Caetano, and
+  Le]{quadrianto2009labels}
+N.~Quadrianto, A.~J. Smola, T.~S. Caetano, and Q.~V. Le.
+\newblock Estimating labels from label proportions.
+\newblock \emph{Journal of Machine Learning Research}, 10:\penalty0 2349--2374,
+  2009.
+
+\bibitem[Rainforth et~al.(2024)Rainforth, Foster, Ivanova, and
+  Bickford~Smith]{rainforth2024modern}
+T.~Rainforth, A.~Foster, D.~R. Ivanova, and F.~Bickford~Smith.
+\newblock Modern {B}ayesian experimental design.
+\newblock \emph{Statistical Science}, 39\penalty0 (1):\penalty0 100--114, 2024.
+\newblock \doi{10.1214/23-STS915}.
+
+\bibitem[Ramsay and Silverman(2005)]{ramsay2005functional}
+J.~O. Ramsay and B.~W. Silverman.
+\newblock \emph{Functional Data Analysis}.
+\newblock Springer, New York, 2 edition, 2005.
+
+\bibitem[Rechtschaffen and Kales(1968)]{rechtschaffen1968manual}
+A.~Rechtschaffen and A.~Kales, editors.
+\newblock \emph{A Manual of Standardized Terminology, Techniques and Scoring
+  System for Sleep Stages of Human Subjects}.
+\newblock NIH Publication No.\ 204. U.S. Government Printing Office,
+  Washington, DC, 1968.
+
+\bibitem[Rothenberg(1971)]{rothenberg1971identification}
+T.~J. Rothenberg.
+\newblock Identification in parametric models.
+\newblock \emph{Econometrica}, 39\penalty0 (3):\penalty0 577--591, 1971.
+
+\bibitem[Rubanova et~al.(2019)Rubanova, Chen, and Duvenaud]{rubanova2019latent}
+Y.~Rubanova, R.~T.~Q. Chen, and D.~K. Duvenaud.
+\newblock Latent ordinary differential equations for irregularly-sampled time
+  series.
+\newblock In \emph{Advances in Neural Information Processing Systems 32}.
+  Curran Associates, Inc., 2019.
+
+\bibitem[Sachdeva et~al.(2020)Sachdeva, Su, and
+  Joachims]{sachdeva2020deficient}
+N.~Sachdeva, Y.~Su, and T.~Joachims.
+\newblock Off-policy bandits with deficient support.
+\newblock In \emph{Proceedings of the 26th ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pages 965--975. ACM, 2020.
+\newblock \doi{10.1145/3394486.3403139}.
+
+\bibitem[Settles(2012)]{settles2012active}
+B.~Settles.
+\newblock \emph{Active Learning}.
+\newblock Morgan and Claypool, 2012.
+
+\bibitem[Shim et~al.(2018)Shim, Hwang, and Yang]{shim2018joint}
+H.~Shim, S.~J. Hwang, and E.~Yang.
+\newblock Joint active feature acquisition and classification with
+  variable-size set encoding.
+\newblock In \emph{Advances in Neural Information Processing Systems 31}, 2018.
+
+\bibitem[Shukla and Marlin(2020)]{shukla2020survey}
+S.~N. Shukla and B.~M. Marlin.
+\newblock A survey on principles, models and methods for learning from
+  irregularly sampled time series, 2020.
+\newblock arXiv:2012.00168.
+
+\bibitem[Tamer(2010)]{tamer2010partial}
+E.~Tamer.
+\newblock Partial identification in econometrics.
+\newblock \emph{Annual Review of Economics}, 2:\penalty0 167--195, 2010.
+
+\bibitem[Torgersen(1991)]{torgersen1991comparison}
+E.~Torgersen.
+\newblock \emph{Comparison of Statistical Experiments}.
+\newblock Cambridge University Press, Cambridge, 1991.
+
+\bibitem[von Kleist et~al.(2025)von Kleist, Zamanian, Shpitser, and
+  Ahmidi]{vonkleist2025evaluation}
+H.~von Kleist, A.~Zamanian, I.~Shpitser, and N.~Ahmidi.
+\newblock Evaluation of active feature acquisition methods for time-varying
+  feature settings.
+\newblock \emph{Journal of Machine Learning Research}, 26\penalty0
+  (60):\penalty0 1--84, 2025.
+
+\bibitem[Weaver et~al.(2023)Weaver, Xiao, and Lu]{weaver2023informative}
+C.~Weaver, L.~Xiao, and W.~Lu.
+\newblock Functional data analysis for longitudinal data with informative
+  observation times.
+\newblock \emph{Biometrics}, 79\penalty0 (2):\penalty0 722--733, 2023.
+\newblock \doi{10.1111/biom.13646}.
+
+\bibitem[Xing et~al.(2009)Xing, Pei, and Yu]{xing2009early}
+Z.~Xing, J.~Pei, and P.~S. Yu.
+\newblock Early prediction on time series: A nearest neighbor approach.
+\newblock In \emph{Proceedings of the 21st International Joint Conference on
+  Artificial Intelligence}, pages 1297--1302. IJCAI Organization, 2009.
+
+\bibitem[Yao et~al.(2005)Yao, M{\"u}ller, and Wang]{yao2005sparse}
+F.~Yao, H.-G. M{\"u}ller, and J.-L. Wang.
+\newblock Functional data analysis for sparse longitudinal data.
+\newblock \emph{Journal of the American Statistical Association}, 100\penalty0
+  (470):\penalty0 577--590, 2005.
+\newblock \doi{10.1198/016214504000001745}.
+
+\bibitem[Zhang(2026)]{zhang2026label}
+X.~Zhang.
+\newblock The label defines the timescale: Trait--state limits of
+  temporal-aggregate learning, 2026.
+\newblock arXiv:2608.01587.
+
+\bibitem[Zhou(2018)]{zhou2018brief}
+Z.-H. Zhou.
+\newblock A brief introduction to weakly supervised learning.
+\newblock \emph{National Science Review}, 5\penalty0 (1):\penalty0 44--53,
+  2018.
+
+\end{thebibliography}

@@ -1,0 +1,784 @@
+{
+  "headline": {
+    "n_replications": 200,
+    "n_replications_robust": 100,
+    "seed": 20260802,
+    "n_candidates": 14,
+    "budget_B": 4,
+    "n_protocols_Pi_B": 1001,
+    "grid_p": 128,
+    "horizon_T": 20.0,
+    "action_noise": 0.5,
+    "n_bootstrap": 20,
+    "robust_quantile": 0.1,
+    "violations_regret_le_2eps": 0,
+    "violations_eta_bound": 0,
+    "n_checks": 7200,
+    "min_slack_2eps_minus_regret": 0.02915411041119631,
+    "min_slack_eta_bound": 0.02915411041119631,
+    "median_slack_ratio_regret_over_2eps": 0.02436785995406321,
+    "max_ratio_regret_over_2eps": 0.36640646556058865,
+    "mean_eta_hat_overall": 0.9989421577508167,
+    "min_eta_hat_overall": 0.9346466113944839,
+    "frac_greedy_hits_plugin_optimum": 0.8777777777777778,
+    "n_greedy_short_of_budget": 0,
+    "max_ceiling_reconstruction_error": 3.3306690738754696e-16,
+    "mean_regret_at_m25": 0.04191707792878225,
+    "mean_regret_at_m1000": 0.0013792502677466923,
+    "mean_eps_at_m25": 0.22061107666837723,
+    "mean_eps_at_m1000": 0.03608152868567271,
+    "frac_zero_regret_at_m1000": 0.4791666666666667,
+    "frac_zero_regret_at_m25": 0.029166666666666667,
+    "mean_loglog_slope_regret": -0.9432854597378347,
+    "mean_loglog_slope_eps": -0.49151668634389883,
+    "robust_cells_with_lower_mean_regret": 3,
+    "robust_n_cells": 12,
+    "robust_wins": 394,
+    "robust_ties": 381,
+    "robust_losses": 425,
+    "robust_mean_paired_difference": 0.0015282650048656491,
+    "robust_overall_mean_regret": 0.03665077488497526,
+    "plugin_greedy_overall_mean_regret": 0.03512250988010961,
+    "plugin_exhaustive_overall_mean_regret": 0.03381232440468243,
+    "runtime_seconds": 312.4706374580055
+  },
+  "truth": {
+    "trait_ou": {
+      "mean": {
+        "I_star": 0.6907252995047104,
+        "I_worst": 0.4499106890437062,
+        "I_star_actions": [
+          "pt4",
+          "win0",
+          "win1",
+          "seg1"
+        ],
+        "I_star_times": [
+          9.0,
+          5.0,
+          15.0,
+          18.0
+        ],
+        "spread_over_Pi_B": 0.24081461046100422
+      },
+      "occ_c0": {
+        "I_star": 0.653779861527425,
+        "I_worst": 0.4264946894818094,
+        "I_star_actions": [
+          "pt5",
+          "win0",
+          "win1",
+          "seg0"
+        ],
+        "I_star_times": [
+          11.0,
+          5.0,
+          15.0,
+          2.0
+        ],
+        "spread_over_Pi_B": 0.22728517204561555
+      },
+      "occ_c1": {
+        "I_star": 0.608515293682732,
+        "I_worst": 0.392671040531186,
+        "I_star_actions": [
+          "pt4",
+          "win0",
+          "win1",
+          "seg1"
+        ],
+        "I_star_times": [
+          9.0,
+          5.0,
+          15.0,
+          18.0
+        ],
+        "spread_over_Pi_B": 0.21584425315154604
+      }
+    },
+    "two_scale_ou": {
+      "mean": {
+        "I_star": 0.5930390313528916,
+        "I_worst": 0.3221168414801701,
+        "I_star_actions": [
+          "pt4",
+          "win0",
+          "win1",
+          "seg1"
+        ],
+        "I_star_times": [
+          9.0,
+          5.0,
+          15.0,
+          18.0
+        ],
+        "spread_over_Pi_B": 0.2709221898727215
+      },
+      "occ_c0": {
+        "I_star": 0.5659177375470303,
+        "I_worst": 0.308434917354983,
+        "I_star_actions": [
+          "pt4",
+          "win0",
+          "win1",
+          "seg1"
+        ],
+        "I_star_times": [
+          9.0,
+          5.0,
+          15.0,
+          18.0
+        ],
+        "spread_over_Pi_B": 0.2574828201920473
+      },
+      "occ_c1": {
+        "I_star": 0.5222968448653639,
+        "I_worst": 0.2855497440614345,
+        "I_star_actions": [
+          "pt4",
+          "win0",
+          "win1",
+          "seg1"
+        ],
+        "I_star_times": [
+          9.0,
+          5.0,
+          15.0,
+          18.0
+        ],
+        "spread_over_Pi_B": 0.23674710080392936
+      }
+    }
+  },
+  "curves": {
+    "trait_ou|mean": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.029837846877206534,
+        0.015344247409711345,
+        0.007885551245393682,
+        0.0037383106797241965,
+        0.00240424964556836,
+        0.0015617674649874335
+      ],
+      "mean_regret_greedy": [
+        0.033335006449115336,
+        0.017754071568433994,
+        0.008714164086407683,
+        0.0030354804993548735,
+        0.0018953992072665222,
+        0.0009999111177162007
+      ],
+      "mean_eps_m": [
+        0.21681507494166452,
+        0.15746125682376258,
+        0.10900620255850829,
+        0.06862866841705735,
+        0.04864215232793805,
+        0.03338668123850039
+      ],
+      "mean_eta_hat": [
+        0.9968997157205279,
+        0.9987098949669913,
+        0.99861444182849,
+        0.9988957620676129,
+        0.9995579126626063,
+        0.999567789211442
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.79,
+        0.835,
+        0.82,
+        0.81,
+        0.84,
+        0.845
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.4037923030061225,
+        0.2995782662378138,
+        0.21012685387162286,
+        0.13351902615439049,
+        0.09488005501030773,
+        0.06521159501201335
+      ],
+      "loglog_slope_regret": -0.8017395929587149,
+      "loglog_slope_eps": -0.5078789572178251
+    },
+    "trait_ou|occ_c0": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.027866417585855004,
+        0.01406008539468794,
+        0.00688758702157333,
+        0.003433285358489031,
+        0.002188353535728132,
+        0.0014799388109911216
+      ],
+      "mean_regret_greedy": [
+        0.0313445927741781,
+        0.015969014804287193,
+        0.007306156897253268,
+        0.0028876345423871365,
+        0.0016199466113811251,
+        0.0009303846529991289
+      ],
+      "mean_eps_m": [
+        0.2069520240343218,
+        0.15039324058206435,
+        0.10409264608482552,
+        0.06560518671529683,
+        0.04649681104953284,
+        0.031943160502047985
+      ],
+      "mean_eta_hat": [
+        0.9971801791486504,
+        0.9987364002342841,
+        0.9984892524279252,
+        0.9991314493615303,
+        0.9993911411029327,
+        0.999451848864615
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.8,
+        0.85,
+        0.82,
+        0.82,
+        0.83,
+        0.825
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.38603763048278866,
+        0.2867263957694407,
+        0.20129770514807774,
+        0.12777708807210467,
+        0.09080526856333758,
+        0.06240638219310484
+      ],
+      "loglog_slope_regret": -0.7974749986800319,
+      "loglog_slope_eps": -0.5072933042563725
+    },
+    "trait_ou|occ_c1": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.025298186441708895,
+        0.014506985978859457,
+        0.00633780663319962,
+        0.003061300281063185,
+        0.00193286913593138,
+        0.0014759044147324334
+      ],
+      "mean_regret_greedy": [
+        0.029330677274597195,
+        0.015361587078783847,
+        0.007068933814445942,
+        0.002581896013269641,
+        0.0015030166789460815,
+        0.0010778941848810224
+      ],
+      "mean_eps_m": [
+        0.1942761372262445,
+        0.14330115787740783,
+        0.09971654884705661,
+        0.06308251600577683,
+        0.0447079082709418,
+        0.03074076636466496
+      ],
+      "mean_eta_hat": [
+        0.9968806965358251,
+        0.9988581511941834,
+        0.9984170295376521,
+        0.9990652636334764,
+        0.999169847643153,
+        0.999506212652319
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.805,
+        0.865,
+        0.82,
+        0.825,
+        0.845,
+        0.84
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.36325408801078013,
+        0.27209532977595624,
+        0.1930952910609136,
+        0.12310373173049047,
+        0.08748294740595222,
+        0.060005628314597485
+      ],
+      "loglog_slope_regret": -0.7995078884198572,
+      "loglog_slope_eps": -0.5014227935442773
+    },
+    "two_scale_ou|mean": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.05830953602601359,
+        0.03498210887226523,
+        0.017190157714693417,
+        0.00483545486970045,
+        0.0023570999006684856,
+        0.0012687718724301144
+      ],
+      "mean_regret_greedy": [
+        0.056986824259877486,
+        0.03594416399287357,
+        0.016294238201164424,
+        0.004449258359193689,
+        0.002438679290183804,
+        0.001316606415841261
+      ],
+      "mean_eps_m": [
+        0.2504296021178913,
+        0.18244716082427118,
+        0.12989162863115564,
+        0.08376243589427489,
+        0.06085879193673726,
+        0.04213056707293697
+      ],
+      "mean_eta_hat": [
+        0.9978758408555501,
+        0.9981929924406727,
+        0.998995474573355,
+        0.9998598070786677,
+        0.9999028764494454,
+        0.99996340618873
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.865,
+        0.9,
+        0.9,
+        0.97,
+        0.965,
+        0.97
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.4425496682097691,
+        0.32991221277627714,
+        0.24259309954761787,
+        0.16268941691884933,
+        0.11936048397280605,
+        0.08299236227344385
+      ],
+      "loglog_slope_regret": -1.0882996287501578,
+      "loglog_slope_eps": -0.4812866846492184
+    },
+    "two_scale_ou|occ_c0": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.05607823666555094,
+        0.03370341898891996,
+        0.016930600070834644,
+        0.004585695104915544,
+        0.002208802064391246,
+        0.0012186805724645122
+      ],
+      "mean_regret_greedy": [
+        0.05498658582150894,
+        0.034435287636884415,
+        0.015970567918918276,
+        0.0043100559371976625,
+        0.0022896526063921844,
+        0.0012186805724645122
+      ],
+      "mean_eps_m": [
+        0.23915550985727052,
+        0.17479098585718833,
+        0.12443357876109488,
+        0.08038653030426193,
+        0.05843024920100488,
+        0.04044542339742476
+      ],
+      "mean_eta_hat": [
+        0.99795054157324,
+        0.9983406674292488,
+        0.9987556469185148,
+        0.9998529185248107,
+        0.9998950934033803,
+        0.9999805758057587
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.875,
+        0.895,
+        0.905,
+        0.975,
+        0.97,
+        0.965
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.4222327830489901,
+        0.31587855272545673,
+        0.23193655745135516,
+        0.1561873655036083,
+        0.1146516963376185,
+        0.07967216622238502
+      ],
+      "loglog_slope_regret": -1.093524872621006,
+      "loglog_slope_eps": -0.4799738176986623
+    },
+    "two_scale_ou|occ_c1": {
+      "m": [
+        25,
+        50,
+        100,
+        250,
+        500,
+        1000
+      ],
+      "mean_regret_exhaustive": [
+        0.054112243976358575,
+        0.03158922517868246,
+        0.01584426273683453,
+        0.004320003444453736,
+        0.0020634491747503125,
+        0.0012704384708745375
+      ],
+      "mean_regret_greedy": [
+        0.05363609801756815,
+        0.031512970164366695,
+        0.0147564249166016,
+        0.004153630726654639,
+        0.0020171258365789687,
+        0.0012704384708745375
+      ],
+      "mean_eps_m": [
+        0.2160381118328708,
+        0.16065167235276173,
+        0.11512572338086546,
+        0.0749966365522265,
+        0.054529120099712,
+        0.037842573538461176
+      ],
+      "mean_eta_hat": [
+        0.9985642276912498,
+        0.9984539002044264,
+        0.9990597097827185,
+        0.9999004812018295,
+        0.9998801683498479,
+        0.999970361763738
+      ],
+      "frac_greedy_hits_plugin_optimum": [
+        0.865,
+        0.875,
+        0.895,
+        0.975,
+        0.975,
+        0.975
+      ],
+      "mean_slack_2eps_minus_regret": [
+        0.37796397968938306,
+        0.28971411952684106,
+        0.2144071840248964,
+        0.14567326965999927,
+        0.10699479102467371,
+        0.0744147086060478
+      ],
+      "loglog_slope_regret": -1.0791657769972407,
+      "loglog_slope_eps": -0.4712445606970374
+    }
+  },
+  "robust_cells": {
+    "trait_ou|mean|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.042188090423908406,
+      "mean_regret_plugin_greedy": 0.03346606746178266,
+      "mean_regret_plugin_exhaustive": 0.0317703441806069,
+      "mean_paired_difference": 0.008722022962125745,
+      "se_paired_difference": 0.0033266090331363083,
+      "t_stat": 2.621896013401572,
+      "robust_wins": 32,
+      "ties": 19,
+      "robust_losses": 49,
+      "frac_same_protocol": 0.19
+    },
+    "trait_ou|mean|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.022151628480335236,
+      "mean_regret_plugin_greedy": 0.019103874666995972,
+      "mean_regret_plugin_exhaustive": 0.015192160152076264,
+      "mean_paired_difference": 0.0030477538133392656,
+      "se_paired_difference": 0.0022637569026411597,
+      "t_stat": 1.3463255748810328,
+      "robust_wins": 29,
+      "ties": 33,
+      "robust_losses": 38,
+      "frac_same_protocol": 0.31
+    },
+    "trait_ou|occ_c0|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.03654572980224834,
+      "mean_regret_plugin_greedy": 0.03321188590187968,
+      "mean_regret_plugin_exhaustive": 0.029397322223254488,
+      "mean_paired_difference": 0.003333843900368673,
+      "se_paired_difference": 0.0030128183055273005,
+      "t_stat": 1.1065532542245977,
+      "robust_wins": 33,
+      "ties": 25,
+      "robust_losses": 42,
+      "frac_same_protocol": 0.25
+    },
+    "trait_ou|occ_c0|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.022144891017659908,
+      "mean_regret_plugin_greedy": 0.016270129892822744,
+      "mean_regret_plugin_exhaustive": 0.01336476449216526,
+      "mean_paired_difference": 0.005874761124837166,
+      "se_paired_difference": 0.0020515321827758834,
+      "t_stat": 2.8635968639244815,
+      "robust_wins": 24,
+      "ties": 34,
+      "robust_losses": 42,
+      "frac_same_protocol": 0.31
+    },
+    "trait_ou|occ_c1|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.03697793914470178,
+      "mean_regret_plugin_greedy": 0.03363740783038729,
+      "mean_regret_plugin_exhaustive": 0.026673623405042753,
+      "mean_paired_difference": 0.003340531314314483,
+      "se_paired_difference": 0.0031050146239536783,
+      "t_stat": 1.075850428704557,
+      "robust_wins": 36,
+      "ties": 25,
+      "robust_losses": 39,
+      "frac_same_protocol": 0.25
+    },
+    "trait_ou|occ_c1|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.018339251722184577,
+      "mean_regret_plugin_greedy": 0.015836697396603646,
+      "mean_regret_plugin_exhaustive": 0.01422362633061217,
+      "mean_paired_difference": 0.002502554325580925,
+      "se_paired_difference": 0.001992401271835674,
+      "t_stat": 1.2560493515822881,
+      "robust_wins": 27,
+      "ties": 40,
+      "robust_losses": 33,
+      "frac_same_protocol": 0.38
+    },
+    "two_scale_ou|mean|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.05886576343418417,
+      "mean_regret_plugin_greedy": 0.058423062349060445,
+      "mean_regret_plugin_exhaustive": 0.058754997194141116,
+      "mean_paired_difference": 0.00044270108512373227,
+      "se_paired_difference": 0.0038720201129378907,
+      "t_stat": 0.11433336403509364,
+      "robust_wins": 34,
+      "ties": 32,
+      "robust_losses": 34,
+      "frac_same_protocol": 0.32
+    },
+    "two_scale_ou|mean|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.03163625909631637,
+      "mean_regret_plugin_greedy": 0.035058607221727434,
+      "mean_regret_plugin_exhaustive": 0.03574500891155583,
+      "mean_paired_difference": -0.0034223481254110643,
+      "se_paired_difference": 0.002442751486369914,
+      "t_stat": -1.4010218167943453,
+      "robust_wins": 35,
+      "ties": 40,
+      "robust_losses": 25,
+      "frac_same_protocol": 0.4
+    },
+    "two_scale_ou|occ_c0|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.056508728490654005,
+      "mean_regret_plugin_greedy": 0.05537869515075515,
+      "mean_regret_plugin_exhaustive": 0.0578318477579703,
+      "mean_paired_difference": 0.0011300333398988548,
+      "se_paired_difference": 0.0038195655040118882,
+      "t_stat": 0.29585389718069294,
+      "robust_wins": 35,
+      "ties": 27,
+      "robust_losses": 38,
+      "frac_same_protocol": 0.25
+    },
+    "two_scale_ou|occ_c0|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.029269075502998357,
+      "mean_regret_plugin_greedy": 0.03454462944972854,
+      "mean_regret_plugin_exhaustive": 0.034796709184530865,
+      "mean_paired_difference": -0.005275553946730186,
+      "se_paired_difference": 0.002316057836177841,
+      "t_stat": -2.2778161513601756,
+      "robust_wins": 38,
+      "ties": 39,
+      "robust_losses": 23,
+      "frac_same_protocol": 0.39
+    },
+    "two_scale_ou|occ_c1|m=25": {
+      "n": 100,
+      "mean_regret_robust": 0.057232495796316805,
+      "mean_regret_plugin_greedy": 0.05487612859821725,
+      "mean_regret_plugin_exhaustive": 0.05594512011204962,
+      "mean_paired_difference": 0.0023563671980995388,
+      "se_paired_difference": 0.0033821195827028485,
+      "t_stat": 0.6967131529442933,
+      "robust_wins": 37,
+      "ties": 25,
+      "robust_losses": 38,
+      "frac_same_protocol": 0.24
+    },
+    "two_scale_ou|occ_c1|m=50": {
+      "n": 100,
+      "mean_regret_robust": 0.027949445708195193,
+      "mean_regret_plugin_greedy": 0.03166293264135454,
+      "mean_regret_plugin_exhaustive": 0.03205236891218356,
+      "mean_paired_difference": -0.0037134869331593417,
+      "se_paired_difference": 0.00207837305159324,
+      "t_stat": -1.786727811117766,
+      "robust_wins": 34,
+      "ties": 42,
+      "robust_losses": 24,
+      "frac_same_protocol": 0.42
+    }
+  },
+  "config": {
+    "kernels": {
+      "trait_ou": {
+        "alpha": 0.2,
+        "kernel": "ou",
+        "kwargs": {
+          "tau": 2.0
+        }
+      },
+      "two_scale_ou": {
+        "alpha": 0.0,
+        "kernel": "two_scale_ou",
+        "kwargs": {
+          "tau_fast": 0.5,
+          "tau_slow": 6.0,
+          "w_fast": 0.5
+        }
+      }
+    },
+    "labels": [
+      "mean",
+      "occ_c0",
+      "occ_c1"
+    ],
+    "m_list": [
+      25,
+      50,
+      100,
+      250,
+      500,
+      1000
+    ],
+    "robust_m": [
+      25,
+      50
+    ],
+    "candidate_tags": [
+      "pt0",
+      "pt1",
+      "pt2",
+      "pt3",
+      "pt4",
+      "pt5",
+      "pt6",
+      "pt7",
+      "pt8",
+      "pt9",
+      "win0",
+      "win1",
+      "seg0",
+      "seg1"
+    ],
+    "candidate_times": [
+      1.0,
+      3.0,
+      5.0,
+      7.0,
+      9.0,
+      11.0,
+      13.0,
+      15.0,
+      17.0,
+      19.0,
+      5.0,
+      15.0,
+      2.0,
+      18.0
+    ],
+    "candidate_widths": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      3.0,
+      3.0,
+      0.0,
+      0.0
+    ],
+    "candidate_segments": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      3,
+      3
+    ],
+    "calibration": "noiseless dense trajectories, K_hat = fit_covariance(Z).K"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_count": 24,
+    "timestamp_utc": "2026-08-21T06:10:56Z"
+  }
+}

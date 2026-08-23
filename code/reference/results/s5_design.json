@@ -1,0 +1,1155 @@
+{
+  "seed": 20260802,
+  "sigmoid_kmax": 60,
+  "sigmoid_truncation_error": 2.97454560982402e-11,
+  "n_random_restarts": 20,
+  "n_violation_trials": 600,
+  "n_ratio_subsets": 32,
+  "grid": {
+    "horizon": 10.0,
+    "p": 128
+  },
+  "labels": [
+    "mean",
+    "occupation_c0",
+    "occupation_c1.5",
+    "two_sided_c1.2",
+    "sigmoid"
+  ],
+  "methods": [
+    "same_time",
+    "uniform",
+    "dispersed",
+    "random",
+    "mutual_information",
+    "imse",
+    "linear_target",
+    "kernel_quadrature",
+    "label_aware_greedy",
+    "label_aware",
+    "exhaustive"
+  ],
+  "families": {
+    "i_stationary_ou": {
+      "title": "(i) stationary OU, uniform weights",
+      "notes": "kernel=ou(tau=1), T/tau=10, nu^2=0.4, point actions",
+      "n_candidates": 12,
+      "budget": 4.0,
+      "n_select": 4,
+      "homogeneous_costs": true,
+      "n_subsets_enumerated": 495,
+      "n_subsets_evaluated": 495,
+      "optimal_times": {
+        "mean": [
+          2.1364,
+          3.7727,
+          6.2273,
+          7.8636
+        ],
+        "occupation_c0": [
+          2.1364,
+          3.7727,
+          6.2273,
+          7.8636
+        ],
+        "occupation_c1.5": [
+          2.1364,
+          3.7727,
+          6.2273,
+          7.8636
+        ],
+        "two_sided_c1.2": [
+          2.1364,
+          3.7727,
+          5.4091,
+          7.0455
+        ],
+        "sigmoid": [
+          2.1364,
+          3.7727,
+          6.2273,
+          7.8636
+        ]
+      },
+      "optimal_widths": {
+        "mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c0": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c1.5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "two_sided_c1.2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sigmoid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "n_distinct_optima": 2,
+      "label_aware_is_1swap_local_optimum": {
+        "mean": true,
+        "occupation_c0": true,
+        "occupation_c1.5": true,
+        "two_sided_c1.2": true,
+        "sigmoid": true
+      },
+      "cross_efficiency": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          0.9911362260660403,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          0.9911362260660403,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          0.9911362260660403,
+          1.0
+        ],
+        [
+          0.9768217078106842,
+          0.9775498325297114,
+          0.9844100304704199,
+          1.0,
+          0.9770703802934059
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          0.9911362260660403,
+          1.0
+        ]
+      ],
+      "cross_efficiency_min": 0.9768217078106842
+    },
+    "i_stationary_matern32": {
+      "title": "(i) stationary Matern-3/2, uniform weights",
+      "notes": "kernel=matern32(tau=1), T/tau=10, nu^2=0.4, point actions",
+      "n_candidates": 12,
+      "budget": 4.0,
+      "n_select": 4,
+      "homogeneous_costs": true,
+      "n_subsets_enumerated": 495,
+      "n_subsets_evaluated": 495,
+      "optimal_times": {
+        "mean": [
+          1.3182,
+          3.7727,
+          6.2273,
+          8.6818
+        ],
+        "occupation_c0": [
+          1.3182,
+          3.7727,
+          6.2273,
+          8.6818
+        ],
+        "occupation_c1.5": [
+          2.1364,
+          3.7727,
+          5.4091,
+          7.8636
+        ],
+        "two_sided_c1.2": [
+          2.1364,
+          3.7727,
+          5.4091,
+          7.0455
+        ],
+        "sigmoid": [
+          1.3182,
+          3.7727,
+          6.2273,
+          8.6818
+        ]
+      },
+      "optimal_widths": {
+        "mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c0": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c1.5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "two_sided_c1.2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sigmoid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "n_distinct_optima": 3,
+      "label_aware_is_1swap_local_optimum": {
+        "mean": true,
+        "occupation_c0": true,
+        "occupation_c1.5": true,
+        "two_sided_c1.2": true,
+        "sigmoid": true
+      },
+      "cross_efficiency": [
+        [
+          1.0,
+          1.0,
+          0.9994017295418628,
+          0.962807064677973,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          0.9994017295418628,
+          0.962807064677973,
+          1.0
+        ],
+        [
+          0.9873100568164199,
+          0.9889534136549589,
+          1.0,
+          0.9931639949317664,
+          0.9878596746264615
+        ],
+        [
+          0.9570646926794399,
+          0.9600723462152142,
+          0.9809721208988516,
+          1.0,
+          0.9580685406536076
+        ],
+        [
+          1.0,
+          1.0,
+          0.9994017295418628,
+          0.962807064677973,
+          1.0
+        ]
+      ],
+      "cross_efficiency_min": 0.9570646926794399
+    },
+    "ii_nonstationary": {
+      "title": "(ii) non-stationary correlation time",
+      "notes": "tau(t) linear from 0.5 to 4.0, nu^2=0.15, point actions",
+      "n_candidates": 12,
+      "budget": 4.0,
+      "n_select": 4,
+      "homogeneous_costs": true,
+      "n_subsets_enumerated": 495,
+      "n_subsets_evaluated": 495,
+      "optimal_times": {
+        "mean": [
+          2.1364,
+          3.7727,
+          6.2273,
+          8.6818
+        ],
+        "occupation_c0": [
+          2.1364,
+          4.5909,
+          6.2273,
+          8.6818
+        ],
+        "occupation_c1.5": [
+          2.9545,
+          5.4091,
+          7.0455,
+          8.6818
+        ],
+        "two_sided_c1.2": [
+          3.7727,
+          5.4091,
+          7.0455,
+          8.6818
+        ],
+        "sigmoid": [
+          2.1364,
+          3.7727,
+          6.2273,
+          8.6818
+        ]
+      },
+      "optimal_widths": {
+        "mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c0": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c1.5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "two_sided_c1.2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sigmoid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "n_distinct_optima": 4,
+      "label_aware_is_1swap_local_optimum": {
+        "mean": true,
+        "occupation_c0": true,
+        "occupation_c1.5": true,
+        "two_sided_c1.2": true,
+        "sigmoid": true
+      },
+      "cross_efficiency": [
+        [
+          1.0,
+          0.9994152395940277,
+          0.9907294245677393,
+          0.9572917122791093,
+          1.0
+        ],
+        [
+          0.999215836849119,
+          1.0,
+          0.9946677087224454,
+          0.9664616947167637,
+          0.9995885592169909
+        ],
+        [
+          0.9876116114119687,
+          0.9928025931323832,
+          1.0,
+          0.9920063691641865,
+          0.9891876653640486
+        ],
+        [
+          0.9672570647959374,
+          0.9750829460180424,
+          0.9916442763444485,
+          1.0,
+          0.9696249648336397
+        ],
+        [
+          1.0,
+          0.9994152395940277,
+          0.9907294245677393,
+          0.9572917122791093,
+          1.0
+        ]
+      ],
+      "cross_efficiency_min": 0.9572917122791093
+    },
+    "iii_heterogeneous": {
+      "title": "(iii) heterogeneous widths, costs and noise",
+      "notes": "OU(tau=0.7), widths (0.0, 1.5, 3.5), c_a = 1 + 0.15*w_a, nu_a^2 linear from 1.0 to 3.0, B=4.0",
+      "n_candidates": 18,
+      "budget": 4.0,
+      "n_select": 4,
+      "homogeneous_costs": false,
+      "n_subsets_enumerated": 4047,
+      "n_subsets_evaluated": 802,
+      "optimal_times": {
+        "mean": [
+          2.3,
+          4.1,
+          5.9,
+          7.7
+        ],
+        "occupation_c0": [
+          2.3,
+          4.1,
+          5.9,
+          7.7
+        ],
+        "occupation_c1.5": [
+          0.5,
+          2.3,
+          4.1,
+          5.9
+        ],
+        "two_sided_c1.2": [
+          0.5,
+          0.5,
+          2.3
+        ],
+        "sigmoid": [
+          2.3,
+          4.1,
+          5.9,
+          7.7
+        ]
+      },
+      "optimal_widths": {
+        "mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c0": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c1.5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "two_sided_c1.2": [
+          1.5,
+          3.5,
+          1.5
+        ],
+        "sigmoid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "n_distinct_optima": 3,
+      "label_aware_is_1swap_local_optimum": {
+        "mean": true,
+        "occupation_c0": true,
+        "occupation_c1.5": true,
+        "two_sided_c1.2": true,
+        "sigmoid": true
+      },
+      "cross_efficiency": [
+        [
+          1.0,
+          1.0,
+          0.9825615078534964,
+          0.7669107574967764,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          0.9825615078534964,
+          0.7669107574967764,
+          1.0
+        ],
+        [
+          0.9947944511110778,
+          0.9960032636718582,
+          1.0,
+          0.9273375268842456,
+          0.9952170497501637
+        ],
+        [
+          0.764999906548149,
+          0.767633950902581,
+          0.8079412175500031,
+          1.0,
+          0.7659332814201192
+        ],
+        [
+          1.0,
+          1.0,
+          0.9825615078534964,
+          0.7669107574967764,
+          1.0
+        ]
+      ],
+      "cross_efficiency_min": 0.764999906548149
+    },
+    "iv_recency": {
+      "title": "(iv) recency-weighted label",
+      "notes": "OU(tau=1), omega_j prop. exp(-(T-t_j)/6.0), nu^2=0.4",
+      "n_candidates": 12,
+      "budget": 4.0,
+      "n_select": 4,
+      "homogeneous_costs": true,
+      "n_subsets_enumerated": 495,
+      "n_subsets_evaluated": 495,
+      "optimal_times": {
+        "mean": [
+          5.4091,
+          7.0455,
+          8.6818,
+          9.5
+        ],
+        "occupation_c0": [
+          5.4091,
+          7.0455,
+          8.6818,
+          9.5
+        ],
+        "occupation_c1.5": [
+          6.2273,
+          7.8636,
+          8.6818,
+          9.5
+        ],
+        "two_sided_c1.2": [
+          7.0455,
+          7.8636,
+          8.6818,
+          9.5
+        ],
+        "sigmoid": [
+          5.4091,
+          7.0455,
+          8.6818,
+          9.5
+        ]
+      },
+      "optimal_widths": {
+        "mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c0": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "occupation_c1.5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "two_sided_c1.2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sigmoid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "n_distinct_optima": 3,
+      "label_aware_is_1swap_local_optimum": {
+        "mean": true,
+        "occupation_c0": true,
+        "occupation_c1.5": true,
+        "two_sided_c1.2": true,
+        "sigmoid": true
+      },
+      "cross_efficiency": [
+        [
+          1.0,
+          1.0,
+          0.9869048387315387,
+          0.9251942891917206,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          0.9869048387315387,
+          0.9251942891917206,
+          1.0
+        ],
+        [
+          0.9911882418081481,
+          0.9943257878017783,
+          1.0,
+          0.9842065100550266,
+          0.9922132577231989
+        ],
+        [
+          0.9480673187899793,
+          0.95392896577739,
+          0.9756309339225323,
+          1.0,
+          0.9499759776480221
+        ],
+        [
+          1.0,
+          1.0,
+          0.9869048387315387,
+          0.9251942891917206,
+          1.0
+        ]
+      ],
+      "cross_efficiency_min": 0.9251942891917206
+    }
+  },
+  "submodularity": [
+    {
+      "family": "ii_nonstationary",
+      "label": "mean",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 2,
+      "random_search_size_T": 3,
+      "random_search_gain_S": 0.0038504630018650066,
+      "random_search_gain_T": 0.003948936945817133,
+      "random_search_relative_violation": 0.025574572175977216,
+      "gamma": 0.997861889875932,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.631333150588158,
+      "analytic_transfer_bound": 0.997861889875932
+    },
+    {
+      "family": "ii_nonstationary",
+      "label": "occupation_c0",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 2,
+      "random_search_size_T": 4,
+      "random_search_gain_S": 0.000660738578929513,
+      "random_search_gain_T": 0.0006810677021588177,
+      "random_search_relative_violation": 0.030767271471026685,
+      "gamma": 0.9992454028177921,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6318428532741205,
+      "analytic_transfer_bound": 0.14096091076445486
+    },
+    {
+      "family": "ii_nonstationary",
+      "label": "occupation_c1.5",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 2,
+      "random_search_size_T": 3,
+      "random_search_gain_S": 0.0001231730397750141,
+      "random_search_gain_T": 0.00012492649638926653,
+      "random_search_relative_violation": 0.014235717633138512,
+      "gamma": 0.9990386184238431,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6317667162499541,
+      "analytic_transfer_bound": 0.04601322833684404
+    },
+    {
+      "family": "ii_nonstationary",
+      "label": "two_sided_c1.2",
+      "minimal_violation_found": true,
+      "minimal_size_S": 0,
+      "minimal_size_T": 1,
+      "minimal_gain_S": 0.0029287748090595176,
+      "minimal_gain_T": 0.0031811340962739033,
+      "minimal_a_time": 3.772727272727273,
+      "minimal_a_width": 0.0,
+      "minimal_b_time": 9.5,
+      "minimal_b_width": 0.0,
+      "minimal_relative_violation": 0.08616547999312478,
+      "random_search_action_time": 2.9545454545454546,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 0,
+      "random_search_size_T": 2,
+      "random_search_gain_S": 0.002072513611460277,
+      "random_search_gain_T": 0.0022548297076821445,
+      "random_search_relative_violation": 0.0879685881017731,
+      "gamma": 0.9645124700783185,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6188310142666962,
+      "analytic_transfer_bound": 0.0
+    },
+    {
+      "family": "ii_nonstationary",
+      "label": "sigmoid",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 1.3181818181818183,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 2,
+      "random_search_size_T": 4,
+      "random_search_gain_S": 0.0013307419028361772,
+      "random_search_gain_T": 0.0013567513538522286,
+      "random_search_relative_violation": 0.01954507554065747,
+      "gamma": 0.9979150386365413,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6313527442535878,
+      "analytic_transfer_bound": 0.7933966645328575
+    },
+    {
+      "family": "iii_heterogeneous",
+      "label": "mean",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 1,
+      "random_search_size_T": 3,
+      "random_search_gain_S": 0.004087984668431143,
+      "random_search_gain_T": 0.004149873731404827,
+      "random_search_relative_violation": 0.01513926004948439,
+      "gamma": 1.0,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6321205588285577,
+      "analytic_transfer_bound": 1.0
+    },
+    {
+      "family": "iii_heterogeneous",
+      "label": "occupation_c0",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 5.9,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 2,
+      "random_search_size_T": 4,
+      "random_search_gain_S": 0.0008236760204730141,
+      "random_search_gain_T": 0.0008322157375489359,
+      "random_search_relative_violation": 0.010367810721280487,
+      "gamma": 1.0,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6321205588285577,
+      "analytic_transfer_bound": 0.14106735979665894
+    },
+    {
+      "family": "iii_heterogeneous",
+      "label": "occupation_c1.5",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 0.0,
+      "random_search_size_S": 1,
+      "random_search_size_T": 3,
+      "random_search_gain_S": 8.858223766312879e-05,
+      "random_search_gain_T": 8.991836717232025e-05,
+      "random_search_relative_violation": 0.015083492407051778,
+      "gamma": 1.0,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6321205588285577,
+      "analytic_transfer_bound": 0.04605750717568646
+    },
+    {
+      "family": "iii_heterogeneous",
+      "label": "two_sided_c1.2",
+      "minimal_violation_found": true,
+      "minimal_size_S": 0,
+      "minimal_size_T": 1,
+      "minimal_gain_S": 2.041433078316807e-05,
+      "minimal_gain_T": 4.757522699030047e-05,
+      "minimal_a_time": 7.7,
+      "minimal_a_width": 3.5,
+      "minimal_b_time": 7.7,
+      "minimal_b_width": 1.5,
+      "minimal_relative_violation": 1.3304818313969409,
+      "random_search_action_time": 9.5,
+      "random_search_action_width": 3.5,
+      "random_search_size_S": 1,
+      "random_search_size_T": 3,
+      "random_search_gain_S": 2.2373206498716087e-05,
+      "random_search_gain_T": 5.043652752213671e-05,
+      "random_search_relative_violation": 1.2543271803722487,
+      "gamma": 0.6885894026430484,
+      "gamma_median": 0.9942843456776135,
+      "gamma_n_samples": 96,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.4977159098076458,
+      "analytic_transfer_bound": 0.0
+    },
+    {
+      "family": "iii_heterogeneous",
+      "label": "sigmoid",
+      "minimal_violation_found": false,
+      "minimal_size_S": null,
+      "minimal_size_T": null,
+      "minimal_gain_S": null,
+      "minimal_gain_T": null,
+      "minimal_a_time": null,
+      "minimal_a_width": null,
+      "minimal_b_time": null,
+      "minimal_b_width": null,
+      "minimal_relative_violation": null,
+      "random_search_action_time": 0.5,
+      "random_search_action_width": 1.5,
+      "random_search_size_S": 1,
+      "random_search_size_T": 2,
+      "random_search_gain_S": 0.0004607983254589208,
+      "random_search_gain_T": 0.0004673301096384541,
+      "random_search_relative_violation": 0.014174930373343145,
+      "gamma": 1.0,
+      "gamma_median": 1.0,
+      "gamma_n_samples": 128,
+      "greedy_factor_1_minus_exp_minus_gamma": 0.6321205588285577,
+      "analytic_transfer_bound": 0.7950543220762373
+    }
+  ],
+  "headline": {
+    "i_stationary_ou_label_agnostic_worst_rel_eff": 0.8173373584694205,
+    "i_stationary_ou_label_agnostic_mean_rel_eff": 0.9606241164032093,
+    "i_stationary_ou_label_aware_min_rel_eff": 0.9999999999999998,
+    "i_stationary_ou_label_aware_greedy_min_rel_eff": 0.9917291634891787,
+    "i_stationary_ou_n_distinct_optima": 2,
+    "i_stationary_ou_cross_efficiency_min": 0.9768217078106842,
+    "i_stationary_ou_n_subsets_enumerated": 495,
+    "i_stationary_matern32_label_agnostic_worst_rel_eff": 0.8275323045167554,
+    "i_stationary_matern32_label_agnostic_mean_rel_eff": 0.953717595480884,
+    "i_stationary_matern32_label_aware_min_rel_eff": 0.9940597795972748,
+    "i_stationary_matern32_label_aware_greedy_min_rel_eff": 0.98731005681642,
+    "i_stationary_matern32_n_distinct_optima": 3,
+    "i_stationary_matern32_cross_efficiency_min": 0.9570646926794399,
+    "i_stationary_matern32_n_subsets_enumerated": 495,
+    "ii_nonstationary_label_agnostic_worst_rel_eff": 0.7765712376782561,
+    "ii_nonstationary_label_agnostic_mean_rel_eff": 0.9537159985694317,
+    "ii_nonstationary_label_aware_min_rel_eff": 1.0,
+    "ii_nonstationary_label_aware_greedy_min_rel_eff": 0.9819817430372254,
+    "ii_nonstationary_n_distinct_optima": 4,
+    "ii_nonstationary_cross_efficiency_min": 0.9572917122791093,
+    "ii_nonstationary_n_subsets_enumerated": 495,
+    "iii_heterogeneous_label_agnostic_worst_rel_eff": 0.23080682452832452,
+    "iii_heterogeneous_label_agnostic_mean_rel_eff": 0.8342780975598354,
+    "iii_heterogeneous_label_aware_min_rel_eff": 1.0,
+    "iii_heterogeneous_label_aware_greedy_min_rel_eff": 0.9124168180100296,
+    "iii_heterogeneous_n_distinct_optima": 3,
+    "iii_heterogeneous_cross_efficiency_min": 0.764999906548149,
+    "iii_heterogeneous_n_subsets_enumerated": 4047,
+    "iv_recency_label_agnostic_worst_rel_eff": 0.6006768643415245,
+    "iv_recency_label_agnostic_mean_rel_eff": 0.9130749939570396,
+    "iv_recency_label_aware_min_rel_eff": 0.986904838731539,
+    "iv_recency_label_aware_greedy_min_rel_eff": 0.986904838731539,
+    "iv_recency_n_distinct_optima": 3,
+    "iv_recency_cross_efficiency_min": 0.9251942891917206,
+    "iv_recency_n_subsets_enumerated": 495,
+    "label_aware_evaluations_mean": {
+      "i_stationary_ou": 111.8,
+      "i_stationary_matern32": 99.4,
+      "ii_nonstationary": 89.2,
+      "iii_heterogeneous": 72.4,
+      "iv_recency": 74.0
+    },
+    "exhaustive_evaluations_mean": {
+      "i_stationary_ou": 495.0,
+      "i_stationary_matern32": 495.0,
+      "ii_nonstationary": 495.0,
+      "iii_heterogeneous": 802.0,
+      "iv_recency": 495.0
+    },
+    "evaluation_fraction": {
+      "i_stationary_ou": 0.22585858585858584,
+      "i_stationary_matern32": 0.20080808080808082,
+      "ii_nonstationary": 0.1802020202020202,
+      "iii_heterogeneous": 0.09027431421446384,
+      "iv_recency": 0.1494949494949495
+    },
+    "label_aware_attains_optimum_everywhere": false,
+    "label_aware_greedy_attains_optimum_everywhere": false,
+    "n_instances": 25,
+    "label_aware_exact_count": 21,
+    "label_aware_greedy_exact_count": 13,
+    "label_aware_min_rel_eff_overall": 0.986904838731539,
+    "label_aware_greedy_min_rel_eff_overall": 0.9124168180100296,
+    "label_aware_shortfalls": [
+      {
+        "family": "i_stationary_matern32",
+        "label": "mean",
+        "relative_efficiency": 0.9940597795972748,
+        "is_1swap_local_optimum": true
+      },
+      {
+        "family": "i_stationary_matern32",
+        "label": "occupation_c0",
+        "relative_efficiency": 0.994868943221715,
+        "is_1swap_local_optimum": true
+      },
+      {
+        "family": "i_stationary_matern32",
+        "label": "sigmoid",
+        "relative_efficiency": 0.9943304083051725,
+        "is_1swap_local_optimum": true
+      },
+      {
+        "family": "iv_recency",
+        "label": "occupation_c1.5",
+        "relative_efficiency": 0.986904838731539,
+        "is_1swap_local_optimum": true
+      }
+    ],
+    "all_label_aware_outputs_are_1swap_local_optima": true,
+    "swap_search_improvement_max": 0.08758318198997062,
+    "family_ii_optimal_times": {
+      "mean": [
+        2.1364,
+        3.7727,
+        6.2273,
+        8.6818
+      ],
+      "occupation_c0": [
+        2.1364,
+        4.5909,
+        6.2273,
+        8.6818
+      ],
+      "occupation_c1.5": [
+        2.9545,
+        5.4091,
+        7.0455,
+        8.6818
+      ],
+      "two_sided_c1.2": [
+        3.7727,
+        5.4091,
+        7.0455,
+        8.6818
+      ],
+      "sigmoid": [
+        2.1364,
+        3.7727,
+        6.2273,
+        8.6818
+      ]
+    },
+    "family_iii_optimal_times": {
+      "mean": [
+        2.3,
+        4.1,
+        5.9,
+        7.7
+      ],
+      "occupation_c0": [
+        2.3,
+        4.1,
+        5.9,
+        7.7
+      ],
+      "occupation_c1.5": [
+        0.5,
+        2.3,
+        4.1,
+        5.9
+      ],
+      "two_sided_c1.2": [
+        0.5,
+        0.5,
+        2.3
+      ],
+      "sigmoid": [
+        2.3,
+        4.1,
+        5.9,
+        7.7
+      ]
+    },
+    "family_iii_optimal_widths": {
+      "mean": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupation_c0": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "occupation_c1.5": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "two_sided_c1.2": [
+        1.5,
+        3.5,
+        1.5
+      ],
+      "sigmoid": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "families_with_mean_occ_twosided_all_distinct": [
+      "ii_nonstationary"
+    ],
+    "uniform_mean_rel_eff": 0.6931082519402126,
+    "dispersed_mean_rel_eff": 0.9263275359853868,
+    "same_time_mean_rel_eff": 0.4132195403623468,
+    "unspent_budget_label_agnostic": {
+      "mutual_information": [
+        4.0
+      ],
+      "imse": [
+        3.225
+      ],
+      "linear_target": [
+        4.0
+      ],
+      "kernel_quadrature": [
+        3.05
+      ]
+    },
+    "method_summary": [
+      {
+        "method": "mutual_information",
+        "n_instances": 25,
+        "minimum": 0.6006768643415245,
+        "mean": 0.8636409105598879,
+        "median": 0.8519556240617764
+      },
+      {
+        "method": "imse",
+        "n_instances": 25,
+        "minimum": 0.8015045358554236,
+        "mean": 0.9472025399995238,
+        "median": 0.98731005681642
+      },
+      {
+        "method": "linear_target",
+        "n_instances": 25,
+        "minimum": 0.7669107574967763,
+        "mean": 0.9824537344731428,
+        "median": 0.9999792285426129
+      },
+      {
+        "method": "kernel_quadrature",
+        "n_instances": 25,
+        "minimum": 0.23080682452832452,
+        "mean": 0.8990314565437653,
+        "median": 0.9878596746264614
+      },
+      {
+        "method": "label_aware_greedy",
+        "n_instances": 25,
+        "minimum": 0.9124168180100296,
+        "mean": 0.9924191697934662,
+        "median": 1.0
+      },
+      {
+        "method": "label_aware",
+        "n_instances": 25,
+        "minimum": 0.986904838731539,
+        "mean": 0.9988065587942282,
+        "median": 1.0
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.14.6",
+    "numpy": "2.4.4",
+    "scipy": "1.17.0",
+    "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_count": 24,
+    "timestamp_utc": "2026-08-11T07:02:14Z"
+  },
+  "runtime_seconds": 22.03768566704821
+}
