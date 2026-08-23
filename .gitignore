@@ -1,0 +1,11 @@
+# generated / local-only
+audio-say/
+audio-v2-backup/
+audio-v3-fastbug/
+audio-v4-backup/
+dist/
+storyboard/
+tools/mathtest*.html
+.DS_Store
+node_modules/
+__pycache__/

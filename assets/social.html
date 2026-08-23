@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<title>Social card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/landing.css">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0B1119; }
+  .card { position: relative; width: 1200px; height: 630px; display: grid; grid-template-columns: 520px 1fr; gap: 0; }
+  .left { padding: 54px 0 0 56px; }
+  .eyebrow { margin-bottom: 18px; }
+  h1 { font-size: 46px; line-height: 1.1; margin: 0 0 18px; }
+  p { font-size: 18px; color: var(--ink-2); max-width: 30ch; }
+  .vals { font-family: var(--font-sans); font-size: 34px; line-height: 1.5; margin-top: 22px; }
+  .vals .vp { color: var(--latent); } .vals .vm { color: var(--world-m); }
+  .foot { position: absolute; left: 56px; bottom: 40px; font-size: 15px; color: var(--muted); }
+  .foot b { color: var(--ink); font-weight: 500; }
+  canvas { position: absolute; right: 36px; top: 60px; width: 600px; height: 500px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="left">
+    <div class="eyebrow">Counterfactual protocol evaluation</div>
+    <h1>Same benchmark.<br>Two possible worlds.<br>Two different protocol values.</h1>
+    <p>Even infinite data under one observation protocol may not tell us how well another, never-used protocol would predict the target.</p>
+    <div class="vals"><span class="vp"><span class="f">I(B;K_+) = 0.682</span></span><br><span class="vm"><span class="f">I(B;K_−) = 0.827</span></span></div>
+  </div>
+  <canvas id="social-fig" width="1200" height="1000"></canvas>
+  <div class="foot"><b>Xizhe Zhang</b> · Counterfactual Evaluation of Temporal Observation Protocols · Nanjing Medical University</div>
+</div>
+<script src="../js/config.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/math.js"></script>
+<script src="../js/mathtext.js"></script>
+<script src="../js/landing.js"></script>
+<script>
+  // the two-worlds figure at the paper's epsilon, in compact mode, on the social card
+  const L = window.CPV_LANDING, cv = document.getElementById("social-fig");
+  cv.style.width = "600px"; cv.style.height = "500px";
+  L.drawTwoWorlds(cv, L.EPS0, { compact: true });
+  CPV.mathText.typesetAll(document);
+  window.CPV_READY = true;
+</script>
+</body>
+</html>

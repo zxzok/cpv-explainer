@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four-Minute Story · Counterfactual Protocol Evaluation</title>
+<meta name="description" content="A four-minute guided story of “Counterfactual Evaluation of Temporal Observation Protocols”: why data from one observation protocol may not determine the value of another, and how calibration restores comparison and design. Narration optional; readable by scrolling.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230B1119%27/%3E%3Cpath d=%27M5 9 L13 21 L21 13 L27 23%27 fill=%27none%27 stroke=%27%234ECDC4%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M5 9 L13 14 L21 24 L27 11%27 fill=%27none%27 stroke=%27%23F08A4B%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow"><a href="../">Overview</a> · <b>4-minute story</b> · <a href="../technical/">Technical tour · 10 minutes</a></div>
+    <h1>Counterfactual Evaluation of Temporal Observation Protocols</h1>
+    <p class="author"><b><span class="lang-en">Xizhe Zhang</span><span class="lang-zh">张锡哲</span></b> · <span class="lang-en">School of Biomedical Engineering and Informatics, Nanjing Medical University</span><span class="lang-zh">南京医科大学 生物医学工程与信息学院</span></p>
+  </div>
+  <div class="controls">
+    <div class="seg" id="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">English</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <button type="button" class="paper-link" id="sound" aria-pressed="true" title="Narration on/off (M)">🔊 Narration on</button>
+    <label class="toggle"><input type="checkbox" id="autoplay" checked> <span>Auto-advance chapters</span></label>
+    <a class="paper-link" href="../paper/main.pdf" target="_blank" rel="noopener">Manuscript (PDF)</a>
+  </div>
+</header>
+
+<main class="theatre">
+  <nav class="chapters" aria-label="Chapters">
+    <div class="nav-title">Seven chapters</div>
+    <ol id="nav"></ol>
+    <div class="keys"><kbd>space</kbd> play / pause &nbsp; <kbd>←</kbd><kbd>→</kbd> steps<br><kbd>PgUp</kbd><kbd>PgDn</kbd> chapters &nbsp; <kbd>L</kbd> language &nbsp; <kbd>M</kbd> sound</div>
+  </nav>
+
+  <section class="stage-col">
+    <div class="chapter-head"><span class="kicker" id="kicker"></span><h2 id="chapter-title"></h2></div>
+    <div class="stage" id="stage" aria-label="Animation stage">
+      <div class="gesture"><span>Press play to start</span></div>
+    </div>
+    <div class="transport">
+      <div class="buttons">
+        <button type="button" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+        <button type="button" id="play" class="play" aria-label="Play">
+          <svg class="ico-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>
+          <svg class="ico-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+        </button>
+        <button type="button" id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+      </div>
+      <div class="time" id="time">0:00 / 0:00</div>
+      <div class="counter" id="counter"></div>
+      <div class="tl" id="timeline" aria-label="Timeline">
+        <div class="tl-track"><div class="tl-knob"></div><div class="tl-tip"></div></div>
+        <div class="tl-labels"></div>
+      </div>
+    </div>
+    <div class="transcript" id="transcript" aria-live="polite"></div>
+    <section class="read">
+      <details>
+        <summary><h3 id="read-title">Technical detail</h3></summary>
+        <div class="body" id="read"></div>
+      </details>
+    </section>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div>
+    <h4>Colour legend</h4>
+    <div class="legend">
+      <span style="--c: var(--latent)">latent trajectory Z</span>
+      <span style="--c: var(--target)">target Θ</span>
+      <span style="--c: var(--prot-a)">realised protocol A</span>
+      <span style="--c: var(--prot-b)">alternative protocol B</span>
+      <span style="--c: var(--expl)">explained variance / value</span>
+      <span style="--c: var(--alert)">non-identification</span>
+    </div>
+  </div>
+  <div>
+    <h4>Levels</h4>
+    <a href="../#two-worlds">60 seconds — the core result</a> · <b>4 minutes — this story</b> · <a href="../technical/">10 minutes — technical tour</a>. Narration can be switched off; every step also advances with <kbd>→</kbd>.
+  </div>
+  <div>
+    <h4>Provenance</h4>
+    Every number spoken or drawn is read from <code>paper/numbers.tex</code> and the released <code>results/</code> files; the interactive scenes recompute protocol values in the browser with the paper's formulas.
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script>window.CPV_AUDIO_BASE = "../audio/explainer/";</script>
+<script src="../js/narration-explainer.js"></script>
+<script src="../js/math.js"></script>
+<script src="../js/gl.js"></script>
+<script src="../js/sheet.js"></script>
+<script src="../js/engine.js"></script>
+<script src="../js/mathtext.js"></script>
+<script src="../js/scenes/common.js"></script>
+<script src="../js/scenes/ch0_hero.js"></script>
+<script src="../js/scenes/ch1_question.js"></script>
+<script src="../js/scenes/ch2_value.js"></script>
+<script src="../js/scenes/ch3_twoworlds.js"></script>
+<script src="../js/scenes/ch4_invisible.js"></script>
+<script src="../js/scenes/ch5_restore.js"></script>
+<script src="../js/scenes/ch6_resolution.js"></script>
+<script src="../js/scenes/ch7_design.js"></script>
+<script src="../js/scenes/ch8_real.js"></script>
+<script src="../js/scenes/ch9_synthesis.js"></script>
+<script src="../js/scenes_explainer.js"></script>
+<script>
+  (function () {
+    const els = {
+      stage: document.getElementById("stage"), nav: document.getElementById("nav"), play: document.getElementById("play"),
+      prev: document.getElementById("prev"), next: document.getElementById("next"), lang: document.getElementById("lang"),
+      autoplay: document.getElementById("autoplay"), kicker: document.getElementById("kicker"), title: document.getElementById("chapter-title"),
+      timeline: document.getElementById("timeline"), time: document.getElementById("time"), counter: document.getElementById("counter"), transcript: document.getElementById("transcript"),
+      read: document.getElementById("read"), readTitle: document.getElementById("read-title"), sound: document.getElementById("sound"),
+    };
+    const stage = new CPV.Stage(els.stage);
+    const q = new URLSearchParams(location.search);
+    const lang = q.get("lang") || ((navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en");
+    els.lang.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    window.player = new CPV.Player({ stage, narration: window.CPV_NARRATION, els, lang, readTitle: { en: "Technical detail", zh: "技术细节" } });
+    if (q.get("sound") === "off") player.setSound(false);
+  })();
+</script>
+</body>
+</html>

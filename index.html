@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can One Observation Protocol Evaluate Another? | Counterfactual Protocol Evaluation</title>
+<meta name="description" content="An interactive explanation of why data from one temporal observation protocol may not determine the predictive value of an undeployed alternative—and how calibration restores comparison and design.">
+<meta name="author" content="Xizhe Zhang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Same benchmark. Two possible worlds. Two different protocol values.">
+<meta property="og:description" content="Even infinite data under one observation protocol may not tell us how well another, never-used protocol would predict the target.">
+<meta property="og:image" content="assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Same benchmark. Two possible worlds. Two different protocol values.">
+<meta name="twitter:description" content="Even infinite data under one observation protocol may not tell us how well another, never-used protocol would predict the target.">
+<meta name="twitter:image" content="assets/social-card.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230B1119%27/%3E%3Cpath d=%27M5 9 L13 21 L21 13 L27 23%27 fill=%27none%27 stroke=%27%234ECDC4%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M5 9 L13 14 L21 24 L27 11%27 fill=%27none%27 stroke=%27%23F08A4B%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="#question">Counterfactual Protocol Evaluation</a>
+    <nav aria-label="Primary">
+      <a href="paper/main.pdf" target="_blank" rel="noopener" data-track="paper_open"><span class="en">Read the paper</span><span class="zh">阅读论文</span></a>
+      <a href="explainer/" data-track="story_open"><span class="en">4-minute story</span><span class="zh">4 分钟导览</span></a>
+      <a href="technical/" data-track="technical_open"><span class="en">Technical tour</span><span class="zh">技术导览</span></a>
+      <a href="#code" data-link="code" data-track="code_open"><span class="en">Code and data</span><span class="zh">代码与数据</span></a>
+      <a href="#cite"><span class="en">Cite</span><span class="zh">引用</span></a>
+    </nav>
+    <div class="seg" id="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">English</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="block hero-block" id="question">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow"><span class="en">Paper explainer · identification before optimisation</span><span class="zh">论文解读 · 先识别，再优化</span></p>
+      <h1 class="en">Can data from one observation protocol evaluate another that was never used?</h1>
+      <h1 class="zh">一种观测协议采集的数据，能否评估另一种从未实施过的协议？</h1>
+      <p class="lead en">Not always. Even an infinite benchmark can be compatible with different latent temporal structures—and those structures can assign different predictive values to the same alternative protocol.</p>
+      <p class="lead zh">未必。即使基准数据趋于无穷，它仍可能同时兼容多种不同的潜在时间依赖结构；而这些结构会对同一个替代协议给出不同的预测价值。</p>
+      <p class="def en">A protocol's value is the fraction of target variation that the best possible predictor could explain from the measurements that protocol would collect.</p>
+      <p class="def zh">协议价值，是理想预测器仅利用该协议所采集的测量时，能够解释的目标总体变异比例。</p>
+      <div class="actions">
+        <a class="btn primary" href="#two-worlds" id="see-60" data-track="core_example_open"><span class="en">See the 60-second counterexample</span><span class="zh">看 60 秒反例</span><small>60 s</small></a>
+        <a class="btn" href="explainer/" data-track="story_open"><span class="en">Explore the 4-minute story</span><span class="zh">进入 4 分钟导览</span><small>4 min</small></a>
+        <a class="btn" href="technical/" data-track="technical_open"><span class="en">Technical tour</span><span class="zh">技术导览</span><small>10 min</small></a>
+        <a class="btn" href="paper/main.pdf" target="_blank" rel="noopener" data-track="paper_open"><span class="en">Read the paper</span><span class="zh">阅读论文</span><small>PDF</small></a>
+        <a class="btn" href="#code" data-link="code" data-track="code_open"><span class="en">Code and data</span><span class="zh">代码与数据</span></a>
+        <button class="btn" type="button" data-copy="bibtex" data-track="citation_copied"><span class="en">Copy citation</span><span class="zh">复制引用</span><small>BibTeX</small></button>
+      </div>
+      <p class="biblio"><i>Counterfactual Evaluation of Temporal Observation Protocols</i><br><span class="en">Xizhe Zhang · School of Biomedical Engineering and Informatics, Nanjing Medical University</span><span class="zh">张锡哲 · 南京医科大学 生物医学工程与信息学院</span></p>
+    </div>
+    <figure class="hero-fig" aria-labelledby="hero-cap">
+      <canvas id="hero-fig" width="1200" height="760" aria-hidden="true"></canvas>
+      <figcaption class="fig-cap" id="hero-cap">
+        <b class="en">Same benchmark</b><b class="zh">同一个基准</b><span class="en">two latent worlds with identical measurement–target laws under protocol A</span><span class="zh">两个潜在世界，在协议 A 下有完全相同的测量–目标分布</span>
+        <b class="en">Two values</b><b class="zh">两个价值</b><span><span class="v vp"><span class="f">I(B;K_+) = 0.682</span></span> &nbsp; <span class="v vm"><span class="f">I(B;K_−) = 0.827</span></span></span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ two worlds -->
+<section class="block" id="two-worlds">
+  <div class="wrap">
+    <span class="scope" style="--c: var(--latent)"><span class="en">Minimal mathematical example · Theorem 3</span><span class="zh">最小数学例子 · 定理 3</span></span>
+    <div class="h2row"><h2 class="en">Same benchmark. Two compatible worlds. Two different answers.</h2><h2 class="zh">同一个基准。两个兼容世界。两个不同答案。</h2><button class="copy-link" type="button" data-anchor="two-worlds" title="Copy link">#</button></div>
+    <p class="en">Protocol A observes one point in time. Two latent temporal models produce exactly the same distribution of A's measurement and the target. No amount of additional sampling under A can distinguish them.</p>
+    <p class="zh">协议 A 只观测一个时间点。两种潜在时间模型产生完全相同的“测量—目标”分布。继续在协议 A 下增加样本，仍无法区分它们。</p>
+    <p class="en">Protocol B observes two other points. Its value is <b class="num vp">0.682</b> in one compatible world and <b class="num vm">0.827</b> in the other.</p>
+    <p class="zh">协议 B 改为观测另外两个时间点。在一个兼容世界中，它的价值是 <b class="num vp">0.682</b>；在另一个世界中，是 <b class="num vm">0.827</b>。</p>
+    <p class="en">The unresolved quantity is not how each new measurement relates to the target. It is how redundant the new measurements are with one another—dependence that protocol A never reveals.</p>
+    <p class="zh">未被确定的并不是每个新测量与目标之间的联系，而是这些新测量彼此之间有多冗余。协议 A 从未揭示这种依赖。</p>
+
+    <div class="tw" id="tw">
+      <div class="tw-fig">
+        <canvas id="tw-fig" width="1400" height="760" aria-hidden="true"></canvas>
+        <div class="tw-controls">
+          <label for="tw-eps"><span><span class="en">Drag ε</span><span class="zh">拖动 ε</span></span><span id="tw-eps-val">ε = 0.1321</span></label>
+          <input type="range" id="tw-eps" min="0" max="1000" value="1000" step="1" aria-label="epsilon">
+          <div class="hint"><span>ε = 0</span><span class="en">last admissible ε (both worlds remain valid correlation matrices)</span><span class="zh">可容许的上限（两个世界都仍是合法相关矩阵）</span></div>
+          <div class="mini-player">
+            <button class="btn" type="button" id="tw-replay"><span class="en">Replay the animation</span><span class="zh">重放动画</span></button>
+            <button class="btn" type="button" id="tw-play" data-track="core_example_play"><span class="en">Play the 60-second narration</span><span class="zh">播放 60 秒解说</span></button>
+            <div class="cap" id="tw-cap"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tw-panel">
+        <div class="tw-card" data-beat="0">
+          <h4><span class="en">Benchmark quantities remain fixed</span><span class="zh">基准数据能测到的量保持不变</span></h4>
+          <table>
+            <thead><tr><th></th><th class="vp">K₊</th><th class="vm">K₋</th></tr></thead>
+            <tbody>
+              <tr><td><span class="f">Var(Y_A)</span></td><td id="tw-vy-p">1.000000</td><td id="tw-vy-m">1.000000</td></tr>
+              <tr><td><span class="f">Cov(Y_A, Θ)</span></td><td id="tw-cv-p">0.388250</td><td id="tw-cv-m">0.388250</td></tr>
+              <tr><td><span class="f">Var(Θ)</span></td><td id="tw-vt-p">0.428012</td><td id="tw-vt-m">0.428012</td></tr>
+            </tbody>
+          </table>
+          <div class="frozen"><span class="en">max discrepancy</span><span class="zh">最大差异</span> <span id="tw-disc">1e-16</span> · <span class="en">identical benchmark laws</span><span class="zh">基准分布完全相同</span></div>
+        </div>
+        <div class="tw-card" data-beat="2">
+          <h4><span class="en">Alternative-protocol value changes</span><span class="zh">替代协议的价值在变</span></h4>
+          <div class="gauge p"><span><span class="f">I(B; K_+)</span></span><div class="bar"><i id="tw-bar-p"></i></div><span class="val" id="tw-vp">0.682</span></div>
+          <div class="gauge m"><span><span class="f">I(B; K_−)</span></span><div class="bar"><i id="tw-bar-m"></i></div><span class="val" id="tw-vm">0.827</span></div>
+          <div class="gap"><span class="en">difference</span><span class="zh">相差</span> <span id="tw-gap">0.1457</span></div>
+          <p class="sub en">B observes <span class="f">Z_1</span> and <span class="f">Z_2</span>; A observed only <span class="f">Z_0</span>; the target is the mean of <span class="f">Z_0, …, Z_3</span>.</p>
+          <p class="sub zh">B 观测 <span class="f">Z_1</span> 与 <span class="f">Z_2</span>；A 只观测了 <span class="f">Z_0</span>；目标是 <span class="f">Z_0, …, Z_3</span> 的平均。</p>
+        </div>
+        <div class="tw-card" data-beat="3">
+          <h4><span class="en">What moves</span><span class="zh">什么在变</span></h4>
+          <p class="sub en">Only <span class="f">Cov(Z_1, Z_2) = ρ(1) ± ε</span> changes along the invisible direction <span class="f">δ = (0, 1, −2, 1)</span>. Each measurement's link to the target is fixed; their overlap is not.</p>
+          <p class="sub zh">沿不可见方向 <span class="f">δ = (0, 1, −2, 1)</span> 只有 <span class="f">Cov(Z_1, Z_2) = ρ(1) ± ε</span> 在变。每个测量与目标的联系固定不变，变的是它们之间的重叠。</p>
+        </div>
+      </div>
+    </div>
+    <blockquote class="bottom-line">
+      <p class="en">The benchmark determines the value of an undeployed protocol only when every latent model compatible with the benchmark assigns that protocol the same value.</p>
+      <p class="zh">只有当所有与基准数据相容的潜在模型都赋予替代协议同一个价值时，该价值才被基准数据识别。</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================================ three steps -->
+<section class="block" id="three-steps">
+  <div class="wrap">
+    <div class="h2row"><h2 class="en">Three questions, in the order they must be answered</h2><h2 class="zh">三个问题，必须按顺序回答</h2><button class="copy-link" type="button" data-anchor="three-steps" title="Copy link">#</button></div>
+    <div class="cards">
+      <article class="card" style="--c: var(--alert)">
+        <div class="k"><span class="en">Identify · Section 3</span><span class="zh">识别 · 第 3 节</span></div>
+        <h3 class="en">Is the value determined by the available data?</h3><h3 class="zh">现有数据是否已经确定了这个价值？</h3>
+        <p class="en">Characterise the latent variation that the realised benchmark cannot see, and test whether that variation changes the value of the proposed protocol.</p>
+        <p class="zh">找出已实施基准看不见的潜在变化，并判断这些变化是否会改变拟议协议的价值。</p>
+      </article>
+      <article class="card" style="--c: var(--latent)">
+        <div class="k"><span class="en">Calibrate · Section 4</span><span class="zh">校准 · 第 4 节</span></div>
+        <h3 class="en">What additional measurements remove the relevant ambiguity?</h3><h3 class="zh">补充哪些测量能够消除相关歧义？</h3>
+        <p class="en">Targeted augmentation can identify one specified value. A small densely observed calibration subset can support comparison across a broader family of protocols.</p>
+        <p class="zh">定向补测可以识别一个指定协议的价值；小规模密集校准子集则可以支持对更大协议族的比较。</p>
+      </article>
+      <article class="card" style="--c: var(--expl)">
+        <div class="k"><span class="en">Design · Section 5</span><span class="zh">设计 · 第 5 节</span></div>
+        <h3 class="en">Which protocol is best at the resolution the data can support?</h3><h3 class="zh">在数据可支持的分辨率上，哪个协议更好？</h3>
+        <p class="en">Optimise timing, support, repetition, noise, and cost only after candidate values are identified and their differences are large enough to distinguish.</p>
+        <p class="zh">只有在候选价值可识别、且差异足以被区分之后，才优化测量时刻、窗口、重复、噪声与成本。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ more data -->
+<section class="block" id="more-data">
+  <div class="wrap two-col">
+    <div>
+      <div class="h2row"><h2 class="en">More subjects are not always the data you need.</h2><h2 class="zh">真正缺少的，未必是更多受试者。</h2><button class="copy-link" type="button" data-anchor="more-data" title="Copy link">#</button></div>
+      <p class="en">When an ambiguity is invisible under the realised protocol, increasing the number of units reproduces the same information. A smaller group observed more intensively may be more useful than many additional units observed in the same sparse way.</p>
+      <p class="zh">当某种歧义对已实施协议不可见时，继续增加样本只会重复同一组信息。与其在相同稀疏协议下继续扩样，一个规模较小但观测更密集的子集，可能更能支持未来协议的评估。</p>
+      <p class="en">This suggests a practical study design: a large routine cohort paired with a smaller, densely observed calibration subset chosen with future protocol decisions in mind.</p>
+      <p class="zh">因此，一个可操作的研究设计是：大规模常规队列，配合一个专门为未来协议决策而设计的小规模密集校准子集。</p>
+      <details class="callout">
+        <summary><span class="en">Technical detail: how the calibration subset is used</span><span class="zh">技术细节：校准子集怎么用</span></summary>
+        <p class="en">From <i>m</i> densely observed units, form the sample covariance, subtract the calibration noise, floor the eigenvalues so the result is a valid covariance, and rescale to a correlation matrix. Plugging the estimate into every candidate's value gives a family-uniform error of order <span class="num">C‖K̂ − K‖<sup>β</sup></span> (Theorem 10), falling at the root-<i>m</i> rate at a fixed model (Theorem 11).</p>
+        <p class="zh">用 <i>m</i> 个密集观测对象：算样本协方差、扣除校准噪声、给特征值设下限以保证合法协方差、再标准化为相关矩阵。把估计代入每个候选协议的价值，得到整个候选族上一致的误差 <span class="num">C‖K̂ − K‖<sup>β</sup></span>（定理 10），在固定模型下以根号 <i>m</i> 速率下降（定理 11）。</p>
+      </details>
+    </div>
+    <figure class="fig">
+      <canvas id="cohort-fig" width="1100" height="720" aria-hidden="true"></canvas>
+      <figcaption class="fig-cap">
+        <b class="en">Large routine cohort</b><b class="zh">大规模常规队列</b><span class="en">same sparse protocol, repeated across many units</span><span class="zh">同一个稀疏协议，在很多对象上重复</span>
+        <b class="en">Small dense calibration subset</b><b class="zh">小规模密集校准子集</b><span class="en">reveals the cross-time dependence needed for future protocol comparisons</span><span class="zh">揭示未来协议比较所需的跨时刻依赖</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ resolution -->
+<section class="block" id="resolution">
+  <div class="wrap two-col">
+    <div>
+      <span class="scope" style="--c: var(--expl)"><span class="en">Corollary 12 · simulation under known data-generating laws</span><span class="zh">推论 12 · 已知生成机制下的模拟</span></span>
+      <div class="h2row"><h2 class="en">Calibration determines how finely protocols can be compared.</h2><h2 class="zh">校准数据决定协议能够比较到多细。</h2><button class="copy-link" type="button" data-anchor="resolution" title="Copy link">#</button></div>
+      <p class="en">A fine candidate family may contain better protocols, but its leading candidates can differ by very small amounts. Those differences are meaningful only when calibration error is smaller than the value gaps being compared.</p>
+      <p class="zh">更细的候选类可能包含更好的协议，但领先候选之间的价值差距也可能非常小。只有当校准误差小于这些差距时，这种精细比较才有意义。</p>
+      <p class="en">If the largest protocol-value error is ε, the regret of selecting the empirical best is bounded by approximately <b class="num">2ε</b>, plus any optimisation error. Differences below that scale cannot be distinguished uniformly from calibration uncertainty.</p>
+      <p class="zh">若所有协议价值估计的最大误差为 ε，则按估计值选择协议的损失至多约为 <b class="num">2ε</b>，再加上优化误差。低于这一尺度的差异，无法与校准不确定性稳定地区分。</p>
+      <p class="big en">The useful granularity of optimisation is set by the data, not by the optimiser.</p>
+      <p class="big zh">优化能细化到什么程度，由数据决定，而不是由优化器决定。</p>
+    </div>
+    <figure class="fig">
+      <canvas id="res-fig" width="1100" height="720" aria-hidden="true"></canvas>
+      <figcaption class="fig-cap">
+        <span class="en"><b>True selection regret</b> of the best estimated protocol in the coarsest class (2 layouts) and the finest class (568 exact supports), as calibration grows from 25 to 1000 units (Figure 2c). At <i>m</i> = 25 the finest class already wins (<span class="num" id="res-fine-25"></span> vs <span class="num" id="res-coarse-25"></span>); at <i>m</i> = 1000 the coarsest is stuck at its restriction regret (<span class="num" id="res-coarse-1000"></span>) while the finest reaches <span class="num" id="res-fine-1000"></span>.</span>
+        <span class="zh"><b>真实选择损失</b>：最粗类（2 种布局）与最细类（568 个精确位置）中最优估计协议的损失，校准对象从 25 增至 1000（图 2c）。<i>m</i> = 25 时最细类已领先（<span class="num" id="res-fine-25-zh"></span> 对 <span class="num" id="res-coarse-25-zh"></span>）；<i>m</i> = 1000 时最粗类停在限制损失 <span class="num" id="res-coarse-1000-zh"></span>，最细类降到 <span class="num" id="res-fine-1000-zh"></span>。</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ design -->
+<section class="block" id="design">
+  <div class="wrap two-col">
+    <div>
+      <span class="scope" style="--c: var(--expl)"><span class="en">Proposition 13 · Table 1 · simulation</span><span class="zh">命题 13 · 表 1 · 模拟</span></span>
+      <div class="h2row"><h2 class="en">The best observation schedule depends on the target.</h2><h2 class="zh">最佳观测方案取决于要预测的目标。</h2><button class="copy-link" type="button" data-anchor="design" title="Copy link">#</button></div>
+      <p class="en">A protocol that reconstructs the latent trajectory well need not be optimal for predicting a specific aggregate of that trajectory. The paper derives the exact marginal value of adding a measurement and uses it for cost-constrained, target-aware search.</p>
+      <p class="zh">能够较好重建整条潜在轨迹的协议，不一定最适合预测某个特定的轨迹聚合量。论文推导了新增一次测量所带来的精确边际价值，并据此进行预算约束下的目标特定搜索。</p>
+      <p class="en">In 25 fully enumerated simulation settings, greedy search with one-swap refinement attained at least <b class="num">98.7%</b> of the target-specific optimum.</p>
+      <p class="zh">在 25 个可穷举的模拟设置中，贪心搜索加一次交换改进，至少达到目标特定最优值的 <b class="num">98.7%</b>。</p>
+      <details class="callout">
+        <summary><span class="en">Technical detail: the exact marginal gain</span><span class="zh">技术细节：精确的边际收益</span></summary>
+        <p class="en">With residual covariance <span class="num">P<sub>S</sub> = K − Q<sub>S</sub></span>, adding action <span class="num">a</span> updates <span class="num">Q<sub>S∪a</sub> = Q<sub>S</sub> + vvᵀ/s</span>, <span class="num">v = P<sub>S</sub>ℓ<sub>a</sub></span>, <span class="num">s = ℓ<sub>a</sub>ᵀP<sub>S</sub>ℓ<sub>a</sub> + r<sub>a</sub></span>; for the mean target the gain is <span class="num">(ωᵀP<sub>S</sub>ℓ<sub>a</sub>)²/s</span>. The objective is monotone but not submodular, so the search is measured against exhaustive enumeration rather than given an approximation ratio.</p>
+        <p class="zh">记残差协方差 <span class="num">P<sub>S</sub> = K − Q<sub>S</sub></span>，加入动作 <span class="num">a</span> 时 <span class="num">Q<sub>S∪a</sub> = Q<sub>S</sub> + vvᵀ/s</span>，<span class="num">v = P<sub>S</sub>ℓ<sub>a</sub></span>，<span class="num">s = ℓ<sub>a</sub>ᵀP<sub>S</sub>ℓ<sub>a</sub> + r<sub>a</sub></span>；均值目标下收益为 <span class="num">(ωᵀP<sub>S</sub>ℓ<sub>a</sub>)²/s</span>。目标函数单调但不次模，因此用穷举对照来衡量搜索，而不声称近似比。</p>
+      </details>
+    </div>
+    <figure class="fig">
+      <div style="padding: 14px 16px 0; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <span class="en" style="font-size: 14px; color: var(--muted)">Change the target and watch the chosen times move — or drag any vertical line to another of the 16 candidate slots; the value is recomputed with the paper's formulas.</span>
+        <span class="zh" style="font-size: 14px; color: var(--muted)">切换目标，看被选中的测量时刻如何变化；也可以把任意一条竖线拖到 16 个候选时刻中的另一个，价值会按论文公式实时重算。</span>
+        <div class="target-switch" role="group" aria-label="Target">
+          <button type="button" data-target="mean" class="active"><span class="en">mean level</span><span class="zh">均值目标</span></button>
+          <button type="button" data-target="occ"><span class="en">time above a threshold</span><span class="zh">超过阈值的时间</span></button>
+        </div>
+        <button type="button" id="design-reset" class="mini" hidden><span class="en">Back to the greedy choice</span><span class="zh">恢复贪心选择</span></button>
+      </div>
+      <canvas id="design-fig" width="1100" height="560" aria-hidden="true"></canvas>
+      <figcaption class="fig-cap">
+        <span class="en">Greedy target-aware selection of four point measurements from sixteen candidates on one latent process (recency-weighted target, noise 0.3). Numbers give the greedy order of selection; the faint row shows the other target's choice. The lines are draggable (they snap to the candidate slots), so you can test your own schedule against the greedy one. Computed in the browser with the paper's formulas.</span>
+        <span class="zh">同一个潜在过程上，从 16 个候选中贪心选出 4 个点测量（偏重近期的目标权重，噪声 0.3）。数字是贪心选中的顺序；淡色的一行是另一种目标的选择。竖线可以拖动（吸附到候选时刻），用来把你自己的方案和贪心方案比一比。在浏览器里用论文的公式现算。</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ evidence -->
+<section class="block" id="evidence">
+  <div class="wrap">
+    <span class="scope" style="--c: var(--target)"><span class="en">Retrospective reconstruction from fully annotated data · Section 6.4</span><span class="zh">基于完整标注数据的回溯重建 · 第 6.4 节</span></span>
+    <div class="h2row"><h2 class="en">Coarse layout differences were clearer than exact learned locations.</h2><h2 class="zh">粗粒度布局的差异，比精确学习的位置更清楚。</h2><button class="copy-link" type="button" data-anchor="evidence" title="Copy link">#</button></div>
+    <div class="cards">
+      <article class="card" style="--c: var(--target)">
+        <div class="k">Sleep-EDF</div>
+        <div class="stat"><span class="num">0.682</span><small class="en">dispersed</small><small class="zh">分散</small><span class="vs">vs</span><span class="num muted">0.648</span><small class="en">contiguous · N = 4 epochs</small><small class="zh">连续 · N = 4 个片段</small></div>
+        <p class="en">At matched scoring budgets, dispersed epochs often outperformed a centred contiguous block in the pooled Sleep analyses. The magnitude and direction of the contrast varied across the two source studies.</p>
+        <p class="zh">在相同评分预算下，分散观测在合并的睡眠分析中常优于居中连续块，但差异的方向和幅度在两个来源研究之间存在异质性。</p>
+      </article>
+      <article class="card" style="--c: var(--target)">
+        <div class="k">Long-Term AF</div>
+        <div class="stat"><span class="num">0.971</span><small class="en">dispersed</small><small class="zh">分散</small><span class="vs">vs</span><span class="num muted">0.696</span><small class="en">contiguous · four 15-min windows</small><small class="zh">连续 · 四个 15 分钟窗口</small></div>
+        <p class="en">Across the evaluated multi-window budgets, dispersed observation outperformed contiguous blocks. With four 15-minute windows, pooled held-out R² was <b class="num">0.971</b> for dispersion and <b class="num">0.696</b> for a contiguous block.</p>
+        <p class="zh">在所评估的多窗口预算中，分散观测均优于连续块。四个 15 分钟窗口时，分散方案的汇总留出 R² 为 <b class="num">0.971</b>，连续块为 <b class="num">0.696</b>。</p>
+      </article>
+      <article class="card" style="--c: var(--prot-b)">
+        <div class="k"><span class="en">Learned supports</span><span class="zh">学得的位置</span></div>
+        <div class="stat"><span class="num">−0.012</span><small class="en">median advantage over fixed dispersion · range [−0.126, +0.097]</small><small class="zh">相对固定分散的优势中位数 · 区间 [−0.126, +0.097]</small></div>
+        <p class="en">Exact target-aware Sleep supports were less stable across targets and subject resamples, and they did not show a stable held-out advantage over fixed dispersion.</p>
+        <p class="zh">精确的目标特定睡眠锚点在不同目标与受试者重抽样之间稳定性较弱，也没有显示出相对固定分散方案的稳定留出优势。</p>
+      </article>
+    </div>
+    <p class="en" style="margin-top: 18px">These analyses illustrate the paper's resolution result: broad protocol layouts can be distinguishable even when the data do not support reliable selection of exact anchor locations.</p>
+    <p class="zh" style="margin-top: 18px">这些结果体现了论文的“分辨率”结论：数据可以支持对粗粒度协议布局的比较，却未必足以可靠选择精确锚点。</p>
+    <p class="en" style="font-size: 14px; color: var(--muted)">197 Sleep-EDF hypnograms (100 subjects) and 84 Long-Term AF records; expert annotation files only, subject-disjoint five-fold cross-fitting, pooled held-out R². Full charts in the <a href="technical/#ch8">technical tour</a>.</p>
+    <p class="zh" style="font-size: 14px; color: var(--muted)">197 段 Sleep-EDF 分期（100 名受试者）与 84 段长程房颤记录；只用专家标注文件，受试者不交叠的五折交叉拟合，汇总留出 R²。完整图表见<a href="technical/#ch8">技术导览</a>。</p>
+  </div>
+</section>
+
+<!-- ============================================================ beyond -->
+<section class="block" id="beyond">
+  <div class="wrap">
+    <div class="h2row"><h2 class="en">This is a general problem of changing what is observed.</h2><h2 class="zh">这不仅是时间采样问题，而是“改变观测系统”时的普遍问题。</h2><button class="copy-link" type="button" data-anchor="beyond" title="Copy link">#</button></div>
+    <p class="en">The same question arises whenever a proposed measurement has never been observed jointly with the target: longer or dispersed clinical monitoring, overlapping multimodal panels, wearable and imaging schedules, or new environmental sensor locations.</p>
+    <p class="zh">只要拟议测量从未与目标共同出现，同样的问题就会发生：更长或更分散的临床监测、重叠的多模态测量面板、可穿戴与影像采集方案，以及新的环境传感器位置。</p>
+    <p class="en">In such settings, feature selection and sensor optimisation begin only after the counterfactual value of the proposed measurements has been identified or calibrated.</p>
+    <p class="zh">在这些场景中，特征选择与传感器优化都应当从一个更早的问题开始：这些拟议测量的反事实价值是否已经被现有数据识别或校准。</p>
+    <div class="cards">
+      <article class="card" style="--c: var(--latent)"><div class="k"><span class="en">Clinical monitoring</span><span class="zh">临床监测</span></div><p class="en">Longer, repeated or dispersed recordings whose burden was never paired with the outcome.</p><p class="zh">更长、重复或分散的记录，其负担从未与结局一起被观测。</p></article>
+      <article class="card" style="--c: var(--latent)"><div class="k"><span class="en">Multimodal panels</span><span class="zh">多模态面板</span></div><p class="en">Overlapping assay or biomarker panels that were collected on different subjects.</p><p class="zh">在不同对象上采集、彼此重叠的检测或生物标志物面板。</p></article>
+      <article class="card" style="--c: var(--latent)"><div class="k"><span class="en">Wearables and imaging</span><span class="zh">可穿戴与影像</span></div><p class="en">Sampling schedules for devices and scans that decide how often and how long to observe.</p><p class="zh">决定设备与扫描多久看一次、看多长的采集方案。</p></article>
+      <article class="card" style="--c: var(--latent)"><div class="k"><span class="en">Environmental sensing</span><span class="zh">环境传感</span></div><p class="en">New sensor locations or reading frequencies for exposure and exceedance-time targets.</p><p class="zh">为暴露量或超标时长目标新增的传感器位置或读数频率。</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ closing / cite -->
+<section class="block" id="cite">
+  <div class="wrap">
+    <div class="h2row"><h2 class="en">Identification before optimisation.</h2><h2 class="zh">先识别，再优化。</h2><button class="copy-link" type="button" data-anchor="cite" title="Copy link">#</button></div>
+    <p class="en">Existing data do not automatically determine the value of measurements that were never made. The relevant goal is not always to recover the full latent system, but to remove the ambiguity that changes the protocol values under consideration. Calibration then determines which differences are resolvable, and design should proceed at that resolution.</p>
+    <p class="zh">现有数据不会自动确定那些从未实施过的测量的价值。真正需要恢复的未必是完整潜在系统，而是消除会改变候选协议价值的歧义。校准数据随后决定哪些差异可以被分辨，观测设计应当在这一分辨率上进行。</p>
+    <div class="actions">
+      <a class="btn primary" href="paper/main.pdf" target="_blank" rel="noopener" data-track="paper_open"><span class="en">Read the manuscript</span><span class="zh">阅读论文</span></a>
+      <a class="btn" href="technical/" data-track="technical_open"><span class="en">Open the technical tour</span><span class="zh">打开技术导览</span></a>
+      <a class="btn" href="#code" data-link="code" data-track="code_open"><span class="en">View code and experiments</span><span class="zh">查看代码与实验</span></a>
+      <a class="btn" href="figures/" data-track="figure_download"><span class="en">Download figures</span><span class="zh">下载图表</span></a>
+      <button class="btn" type="button" data-copy="bibtex" data-track="citation_copied"><span class="en">Copy BibTeX</span><span class="zh">复制 BibTeX</span></button>
+      <a class="btn" id="contact-link" href="mailto:zhangxizhe@gmail.com"><span class="en">Contact the author</span><span class="zh">联系作者</span></a>
+    </div>
+    <div class="cite-grid">
+      <div class="cite-box">
+        <h4><span><span class="en">BibTeX</span><span class="zh">BibTeX</span></span><button class="copy-btn" type="button" data-copy="bibtex" data-track="citation_copied"><span class="en">Copy</span><span class="zh">复制</span></button></h4>
+        <pre id="bibtex"></pre>
+        <h4 style="margin-top: 16px"><span><span class="en">Plain text</span><span class="zh">纯文本</span></span><button class="copy-btn" type="button" data-copy="plain" data-track="citation_copied"><span class="en">Copy</span><span class="zh">复制</span></button></h4>
+        <p class="plain" id="plain-cite"></p>
+        <p class="sub en" style="font-size: 12.5px; color: var(--dim); margin-top: 10px; max-width: none">The journal reference and DOI will replace this entry as soon as they exist (<code>js/config.js</code>).</p>
+        <p class="sub zh" style="font-size: 12.5px; color: var(--dim); margin-top: 10px; max-width: none">期刊信息与 DOI 一旦可用即替换此条目（<code>js/config.js</code>）。</p>
+      </div>
+      <div class="cite-box" id="code">
+        <h4><span class="en">Code and data</span><span class="zh">代码与数据</span></h4>
+        <ul class="res-list">
+          <li id="code-link-row"><a href="#" id="code-link" data-track="code_open"><span class="en">Code repository</span><span class="zh">代码仓库</span></a><span class="en" id="code-note">link added with the journal version</span><span class="zh">期刊版发布时添加链接</span></li>
+          <li><span class="en">Code and experiment package</span><span class="zh">代码与实验软件包</span><span>Counterfactual_Evaluation_Temporal_Protocols_Code · 21 MB</span></li>
+          <li><span class="en">Every figure and number regenerated by <code>make all</code>; 531 manuscript macros reproduced bit-for-bit</span><span class="zh"><code>make all</code> 重新生成全部图表与数字；531 个论文宏逐位复现</span></li>
+          <li><span class="en">Data: Sleep-EDF Expanded and Long-Term AF Database (PhysioNet), annotation files only</span><span class="zh">数据：Sleep-EDF Expanded 与 Long-Term AF Database（PhysioNet），仅标注文件</span></li>
+          <li><a href="figures/"><span class="en">Key figures (PNG)</span><span class="zh">核心图（PNG）</span></a><span class="en">two worlds · identify–calibrate–design · resolution in real data</span><span class="zh">两个世界 · 识别–校准–设计 · 真实数据的分辨率</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4><span class="en">Three levels</span><span class="zh">三个层次</span></h4>
+      <a href="#two-worlds"><span class="en">60 seconds — the core result</span><span class="zh">60 秒——核心结果</span></a><br>
+      <a href="explainer/"><span class="en">4 minutes — the complete argument</span><span class="zh">4 分钟——完整论证</span></a><br>
+      <a href="technical/"><span class="en">10 minutes — technical interactive tour</span><span class="zh">10 分钟——技术交互导览</span></a>
+    </div>
+    <div>
+      <h4><span class="en">Colour legend</span><span class="zh">配色</span></h4>
+      <div class="legend">
+        <span style="--c: var(--latent)">latent Z</span><span style="--c: var(--target)">target Θ</span><span style="--c: var(--prot-a)">protocol A</span><span style="--c: var(--prot-b)">protocol B</span><span style="--c: var(--expl)">value</span><span style="--c: var(--alert)">non-identification</span>
+      </div>
+    </div>
+    <div>
+      <h4><span class="en">Provenance</span><span class="zh">来源</span></h4>
+      <span class="en">Every number on this page is read from <code>paper/numbers.tex</code> and the released <code>results/</code> files; the interactives recompute protocol values in the browser with the paper's formulas.</span>
+      <span class="zh">本页每一个数字都读取自 <code>paper/numbers.tex</code> 与发布的 <code>results/</code> 文件；交互部分在浏览器里用论文公式现算协议价值。</span>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/narration-explainer.js"></script>
+<script src="js/math.js"></script>
+<script src="js/mathtext.js"></script>
+<script src="js/landing.js"></script>
+</body>
+</html>

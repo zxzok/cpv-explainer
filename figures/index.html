@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Key figures · Counterfactual Protocol Evaluation</title>
+<meta name="description" content="Downloadable key figures of the paper's explainer: the four-point counterexample, the identify–calibrate–design sequence, and the resolution result in real data.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230B1119%27/%3E%3Cpath d=%27M5 9 L13 21 L21 13 L27 23%27 fill=%27none%27 stroke=%27%234ECDC4%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M5 9 L13 14 L21 24 L27 11%27 fill=%27none%27 stroke=%27%23F08A4B%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/landing.css">
+<style>
+  .figs { display: grid; gap: 40px; margin: 30px 0 60px; }
+  .figs figure { margin: 0; }
+  .figs canvas { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: #0B1119; }
+  .figs figcaption { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .figs figcaption b { color: var(--ink); font-weight: 500; font-size: 16px; }
+  body.render { background: #0B1119; }
+  body.render .site-header, body.render .intro, body.render figcaption, body.render .figs figure:not(.active) { display: none; }
+  body.render .wrap { max-width: none; padding: 0; }
+  body.render .figs { margin: 0; display: block; }
+  body.render .figs canvas { width: 1600px; height: 900px; border: 0; border-radius: 0; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="bar"><a class="brand" href="../">Counterfactual Protocol Evaluation</a><nav><a href="../">Overview</a><a href="../explainer/">4-minute story</a><a href="../technical/">Technical tour</a></nav></div></header>
+<main class="wrap">
+  <div class="intro" style="padding-top: 40px">
+    <p class="eyebrow">Key figures</p>
+    <h2>Three figures, ready to reuse</h2>
+    <p>Each figure is also available as a 3200 × 1800 PNG (right-click the image, or use the download link). Numbers come from <code>paper/numbers.tex</code> and the released results; the four-point values are recomputed in the browser.</p>
+  </div>
+  <div class="figs">
+    <figure id="fig1"><canvas id="fig-two-worlds" width="1600" height="900"></canvas><figcaption><b>Figure 1 · Same benchmark, two compatible worlds, two protocol values</b><a href="fig-two-worlds.png" download data-track="figure_download">Download PNG</a></figcaption></figure>
+    <figure id="fig2"><canvas id="fig-three-steps" width="1600" height="900"></canvas><figcaption><b>Figure 2 · Identify, calibrate, design — in that order</b><a href="fig-identify-calibrate-design.png" download data-track="figure_download">Download PNG</a></figcaption></figure>
+    <figure id="fig3"><canvas id="fig-resolution" width="1600" height="900"></canvas><figcaption><b>Figure 3 · Resolution: coarse layouts resolve, exact anchors do not</b><a href="fig-resolution-evidence.png" download data-track="figure_download">Download PNG</a></figcaption></figure>
+  </div>
+</main>
+<script src="../js/config.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/math.js"></script>
+<script src="../js/mathtext.js"></script>
+<script src="../js/landing.js"></script>
+<script>
+(function () {
+  const L = window.CPV_LANDING, C = L.C, M = window.CPV.M, DATA = window.CPV_DATA;
+  const q = new URLSearchParams(location.search), render = q.get("render");
+  if (render) { document.body.classList.add("render"); const f = document.getElementById("fig" + render); if (f) f.classList.add("active"); }
+
+  function title(ctx, W, H, main, sub) {
+    L.text(ctx, main, 60, 70, { size: 34, font: "display", weight: 500, color: C.ink });
+    if (sub && sub.includes("\\text")) CPV.mathText.draw(ctx, sub, 60, 104, { size: 17, color: C.muted });
+    else if (sub) L.text(ctx, sub, 60, 104, { size: 17, color: C.muted });
+    L.text(ctx, "Counterfactual Evaluation of Temporal Observation Protocols · Xizhe Zhang · Nanjing Medical University", W - 60, H - 24, { size: 14, color: C.dim, align: "right" });
+  }
+  function wrap(ctx, str, x, y, maxW, o) {
+    const size = o.size || 16, lh = o.lineHeight || size * 1.45; let line = "", yy = y; ctx.font = `${o.weight || 400} ${size}px ${L.FONT[o.font || "sans"]}`;
+    str.split(" ").forEach(wd => { const test = (line + " " + wd).trim(); if (ctx.measureText(test).width > maxW && line) { L.text(ctx, line, x, yy, o); line = wd; yy += lh; } else line = test; });
+    L.text(ctx, line, x, yy, o); return yy + lh;
+  }
+  // ---- Figure 1: two worlds (the landing drawing, placed under a title band)
+  const off1 = document.createElement("canvas"); off1.width = 1600; off1.height = 760; off1.style.width = "1600px";
+  function fig1(eps) {
+    const cv = document.getElementById("fig-two-worlds"), { ctx, W, H } = L.setupCanvas(cv);
+    ctx.fillStyle = "#0B1119"; ctx.fillRect(0, 0, W, H);
+    L.drawTwoWorlds(off1, eps === undefined ? L.EPS0 : eps, { compact: false });
+    ctx.drawImage(off1, 0, 0, off1.width, off1.height, 0, 120, 1600, 740);
+    title(ctx, W, H, "Same benchmark. Two compatible worlds. Two different answers.", "\\text{Theorem 3: protocol A observes }Z_0\\text{; the two correlation profiles }ρ_0 ± ε\\,(0, 1, −2, 1)\\text{ give identical benchmark laws but different values to }B = \\{Z_1, Z_2\\}\\text{.}");
+  }
+  // ---- Figure 2: identify → calibrate → design
+  function fig2() {
+    const cv = document.getElementById("fig-three-steps"), { ctx, W, H } = L.setupCanvas(cv);
+    ctx.fillStyle = "#0B1119"; ctx.fillRect(0, 0, W, H);
+    title(ctx, W, H, "Three questions, in the order they must be answered", "The information needed to evaluate a protocol is the information that removes value-changing ambiguity — not the full latent system.");
+    const cols = [
+      ["Identify", "Is the value determined by the available data?", ["Characterise the latent variation the realised benchmark cannot see", "Test whether it changes the value of the proposed protocol", "Theorems 3 & 5 · Proposition 6: it need not — even with infinite data"], C.alert, "Section 3"],
+      ["Calibrate", "What additional measurements remove the relevant ambiguity?", ["Targeted augmentation identifies one specified value (Proposition 8)", "A small densely observed subset supports a whole candidate family", "Uniform value error bounded by a power of the covariance error; root-m at a fixed model (Theorems 10–11)"], C.latent, "Section 4"],
+      ["Design", "Which protocol is best at the resolution the data can support?", ["Regret of the empirical best ≤ 2ε + optimisation error (Corollary 12)", "Exact rank-one marginal gains for cost-constrained search (Proposition 13)", "Greedy + one swap ≥ 0.987 of the exhaustive optimum in 25 settings"], C.expl, "Section 5"],
+    ];
+    cols.forEach((c, i) => {
+      const x = 60 + i * 500, y = 170, w = 460, h = 600;
+      L.rect(ctx, x, y, w, h, { fill: "#121A26", stroke: c[3], width: 1.5 });
+      L.text(ctx, String(i + 1), x + 34, y + 58, { size: 30, color: c[3], font: "mono", weight: 500 });
+      L.text(ctx, c[0], x + 70, y + 58, { size: 36, color: c[3], font: "display", weight: 500 });
+      L.text(ctx, c[4], x + w - 26, y + 56, { size: 14, color: C.dim, align: "right", font: "mono" });
+      // wrap the question
+      const words = c[1].split(" "); let lineStr = "", yy = y + 120; ctx.font = "500 24px " + L.FONT.sans;
+      words.forEach(wd => { const test = (lineStr + " " + wd).trim(); if (ctx.measureText(test).width > w - 52) { L.text(ctx, lineStr, x + 26, yy, { size: 24, weight: 500, color: C.ink }); lineStr = wd; yy += 32; } else lineStr = test; });
+      L.text(ctx, lineStr, x + 26, yy, { size: 24, weight: 500, color: C.ink }); yy += 54;
+      c[2].forEach(b => { L.dot(ctx, x + 34, yy - 6, 4, c[3]); const ws = b.split(" "); let ls = ""; ctx.font = "400 17px " + L.FONT.sans; ws.forEach(wd => { const test = (ls + " " + wd).trim(); if (ctx.measureText(test).width > w - 80) { L.text(ctx, ls, x + 50, yy, { size: 17, color: C.muted }); ls = wd; yy += 25; } else ls = test; }); L.text(ctx, ls, x + 50, yy, { size: 17, color: C.muted }); yy += 40; });
+      if (i < 2) { L.line(ctx, x + w + 6, y + h / 2, x + w + 34, y + h / 2, { color: C.dim, width: 3 }); L.poly(ctx, [[x + w + 26, y + h / 2 - 8], [x + w + 36, y + h / 2], [x + w + 26, y + h / 2 + 8]], { color: C.dim, width: 3 }); }
+    });
+    L.text(ctx, "Identification before optimisation: evaluate undeployed protocols only once the data can determine their value, and optimise only at the granularity the calibration data support.", W / 2, 840, { size: 19, color: C.gold, align: "center" });
+  }
+  // ---- Figure 3: resolution — simulation curve and the real-data contrasts
+  function fig3() {
+    const cv = document.getElementById("fig-resolution"), { ctx, W, H } = L.setupCanvas(cv);
+    ctx.fillStyle = "#0B1119"; ctx.fillRect(0, 0, W, H);
+    title(ctx, W, H, "Coarse layouts resolve; exact learned anchors do not", "Left: simulated selection regret by candidate class (Figure 2c). Right: Sleep-EDF and Long-Term AF, pooled held-out R² (Figures 3–4).");
+    // left chart drawn by the landing function onto an offscreen canvas, then placed
+    const off = document.createElement("canvas"); off.width = 1100; off.height = 720; off.style.width = "700px";
+    L.drawResolution(off); ctx.drawImage(off, 70, 150, 700, 458);
+    L.text(ctx, "Simulation under known data-generating laws", 70, 640, { size: 13, color: C.expl, font: "mono" });
+    // right: evidence
+    const x = 860, rows = [
+      ["Sleep-EDF · REM, N = 4 epochs", "0.682", "dispersed", "0.648", "contiguous", C.target],
+      ["Sleep-EDF · REM, N = 16 epochs", "0.738", "dispersed", "0.659", "contiguous", C.target],
+      ["Long-Term AF · four 15-min windows", "0.971", "dispersed", "0.696", "contiguous", C.target],
+      ["Long-Term AF · sixteen 15-min windows", "0.998", "dispersed", "0.851", "contiguous", C.target],
+    ];
+    L.text(ctx, "Retrospective reconstruction from fully annotated data", x, 160, { size: 13, color: C.target, font: "mono" });
+    rows.forEach((r, i) => {
+      const y = 210 + i * 96;
+      L.text(ctx, r[0], x, y, { size: 17, color: C.ink, weight: 500 });
+      const bw = 560, by = y + 16;
+      L.rect(ctx, x, by, bw, 18, { stroke: C.dim, width: 1 }); L.rect(ctx, x + 1, by + 1, (bw - 2) * parseFloat(r[1]), 16, { fill: r[5] });
+      L.text(ctx, r[1] + "  " + r[2], x + bw + 14, by + 15, { size: 15, color: r[5], font: "mono" });
+      L.rect(ctx, x, by + 26, bw, 18, { stroke: C.dim, width: 1 }); L.rect(ctx, x + 1, by + 27, (bw - 2) * parseFloat(r[3]), 16, { fill: C.B });
+      L.text(ctx, r[3] + "  " + r[4], x + bw + 14, by + 41, { size: 15, color: C.B, font: "mono" });
+    });
+    wrap(ctx, "Learned target-aware Sleep supports (N = 16): advantage over fixed dispersion −0.044 on the original sample; over 1000 subject resamples the difference has median −0.012 and range [−0.126, +0.097] — no stable held-out advantage.", x, 612, W - 60 - x, { size: 15, color: C.muted });
+    L.text(ctx, "Broad protocol layouts can be distinguished even when the data do not support reliable selection of exact anchor locations.", W / 2, 840, { size: 19, color: C.gold, align: "center" });
+  }
+  function all() { fig1(); fig2(); fig3(); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(all);
+  all();
+  window.addEventListener("resize", all);
+  /* frame driver for the silent recording: t in seconds → epsilon path on figure 1 */
+  window.CPV_FRAME = function (t) {
+    const E = L.EPS0, ease = u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+    let eps;
+    if (t < 2.5) eps = 0;                                          // identical worlds
+    else if (t < 6.5) eps = E * ease((t - 2.5) / 4);               // diverge to the paper's epsilon
+    else if (t < 11) eps = E;                                      // hold
+    else if (t < 19) eps = E * (0.5 + 0.5 * Math.cos((t - 11) / 8 * 2 * Math.PI)); // sweep back and forth once
+    else if (t < 23) eps = E * ease((t - 19) / 4) * 0 + E * ease(Math.min(1, (t - 19) / 4)); // settle
+    else eps = E;
+    fig1(eps);
+    return eps;
+  };
+  window.CPV_READY = true;
+})();
+</script>
+</body>
+</html>

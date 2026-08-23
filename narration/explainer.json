@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "title": {
+      "en": "Counterfactual Evaluation of Temporal Observation Protocols",
+      "zh": "时间观测协议的反事实评估"
+    },
+    "author": "Xizhe Zhang · Nanjing Medical University",
+    "voices": {
+      "en": "我的声音_讲解",
+      "zh": "我的声音_讲解"
+    },
+    "engine": "voxcpm",
+    "note": "Four-minute guided story (7 chapters). Narration from the Website V2 strategy document, section 4.",
+    "voice_note": "VoxCPM2 clone of the author's voice with a calm explanatory delivery style (voices/我的声音_讲解); rate normalised towards 150 wpm / 3.9 字/s"
+  },
+  "chapters": [
+    {
+      "id": "e0",
+      "title": {
+        "en": "The question",
+        "zh": "问题"
+      },
+      "kicker": {
+        "en": "Prologue",
+        "zh": "序"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "Normally, a benchmark compares learning algorithms while holding the observation protocol fixed. This paper changes the question. Can data collected under one protocol tell us how well another protocol, one that was never used, would predict the target?",
+          "zh": "通常，一个基准数据集是固定观测协议，然后比较不同的学习算法。这篇论文把问题换了一层：一种协议采集的数据，能不能告诉我们，另一种从来没用过的协议，会把目标预测到多好？"
+        },
+        {
+          "id": "b1",
+          "en": "And the answer is: not always. Even with infinitely many units, the benchmark may leave some temporal dependence unresolved, and that dependence can be exactly what decides the alternative protocol's value.",
+          "zh": "答案是：并不总是可以。哪怕样本趋于无穷，基准数据仍然可能留下某些没有确定的时间依赖，而恰恰是这些依赖，决定了替代协议的价值。"
+        }
+      ],
+      "read": {
+        "en": "<p>Predictive performance in temporal learning depends on the learner <em>and</em> on the observation protocol that produced the data. The paper asks whether the joint measurement–target law under the <strong>realised</strong> protocol determines the predictive value of an <strong>undeployed</strong> alternative — counterfactual protocol evaluation (Section 1).</p>",
+        "zh": "<p>时间序列学习的预测性能既取决于模型，也取决于产生数据的观测协议。论文问：<strong>已实施</strong>协议下测量与目标的联合分布，能否确定一个<strong>从未实施</strong>的替代协议的预测价值——即反事实协议评估（第 1 节）。</p>"
+      }
+    },
+    {
+      "id": "e1",
+      "title": {
+        "en": "Same benchmark, two answers",
+        "zh": "同一基准，两个答案"
+      },
+      "kicker": {
+        "en": "Theorem 3 · minimal mathematical example",
+        "zh": "定理 3 · 最小数学例子"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "Let's see the smallest case. Four time points. Protocol A observes only the first one, and the target is the average over all four. The benchmark law is then determined by just three quantities: the measurement variance, its covariance with the target, and the target variance.",
+          "zh": "来看最小的例子。四个时间点，协议 A 只观测第一个，目标是四个点的平均。这时基准分布只由三个量决定：测量方差、测量与目标的协方差，以及目标方差。"
+        },
+        {
+          "id": "b1",
+          "en": "Now we construct two latent temporal models that agree on all three quantities. The benchmark data are therefore exactly the same in the two worlds.",
+          "zh": "现在，我们构造两种潜在时间模型，让这三个量完全一致。于是，两个世界里的基准数据分布就完全相同。"
+        },
+        {
+          "id": "b2",
+          "en": "Protocol B observes two other points. Its value is 0.682 in one world and 0.827 in the other. The same benchmark supports two different answers.",
+          "zh": "协议 B 改为观测另外两个点。它的价值在一个世界里是 0.682，在另一个世界里是 0.827。同一份基准数据，支持两个不同的答案。",
+          "en_tts": "Protocol B observes two other points. Its value is zero point six eight two in one world, and zero point eight two seven in the other. The same benchmark supports two different answers.",
+          "zh_tts": "协议 B 改为观测另外两个点。它的价值在一个世界里是零点六八二，在另一个世界里是零点八二七。同一份基准数据，支持两个不同的答案。"
+        },
+        {
+          "id": "b3",
+          "en": "What actually changes is the redundancy between B's two measurements. Protocol A never observes that relation, so collecting more units under A cannot recover it.",
+          "zh": "真正在变的，是协议 B 两个测量之间的冗余程度。协议 A 从来没有观测过这种关系，所以继续在 A 下扩大样本，也无法把它恢复出来。"
+        }
+      ],
+      "read": {
+        "en": "<p><strong>Theorem 3.</strong> For a stationary standardised process on <span class='f'>p</span> points, a uniform mean target and a one-point benchmark, identification holds for <span class='f'>p ≤ 3</span> and fails from <span class='f'>p = 4</span>, where the invisible direction is the lag perturbation <span class='f'>δ = (0, 1, −2, 1)</span>. With <span class='f'>ρ_0(u) = e^{−u}</span> and <span class='f'>ε = 0.1321</span>, both worlds give <span class='f'>Var(Y_A) = 1</span>, <span class='f'>Cov(Y_A, Θ) = 0.388250</span>, <span class='f'>Var(Θ) = 0.428012</span>, yet <span class='f'>I(B;K_{+}) = 0.6817</span> and <span class='f'>I(B;K_{−}) = 0.8274</span> (Figure 1). Only <span class='f'>Cov(Z_1, Z_2)</span> moves along <span class='f'>δ</span>.</p>",
+        "zh": "<p><strong>定理 3.</strong> 对 <span class='f'>p</span> 个格点上的平稳标准化过程、均匀均值目标和单点基准，<span class='f'>p ≤ 3</span> 时可识别，<span class='f'>p = 4</span> 起失效，不可见方向是滞后扰动 <span class='f'>δ = (0, 1, −2, 1)</span>。取 <span class='f'>ρ_0(u) = e^{−u}</span>、<span class='f'>ε = 0.1321</span>：两个世界的 <span class='f'>Var(Y_A) = 1</span>、<span class='f'>Cov(Y_A, Θ) = 0.388250</span>、<span class='f'>Var(Θ) = 0.428012</span> 完全一致，而 <span class='f'>I(B;K_{+}) = 0.6817</span>、<span class='f'>I(B;K_{−}) = 0.8274</span>（图 1）。沿 <span class='f'>δ</span> 移动时只有 <span class='f'>Cov(Z_1, Z_2)</span> 在变。</p>"
+      }
+    },
+    {
+      "id": "e2",
+      "title": {
+        "en": "Value-specific identification",
+        "zh": "价值特定的识别"
+      },
+      "kicker": {
+        "en": "Definition 1 · Theorem 5",
+        "zh": "定义 1 · 定理 5"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "So what is a protocol's value, precisely? It is the population R squared of the best possible predictor of the fixed trajectory-level target, using that protocol's measurements.",
+          "zh": "那么，协议价值到底是什么？它是理想预测器只利用该协议的测量时，对固定的轨迹级目标所能达到的总体 R 方。"
+        },
+        {
+          "id": "b1",
+          "en": "And it is identified only when every latent model compatible with the realised benchmark assigns the alternative the same value.",
+          "zh": "而只有当所有与已实施基准相容的潜在模型，都赋予替代协议同一个价值时，这个价值才算被识别。"
+        },
+        {
+          "id": "b2",
+          "en": "Notice that this is value-specific. We don't need to recover the full latent covariance. We only need to remove the ambiguity that changes the value being evaluated.",
+          "zh": "注意，这种识别是针对价值本身的。我们不需要恢复完整的潜在协方差，只需要消除会改变当前所评估价值的那部分歧义。"
+        }
+      ],
+      "read": {
+        "en": "<p><strong>Definition 1.</strong> <span class='f'>I(S) = \\frac{Var(E[Θ \\mid Y_S])}{Var(Θ)}</span>, the population R² of the optimal predictor; under the Gaussian model <span class='f'>I_g(S;K) = \\frac{F_g(S;K)}{V_g(K)}</span> (Proposition 2). <strong>Criterion.</strong> <span class='f'>I_g(B; ·)</span> is identified from the benchmark law iff it is constant over the observational-equivalence class <span class='f'>K_A(P_A)</span>. <strong>Theorem 5.</strong> A symmetric zero-diagonal <span class='f'>Δ</span> with <span class='f'>AΔA^\\top = 0</span>, <span class='f'>AΔh = 0</span>, <span class='f'>h^\\topΔh = 0</span> is invisible; a non-zero directional derivative <span class='f'>D_B(Δ;K_0)</span> certifies non-identification. Rank–nullity: <span class='f'>O(d^2)</span> constraints against <span class='f'>O(p^2)</span> parameters.</p>",
+        "zh": "<p><strong>定义 1.</strong> <span class='f'>I(S) = \\frac{Var(E[Θ \\mid Y_S])}{Var(Θ)}</span>，最优预测器的总体 R²；高斯模型下 <span class='f'>I_g(S;K) = \\frac{F_g(S;K)}{V_g(K)}</span>（命题 2）。<strong>识别准则.</strong> <span class='f'>I_g(B; ·)</span> 可从基准分布识别，当且仅当它在观测等价类 <span class='f'>K_A(P_A)</span> 上为常数。<strong>定理 5.</strong> 满足 <span class='f'>AΔA^\\top = 0</span>、<span class='f'>AΔh = 0</span>、<span class='f'>h^\\topΔh = 0</span> 的对称零对角 <span class='f'>Δ</span> 不可见；方向导数 <span class='f'>D_B(Δ;K_0)</span> 非零即证明不可识别。秩–零化度：<span class='f'>O(d^2)</span> 个约束对 <span class='f'>O(p^2)</span> 个参数。</p>"
+      }
+    },
+    {
+      "id": "e3",
+      "title": {
+        "en": "What additional data resolve",
+        "zh": "哪些补充数据能解决问题"
+      },
+      "kicker": {
+        "en": "Proposition 8 · Theorems 10–11",
+        "zh": "命题 8 · 定理 10–11"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "More observations under the same protocol simply repeat the same information. What helps is a measurement that cuts through the invisible, value-changing directions.",
+          "zh": "在同一协议下继续增加观测，只是在重复同一组信息。真正有帮助的，是能够切断那些不可见、而且会改变价值的方向的测量。"
+        },
+        {
+          "id": "b1",
+          "en": "For one specified alternative, targeted augmentation may already be enough. For a whole family of alternatives, a small, densely observed calibration subset provides a broader route.",
+          "zh": "如果只评估一个指定的替代协议，定向补测可能就已经够了。如果要评估整个候选族，一个小规模、但观测密集的校准子集，提供了更宽的路径。"
+        },
+        {
+          "id": "b2",
+          "en": "The paper shows how covariance-calibration error propagates into protocol-value error. At a fixed, well-conditioned model, the error falls at the usual inverse-square-root rate as the calibration sample grows.",
+          "zh": "论文给出了协方差的校准误差，是怎么传递成协议价值误差的。在固定、条件良好的模型下，随着校准样本增加，误差按通常的平方根速率下降。"
+        }
+      ],
+      "read": {
+        "en": "<p><strong>Proposition 8.</strong> If the row space of <span class='f'>B</span> lies in that of the augmented benchmark with <span class='f'>h^\\top</span>, the value is identified exactly; in the four-point example without stationarity, adding <span class='f'>Z_1</span> shrinks the invisible space from 4 to 2 dimensions and adding <span class='f'>Z_2</span> removes it. <strong>Calibration.</strong> With <span class='f'>m</span> dense units <span class='f'>W = Z + η</span>, <span class='f'>\\hat K = R_τ(\\hat Σ − \\hat R_0)</span> and <span class='f'>\\hat I_g(S) = F_g(S;\\hat K)/V_g(\\hat K)</span>. <strong>Theorem 10.</strong> <span class='f'>\\sup_S |\\hat I_g(S) − I_g(S)| ≤ C\\,\\norm{\\hat K − K}^{β}</span>, <span class='f'>β = 1</span> for smooth targets and at fixed interior threshold models, <span class='f'>β = 1/2</span> for threshold targets globally. <strong>Theorem 11.</strong> Root-<span class='f'>m</span> at a fixed model; Figure 2(a): slopes −0.413 / −0.414 over 495 protocols.</p>",
+        "zh": "<p><strong>命题 8.</strong> 若 <span class='f'>B</span> 的行空间落在补测后的基准与 <span class='f'>h^\\top</span> 张成的行空间内，价值被精确识别；不假设平稳的四点例子中，补测 <span class='f'>Z_1</span> 把不可见空间从 4 维缩到 2 维，再补 <span class='f'>Z_2</span> 则完全消除。<strong>校准.</strong> 用 <span class='f'>m</span> 个密集对象 <span class='f'>W = Z + η</span>，<span class='f'>\\hat K = R_τ(\\hat Σ − \\hat R_0)</span>，<span class='f'>\\hat I_g(S) = F_g(S;\\hat K)/V_g(\\hat K)</span>。<strong>定理 10.</strong> <span class='f'>\\sup_S |\\hat I_g(S) − I_g(S)| ≤ C\\,\\norm{\\hat K − K}^{β}</span>：平滑目标与固定内部阈值模型 <span class='f'>β = 1</span>，阈值目标全局 <span class='f'>β = 1/2</span>。<strong>定理 11.</strong> 固定模型下根号 <span class='f'>m</span> 速率；图 2(a)：495 个协议上斜率 −0.413 / −0.414。</p>"
+      }
+    },
+    {
+      "id": "e4",
+      "title": {
+        "en": "Resolution before optimisation",
+        "zh": "先有分辨率，再谈优化"
+      },
+      "kicker": {
+        "en": "Corollary 12",
+        "zh": "推论 12"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "Calibration error sets a comparison scale. If every estimated value is within epsilon of its truth, then selecting the empirical best loses at most about two epsilon, apart from optimisation error.",
+          "zh": "校准误差给出了协议比较的尺度。如果每个估计价值与真实价值的偏差都不超过 epsilon，那么按估计值选出的最优协议，损失至多约为二倍 epsilon，再加上优化误差。",
+          "zh_tts": "校准误差给出了协议比较的尺度。如果每个估计价值与真实价值的偏差都不超过艾普西隆，那么按估计值选出的最优协议，损失至多约为二倍艾普西隆，再加上优化误差。"
+        },
+        {
+          "id": "b1",
+          "en": "A fine candidate class may well contain better protocols. But exact locations are meaningful only when the data can resolve the small gaps among the leading candidates.",
+          "zh": "更细的候选类，很可能包含更好的协议。但只有当数据能够分辨领先候选之间的微小差距时，精确的位置才有可信的意义。"
+        },
+        {
+          "id": "b2",
+          "en": "So the useful granularity of optimisation is set by the calibration data, not by how sophisticated the optimiser is.",
+          "zh": "所以，优化能够细化到什么程度，是由校准数据决定的，而不是由优化器有多复杂决定的。"
+        }
+      ],
+      "read": {
+        "en": "<p><strong>Corollary 12.</strong> With <span class='f'>ε_m = \\sup_S |\\hat I_g(S) − I_g(S)|</span>, an empirical maximiser with optimisation gap <span class='f'>η_m</span> satisfies <span class='f'>I_g(S^*) − I_g(\\tilde S) ≤ 2ε_m + η_m</span>; for nested classes the regret splits into class restriction plus <span class='f'>2ε_ℓ</span>. Figure 2(b–d): over 7200 checks the realised regret never exceeds <span class='f'>2ε_m</span>; among classes of sizes 2, 5, 75 and 568 the finest has regret 0.037 at <span class='f'>m = 25</span> versus 0.051 for the coarsest, and at <span class='f'>m = 1000</span> the coarsest is still at 0.037 while the finest reaches 0.006.</p>",
+        "zh": "<p><strong>推论 12.</strong> 记 <span class='f'>ε_m = \\sup_S |\\hat I_g(S) − I_g(S)|</span>，优化间隙为 <span class='f'>η_m</span> 的经验极大化解满足 <span class='f'>I_g(S^*) − I_g(\\tilde S) ≤ 2ε_m + η_m</span>；嵌套类下损失分解为类别限制加 <span class='f'>2ε_ℓ</span>。图 2(b–d)：7200 次检验中实际损失从未超过 <span class='f'>2ε_m</span>；大小为 2、5、75、568 的四类中，<span class='f'>m = 25</span> 时最细类损失 0.037、最粗类 0.051；<span class='f'>m = 1000</span> 时最粗类仍为 0.037，最细类降到 0.006。</p>"
+      }
+    },
+    {
+      "id": "e5",
+      "title": {
+        "en": "Design and evidence",
+        "zh": "设计与证据"
+      },
+      "kicker": {
+        "en": "Proposition 13 · Sleep-EDF · Long-Term AF",
+        "zh": "命题 13 · Sleep-EDF · 长程房颤"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "Once values are identified and estimable, the paper derives the exact gain from adding a measurement, under constraints on timing, support, repetition, noise, and cost.",
+          "zh": "当候选价值已经可识别、也可以估计之后，论文推导了在时刻、窗口、重复、噪声与成本的约束下，新增一次测量的精确收益。"
+        },
+        {
+          "id": "b1",
+          "en": "The best schedule depends on the target. A protocol that covers the trajectory well need not be the best one for predicting a particular aggregate of that trajectory.",
+          "zh": "最佳的观测方案取决于目标。把整条轨迹覆盖得很好的协议，不一定最适合预测这条轨迹的某个特定聚合量。"
+        },
+        {
+          "id": "b2",
+          "en": "In Sleep-EDF, dispersed scoring often outperformed a contiguous block in the pooled analyses, although the two source studies were heterogeneous. In Long-Term AF, dispersed multi-window observation outperformed the contiguous layouts that were evaluated.",
+          "zh": "在 Sleep-EDF 里，分散评分在合并分析中常常优于连续块，不过两个来源研究之间存在异质性。在长程房颤数据里，分散的多窗口观测，优于所评估的那些连续布局。"
+        },
+        {
+          "id": "b3",
+          "en": "Exact learned Sleep locations, however, were less stable across subsamples. The data distinguished broad layouts more clearly than fine anchor positions. That is the same resolution pattern the theory predicts.",
+          "zh": "不过，精确学习出来的睡眠位置，在重抽样之间稳定性较弱。数据对粗粒度布局的区分，比对精确锚点清楚得多。这正是理论所刻画的那种分辨率规律。"
+        }
+      ],
+      "read": {
+        "en": "<p><strong>Proposition 13.</strong> Adding action <span class='f'>a</span> gives <span class='f'>Q_{S ∪ a} = Q_S + v v^\\top / s</span> with <span class='f'>v = P_Sℓ_a</span>, <span class='f'>s = ℓ_a^\\top P_S ℓ_a + r_a</span>; for the mean target <span class='f'>Δ = \\frac{(ω^\\top P_S ℓ_a)^2}{s}</span>. <strong>Lemma 14:</strong> monotone, not submodular; Table 1: greedy + one swap reaches ≥ 0.987 of the exhaustive optimum over 25 instances. <strong>Real data.</strong> Sleep (REM): contiguous 0.648 / 0.659 / 0.863 vs dispersed 0.682 / 0.738 / 0.881 at <span class='f'>N = 4, 16, 64</span>, heterogeneous across SC/ST. AF burden: 0.696 vs 0.971 at one hour (four 15-min windows), 0.851 vs 0.998 at four hours. Learned REM support at <span class='f'>N = 16</span>: 0.694 vs 0.738 (fixed dispersion); over 1000 subsamples the difference has median −0.012 and range [−0.126, +0.097].</p>",
+        "zh": "<p><strong>命题 13.</strong> 加入动作 <span class='f'>a</span> 时 <span class='f'>Q_{S ∪ a} = Q_S + v v^\\top / s</span>，其中 <span class='f'>v = P_Sℓ_a</span>、<span class='f'>s = ℓ_a^\\top P_S ℓ_a + r_a</span>；均值目标下 <span class='f'>Δ = \\frac{(ω^\\top P_S ℓ_a)^2}{s}</span>。<strong>引理 14：</strong>单调但不次模；表 1：25 个实例上贪心加一轮交换达到穷举最优的 ≥ 0.987。<strong>真实数据.</strong> 睡眠（REM）：<span class='f'>N = 4, 16, 64</span> 时连续 0.648 / 0.659 / 0.863，分散 0.682 / 0.738 / 0.881，在 SC/ST 之间有异质性。房颤负担：一小时（四个 15 分钟窗口）0.696 对 0.971，四小时 0.851 对 0.998。<span class='f'>N = 16</span> 时学得的 REM 位置 0.694，固定分散 0.738；1000 次重抽样的差值中位数 −0.012，区间 [−0.126, +0.097]。</p>"
+      }
+    },
+    {
+      "id": "e6",
+      "title": {
+        "en": "Takeaway",
+        "zh": "结论"
+      },
+      "kicker": {
+        "en": "Section 8",
+        "zh": "第 8 节"
+      },
+      "beats": [
+        {
+          "id": "b0",
+          "en": "Existing data do not automatically determine the value of measurements that were never made. So before optimising an observation system, first determine whether the proposed values are in the data at all.",
+          "zh": "现有的数据，不会自动确定那些从未实施过的测量的价值。所以在优化一个观测系统之前，先判断拟议协议的价值到底在不在数据里。"
+        },
+        {
+          "id": "b1",
+          "en": "Identification first. Calibration second. And design only at the resolution the calibration data support.",
+          "zh": "先识别，再校准；只在校准数据支持的分辨率上做设计。"
+        }
+      ],
+      "read": {
+        "en": "<p>The information required to evaluate a protocol is not the information required to recover the full latent dependence; it is the information needed to eliminate the ambiguity that changes the values under consideration. Finite calibration then sets the resolution at which values can be compared. Practically: pair a large routine cohort with a small, intensively observed calibration subset chosen with future protocol decisions in mind.</p>",
+        "zh": "<p>评估一个协议所需的信息，不等于恢复完整潜在依赖结构所需的信息；它只是消除那些会改变所考虑价值的歧义所需的信息。有限的校准数据随后决定了价值可以比较到的分辨率。实践上：用一个大规模常规队列，配上一个为未来协议决策而设计的小规模密集校准子集。</p>"
+      }
+    }
+  ]
+}
