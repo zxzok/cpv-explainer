@@ -73,21 +73,27 @@ is listed in `code/SHA256SUMS` (`cd code && shasum -a 256 -c SHA256SUMS`).
 
 ```
 code/
-├── protocol_ceiling/        methods library
-│   ├── values.py            protocol value I_g, F_g/V_g and the covariance transforms C_g (Prop. 2)
-│   ├── covariance.py        latent kernels (OU, stationary profiles), correlation-matrix projections
-│   ├── identifiability.py   invisible directions, directional derivatives, rank–nullity counts (Thms. 3, 5)
-│   ├── transforms.py        permutation and augmentation constructions (Prop. 6, Ex. 7, Prop. 8)
-│   ├── estimation.py        dense-calibration estimator: sample covariance → noise removal → eigenvalue floor → rescaling
-│   ├── uncertainty.py, risk.py, resolution.py   uniform error bounds, regret and resolution diagnostics (Thms. 10–11, Cor. 12)
-│   ├── design.py, adaptive.py                   rank-one marginal gains, greedy / swap search (Prop. 13)
-│   └── continuous.py, diagnostics.py
+├── protocol_ceiling/        methods library ("protocol-limited learning of temporal aggregates")
+│   ├── values.py            protocol values: Bayes, best-linear and achieved (Def. 1, Prop. 2)
+│   ├── transforms.py        target functionals and their Gaussian covariance transforms C_g
+│   ├── covariance.py        latent-process covariances, observation actions and protocol matrices
+│   ├── identifiability.py   counterfactual identifiability: invisible-direction certificates, the four-point,
+│   │                        permutation and augmentation constructions (Thms. 3, 5; Prop. 6, 8)
+│   ├── estimation.py        calibration-based estimation of protocol values and its error analysis (Thms. 10–11)
+│   ├── resolution.py        resolution-adaptive protocol selection (Cor. 12, nested protocol classes)
+│   ├── risk.py              protocol-conditioned Bayes risk, value ceilings and rank-one design updates (Prop. 13)
+│   ├── design.py            target-aware observation design under temporal and measurement budgets (greedy, swap)
+│   ├── uncertainty.py       subject-level bootstrap uncertainty for estimated values
+│   ├── adaptive.py          subject-adaptive acquisition and the boundary of its usefulness
+│   ├── diagnostics.py       risk decomposition, ceiling utilisation, simple learners
+│   └── continuous.py        continuous-time trait–state theory (not used by the final manuscript)
 ├── experiments/
-│   ├── synthetic/           simulation studies S1–S9 (calibration sweeps, misspecification, nested protocol classes, design)
-│   ├── sleep_edf/, ltaf/    retrospective real-data analyses (REM fraction; AF burden)
+│   ├── synthetic/           s1_s2_regression_identifiability, s3_ceiling_estimation, s4_selection_regret, s5_design,
+│   │                        s6_misspecification, s8_resolution, s9_proof_checks (+ s3b, s5b, s7 retained for audit)
+│   ├── sleep_edf/run_sleep.py, ltaf/run_ltaf.py   retrospective real-data analyses (REM fraction; AF burden)
 │   ├── crossfit_real.py     subject-disjoint five-fold cross-fitting with pooled held-out R²
 │   ├── calibration_sweep.py, sensitivity_checks.py
-│   ├── make_fig*.py, make_numbers.py   paper figures and the numeric macros in paper/numbers.tex
+│   ├── make_fig*.py, make_numbers.py   paper figures and the 587 numeric macros in paper/numbers.tex
 │   └── fetch_data.py        re-downloads the pinned PhysioNet annotation files if the cache is missing
 ├── tests/                   unit tests (run by make verify-quick)
 ├── data/                    cached PhysioNet annotation files and processed arrays (no raw PSG/ECG waveforms)
