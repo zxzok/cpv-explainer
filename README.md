@@ -1,117 +1,123 @@
 # Counterfactual Evaluation of Temporal Observation Protocols
 
-**Xizhe Zhang (张锡哲)** · School of Biomedical Engineering and Informatics, Nanjing Medical University
+**Xizhe Zhang** (张锡哲) · School of Biomedical Engineering and Informatics, Nanjing Medical University
 
-This repository holds everything released with the paper:
+Manuscript: [`paper/main.pdf`](paper/main.pdf) · Reproduction code and data: [`code/`](code/) · Interactive explainer: <https://cpv.xizhe.net>
 
-| What | Where | Notes |
+## Abstract
+
+We study *counterfactual protocol evaluation*: whether data collected under a realised observation protocol determine
+the predictive value of alternatives that were never deployed. Protocol value is the population R² of the
+Bayes-optimal predictor of a fixed trajectory-level target from the measurements an alternative would collect. We show
+that even infinite benchmark data need not determine this value: distinct latent covariance structures can induce the
+same benchmark measurement–target law while assigning different values to the same alternative. We develop a
+value-specific identification theory in which only latent ambiguity that changes the alternative's value matters. For
+linear targets, invisible covariance directions certify non-identification, while targeted measurements can restore
+identification without recovering the full latent covariance; an exact permutation construction extends the result to
+nonlinear aggregate targets. With finite dense calibration data, uniform error bounds control protocol-selection regret
+and distinguishable value gaps. Exact marginal gains then support cost-constrained, target-aware observation design.
+Simulations and retrospective analyses of Sleep-EDF and Long-Term AF show that broad temporal-layout differences can be
+more reliably distinguished than fine placements selected from finite data. Together, these results connect
+identification, calibration resolution and observation design for undeployed protocols.
+
+## The problem in one picture
+
+A latent trajectory Z(t) (a night of sleep, a day of heart rhythm) is observed by a **protocol**: when to look, how
+often, how long, how precisely. A benchmark pairs the measurements of one protocol A with a trajectory-level target Θ
+(e.g. the fraction of the night spent in REM). Someone proposes a different protocol B that has never been run.
+Does the benchmark tell us how well B would predict Θ?
+
+```
+      Z₀        Z₁        Z₂        Z₃        stationary, standardised latent process, Θ = mean(Z₀…Z₃)
+      ▲                                        protocol A observes Z₀ only
+                ┆         ┆                    protocol B would observe Z₁ and Z₂
+```
+
+Two correlation profiles ρ₀ ± ε·(0, 1, −2, 1) with ε = 0.1321 give **identical** benchmark laws
+(Var Y_A = 1, Cov(Y_A, Θ) = 0.388250, Var Θ = 0.428012 in both worlds) but assign protocol B the values
+**0.682** and **0.827**. No estimator built on A's data can be right in both worlds — and more subjects do not help.
+What A never sees is the dependence *between* the two new measurement times.
+
+## Main results
+
+| | Result | Where |
 |---|---|---|
-| **Explainer website** (live at **<https://cpv.xizhe.net>**) | repository root: `index.html`, `explainer/`, `technical/`, `js/`, `css/`, `narration/`, `audio/` | three tiers — a landing page, a four-minute narrated story, a ten-minute interactive technical tour; English and Chinese |
-| **Manuscript (PDF)** | [`paper/main.pdf`](paper/main.pdf) | the submitted version |
-| **Reproduction code & data package** | [`code/`](code/) — start with [`code/README.md`](code/README.md) | methods library, every simulation and real-data experiment, unit tests, LaTeX sources, cached open annotation data, archived results and reference figures; `make verify-quick` / `make all` |
-| Key figures, social card, 30-second clip | [`figures/`](figures/), [`assets/`](assets/) | PNG / MP4 / GIF for talks and posts |
-| Full narration script (both languages) | [`CONTENT.md`](CONTENT.md) | generated from `narration/*.json` |
+| **Protocol value** | I(S) = Var(E[Θ \| Y_S]) / Var(Θ); for Gaussian latent processes I_g = F_g / V_g with an explicit covariance transform C_g for linear and threshold (occupation-time) targets | Def. 1, Prop. 2 |
+| **Non-identification** | Sharp minimal stationary counterexample: a one-point benchmark on p points identifies the value of every alternative for p ≤ 3 and fails from p = 4 | Thm. 3 |
+| **Value-specific identification** | "Invisible" covariance directions Δ (AΔAᵀ = 0, AΔh = 0, hᵀΔh = 0) certify non-identification exactly when the directional derivative of the alternative's value is non-zero; rank–nullity bounds the invisible space by p(p−1)/2 − d(d+1)/2 − d − 1 | Def. 4, Thm. 5 |
+| **Nonlinear targets** | An exact permutation construction (swap two unobserved times) gives non-identification for every non-constant aggregate target on as few as three grid points | Prop. 6, Ex. 7 |
+| **Restoring identification** | Targeted augmentation removes only the ambiguity that changes the evaluated value (4 → 2 → 0 invisible dimensions in the running example) without recovering the full latent covariance | Prop. 8 |
+| **Calibration** | From a small densely observed subset, the plug-in value is uniformly accurate over a candidate family: sup_S \|Î_g(S) − I_g(S)\| ≤ C‖K̂ − K‖^β with β = 1 for smooth targets and at any fixed interior model, β = 1/2 for threshold targets in the worst case (sharp); root-m rates at a fixed model | Thms. 10–11, Prop. 9 |
+| **Resolution** | Selecting the empirical best protocol loses at most 2ε (+ optimisation error) — value gaps below that scale cannot be resolved, and the useful granularity of optimisation is set by the calibration data, not by the optimiser | Cor. 12 |
+| **Design** | Exact rank-one marginal gains for adding a measurement under a cost budget; the objective is monotone but not submodular; greedy + one swap attains ≥ 0.987 of the exhaustive optimum across 25 enumerated settings | Prop. 13, Lemma 14, Table 1 |
+| **Real data** | Sleep-EDF (REM fraction): dispersed epochs beat a contiguous block at matched budgets (0.648 → 0.682 at N = 4; 0.659 → 0.738 at N = 16). Long-Term AF (AF burden): four dispersed 15-minute windows reach R² 0.971 vs 0.696 for the best contiguous hour; 0.998 vs 0.851 at N = 16. Learned exact anchor positions show no stable held-out advantage (−0.044 on the original sample; resampled range [−0.126, +0.097]) | Section 6 |
 
-## The paper in one paragraph
+## Reproduction code (`code/`)
 
-A benchmark collected under one observation protocol (when, how often, how long and how precisely a latent trajectory
-is measured) does not in general determine how well a *different, never-deployed* protocol would predict a
-trajectory-level target — even with infinitely many subjects. The paper gives the exact condition under which the
-value of an alternative protocol is identified, a four-point counterexample where two latent worlds agree on every
-benchmark quantity yet assign the alternative protocol values 0.682 and 0.827, the calibration data that restore
-identification (targeted augmentation or a small densely observed subset), uniform error bounds that turn into a
-decision guarantee (regret ≤ 2ε), exact rank-one marginal gains for target-aware protocol design, and real-data
-analyses on Sleep-EDF Expanded and the Long-Term AF Database.
-
----
-
-## 1. The website (`/`)
-
-Plain HTML/CSS/JS — no framework, no build step. Open `index.html` through any static server (or see "Local preview").
-
-```
-index.html              landing page (EN/ZH pairs as .en/.zh elements), interactive figures, citation, metadata
-explainer/index.html    four-minute narrated story (7 chapters, 21 beats)
-technical/index.html    ten-minute technical tour (10 chapters, 43 beats)
-figures/index.html      renders the downloadable key figures
-assets/social.html      the 1200×630 social card
-
-css/landing.css         landing page styles          css/site.css   player ("theatre") pages
-js/config.js            site URL, paper/code links, BibTeX — edit this first when moving the site
-js/data.js              every number shown or spoken, extracted from paper/numbers.tex and results/ (tools/extract_data.py)
-js/math.js              the paper's formulas in JavaScript (protocol value I_g, Q_S, greedy design, ...)
-js/mathtext.js          TeX-subset typesetter used for every formula, on canvas and in prose
-js/engine.js            Stage (tweens, WebGL ribbon field, storyboard mode) and Player (narration, timeline, seeking)
-js/gl.js                WebGL latent-trajectory field          js/sheet.js   storyboard (?sheet=) mode
-js/landing.js           landing-page interactives (two worlds, cohort, resolution, draggable design demo)
-js/scenes/ch0…ch9.js    the ten technical chapters (each exports beats that drive the stage)
-js/scenes_explainer.js  the four-minute story, composed from the technical scenes
-narration/*.json        SOURCE OF TRUTH for all spoken/read text, per beat, EN + ZH
-js/narration-*.js       generated from the JSON + clip durations (tools/build_narration.py)
-audio/<set>/<lang>/     narration clips (m4a), one per beat
-```
-
-### Editing the narration or the pages
-
-```bash
-# 1. edit narration/technical.json or narration/explainer.json (text, zh_tts/en_tts overrides, read panels)
-python3 tools/make_audio.py --set technical            # regenerate missing clips (VoxCPM2 voice clone; --force for all)
-python3 tools/check_audio.py --set technical --regen   # ASR round-trip check; re-record clips that drifted
-python3 tools/build_narration.py --set technical       # write js/narration-technical.js with clip durations
-python3 tools/export_content.py                        # refresh CONTENT.md
-python3 tools/build_single.py --page technical --lang en,zh   # optional: single-file offline bundle → dist/
-```
-
-`tools/extract_data.py` rebuilds `js/data.js` from the paper's `numbers.tex` and results; `tools/render.mjs`
-re-renders the figures, social card and the 30-second clip with headless Chrome; `tools/storyboard.sh` captures
-every beat of a chapter as a contact sheet for review.
-
-### Local preview
-
-```bash
-python3 tools/serve.py 8791          # http://127.0.0.1:8791 — supports HTTP Range, so seeking inside clips works
-```
-
-### Deployment
-
-GitHub Pages serves the `main` branch root at <https://cpv.xizhe.net> (`CNAME`). Push to `main` to deploy.
-
----
-
-## 2. The reproduction package (`code/`)
-
-`code/` is the complete package released with the final manuscript. Read [`code/README.md`](code/README.md)
-for the full instructions; in short:
+`code/` is the complete reproduction package for the final manuscript — methods library, every simulation and
+real-data experiment, unit tests, the LaTeX sources, cached open annotation data, archived results and reference
+outputs. Its own [`README.md`](code/README.md) (Chinese) and [`REPRODUCIBILITY_REPORT.md`](code/REPRODUCIBILITY_REPORT.md)
+give the full details; the essentials:
 
 ```bash
 cd code
-make setup            # Python 3.11–3.14 virtual environment + dependencies
-make verify-quick     # unit tests, regenerate figures + numbers.tex from archived results, compile the paper, compare with reference/
-make all              # full re-run from the cached data (≈ 60–90 min on a 24-core Apple Silicon machine; do not use -j)
+make setup            # Python 3.11–3.14 virtual environment + pinned dependencies
+make verify-quick     # unit tests → regenerate figures and paper/numbers.tex from the archived results →
+                      # compile the manuscript → check that all 587 numeric macros resolve → compare with reference/
+make all              # complete re-run from the cached data (≈ 60–90 min on a 24-core Apple Silicon machine; no -j)
+make retained-regressions   # historical regressions kept for audit (not cited by the final manuscript)
 ```
+
+Requirements: Python 3.11–3.14, GNU Make, and TeX Live / `latexmk` for compiling the paper. Every file in the package
+is listed in `code/SHA256SUMS` (`cd code && shasum -a 256 -c SHA256SUMS`).
 
 ```
 code/
-├── README.md, REPRODUCIBILITY_REPORT.md, DATA_PROVENANCE.md, LICENSE-NOTICE.md, CITATION.cff
-├── Makefile, pyproject.toml, requirements.txt, config/
-├── protocol_ceiling/      methods library: Gaussian protocol value, invisible directions, calibration estimator,
-│                          rank-one design, permutation and augmentation constructions
-├── experiments/           every simulation (S1–S9) and real-data experiment, cross-fitting, resampling, sensitivity
-├── tests/                 unit tests (run by make verify-quick)
-├── data/                  cached PhysioNet annotation files and processed arrays (Sleep-EDF Expanded, Long-Term AF);
-│                          no raw PSG/ECG waveforms; experiments/fetch_data.py re-downloads from pinned paths
-├── results/               archived outputs of the final runs           reference/   sealed outputs for comparison
-├── figures/               paper figures as produced by the scripts
-├── paper/                 LaTeX sources of the final manuscript; numbers.tex holds the 587 numeric macros
-├── scripts/               helpers (numbers.tex generation, figure sync)
-├── validation/            logs of the final `make verify-quick` and full reproduction runs
-└── SHA256SUMS             checksums of every file in the package (`cd code && shasum -a 256 -c SHA256SUMS`)
+├── protocol_ceiling/        methods library
+│   ├── values.py            protocol value I_g, F_g/V_g and the covariance transforms C_g (Prop. 2)
+│   ├── covariance.py        latent kernels (OU, stationary profiles), correlation-matrix projections
+│   ├── identifiability.py   invisible directions, directional derivatives, rank–nullity counts (Thms. 3, 5)
+│   ├── transforms.py        permutation and augmentation constructions (Prop. 6, Ex. 7, Prop. 8)
+│   ├── estimation.py        dense-calibration estimator: sample covariance → noise removal → eigenvalue floor → rescaling
+│   ├── uncertainty.py, risk.py, resolution.py   uniform error bounds, regret and resolution diagnostics (Thms. 10–11, Cor. 12)
+│   ├── design.py, adaptive.py                   rank-one marginal gains, greedy / swap search (Prop. 13)
+│   └── continuous.py, diagnostics.py
+├── experiments/
+│   ├── synthetic/           simulation studies S1–S9 (calibration sweeps, misspecification, nested protocol classes, design)
+│   ├── sleep_edf/, ltaf/    retrospective real-data analyses (REM fraction; AF burden)
+│   ├── crossfit_real.py     subject-disjoint five-fold cross-fitting with pooled held-out R²
+│   ├── calibration_sweep.py, sensitivity_checks.py
+│   ├── make_fig*.py, make_numbers.py   paper figures and the numeric macros in paper/numbers.tex
+│   └── fetch_data.py        re-downloads the pinned PhysioNet annotation files if the cache is missing
+├── tests/                   unit tests (run by make verify-quick)
+├── data/                    cached PhysioNet annotation files and processed arrays (no raw PSG/ECG waveforms)
+├── results/                 archived outputs of the final runs      reference/   sealed outputs for comparison
+├── figures/                 paper figures as produced by the scripts
+├── paper/                   LaTeX sources of the final manuscript (main.tex, section files, numbers.tex, references.bib)
+├── validation/              logs of the final verification and full-reproduction runs
+├── Makefile, pyproject.toml, requirements.txt, config/, scripts/
+└── CITATION.cff, DATA_PROVENANCE.md, LICENSE-NOTICE.md, REPRODUCIBILITY_REPORT.md, SHA256SUMS
 ```
 
-Every number on the website is read from `code/paper/numbers.tex` and `code/results/`; the interactive scenes
-recompute protocol values in the browser with the same formulas (`js/math.js`).
+### Data
 
----
+Sleep-EDF Expanded (197 whole-night hypnograms, 100 subjects; target = REM fraction, also N3 and wake) and the
+Long-Term AF Database (84 records of about 24 h; target = AF burden), both from PhysioNet. Only the expert annotation
+files are used — no raw polysomnography or ECG waveforms — and they are cached in `code/data/` so that a full re-run
+works offline. See [`code/DATA_PROVENANCE.md`](code/DATA_PROVENANCE.md) for sources, versions and terms.
+
+### License
+
+The code is released for review and reproduction; see [`code/LICENSE-NOTICE.md`](code/LICENSE-NOTICE.md)
+(a specific open-source license will be added on publication). The PhysioNet data remain under their own terms.
+
+## Interactive explainer
+
+<https://cpv.xizhe.net> — a landing page built around the four-point counterexample, a four-minute narrated story and
+a ten-minute interactive technical tour (English / Chinese). Every number shown or spoken is read from
+`code/paper/numbers.tex` and `code/results/`, and the interactive scenes recompute protocol values in the browser with
+the paper's formulas. The site's source is the rest of this repository; see [`WEBSITE.md`](WEBSITE.md) for how it is
+built and edited.
 
 ## Citation
 
@@ -120,18 +126,21 @@ recompute protocol values in the browser with the same formulas (`js/math.js`).
   title  = {Counterfactual Evaluation of Temporal Observation Protocols},
   author = {Zhang, Xizhe},
   year   = {2026},
-  note   = {Manuscript. Explainer: https://cpv.xizhe.net}
+  note   = {Manuscript. Code: https://github.com/zxzok/cpv-explainer/tree/main/code}
 }
 ```
 
-Data: Sleep-EDF Expanded and the Long-Term AF Database (PhysioNet, open access); only expert annotation files are
-used — see `code/DATA_PROVENANCE.md` and `code/LICENSE-NOTICE.md`.
-
 ---
 
-## 中文说明
+### 中文摘要
 
-- 网站源码在仓库根目录（`index.html` 首页、`explainer/` 四分钟导览、`technical/` 技术导览、`js/` `css/` `narration/` `audio/`），线上地址 <https://cpv.xizhe.net>。
-- 论文 PDF 在 `paper/main.pdf`。
-- **论文的复现代码与数据包在 `code/`**（方法库 `protocol_ceiling/`、全部实验 `experiments/`、单元测试、论文 LaTeX 源文件、缓存的 PhysioNet 标注数据、归档结果与参考图）；用法见 `code/README.md`：`make setup && make verify-quick`（快速验证）或 `make all`（完整重跑）。
-- 解说文本以 `narration/*.json` 为准，改完后依次运行 `tools/make_audio.py`、`tools/check_audio.py`、`tools/build_narration.py`；推送到 `main` 即自动部署。
+本文研究**反事实协议评估**：在某一观测协议下采集的数据，能否确定另一种从未实施过的协议的预测价值。协议价值定义为用该协议
+所采集测量对固定轨迹级目标做贝叶斯最优预测的总体 R²。我们证明即使基准数据无穷多也未必能确定这一价值：不同的潜在协方差结构
+可以诱导出完全相同的基准“测量–目标”分布，却给同一替代协议赋予不同的价值。我们建立了“价值特定”的可识别性理论——只有会改变
+替代协议价值的潜在歧义才重要：对线性目标，不可见协方差方向刻画不可识别性，而定向补测可以在不恢复完整潜在协方差的情况下恢复
+可识别性；一个精确的置换构造把结论推广到非线性聚合目标。在有限的密集校准数据下，一致误差界控制协议选择的损失与可区分的价值差。
+精确的边际收益进而支持预算约束下的目标感知观测设计。模拟与 Sleep-EDF、Long-Term AF 的回溯分析表明：粗粒度的时间布局差异，
+比从有限数据中选出的精确位置更容易被可靠区分。
+
+**代码在 `code/` 目录**（方法库 `protocol_ceiling/`、实验 `experiments/`、测试、论文源文件、缓存数据与结果）：
+`cd code && make setup && make verify-quick` 快速验证，`make all` 完整重跑。网站源码见仓库根目录与 `WEBSITE.md`。
