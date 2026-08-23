@@ -1,116 +1,121 @@
 # Counterfactual Evaluation of Temporal Observation Protocols — Code
 
-这是论文最终稿的完整复现包。它包含方法库、全部模拟与真实数据实验、单元测试、
-最终论文源文件、已缓存的开放注释数据、原始结果、参考图，以及从结果生成论文中
-587 个数值宏的脚本。
+This is the complete reproduction package for the final manuscript. It contains the methods library, every
+simulation and real-data experiment, the unit tests, the final LaTeX sources, cached open annotation data, the raw
+results, the reference figures, and the script that generates the 587 numeric macros used in the paper from those
+results.
 
-最终论文源文件保持原样放在 `paper/`。实验脚本输出到 `results/` 和 `figures/`，
-随后由 Makefile 自动同步论文使用的 4 张图并重新编译 35 页 PDF。
+The final manuscript sources are kept unchanged in `paper/`. The experiment scripts write to `results/` and
+`figures/`; the Makefile then syncs the four figures used by the paper and recompiles the 35-page PDF.
 
-## 最快验证
+## Quickest verification
 
-需要 Python 3.11–3.14、GNU Make，以及编译论文时使用的 TeX Live/`latexmk`。
+Requires Python 3.11–3.14, GNU Make, and the TeX Live / `latexmk` installation used to compile the paper.
 
 ```bash
 make setup
 make verify-quick
 ```
 
-`make verify-quick` 不重新执行耗时的 Monte Carlo 和 1000 次真实数据重采样；它会：
+`make verify-quick` does not repeat the long Monte Carlo runs or the 1000 real-data resamples; it
 
-1. 运行全部单元测试；
-2. 从包内封存结果重新生成论文图和 `paper/numbers.tex`；
-3. 编译最终论文；
-4. 检查所有论文数值宏均有定义；
-5. 将结果文件与 `reference/` 中的封存输出逐项比较。
+1. runs all unit tests;
+2. regenerates the paper figures and `paper/numbers.tex` from the sealed results shipped in the package;
+3. compiles the final manuscript;
+4. checks that every numeric macro used by the paper is defined;
+5. compares the result files, item by item, with the sealed outputs in `reference/`.
 
-如果已经有可用环境，也可以指定 Python：
+An existing Python environment can be used instead of the one created by `make setup`:
 
 ```bash
 make verify-quick PY=/absolute/path/to/python
 ```
 
-## 从数据完整重跑
+## Full re-run from the data
 
 ```bash
 make setup
 make all
 ```
 
-不要使用 `make -j`。多个步骤会按顺序写入相同的结果文件。
+Do not use `make -j`: several stages write the same result files in sequence.
 
-完整重跑包括数据解析、最终稿使用的 S1/S2、S3、S4、S5、S6、S8、S9、
-Sleep-EDF、Long-Term AF、交叉拟合、1000 次支持稳定性重采样、敏感性分析、图、
-数值宏和论文编译。在 24 核 Apple Silicon 验证机上通常约 60–90 分钟，其中校准
-估计、错设实验、嵌套协议类和支持稳定性分析占主要时间。
-实际时间依赖 BLAS、CPU 和 Python 版本。
+The full re-run covers data parsing, the simulations used by the final manuscript (S1/S2, S3, S4, S5, S6, S8, S9),
+Sleep-EDF, Long-Term AF, cross-fitting, the 1000 support-stability resamples, the sensitivity analyses, the figures,
+the numeric macros, and the compilation of the paper. On a 24-core Apple Silicon validation machine it typically
+takes 60–90 minutes; calibration estimation, the misspecification experiment, the nested protocol classes and the
+support-stability analysis account for most of that time. Actual times depend on BLAS, CPU and Python version.
 
-最终稿未引用但为审计保留的 S3b、S5b、S7、旧 record-64 sensitivity 和
-`fig_framework` 可另行运行：
+The historical regressions that the final manuscript does not cite but that are retained for audit — S3b, S5b, S7,
+the old record-64 sensitivity analysis and `fig_framework` — can be run separately:
 
 ```bash
 make retained-regressions
 ```
 
-这些历史回归不属于最终论文复现门禁；其中包含随机学习器，其末位结果可能随
-BLAS/Python 构建而改变。
+These retained regressions are not part of the reproduction gate for the final paper; they include randomised
+learners whose last digits may change with the BLAS / Python build.
 
-`data/` 已包含本稿使用的 PhysioNet 注释文件与处理后数组，因此完整重跑可以离线
-完成。若缓存缺失，`experiments/fetch_data.py` 会从固定版本的 PhysioNet 路径重新
-下载；本项目不下载 PSG 或 ECG 原始波形。
+`data/` already contains the PhysioNet annotation files and processed arrays used by this manuscript, so a full
+re-run works offline. If the cache is missing, `experiments/fetch_data.py` downloads the files again from pinned
+PhysioNet paths; the project never downloads raw PSG or ECG waveforms.
 
-## 论文结果与代码对应
+## Mapping from paper artefacts to code
 
-| 论文产物 | 主要生成脚本 | 原始输出 |
+| Paper artefact | Main generating script | Raw output |
 |---|---|---|
-| 识别性示意图 | `experiments/synthetic/s1_s2_regression_identifiability.py` | `results/s1_s2_*` |
-| 有限校准与协议类图 | S3、S4、S8；`experiments/make_fig_calibration.py` | `results/s3_*`, `s4_*`, `s8_*` |
-| 目标感知设计表 | `experiments/synthetic/s5_design.py` | `results/s5_design.*` |
-| 错设稳健性表 | `experiments/synthetic/s6_misspecification.py` | `results/s6_misspecification.*` |
-| Sleep/AF 真实数据图 | `run_sleep.py`, `run_ltaf.py`, `crossfit_real.py` | `results/sleep_edf.*`, `ltaf.*`, `crossfit_real.json` |
-| Sleep 支持稳定性图 | `experiments/calibration_sweep.py` | `results/calibration_sweep.json` |
-| 附录敏感性结果 | `sensitivity_checks.py`, `record64_sensitivity.py` | 对应 JSON/CSV |
-| 论文全部数值 | `experiments/make_numbers.py` | `paper/numbers.tex` |
+| Identifiability illustration | `experiments/synthetic/s1_s2_regression_identifiability.py` | `results/s1_s2_*` |
+| Finite-calibration and protocol-class figure | S3, S4, S8; `experiments/make_fig_calibration.py` | `results/s3_*`, `s4_*`, `s8_*` |
+| Target-aware design table | `experiments/synthetic/s5_design.py` | `results/s5_design.*` |
+| Misspecification robustness table | `experiments/synthetic/s6_misspecification.py` | `results/s6_misspecification.*` |
+| Sleep / AF real-data figure | `run_sleep.py`, `run_ltaf.py`, `crossfit_real.py` | `results/sleep_edf.*`, `ltaf.*`, `crossfit_real.json` |
+| Sleep support-stability figure | `experiments/calibration_sweep.py` | `results/calibration_sweep.json` |
+| Appendix sensitivity results | `sensitivity_checks.py`, `record64_sensitivity.py` | corresponding JSON / CSV |
+| All numbers in the paper | `experiments/make_numbers.py` | `paper/numbers.tex` |
 
-校准图脚本使用最终稿所需的修订版：panel (b) 先在同一校准重复内聚合共享误差的
-三个目标，再按 covariance strata 合并标准误；panel (c,d) 使用“protocol class”
-术语。该脚本与最终稿中的图相对应。
+The calibration-figure script is the revised version required by the final manuscript: panel (b) first pools the
+three targets that share each calibration draw within a replicate and then combines standard errors across
+covariance strata; panels (c, d) use the "protocol class" terminology. The script corresponds to the figure in the
+final manuscript.
 
-## 目录
+## Layout
 
 ```text
-protocol_ceiling/   核心 Python 方法库
-experiments/        数据、模拟、真实数据和制图脚本
-tests/              独立数值与实现回归检查
-config/             错设实验的固定配置
-data/               开放注释缓存和处理后数组
-results/            当前可重建的结果文件
-figures/            当前可重建的图
-paper/              用户提供的最终论文源文件和已编译 PDF
-reference/          封存的参考结果、数值宏和最终图
-scripts/            环境记录与复现比较工具
+protocol_ceiling/   core Python methods library
+experiments/        data, simulation, real-data and figure scripts
+tests/              independent numerical and implementation regression checks
+config/             fixed configuration of the misspecification experiment
+data/               cached open annotation files and processed arrays
+results/            the currently rebuildable result files
+figures/            the currently rebuildable figures
+paper/              the final manuscript sources and compiled PDF
+reference/          sealed reference results, numeric macros and final figures
+scripts/            environment recording and reproduction-comparison tools
+validation/         logs of the final verification and full reproduction runs
 ```
 
-## 关键复现约束
+## Key reproduction constraints
 
-- 全局实验种子是 `20260802`；少数稳定性分析在脚本中固定了派生种子。
-- Sleep 的拆分以 subject 为单位，同一人的两晚不跨 outer fold，并按 SC/ST 分层。
-- AF 以 record 为单位拆分，因为公开数据库未提供可用的重复受试者标识。
-- 支持选择、标准化、ridge 调参和预测器拟合均限制在相应 outer-training fold。
-- 真实数据的 second-moment 指标是 best-linear value，不应改称 Bayes ceiling。
-- `reference/numbers.tex` 是本最终稿的数值封印；最终稿实际引用的宏必须逐项一致。
-  未引用的历史 S7 宏不作为论文复现失败条件。
-- PDF 二进制哈希可能因 Matplotlib/TeX 的时间戳、字体和后端版本不同而变化；
-  数值文件、宏、页面数、引用与图的数据映射是复现判据。
+- The global experiment seed is `20260802`; a few stability analyses fix derived seeds inside their scripts.
+- Sleep-EDF is split by subject — both nights of a subject stay within one outer fold — and stratified by SC/ST.
+- Long-Term AF is split by record, because the public database provides no usable repeated-subject identifiers.
+- Support selection, standardisation, ridge tuning and predictor fitting are all confined to the corresponding
+  outer-training fold.
+- The second-moment metric on real data is the best-linear value and must not be relabelled a Bayes ceiling.
+- `reference/numbers.tex` is the numeric seal of this final manuscript; every macro the final manuscript actually
+  cites must agree item by item. Uncited historical S7 macros are not a reproduction-failure criterion.
+- The binary hash of the PDF may change with Matplotlib / TeX timestamps, fonts and backend versions; the numeric
+  files, the macros, the page count, the citations and the figure-to-data mapping are the reproduction criteria.
 
-## 数据与依赖
+## Data and dependencies
 
-数据来源、固定版本路径和使用边界见 `DATA_PROVENANCE.md`。验证环境的直接依赖
-已固定在 `requirements.txt`；运行 `make environment` 可打印当前机器的版本记录。
+Data sources, pinned version paths and usage boundaries are described in `DATA_PROVENANCE.md`. The direct
+dependencies of the validation environment are pinned in `requirements.txt`; `make environment` prints the version
+record of the current machine.
 
-## 完整性文件
+## Integrity files
 
-- `REPRODUCIBILITY_REPORT.md`：本次交付前的实际运行与对照结果。
-- `SHA256SUMS`：压缩前文件级 SHA-256 清单。
-- `CITATION.cff`：论文与代码的引用信息。
-- `LICENSE-NOTICE.md`：发布前仍需作者决定的代码许可事项。
+- `REPRODUCIBILITY_REPORT.md`: the actual runs and comparisons performed before delivery.
+- `SHA256SUMS`: file-level SHA-256 manifest (computed before compression).
+- `CITATION.cff`: citation information for the paper and the code.
+- `LICENSE-NOTICE.md`: the code-licensing decision that remains with the author before public release.

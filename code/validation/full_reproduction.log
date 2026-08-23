@@ -1,4 +1,4 @@
-PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_core.py
+PYTHONDONTWRITEBYTECODE=1 "<venv>/bin/python" tests/test_core.py
 
 --- test_threshold_zero_arcsine ---
 [PASS] threshold c=0 equals arcsin(r)/(2 pi)  max err 0.00e+00
@@ -137,7 +137,7 @@ PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR�
 
 ====================================================================
 all core tests passed
-PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_identifiability_design.py
+PYTHONDONTWRITEBYTECODE=1 "<venv>/bin/python" tests/test_identifiability_design.py
 
 --- test_minimal_stationary_counterexample ---
        eps = 0.528281
@@ -382,7 +382,7 @@ PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR�
 
 ====================================================================
 all identifiability and design tests passed
-PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" tests/test_real_protocols.py
+PYTHONDONTWRITEBYTECODE=1 "<venv>/bin/python" tests/test_real_protocols.py
 [PASS] centred contiguous comparator
 [PASS] dispersed comparator spans fixed full domain
 [PASS] dispersed comparator has 1 distinct anchors
@@ -415,7 +415,7 @@ PYTHONDONTWRITEBYTECODE=1 "/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR�
 
 ====================================================================
 all real-protocol tests passed
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/fetch_data.py
+"<venv>/bin/python" experiments/fetch_data.py
 [sleep-edf] start
   sleep-cassette: 153 hypnogram files listed
   sleep-telemetry: 44 hypnogram files listed
@@ -445,7 +445,7 @@ SANITY CHECKS
   sleep_edf_at_least_150_recordings: True
 
 total runtime 25.3s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s1_s2_regression_identifiability.py
+"<venv>/bin/python" experiments/synthetic/s1_s2_regression_identifiability.py
 
 === S1a: one-snapshot explainability (T/tau = 14, nu^2 = 0.2) ===
 [S1a] start
@@ -510,7 +510,7 @@ total runtime 25.3s
 [S2c] done in 84.4s
 
 === figures ===
-/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/experiments/synthetic/s1_s2_regression_identifiability.py:614: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<package>/experiments/synthetic/s1_s2_regression_identifiability.py:614: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.tight_layout()
   [fig] figures/fig_identifiability.pdf
   [fig] figures/fig_equal_budget.pdf
@@ -534,7 +534,7 @@ total runtime 25.3s
   S2c_max_observed_discrepancy                               6.938893903907228e-16
 
 total runtime 180.3s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s3_ceiling_estimation.py
+"<venv>/bin/python" experiments/synthetic/s3_ceiling_estimation.py
 [s3_ceiling_estimation] p=128, T=20.0, |Pi_B|=495, m=(25, 50, 100, 250, 500, 1000), reps=200, bootstrap=200, seed=20260802
   [check] shared-Q family evaluation vs estimate_protocol_ceiling: max |diff| = 1.39e-16
   9600 replications over 8 configurations
@@ -554,7 +554,7 @@ total runtime 180.3s
   [fig] figures/fig_ceiling_estimation.pdf
   [json] results/s3_ceiling_estimation.json
 [s3_ceiling_estimation] total 519.8s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s3b_modulus_regimes.py
+"<venv>/bin/python" experiments/synthetic/s3b_modulus_regimes.py
 [A: sharpness on the boundary family] start
 [A: sharpness on the boundary family] done in 0.0s
 [B: banded temporal-like correlations] start
@@ -588,7 +588,7 @@ C. pipeline: log-log slope of the uniform ceiling error in m
      256   0.9248    -0.522     -0.529     -0.530     -0.532     -0.520
   [fig] figures/fig_modulus_regimes.pdf
   [json] results/s3b_modulus_regimes.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s4_selection_regret.py
+"<venv>/bin/python" experiments/synthetic/s4_selection_regret.py
 [S4] |V| = 14, B = 4, |Pi_B| = 1001, p = 128, T = 20.0, reps = 200, seed = 20260802
 [S4 sweep (96 tasks, 16 workers)] start
 [S4 sweep (96 tasks, 16 workers)] done in 309.8s
@@ -610,7 +610,7 @@ C. pipeline: log-log slope of the uniform ceiling error in m
   mean paired difference (robust - plug-in): +0.00153
 
 [S4] total runtime 312.5s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s5_design.py
+"<venv>/bin/python" experiments/synthetic/s5_design.py
 [S5 i_stationary_ou] start
   |V| = 12, budget = 4.0, subsets enumerated = 495, evaluated = 495, distinct optima = 2/5
     S*_mean             t = [2.1364, 3.7727, 6.2273, 7.8636]
@@ -665,7 +665,7 @@ C. pipeline: log-log slope of the uniform ceiling error in m
   [fig] figures/fig_design_crossmatrix.pdf
 
 [S5] total runtime 22.2s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s5b_submodularity.py
+"<venv>/bin/python" experiments/synthetic/s5b_submodularity.py
 [S5b exhaustive submodularity search] start
   ou               mean           rel.viol    0.0000  |S|=0 |T|=0  min increment +7.87e-03  gamma 1.000
   ou               occupation_c0  rel.viol    0.0000  |S|=0 |T|=0  min increment +1.34e-03  gamma 1.000
@@ -696,7 +696,7 @@ Most dramatic violation:
 
 Monotonicity: smallest increment over all kernels/labels/orders = +2.003e-09
   [json] results/s5b_submodularity.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s6_misspecification.py
+"<venv>/bin/python" experiments/synthetic/s6_misspecification.py
 [S6 truth tables] start
   control                mean        I* = 0.5009  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
   control                occupation  I* = 0.4568  S* = ['t12.00', 't15.00', 't17.00', 't18.50']
@@ -738,7 +738,7 @@ Monotonicity: smallest increment over all kernels/labels/orders = +2.003e-09
   [12/12] label_quantised         20.1s
 [S6 replications] done in 243.7s
   [csv]  results/s6_misspecification.csv (4800 rows)
-/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/experiments/synthetic/s6_misspecification.py:856: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<package>/experiments/synthetic/s6_misspecification.py:856: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.tight_layout()
   [fig] figures/fig_misspecification.pdf
   [json] results/s6_misspecification.json
@@ -771,7 +771,7 @@ label_quantised                    mean           0.0431    0.0000   0.4574    0
 label_quantised                    occupation     0.0621    0.0000   0.3944    0.3972    2.001
 ============================================================================================
 total runtime 1270.0s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s7_protocol_vs_architecture.py
+"<venv>/bin/python" experiments/synthetic/s7_protocol_vs_architecture.py
 [S7] exact protocol ceilings (no Monte Carlo)
       alpha=0.0   mean        dispersed  V_g=0.09521  I(S)=0.3624  I_lin=0.3624  I_state=0.3624
       alpha=0.0   mean        same_time  V_g=0.09521  I(S)=0.0937  I_lin=0.0937  I_state=0.0937
@@ -794,7 +794,7 @@ total runtime 1270.0s
       dispersed  n=100: R2=0.2731 ceiling=0.3288 utilisation=0.830 gap=0.0558  (ridge)
       protocol change buys +0.2457 R2 at n=5000; 50x more data under the same-time protocol buys +0.0198
 [S7] total runtime 284.6s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s8_resolution.py
+"<venv>/bin/python" experiments/synthetic/s8_resolution.py
 nested classes: L1 geometry (2), L2 phase (5), L3 coarse bins (75), L4 exact placement (568)
 [S8 resolution-adaptive selection] start
 [S8 resolution-adaptive selection] done in 655.4s
@@ -823,7 +823,7 @@ Bootstrap-eps arm: 0 violations; the bootstrap eps was a valid uniform bound at 
 Adaptive minus best fixed level: mean -0.0082, wins in 0/12 cells
   [fig] figures/fig_resolution_selector.pdf
   [json] results/s8_resolution.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/synthetic/s9_proof_checks.py
+"<venv>/bin/python" experiments/synthetic/s9_proof_checks.py
 calibration chain: worst ratio to bound 0.1098 over 4000 on-event draws (of 4000)
   MTP2 ou_alpha0                  min Q_S entry +4.310e-09
   MTP2 ou_alpha0.3                min Q_S entry +6.925e-02
@@ -833,7 +833,7 @@ calibration chain: worst ratio to bound 0.1098 over 4000 on-event draws (of 4000
 L_Q bound: worst realised ratio 0.0034 over 298 on-event draws
 uniform-error bound: worst realised ratio 5.8505e-05
 wrote results/s9_proof_checks.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/sleep_edf/run_sleep.py
+"<venv>/bin/python" experiments/sleep_edf/run_sleep.py
 [R1] 197 recordings / 100 subjects, 458161 epochs, median 2712 (21.19 per anchor)
 [R1] folds: [42, 41, 40, 37, 37] records
 [R1 REM] start
@@ -853,7 +853,7 @@ wrote results/s9_proof_checks.json
   [json] results/sleep_edf.json
 
 [R1] total runtime 27.0s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/ltaf/run_ltaf.py
+"<venv>/bin/python" experiments/ltaf/run_ltaf.py
 [data] 84 records, 60s epochs, 1934.2 h total
 [cohorts] strict=71, all=84, mixed=33
 [cohorts] excluded by 0<burden<1: [np.str_('12'), np.str_('17'), np.str_('18'), np.str_('202'), np.str_('205'), np.str_('208'), np.str_('21'), np.str_('30'), np.str_('54'), np.str_('69'), np.str_('70'), np.str_('71'), np.str_('75')] (burden [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0])
@@ -896,7 +896,7 @@ wrote results/s9_proof_checks.json
 [figure] done in 0.9s
   [json] results/ltaf.json
 [total] 62.2s
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/ltaf/record64_sensitivity.py
+"<venv>/bin/python" experiments/ltaf/record64_sensitivity.py
                     quantity    with 64   without 64     shift
                1h_contiguous     0.6923       0.6871   -0.0052
                6h_contiguous     0.8669       0.8642   -0.0027
@@ -908,7 +908,7 @@ wrote results/s9_proof_checks.json
 
 largest shift in any protocol value: 0.0052
   [json] results/ltaf_record64_sensitivity.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/crossfit_real.py
+"<venv>/bin/python" experiments/crossfit_real.py
 
 [REM]  (1 scored epoch per anchor)
   consecutive|N=4            R2cf +0.648
@@ -1005,7 +1005,7 @@ largest shift in any protocol value: 0.0052
   contiguous|n=32    0.3333 of record   R2cf +0.945
   dispersed|n=32     0.3333 of record   R2cf +1.000
   [json] results/crossfit_real.json
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/calibration_sweep.py
+"<venv>/bin/python" experiments/calibration_sweep.py
   [sweep] q=0.25 m~ 20  aware +0.733  kq +0.739  delta -0.006
   [sweep] q=0.5 m~ 40  aware +0.731  kq +0.724  delta +0.007
   [sweep] q=0.75 m~ 60  aware +0.704  kq +0.698  delta +0.007
@@ -1032,26 +1032,26 @@ largest shift in any protocol value: 0.0052
   [subsample] 1000/1000  delta_kq median -0.014
   [json] results/calibration_sweep.json
   (978.2s)
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/sensitivity_checks.py
+"<venv>/bin/python" experiments/sensitivity_checks.py
   [json] results/sensitivity_checks.json
 [sensitivity] wrote results/sensitivity_checks.json
   REM   fold0: m=155 p=128 rank=100 lam_min=-9.76e-17 floored=36
   N3    fold0: m=155 p=128 rank=96 lam_min=-3.70e-17 floored=40
   wake  fold0: m=155 p=128 rank=128 lam_min=3.95e-05 floored=16
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_calibration.py
+"<venv>/bin/python" experiments/make_fig_calibration.py
   [fig] figures/fig_calibration.pdf
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_real.py
+"<venv>/bin/python" experiments/make_fig_real.py
   [fig] figures/fig_real.pdf
   sleep methods: ['consecutive', 'kernel_quadrature', 'label_aware', 'uniform']
   af methods:    ['contiguous', 'dispersed']
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_sweep.py
+"<venv>/bin/python" experiments/make_fig_sweep.py
   [fig] figures/fig_sweep.pdf
   [fig] figures/fig_sweep.pdf
     m= 20  delta_kq -0.006  delta_uniform -0.004
     m= 40  delta_kq +0.007  delta_uniform -0.006
     m= 60  delta_kq +0.007  delta_uniform -0.033
     m= 80  delta_kq +0.044  delta_uniform -0.044
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_numbers.py
+"<venv>/bin/python" experiments/make_numbers.py
 wrote paper/numbers.tex with 587 macros
 cp figures/fig_identifiability.pdf paper/figures/fig_identifiability.pdf
 cp figures/fig_calibration.pdf paper/figures/fig_calibration.pdf
@@ -1322,13 +1322,13 @@ Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
 Latexmk: Nothing to do for 'main.tex'.
 Latexmk: All targets (main.pdf) are up-to-date
 
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" scripts/verify_artifacts.py
+"<venv>/bin/python" scripts/verify_artifacts.py
 Reference comparison
   [OK] reference result inventory — 53 JSON/CSV files
-  [FAIL] numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/meta.json'
-       data_summary.json: data_summary.json/outputs/ltaf_npz: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/af_series.npz' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/af_series.npz'
-       data_summary.json: data_summary.json/outputs/sleep_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/sleep_edf/meta.json'
-       data_summary.json: data_summary.json/outputs/sleep_npz: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/sleep_edf/hypnograms.npz' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/sleep_edf/hypnograms.npz'
+  [FAIL] numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '<package>/data/ltaf/meta.json' != '<workdir>/data/ltaf/meta.json'
+       data_summary.json: data_summary.json/outputs/ltaf_npz: '<package>/data/ltaf/af_series.npz' != '<workdir>/data/ltaf/af_series.npz'
+       data_summary.json: data_summary.json/outputs/sleep_meta: '<package>/data/sleep_edf/meta.json' != '<workdir>/data/sleep_edf/meta.json'
+       data_summary.json: data_summary.json/outputs/sleep_npz: '<package>/data/sleep_edf/hypnograms.npz' != '<workdir>/data/sleep_edf/hypnograms.npz'
        ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/headline/max_abs_shift_protocol_value: 0.005218331632176887 != 0.005153742613099199
        ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/1h_contiguous: -0.005203001931508577 != -0.005153742613099199
        ltaf_record64_sensitivity.json: ltaf_record64_sensitivity.json/shifts/1h_contiguous_as_4x15min: -0.005218331632176887 != -0.005131286948112601
@@ -1368,6 +1368,6 @@ Reference comparison
 Completed 21 checks: 2 failed, 1 warnings.
   [WARN] 25 bibliography entries are not cited
 Failures:
-  - numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/codex/final-code-package-20260820/release/Counterfactual_Evaluation_Temporal_Protocols_Code/data/ltaf/meta.json' != '/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/data/ltaf/meta.json'
+  - numeric result comparison — data_summary.json: data_summary.json/outputs/ltaf_meta: '<package>/data/ltaf/meta.json' != '<workdir>/data/ltaf/meta.json'
   - sealed numeric claims — sha256=54a5e9b9f63cec92761ed6a204f5c02d8f2d6b1e70e13c875d6c515a8069f825
 make: *** [compare-reference] Error 1

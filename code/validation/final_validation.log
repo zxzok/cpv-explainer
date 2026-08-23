@@ -1,17 +1,17 @@
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_calibration.py
+"<venv>/bin/python" experiments/make_fig_calibration.py
   [fig] figures/fig_calibration.pdf
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_real.py
+"<venv>/bin/python" experiments/make_fig_real.py
   [fig] figures/fig_real.pdf
   sleep methods: ['consecutive', 'kernel_quadrature', 'label_aware', 'uniform']
   af methods:    ['contiguous', 'dispersed']
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_fig_sweep.py
+"<venv>/bin/python" experiments/make_fig_sweep.py
   [fig] figures/fig_sweep.pdf
   [fig] figures/fig_sweep.pdf
     m= 20  delta_kq -0.006  delta_uniform -0.004
     m= 40  delta_kq +0.007  delta_uniform -0.006
     m= 60  delta_kq +0.007  delta_uniform -0.033
     m= 80  delta_kq +0.044  delta_uniform -0.044
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" experiments/make_numbers.py
+"<venv>/bin/python" experiments/make_numbers.py
 wrote paper/numbers.tex with 587 macros
 cp figures/fig_identifiability.pdf paper/figures/fig_identifiability.pdf
 cp figures/fig_calibration.pdf paper/figures/fig_calibration.pdf
@@ -280,7 +280,7 @@ Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
 Latexmk: Nothing to do for 'main.tex'.
 Latexmk: All targets (main.pdf) are up-to-date
 
-"/Users/xizhezhang/work/0. My paper/6. Preparing/JMLR时间学习/.venv/bin/python" scripts/verify_artifacts.py
+"<venv>/bin/python" scripts/verify_artifacts.py
 Reference comparison
   [OK] reference result inventory — 53 JSON/CSV files
   [OK] numeric result comparison — all reference JSON/CSV files agree
