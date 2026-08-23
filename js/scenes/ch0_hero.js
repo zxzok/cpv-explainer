@@ -38,7 +38,7 @@
         D.rect(ctx, 0, R.y + 90, 1600, 320, { fill: CPV.rgba(C.bg, 0.72 * a) });
         D.text(ctx, S.t("Counterfactual Evaluation of", "时间观测协议的"), 800, R.y + 200, { size: 54, font: "display", weight: 500, color: C.ink, align: "center", alpha: a });
         D.text(ctx, S.t("Temporal Observation Protocols", "反事实评估"), 800, R.y + 268, { size: 54, font: "display", weight: 500, color: C.ink, align: "center", alpha: a });
-        D.text(ctx, S.t("Xizhe Zhang · Nanjing Medical University", "张锡哲 · 南京医科大学"), 800, R.y + 330, { size: 20, color: C.muted, align: "center", alpha: a });
+        D.text(ctx, S.t("Xizhe Zhang", "张锡哲"), 800, R.y + 330, { size: 20, color: C.muted, align: "center", alpha: a });
       }
       if (st.band > 0) {
         D.chip(ctx, S.t("latent trajectory Z(t), one unit per line", "潜在轨迹 Z(t)，每条线是一个对象"), R.x + 10, R.y + 24, { color: C.latent, alpha: st.band });

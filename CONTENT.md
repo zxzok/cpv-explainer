@@ -14,7 +14,7 @@
 
 链接、引用、DOI 等集中在 `js/config.js`。
 
-网站内容文稿 · Xizhe Zhang · Nanjing Medical University · 解说音色：我的声音_讲解（VoxCPM2 克隆）
+网站内容文稿 · Xizhe Zhang · 解说音色：我的声音_讲解（VoxCPM2 克隆）
 
 
 本文件由 `tools/export_content.py` 从网站的真实来源生成：解说词与“Read”段落来自 `narration/script.json`，屏幕文字来自 `js/scenes/ch*.js`，时长来自 `js/narration.js`。
@@ -80,7 +80,7 @@
 | horizon of one unit (a night, a day, a week) | 一个对象的时间跨度（一夜、一天、一周） |
 | Counterfactual Evaluation of | 时间观测协议的 |
 | Temporal Observation Protocols | 反事实评估 |
-| Xizhe Zhang · Nanjing Medical University | 张锡哲 · 南京医科大学 |
+| Xizhe Zhang | 张锡哲 |
 | latent trajectory Z(t), one unit per line | 潜在轨迹 Z(t)，每条线是一个对象 |
 | target Θ = aggregate over the whole horizon | 目标 Θ = 整个时间跨度上的聚合量 |
 | protocol A: where the benchmark looked | 协议 A：基准数据实际观测的位置 |
@@ -957,7 +957,7 @@ The information required to evaluate a protocol is not the information required 
 
 - 页眉眉题：Paper explainer · identification · calibration · observation design
 - 标题：Counterfactual Evaluation of Temporal Observation Protocols
-- 作者行：Xizhe Zhang · School of Biomedical Engineering and Informatics, Nanjing Medical University
+- 作者行：Xizhe Zhang
 - 控件：English / 中文；Auto-advance chapters；Manuscript (PDF)
 - 舞台提示：Press play to start the narration
 - 键位说明：space play / pause · ← → beats · PgUp PgDn chapters · L language

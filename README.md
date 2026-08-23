@@ -1,6 +1,6 @@
 # Counterfactual Evaluation of Temporal Observation Protocols
 
-**Xizhe Zhang** (张锡哲) · School of Biomedical Engineering and Informatics, Nanjing Medical University
+**Xizhe Zhang** (张锡哲)
 
 Manuscript: [`paper/main.pdf`](paper/main.pdf) · Reproduction code and data: [`code/`](code/) · Interactive explainer: <https://cpv.xizhe.net>
 

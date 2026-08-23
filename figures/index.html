@@ -50,7 +50,7 @@
     L.text(ctx, main, 60, 70, { size: 34, font: "display", weight: 500, color: C.ink });
     if (sub && sub.includes("\\text")) CPV.mathText.draw(ctx, sub, 60, 104, { size: 17, color: C.muted });
     else if (sub) L.text(ctx, sub, 60, 104, { size: 17, color: C.muted });
-    L.text(ctx, "Counterfactual Evaluation of Temporal Observation Protocols · Xizhe Zhang · Nanjing Medical University", W - 60, H - 24, { size: 14, color: C.dim, align: "right" });
+    L.text(ctx, "Counterfactual Evaluation of Temporal Observation Protocols · Xizhe Zhang", W - 60, H - 24, { size: 14, color: C.dim, align: "right" });
   }
   function wrap(ctx, str, x, y, maxW, o) {
     const size = o.size || 16, lh = o.lineHeight || size * 1.45; let line = "", yy = y; ctx.font = `${o.weight || 400} ${size}px ${L.FONT[o.font || "sans"]}`;

@@ -13,7 +13,7 @@ window.CPV_CITATION = {
   title  = {Counterfactual Evaluation of Temporal Observation Protocols},
   author = {Zhang, Xizhe},
   year   = {2026},
-  note   = {Manuscript. School of Biomedical Engineering and Informatics, Nanjing Medical University}
+  note   = {Manuscript}
 }`,
-  plain: "Zhang, X. (2026). Counterfactual Evaluation of Temporal Observation Protocols. Manuscript, Nanjing Medical University.",
+  plain: "Zhang, X. (2026). Counterfactual Evaluation of Temporal Observation Protocols. Manuscript.",
 };

@@ -150,7 +150,7 @@ out.append("""
 
 - 页眉眉题：Paper explainer · identification · calibration · observation design
 - 标题：Counterfactual Evaluation of Temporal Observation Protocols
-- 作者行：Xizhe Zhang · School of Biomedical Engineering and Informatics, Nanjing Medical University
+- 作者行：Xizhe Zhang
 - 控件：English / 中文；Auto-advance chapters；Manuscript (PDF)
 - 舞台提示：Press play to start the narration
 - 键位说明：space play / pause · ← → beats · PgUp PgDn chapters · L language

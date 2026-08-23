@@ -70,7 +70,7 @@
   if (FULL) (function jsonld() {
     const base = LINKS.site ? LINKS.site.replace(/\/?$/, "/") : "";
     const d = { "@context": "https://schema.org", "@type": "ScholarlyArticle", headline: "Counterfactual Evaluation of Temporal Observation Protocols",
-      author: { "@type": "Person", name: "Xizhe Zhang", email: LINKS.contact || undefined, affiliation: { "@type": "Organization", name: "School of Biomedical Engineering and Informatics, Nanjing Medical University" } },
+      author: { "@type": "Person", name: "Xizhe Zhang", email: LINKS.contact || undefined },
       inLanguage: "en", dateCreated: "2026-08", keywords: "identifiability, observational equivalence, observation design, temporal aggregates, calibration",
       abstract: "We study counterfactual protocol evaluation: whether data collected under a realised observation protocol determine the predictive value of alternatives that were never deployed. Even infinite benchmark data need not determine this value; a value-specific identification theory, uniform calibration bounds and exact marginal gains connect identification, calibration resolution and observation design.",
       url: base || undefined, encoding: { "@type": "MediaObject", contentUrl: base + (LINKS.paper || "paper/main.pdf"), encodingFormat: "application/pdf" } };

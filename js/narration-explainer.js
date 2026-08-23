@@ -5,7 +5,7 @@ window.CPV_NARRATION = {
    "en": "Counterfactual Evaluation of Temporal Observation Protocols",
    "zh": "时间观测协议的反事实评估"
   },
-  "author": "Xizhe Zhang · Nanjing Medical University",
+  "author": "Xizhe Zhang",
   "voices": {
    "en": "我的声音_讲解",
    "zh": "我的声音_讲解"
