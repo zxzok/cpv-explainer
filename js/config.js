@@ -7,7 +7,7 @@ window.CPV_LINKS = {
   code: "https://github.com/zxzok/cpv-explainer/tree/main/code",                                   // public code repository; empty = show the package description instead
   contact: "zhangxizhe@gmail.com",
   analytics: "",
-  goatcounter: "",                              // optional endpoint for sendBeacon(event) — empty = no tracking
+  goatcounter: "cpv",                              // optional endpoint for sendBeacon(event) — empty = no tracking
 };
 window.CPV_CITATION = {
   bibtex: `@unpublished{zhang2026counterfactual,
